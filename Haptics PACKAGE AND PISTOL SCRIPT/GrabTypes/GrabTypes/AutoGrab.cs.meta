@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1649ee5a65de2fb4f93f977782842d40
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Rigidbody: {instanceID: 0}
+  - HandPose: {instanceID: 0}
+  - CurrentHand: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
