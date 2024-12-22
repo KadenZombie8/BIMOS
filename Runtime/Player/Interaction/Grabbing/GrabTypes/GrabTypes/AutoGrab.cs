@@ -1,10 +1,25 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace BIMOS
 {
     [AddComponentMenu("BIMOS/Grabs/Grab (Auto)")]
     public class AutoGrab : Grab
     {
+        private InputDevice _leftDevice;
+        private InputDevice _rightDevice;
+
+        private void InitializeHapticDevices()
+        {
+            _leftDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+            _rightDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        }
+
+        private void Start()
+        {
+            InitializeHapticDevices();
+        }
+
         public override void AlignHand(Hand hand)
         {
             Vector3 handTargetPosition = GetComponent<Collider>().ClosestPoint(hand.PalmTransform.position);
@@ -22,11 +37,27 @@ namespace BIMOS
                 if (hand.IsLeftHand)
                     crossed *= -1f;
                 hand.PhysicsHandTransform.rotation = Quaternion.LookRotation(-crossed, -projected);
-                hand.PhysicsHandTransform.position += hit.normal * 0.02f; // Moves hand out of collider
+                hand.PhysicsHandTransform.position += hit.normal * 0.02f;
             }
 
             hand.PhysicsHandTransform.position = hand.PhysicsHandTransform.TransformPoint(hand.PalmTransform.InverseTransformPoint(hand.PhysicsHandTransform.position));
             hand.PhysicsHandTransform.rotation = hand.PhysicsHandTransform.rotation * Quaternion.Inverse(hand.PalmTransform.rotation) * hand.PhysicsHandTransform.rotation;
+        }
+
+        public override void OnGrab(Hand hand)
+        {
+            base.OnGrab(hand);
+
+            ProvideHapticFeedback(hand);
+        }
+
+        private void ProvideHapticFeedback(Hand hand)
+        {
+            InputDevice device = hand.IsLeftHand ? _leftDevice : _rightDevice;
+            if (device.isValid)
+            {
+                device.SendHapticImpulse(0, 10f, 0.7f);
+            }
         }
 
         public override void IgnoreCollision(Hand hand, bool ignore) { }

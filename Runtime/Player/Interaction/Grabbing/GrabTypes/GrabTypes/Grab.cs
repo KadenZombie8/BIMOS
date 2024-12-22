@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 namespace BIMOS
 {
@@ -21,6 +22,9 @@ namespace BIMOS
         [HideInInspector]
         public Collider Collider;
 
+        private UnityEngine.XR.InputDevice _leftDevice;
+        private UnityEngine.XR.InputDevice _rightDevice;
+
         private void OnEnable()
         {
             _body = Utilities.GetBody(transform, out _rigidBody, out _articulationBody);
@@ -37,6 +41,10 @@ namespace BIMOS
                 return;
 
             CreateCollider();
+
+            // Initialize Input Devices for Haptic Feedback (controllers)
+            _leftDevice = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+            _rightDevice = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
         }
 
         public virtual void CreateCollider()
@@ -47,15 +55,15 @@ namespace BIMOS
             Collider = collider;
         }
 
-        public virtual float CalculateRank(Transform handTransform) //Returned when in player grab range
+        public virtual float CalculateRank(Transform handTransform)
         {
             if (Collider is MeshCollider)
-                return 1f/1000f;
+                return 1f / 1000f;
 
-            return 1f / Vector3.Distance(handTransform.position, Collider.ClosestPoint(handTransform.position)); //Reciprocal of distance from hand to grab
+            return 1f / Vector3.Distance(handTransform.position, Collider.ClosestPoint(handTransform.position));
         }
 
-        public virtual void OnGrab(Hand hand) //Triggered when player grabs the grab
+        public virtual void OnGrab(Hand hand)
         {
             hand.CurrentGrab = this;
 
@@ -64,7 +72,7 @@ namespace BIMOS
             else
                 RightHand = hand;
 
-            hand.GrabHandler.ApplyGrabPose(HandPose); //Use the hand pose attached
+            hand.GrabHandler.ApplyGrabPose(HandPose);
 
             AlignHand(hand);
             CreateGrabJoint(hand);
@@ -83,6 +91,18 @@ namespace BIMOS
             }
 
             GetComponent<Interactable>()?.OnGrab();
+
+            ProvideHapticFeedback(hand);
+        }
+
+        private void ProvideHapticFeedback(Hand hand)
+        {
+            UnityEngine.XR.InputDevice device = hand.IsLeftHand ? _leftDevice : _rightDevice;
+
+            if (device.isValid)
+            {
+                device.SendHapticImpulse(0, 10f, 0.7f);
+            }
         }
 
         public virtual void IgnoreCollision(Hand hand, bool ignore)
@@ -103,7 +123,7 @@ namespace BIMOS
                 grabJoint.connectedArticulationBody = _articulationBody;
         }
 
-        public void OnRelease(Hand hand, bool toggleGrabs) //Triggered when player releases the grab
+        public void OnRelease(Hand hand, bool toggleGrabs)
         {
             if (!hand)
                 return;
@@ -141,8 +161,8 @@ namespace BIMOS
             if (!hand)
                 return;
 
-            FixedJoint grabJoint = hand.PhysicsHandTransform.GetComponent<FixedJoint>(); //Gets the grab joint
-            Destroy(grabJoint); //Deletes the joint, letting it go
+            FixedJoint grabJoint = hand.PhysicsHandTransform.GetComponent<FixedJoint>();
+            Destroy(grabJoint); 
 
             IgnoreCollision(hand, false);
 
