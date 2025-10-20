@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using KadenZombie8.BIMOS.Rig;
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS
+namespace KadenZombie8.BIMOS.Rig
 {
     [ExecuteInEditMode]
     [RequireComponent(typeof(BIMOSRig))]
