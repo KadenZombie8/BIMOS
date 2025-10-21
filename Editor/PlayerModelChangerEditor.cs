@@ -5,7 +5,7 @@ using UnityEngine;
 namespace KadenZombie8.BIMOS.Editor
 {
     [CustomEditor(typeof(PlayerModelChanger))]
-    public class PlayerModelChangerEditor : Editor
+    public class PlayerModelChangerEditor : UnityEditor.Editor
     {
         private PlayerModelChanger _target;
         private SerializedProperty _characterModel;
