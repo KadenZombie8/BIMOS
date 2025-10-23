@@ -29,7 +29,7 @@ namespace KadenZombie8.BIMOS.Editor
         private DummyHand _rightHand;
         private DummyHand _currentHand;
 
-        private float _lineGrabPosition;
+        private float _lineGrabPosition = 0.5f;
 
         private BoneRenderer _selectedBoneRenderer;
 
@@ -37,7 +37,7 @@ namespace KadenZombie8.BIMOS.Editor
 
         private bool _showHandModelSettings = true;
         private bool _showFileHandlingSettings = true;
-        private bool _showMiscSettings = false;
+        private bool _showMiscSettings = true;
         private bool _showSubPoseSettings = false;
 
         private enum SubPose
@@ -149,6 +149,13 @@ namespace KadenZombie8.BIMOS.Editor
 
                 Vector3 pos = selection.TransformPoint(_currentHand.Palm.InverseTransformPoint(hand.position));
                 Quaternion rot = selection.rotation * Quaternion.Inverse(_currentHand.Palm.rotation) * hand.rotation;
+
+                var lineGrab = selection.GetComponent<LineGrabbable>();
+                if (lineGrab && lineGrab.Origin)
+                {
+                    pos += (_lineGrabPosition - 0.5f) * lineGrab.Length * lineGrab.Origin.up;
+                }
+
                 _dummyHand.transform.position = pos;
                 hand.transform.SetPositionAndRotation(pos, rot);
             }
@@ -222,7 +229,7 @@ namespace KadenZombie8.BIMOS.Editor
         private void OnGUI()
         {
             minSize = new Vector2(150f, 351f);
-            maxSize = new Vector2(265f, 576f);
+            maxSize = new Vector2(265f, 618f);
 
             _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, GUIStyle.none);
 
@@ -389,8 +396,11 @@ namespace KadenZombie8.BIMOS.Editor
                 }
             }
 
-            GUILayout.Label("Line grab position");
-            _lineGrabPosition = EditorGUILayout.Slider(_lineGrabPosition, 0f, 1f);
+            if (_currentSelection && _currentSelection.GetComponent<LineGrabbable>())
+            {
+                GUILayout.Label("Line grab position");
+                _lineGrabPosition = EditorGUILayout.Slider(_lineGrabPosition, 0f, 1f);
+            }
         }
 
         private void DrawSubPoseSettings()
