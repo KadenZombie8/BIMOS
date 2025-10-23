@@ -47,27 +47,28 @@ namespace KadenZombie8.BIMOS.Rig
 
             foreach (Collider grabCollider in grabColliders) //Loop through found grab colliders to find grab with highest rank
             {
-                Grabbable grab = grabCollider.GetComponent<Grabbable>();
+                Grabbable grabbable = grabCollider.GetComponent<Grabbable>();
 
-                if (!grab)
-                    grab = grabCollider.GetComponentInParent<Grabbable>();
+                if (!grabbable)
+                    grabbable = grabCollider.GetComponentInParent<Grabbable>();
 
-                if (!grab)
+                if (!grabbable)
                     continue;
 
-                if (!grab.enabled)
+                if (!grabbable.enabled)
                     continue;
 
-                if (!grab || !(grab.IsLeftHanded && _hand.IsLeftHand || grab.IsRightHanded && !_hand.IsLeftHand)) //If grab exists and is for the appropriate hand
+                var snapGrabbable = grabbable as SnapGrabbable;
+                if (snapGrabbable && snapGrabbable.Handedness != _hand.Handedness) //If grab exists and is for the appropriate hand
                     continue;
 
-                float grabRank = grab.CalculateRank(_hand);
+                float grabRank = grabbable.CalculateRank(_hand);
 
                 if (grabRank <= highestRank || grabRank <= 0f)
                     continue;
 
                 highestRank = grabRank;
-                highestRankGrab = grab;
+                highestRankGrab = grabbable;
             }
 
             if (highestRank <= 0f)
@@ -90,7 +91,7 @@ namespace KadenZombie8.BIMOS.Rig
             if (!_hand.CurrentGrab)
                 return;
 
-            _hand.CurrentGrab.Release(_hand, true);
+            _hand.CurrentGrab.Release(_hand);
             OnRelease?.Invoke();
         }
 

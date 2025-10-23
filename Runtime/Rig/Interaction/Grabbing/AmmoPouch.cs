@@ -27,14 +27,14 @@ namespace KadenZombie8.BIMOS.Guns
             if (AmmoPrefab == null)
                 return;
 
-            Release(hand, true);
+            Release(hand);
             GameObject magazine = Instantiate(AmmoPrefab);
             magazine.transform.SetPositionAndRotation(hand.PhysicsHandTransform.position, hand.PhysicsHandTransform.rotation);
 
-            foreach (Grabbable grab in magazine.GetComponentsInChildren<SnapGrabbable>())
-                if (grab.IsLeftHanded && hand.IsLeftHand || grab.IsRightHanded && !hand.IsLeftHand)
+            foreach (var grabbable in magazine.GetComponentsInChildren<SnapGrabbable>())
+                if (grabbable.Handedness == hand.Handedness)
                 {
-                    grab.Grab(hand);
+                    grabbable.Grab(hand);
                     break;
                 }
 

@@ -49,33 +49,29 @@ namespace KadenZombie8.BIMOS.Samples.Editor
         [MenuItem("GameObject/BIMOS/Grabbables/Snap")]
         static void CreateSnapGrab()
         {
-            GameObject grab = new("Grab", typeof(SnapGrabbable));
+            GameObject grab = new("SnapGrabbable", typeof(SnapGrabbable));
             GameObjectUtility.SetParentAndAlign(grab, Selection.activeGameObject);
         }
 
         [MenuItem("GameObject/BIMOS/Grabbables/Offhand")]
         static void CreateOffhandGrab()
         {
-            GameObject grab = new("Grab", typeof(OffhandGrabbable));
+            GameObject grab = new("OffhandGrabbable", typeof(OffhandGrabbable));
             GameObjectUtility.SetParentAndAlign(grab, Selection.activeGameObject);
         }
 
         [MenuItem("GameObject/BIMOS/Grabbables/Line")]
         static void CreateLineGrab()
         {
-            GameObject grab = new("Grab", typeof(LineGrabbable));
+            GameObject lineOrigin = new("LineOrigin");
+            lineOrigin.transform.localPosition = Vector3.zero;
 
-            GameObject start = new("Start");
-            GameObject end = new("End");
-            start.transform.parent = grab.transform;
-            start.transform.localPosition = Vector3.right * 0.5f;
-            end.transform.parent = grab.transform;
-            start.transform.localPosition = Vector3.left * 0.5f;
+            GameObject grab = new("LineGrabbable", typeof(LineGrabbable));
+            grab.transform.parent = lineOrigin.transform;
 
-            grab.GetComponent<LineGrabbable>().Start = start.transform;
-            grab.GetComponent<LineGrabbable>().End = end.transform;
+            grab.GetComponent<LineGrabbable>().Origin = lineOrigin.transform;
 
-            GameObjectUtility.SetParentAndAlign(grab, Selection.activeGameObject);
+            GameObjectUtility.SetParentAndAlign(lineOrigin, Selection.activeGameObject);
         }
     }
 }

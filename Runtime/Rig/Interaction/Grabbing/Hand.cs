@@ -4,6 +4,8 @@ using UnityEngine.XR.OpenXR.Input;
 
 namespace KadenZombie8.BIMOS.Rig
 {
+    public enum Handedness { Left, Right };
+
     public class Hand : MonoBehaviour
     {
         public HandAnimator HandAnimator;
@@ -13,7 +15,7 @@ namespace KadenZombie8.BIMOS.Rig
         public PhysicsHand PhysicsHand;
         public Transform PhysicsHandTransform;
         public GrabHandler GrabHandler;
-        public bool IsLeftHand;
+        public Handedness Handedness;
         public Hand OtherHand;
         public Collider PhysicsHandCollider;
         public Joint GrabJoint;
