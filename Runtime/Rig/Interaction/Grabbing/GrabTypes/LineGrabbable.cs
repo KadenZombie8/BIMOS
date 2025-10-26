@@ -9,6 +9,11 @@ namespace KadenZombie8.BIMOS.Rig
         public Transform Origin;
         public float Length = 1f;
 
+        protected void AlignHandBase(Hand hand, out Vector3 position, out Quaternion rotation)
+        {
+            base.AlignHand(hand, out position, out rotation);
+        }
+
         public override void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)
         {
             var point = GetNearestPoint(hand.PalmTransform.position);
@@ -22,13 +27,13 @@ namespace KadenZombie8.BIMOS.Rig
             colliderObject.transform.parent = transform;
             CapsuleCollider collider = colliderObject.AddComponent<CapsuleCollider>();
             collider.isTrigger = true;
-            colliderObject.transform.SetPositionAndRotation(Origin.position, Origin.rotation);
+            colliderObject.transform.SetPositionAndRotation(transform.position, Origin.rotation);
             collider.radius = 0.01f;
             collider.height = Length;
             Collider = collider;
         }
 
-        private Vector3 GetNearestPoint(Vector3 palmPosition)
+        protected Vector3 GetNearestPoint(Vector3 palmPosition)
         {
             var lineDirection = Origin.up;
 

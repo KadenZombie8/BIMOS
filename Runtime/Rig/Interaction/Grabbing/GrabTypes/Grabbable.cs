@@ -59,6 +59,7 @@ namespace KadenZombie8.BIMOS.Rig
             var positionDifference = Mathf.Min(
                 Vector3.Distance(hand.PalmTransform.position, position), 0.2f)
                 / 0.2f;
+
             var rotationDifference = Quaternion.Angle(hand.PalmTransform.rotation, rotation) / 180f;
             var averageDifference = (positionDifference + rotationDifference * 2f) / 3f;
 
