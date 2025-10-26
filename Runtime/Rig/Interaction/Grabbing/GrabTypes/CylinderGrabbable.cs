@@ -33,6 +33,7 @@ namespace KadenZombie8.BIMOS.Rig
             base.CreateCollider();
             var collider = (CapsuleCollider)Collider;
             collider.radius = Vector3.Distance(Origin.position, transform.position) + 0.005f;
+            Collider.transform.SetPositionAndRotation(Origin.position, Origin.rotation);
         }
     }
 }
