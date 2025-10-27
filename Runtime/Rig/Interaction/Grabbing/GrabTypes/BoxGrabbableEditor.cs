@@ -50,7 +50,7 @@ namespace KadenZombie8.BIMOS.Rig
                 corners.FrontTopRight,
                 corners.FrontBottomRight,
                 corners.FrontBottomLeft
-            }, enabledFaces.Front ? _enabledColor : _disabledColor, _outlineColor);
+            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Front) ? _enabledColor : _disabledColor, _outlineColor);
 
             Handles.DrawSolidRectangleWithOutline(new Vector3[]
             {
@@ -58,7 +58,7 @@ namespace KadenZombie8.BIMOS.Rig
                 corners.BackTopRight,
                 corners.BackBottomRight,
                 corners.BackBottomLeft
-            }, enabledFaces.Back ? _enabledColor : _disabledColor, _outlineColor);
+            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Back) ? _enabledColor : _disabledColor, _outlineColor);
 
             Handles.DrawSolidRectangleWithOutline(new Vector3[]
             {
@@ -66,7 +66,7 @@ namespace KadenZombie8.BIMOS.Rig
                 corners.BackTopLeft,
                 corners.BackBottomLeft,
                 corners.FrontBottomLeft
-            }, enabledFaces.Left ? _enabledColor : _disabledColor, _outlineColor);
+            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Left) ? _enabledColor : _disabledColor, _outlineColor);
 
             Handles.DrawSolidRectangleWithOutline(new Vector3[]
             {
@@ -74,7 +74,7 @@ namespace KadenZombie8.BIMOS.Rig
                 corners.BackTopRight,
                 corners.BackBottomRight,
                 corners.FrontBottomRight
-            }, enabledFaces.Right ? _enabledColor : _disabledColor, _outlineColor);
+            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Right) ? _enabledColor : _disabledColor, _outlineColor);
 
             Handles.DrawSolidRectangleWithOutline(new Vector3[]
             {
@@ -82,7 +82,7 @@ namespace KadenZombie8.BIMOS.Rig
                 corners.BackTopLeft,
                 corners.BackTopRight,
                 corners.FrontTopRight
-            }, enabledFaces.Top ? _enabledColor : _disabledColor, _outlineColor);
+            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Top) ? _enabledColor : _disabledColor, _outlineColor);
 
             Handles.DrawSolidRectangleWithOutline(new Vector3[]
             {
@@ -90,7 +90,7 @@ namespace KadenZombie8.BIMOS.Rig
                 corners.BackBottomLeft,
                 corners.BackBottomRight,
                 corners.FrontBottomRight
-            }, enabledFaces.Bottom ? _enabledColor : _disabledColor, _outlineColor);
+            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Bottom) ? _enabledColor : _disabledColor, _outlineColor);
         }
     }
 }

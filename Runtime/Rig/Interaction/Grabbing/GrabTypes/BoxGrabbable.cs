@@ -1,29 +1,26 @@
-using UnityEngine;
 using System;
 
 namespace KadenZombie8.BIMOS.Rig
 {
     public class BoxGrabbable : AutoGrabbable
     {
-        [Serializable]
-        public struct BoxFaces
+        [Flags]
+        public enum BoxFaces
         {
-            public bool Front;
-            public bool Back;
-            public bool Left;
-            public bool Right;
-            public bool Top;
-            public bool Bottom;
+            Front = 1,
+            Back = 2,
+            Left = 4,
+            Right = 8,
+            Top = 16,
+            Bottom = 32
         }
 
-        public BoxFaces EnabledFaces = new()
-        {
-            Front = true,
-            Back = true,
-            Left = true,
-            Right = true,
-            Top = true,
-            Bottom = true
-        };
+        public BoxFaces EnabledFaces =
+            BoxFaces.Front |
+            BoxFaces.Back |
+            BoxFaces.Left |
+            BoxFaces.Right |
+            BoxFaces.Top |
+            BoxFaces.Bottom;
     }
 }
