@@ -5,26 +5,32 @@ namespace KadenZombie8.BIMOS.Rig
     [AddComponentMenu("BIMOS/Grabbables/Grabbable (Auto)")]
     public class AutoGrabbable : Grabbable
     {
-        public override void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)
+        protected RaycastHit RaycastHit(Hand hand, Vector3 handToTargetDirection)
         {
-            Vector3 handTargetPosition = Collider.ClosestPoint(hand.PalmTransform.position);
-            Vector3 handToTargetDirection = handTargetPosition - hand.PalmTransform.position;
-
-            position = hand.PalmTransform.position;
-            rotation = hand.PalmTransform.rotation;
-
             if (handToTargetDirection.sqrMagnitude == 0f)
-                return;
+                return new();
 
             handToTargetDirection.Normalize();
 
             Ray ray = new(hand.PalmTransform.position, handToTargetDirection);
 
-            if (Collider.Raycast(ray, out var hit, 10f))
+            if (Collider.Raycast(ray, out var hit, 10f)) return hit;
+            return default;
+        }
+
+        public override void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)
+        {
+            position = hand.PalmTransform.position;
+            rotation = hand.PalmTransform.rotation;
+
+            var handTargetPosition = Collider.ClosestPoint(hand.PalmTransform.position);
+            var handToTargetDirection = handTargetPosition - hand.PalmTransform.position;
+            var hit = RaycastHit(hand, handToTargetDirection);
+            if (hit.collider)
             {
-                Vector3 projected = Vector3.ProjectOnPlane(-hand.PalmTransform.up, hit.normal).normalized;
+                var projected = Vector3.ProjectOnPlane(-hand.PalmTransform.up, hit.normal).normalized;
                 position = handTargetPosition;
-                Vector3 crossed = Vector3.Cross(hit.normal, projected).normalized;
+                var crossed = Vector3.Cross(hit.normal, projected).normalized;
                 rotation = Quaternion.LookRotation(-crossed, -projected);
                 rotation *= Quaternion.Euler(180f, 90f, 180f);
                 position += hit.normal * 0.02f; // Moves hand out of collider
