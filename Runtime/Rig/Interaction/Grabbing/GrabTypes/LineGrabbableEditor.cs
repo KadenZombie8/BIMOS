@@ -2,7 +2,7 @@ using UnityEditor;
 
 namespace KadenZombie8.BIMOS.Rig
 {
-    [CustomEditor(typeof(LineGrabbable))]
+    [CustomEditor(typeof(LineGrabbable), true)]
     public class LineGrabbableEditor : UnityEditor.Editor
     {
         public void OnSceneGUI()

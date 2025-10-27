@@ -55,6 +55,8 @@ namespace KadenZombie8.BIMOS.Rig
                 return 1f/1000f;
 
             AlignHand(hand, out var position, out var rotation);
+            if (position == hand.PalmTransform.position && rotation == hand.PalmTransform.rotation)
+                return 0f;
 
             var positionDifference = Mathf.Min(
                 Vector3.Distance(hand.PalmTransform.position, position), 0.2f)
