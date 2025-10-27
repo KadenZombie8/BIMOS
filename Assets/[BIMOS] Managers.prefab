@@ -205,10 +205,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4850294539657462582}
     m_Modifications:
-    - target: {fileID: 1714243675603914674, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: Handedness
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2464329218578631355, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -296,30 +292,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3045650548132499840, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2104228083754418940}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
---- !u!1 &250672128933410533 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3045650548132499840, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-  m_PrefabInstance: {fileID: 2972028241134741349}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2104228083754418940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 250672128933410533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b149f430f0839fb4c8ffb95711579fb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Movement.AirAcceleration
-  _airAcceleration: 3
-  _moveAction: {fileID: 2329931572188812770, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!4 &1102255245552895835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2771187932956860478, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
@@ -7,8 +8,18 @@ namespace KadenZombie8.BIMOS.Rig
     /// </summary>
     public class GrabHapticsHandler : MonoBehaviour
     {
-        [SerializeField]
-        private Grabbable[] _grabs;
+        private HashSet<Grabbable> _grabbables;
+
+        private void Awake()
+        {
+            _grabbables = new(GetComponentsInChildren<Grabbable>());
+            var parent = transform.parent;
+            if (!parent) return;
+            var parentArticulationBody = parent.GetComponentInParent<ArticulationBody>();
+            if (!parentArticulationBody) return;
+            foreach (var grabbable in parentArticulationBody.GetComponentsInChildren<Grabbable>())
+                _grabbables.Add(grabbable);
+        }
 
         /// <summary>
         /// Sends haptic impulses to each of the defined grabs
@@ -17,7 +28,7 @@ namespace KadenZombie8.BIMOS.Rig
         /// <param name="duration">The duration of the impulse</param>
         public void SendHapticImpulse(float amplitude, float duration)
         {
-            foreach (Grabbable grab in _grabs) {
+            foreach (Grabbable grab in _grabbables) {
                 if (grab.LeftHand)
                     grab.LeftHand.SendHapticImpulse(amplitude, duration);
                 if (grab.RightHand)
