@@ -13,27 +13,13 @@ namespace KadenZombie8.BIMOS.Rig
             PrimaryDownEvent,
             PrimaryUpEvent,
             SecondaryDownEvent,
-            SecondaryUpEvent,
-            GrabEvent,
-            ReleaseEvent;
+            SecondaryUpEvent;
         public TickEvent OnTick;
         public TickEvent OnPhysicsTick;
 
         private Grabbable _grab;
 
         private void Awake() => _grab = GetComponent<Grabbable>();
-
-        private void OnEnable()
-        {
-            _grab.OnGrab += OnGrab;
-            _grab.OnRelease += OnRelease;
-        }
-
-        private void OnDisable()
-        {
-            _grab.OnGrab -= OnGrab;
-            _grab.OnRelease -= OnRelease;
-        }
 
         private void CheckInputs(out float trigger, out bool primary, out bool secondary)
         {
@@ -97,10 +83,6 @@ namespace KadenZombie8.BIMOS.Rig
             else
                 SecondaryUpEvent.Invoke();
         }
-
-        public void OnGrab() => GrabEvent.Invoke();
-
-        public void OnRelease() => ReleaseEvent.Invoke();
 
         [Serializable]
         public class TickEvent : UnityEvent<float, bool, bool> { }

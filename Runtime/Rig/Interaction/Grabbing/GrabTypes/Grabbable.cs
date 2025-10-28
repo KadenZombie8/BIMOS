@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace KadenZombie8.BIMOS.Rig
 {
     public abstract class Grabbable : MonoBehaviour
     {
-        public event Action OnGrab;
-        public event Action OnRelease;
+        public UnityEvent OnGrab;
+        public UnityEvent OnRelease;
         public HandPose HandPose;
 
         [HideInInspector]
