@@ -10,20 +10,19 @@ namespace KadenZombie8.BIMOS
         private GrabbableHapticsHandler _grabbableHapticsHandler;
 
         [Serializable]
-        protected struct HapticSettingsStruct
+        public struct HapticSettingsStruct
         {
             public float Amplitude;
             public float Duration;
         }
 
-        [SerializeField]
-        protected HapticSettingsStruct HapticSettings = new()
+        public HapticSettingsStruct HapticSettings = new()
         {
             Amplitude = 0.5f,
             Duration = 0.1f
         };
 
-        protected void Play()
+        public void Play()
         {
             if (!_grabbableHapticsHandler) return;
             _grabbableHapticsHandler.SendHapticImpulse(HapticSettings.Amplitude, HapticSettings.Duration);
