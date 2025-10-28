@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Sockets
 {
-    [AddComponentMenu("BIMOS/Attacher")]
-    public class Attacher : MonoBehaviour
+    [AddComponentMenu("BIMOS/Plug")]
+    public class Plug : MonoBehaviour
     {
         public event Action
             OnAttach,

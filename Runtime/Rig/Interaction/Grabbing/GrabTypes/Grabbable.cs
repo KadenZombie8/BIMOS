@@ -1,16 +1,15 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace KadenZombie8.BIMOS.Rig
 {
     public abstract class Grabbable : MonoBehaviour
     {
-        public event Action OnGrab;
-        public event Action OnRelease;
+        public UnityEvent OnGrab;
+        public UnityEvent OnRelease;
         public HandPose HandPose;
-        public bool IsLeftHanded = true, IsRightHanded = true;
-        public Grabbable[] EnableGrabs, DisableGrabs;
 
         [HideInInspector]
         public Hand LeftHand, RightHand;
@@ -57,10 +56,13 @@ namespace KadenZombie8.BIMOS.Rig
                 return 1f/1000f;
 
             AlignHand(hand, out var position, out var rotation);
+            if (position == hand.PalmTransform.position && rotation == hand.PalmTransform.rotation)
+                return 0f;
 
             var positionDifference = Mathf.Min(
                 Vector3.Distance(hand.PalmTransform.position, position), 0.2f)
                 / 0.2f;
+
             var rotationDifference = Quaternion.Angle(hand.PalmTransform.rotation, rotation) / 180f;
             var averageDifference = (positionDifference + rotationDifference * 2f) / 3f;
 
@@ -74,7 +76,7 @@ namespace KadenZombie8.BIMOS.Rig
         {
             hand.CurrentGrab = this;
 
-            if (hand.IsLeftHand)
+            if (hand.Handedness == Handedness.Left)
                 LeftHand = hand;
             else
                 RightHand = hand;
@@ -85,17 +87,6 @@ namespace KadenZombie8.BIMOS.Rig
             StartCoroutine(CreateGrabJoint(hand, position, rotation));
 
             IgnoreCollision(hand, true);
-
-            foreach (Grabbable grab in EnableGrabs)
-            {
-                if (grab)
-                    grab.enabled = true;
-            }
-            foreach (Grabbable grab in DisableGrabs)
-            {
-                if (grab)
-                    grab.enabled = false;
-            }
 
             OnGrab?.Invoke();
         }
@@ -153,6 +144,7 @@ namespace KadenZombie8.BIMOS.Rig
             var rotationDifference = Quaternion.Angle(initialRotation, rotation) / 180f;
             var averageDifference = Mathf.Min(positionDifference + rotationDifference, 1f);
             var grabTime = MaxGrabTime * averageDifference;
+            hand.SendHapticImpulse(0.05f, grabTime);
             while (elapsedTime < grabTime)
             {
                 if (!grabJoint)
@@ -167,6 +159,7 @@ namespace KadenZombie8.BIMOS.Rig
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
+            hand.SendHapticImpulse(0.2f, 0.05f);
 
             if (!grabJoint)
                 yield break;
@@ -179,30 +172,16 @@ namespace KadenZombie8.BIMOS.Rig
             grabJoint.targetRotation = Quaternion.identity;
         }
 
-        public void Release(Hand hand, bool toggleGrabs) //Triggered when player releases the grab
+        public void Release(Hand hand) //Triggered when player releases the grab
         {
             if (!hand)
                 return;
 
             DestroyGrabJoint(hand);
 
-            if (toggleGrabs)
-            {
-                foreach (Grabbable grab in EnableGrabs)
-                {
-                    if (grab)
-                        grab.enabled = false;
-                }
-                foreach (Grabbable grab in DisableGrabs)
-                {
-                    if (grab)
-                        grab.enabled = true;
-                }
-            }
-
             hand.CurrentGrab = null;
 
-            if (hand.IsLeftHand)
+            if (hand.Handedness == Handedness.Left)
                 LeftHand = null;
             else
                 RightHand = null;
@@ -226,8 +205,8 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void OnDisable()
         {
-            Release(LeftHand, false);
-            Release(RightHand, false);
+            Release(LeftHand);
+            Release(RightHand);
         }
     }
 }

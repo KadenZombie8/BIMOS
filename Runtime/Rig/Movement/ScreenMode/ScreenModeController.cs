@@ -46,8 +46,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private Vector2 _rotation;
 
-        private float _moveSensitivity = 0.0001f;
-        private float _rotateSensitivity = 0.025f;
+        private readonly float _moveSensitivity = 0.0005f;
+        private readonly float _rotateSensitivity = 0.1f;
 
         private void Awake()
         {

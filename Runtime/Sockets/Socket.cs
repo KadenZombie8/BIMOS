@@ -15,11 +15,10 @@ namespace KadenZombie8.BIMOS.Sockets
 
         public Transform AttachPoint, DetachPoint;
 
-        [SerializeField]
-        private float _insertTime = 0.1f;
+        public float InsertTime = 0.1f;
 
         [HideInInspector]
-        public Attacher Attacher;
+        public Plug Plug;
 
         [HideInInspector]
         public ConfigurableJoint AttachJoint;
@@ -36,11 +35,11 @@ namespace KadenZombie8.BIMOS.Sockets
 
         private void Awake() => _body = Utilities.GetBody(transform, out _rigidBody, out _articulationBody);
 
-        private bool HasMatchingTag(Attacher attacher)
+        private bool HasMatchingTag(Plug plug)
         {
             foreach (string socketTag in Tags)
-                foreach (string attacherTag in attacher.Tags)
-                    if (socketTag == attacherTag)
+                foreach (string plugTag in plug.Tags)
+                    if (socketTag == plugTag)
                         return true;
 
             return false;
@@ -48,52 +47,52 @@ namespace KadenZombie8.BIMOS.Sockets
 
         private void OnTriggerEnter(Collider other)
         {
-            if (Attacher)
+            if (Plug)
                 return;
 
-            Attacher attacher = other.GetComponent<Attacher>();
+            Plug plug = other.GetComponent<Plug>();
 
-            if (!attacher)
+            if (!plug)
                 return;
 
-            if (!HasMatchingTag(attacher))
+            if (!HasMatchingTag(plug))
                 return;
 
-            if (attacher.Socket)
+            if (plug.Socket)
                 return;
 
-            Attach(attacher);
+            Attach(plug);
         }
 
-        public void Attach(Attacher attacher)
+        public void Attach(Plug plug)
         {
             if (_onCooldown)
                 return;
 
-            if (!attacher.IsGrabbed())
+            if (!plug.IsGrabbed())
                 return;
 
             _onCooldown = true;
 
-            Attacher = attacher;
+            Plug = plug;
 
-            Attacher.Socket = this;
+            Plug.Socket = this;
 
-            foreach (Collider attacherCollider in Attacher.Rigidbody.GetComponentsInChildren<Collider>())
+            foreach (Collider plugCollider in Plug.Rigidbody.GetComponentsInChildren<Collider>())
                 foreach (Collider socketCollider in _body.GetComponentsInChildren<Collider>())
-                    Physics.IgnoreCollision(attacherCollider, socketCollider, true);
+                    Physics.IgnoreCollision(plugCollider, socketCollider, true);
 
             StartCoroutine(AttachCoroutine());
         }
 
         private IEnumerator AttachCoroutine()
         {
-            var attacher = Attacher.transform;
+            var plug = Plug.transform;
 
-            var rotation = Attacher.Rigidbody.transform.rotation;
-            Attacher.Rigidbody.transform.rotation = DetachPoint.rotation * Quaternion.Inverse(attacher.localRotation);
+            var rotation = Plug.Rigidbody.transform.rotation;
+            Plug.Rigidbody.transform.rotation = DetachPoint.rotation * Quaternion.Inverse(plug.localRotation);
 
-            AttachJoint = Attacher.Rigidbody.gameObject.AddComponent<ConfigurableJoint>();
+            AttachJoint = Plug.Rigidbody.gameObject.AddComponent<ConfigurableJoint>();
             AttachJoint.xMotion
                = AttachJoint.yMotion
                = AttachJoint.zMotion
@@ -106,11 +105,11 @@ namespace KadenZombie8.BIMOS.Sockets
                 AttachJoint.connectedArticulationBody = _articulationBody;
 
             AttachJoint.autoConfigureConnectedAnchor = false;
-            AttachJoint.anchor = attacher.localPosition;
+            AttachJoint.anchor = plug.localPosition;
 
-            Attacher.Rigidbody.transform.rotation = rotation;
+            Plug.Rigidbody.transform.rotation = rotation;
 
-            attacher.GetPositionAndRotation(out var initialPosition, out var initialRotation);
+            plug.GetPositionAndRotation(out var initialPosition, out var initialRotation);
             var initialLocalPosition = _body.InverseTransformPoint(initialPosition);
             var initialLocalRotation = Quaternion.Inverse(_body.rotation) * initialRotation;
 
@@ -118,7 +117,7 @@ namespace KadenZombie8.BIMOS.Sockets
             var positionDifference = Mathf.Min(
                 Vector3.Distance(initialPosition, DetachPoint.position), _maxPositionDifference)
                 / _maxPositionDifference;
-            var rotationDifference = Quaternion.Angle(attacher.rotation, DetachPoint.rotation) / 180f;
+            var rotationDifference = Quaternion.Angle(plug.rotation, DetachPoint.rotation) / 180f;
             var averageDifference = Mathf.Min(positionDifference + rotationDifference, 1f);
             var alignTime = 0f;
             if (averageDifference > 0.1f)
@@ -138,12 +137,12 @@ namespace KadenZombie8.BIMOS.Sockets
             }
 
             OnAttach?.Invoke();
-            Attacher.Attach();
+            Plug.Attach();
             elapsedTime = 0f;
-            while (elapsedTime < _insertTime)
+            while (elapsedTime < InsertTime)
             {
-                var targetPosition = Vector3.Lerp(DetachPoint.position, AttachPoint.position, elapsedTime / _insertTime);
-                var targetRotation = Quaternion.Lerp(DetachPoint.rotation, AttachPoint.rotation, elapsedTime / _insertTime);
+                var targetPosition = Vector3.Lerp(DetachPoint.position, AttachPoint.position, elapsedTime / InsertTime);
+                var targetRotation = Quaternion.Lerp(DetachPoint.rotation, AttachPoint.rotation, elapsedTime / InsertTime);
 
                 AttachJoint.connectedAnchor = _body.InverseTransformPoint(targetPosition);
                 AttachJoint.targetRotation = Quaternion.Inverse(targetRotation) * DetachPoint.rotation;
@@ -152,11 +151,11 @@ namespace KadenZombie8.BIMOS.Sockets
                 yield return new WaitForFixedUpdate();
             }
 
-            foreach (Grabbable grab in Attacher.EnableGrabs)
+            foreach (Grabbable grab in Plug.EnableGrabs)
                 if (grab)
                     grab.enabled = true;
 
-            foreach (Grabbable grab in Attacher.DisableGrabs)
+            foreach (Grabbable grab in Plug.DisableGrabs)
                 if (grab)
                     grab.enabled = false;
 
@@ -171,7 +170,7 @@ namespace KadenZombie8.BIMOS.Sockets
 
         public void Detach()
         {
-            if (!Attacher)
+            if (!Plug)
                 return;
 
             _waitingForDetach = true;
@@ -185,18 +184,18 @@ namespace KadenZombie8.BIMOS.Sockets
 
             StartCoroutine(DetachCoroutine());
             OnDetach?.Invoke();
-            Attacher.Detach();
+            Plug.Detach();
         }
 
         private IEnumerator DetachCoroutine()
         {
             float elapsedTime = 0f;
-            var attacher = Attacher.transform;
+            var plug = Plug.transform;
 
-            while (elapsedTime < _insertTime)
+            while (elapsedTime < InsertTime)
             {
-                var targetPosition = Vector3.Lerp(AttachPoint.position, DetachPoint.position, elapsedTime / _insertTime);
-                var targetRotation = Quaternion.Lerp(AttachPoint.rotation, DetachPoint.rotation, elapsedTime / _insertTime);
+                var targetPosition = Vector3.Lerp(AttachPoint.position, DetachPoint.position, elapsedTime / InsertTime);
+                var targetRotation = Quaternion.Lerp(AttachPoint.rotation, DetachPoint.rotation, elapsedTime / InsertTime);
 
                 AttachJoint.connectedAnchor = _body.InverseTransformPoint(targetPosition);
                 AttachJoint.targetRotation = Quaternion.Inverse(targetRotation) * DetachPoint.rotation;
@@ -210,27 +209,27 @@ namespace KadenZombie8.BIMOS.Sockets
 
             Destroy(AttachJoint);
 
-            foreach (Collider attacherCollider in Attacher.Rigidbody.GetComponentsInChildren<Collider>())
+            foreach (Collider plugCollider in Plug.Rigidbody.GetComponentsInChildren<Collider>())
                 foreach (Collider socketCollider in _body.GetComponentsInChildren<Collider>())
-                    Physics.IgnoreCollision(attacherCollider, socketCollider, false);
+                    Physics.IgnoreCollision(plugCollider, socketCollider, false);
 
-            foreach (Grabbable grab in Attacher.EnableGrabs)
+            foreach (Grabbable grab in Plug.EnableGrabs)
                 if (grab)
                     grab.enabled = false;
 
-            foreach (Grabbable grab in Attacher.DisableGrabs)
+            foreach (Grabbable grab in Plug.DisableGrabs)
                 if (grab)
                     grab.enabled = true;
 
-            Attacher.Rigidbody.transform.SetPositionAndRotation(
-                DetachPoint.position - DetachPoint.rotation * attacher.localPosition,
-                DetachPoint.rotation * Quaternion.Inverse(attacher.localRotation)
+            Plug.Rigidbody.transform.SetPositionAndRotation(
+                DetachPoint.position - DetachPoint.rotation * plug.localPosition,
+                DetachPoint.rotation * Quaternion.Inverse(plug.localRotation)
             );
 
-            Attacher.Rigidbody.linearVelocity += (DetachPoint.position - AttachPoint.position) / _insertTime;
+            Plug.Rigidbody.linearVelocity += (DetachPoint.position - AttachPoint.position) / InsertTime;
 
-            Attacher.Socket = null;
-            Attacher = null;
+            Plug.Socket = null;
+            Plug = null;
 
             yield return new WaitForSeconds(_cooldownTime);
 

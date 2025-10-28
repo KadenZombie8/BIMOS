@@ -27,14 +27,14 @@ namespace KadenZombie8.BIMOS.Guns
             if (AmmoPrefab == null)
                 return;
 
-            Release(hand, true);
+            Release(hand);
             GameObject magazine = Instantiate(AmmoPrefab);
             magazine.transform.SetPositionAndRotation(hand.PhysicsHandTransform.position, hand.PhysicsHandTransform.rotation);
 
-            foreach (Grabbable grab in magazine.GetComponentsInChildren<SnapGrabbable>())
-                if (grab.IsLeftHanded && hand.IsLeftHand || grab.IsRightHanded && !hand.IsLeftHand)
+            foreach (var grabbable in magazine.GetComponentsInChildren<SnapGrabbable>())
+                if (grabbable.Handedness == hand.Handedness)
                 {
-                    grab.Grab(hand);
+                    grabbable.Grab(hand);
                     break;
                 }
 
@@ -42,12 +42,12 @@ namespace KadenZombie8.BIMOS.Guns
 
             int ejectedMagazineCount = 0;
             foreach (GameObject spawnedMagazine in _spawnedMagazines)
-                if (!spawnedMagazine.GetComponentInChildren<Attacher>()?.Socket)
+                if (!spawnedMagazine.GetComponentInChildren<Plug>()?.Socket)
                     ejectedMagazineCount++;
 
             if (ejectedMagazineCount > 5)
                 foreach (GameObject spawnedMagazine in _spawnedMagazines)
-                    if (!spawnedMagazine.GetComponentInChildren<Attacher>().Socket)
+                    if (!spawnedMagazine.GetComponentInChildren<Plug>().Socket)
                     {
                         _spawnedMagazines.Remove(spawnedMagazine);
                         Destroy(spawnedMagazine);

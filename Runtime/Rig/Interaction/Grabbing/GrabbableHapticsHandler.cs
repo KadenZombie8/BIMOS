@@ -5,10 +5,9 @@ namespace KadenZombie8.BIMOS.Rig
     /// <summary>
     /// Sends haptic impulses to specified grabs relating to the grabbable
     /// </summary>
-    public class GrabHapticsHandler : MonoBehaviour
+    public class GrabbableHapticsHandler : MonoBehaviour
     {
-        [SerializeField]
-        private Grabbable[] _grabs;
+        public Grabbable[] Grabbables;
 
         /// <summary>
         /// Sends haptic impulses to each of the defined grabs
@@ -17,11 +16,11 @@ namespace KadenZombie8.BIMOS.Rig
         /// <param name="duration">The duration of the impulse</param>
         public void SendHapticImpulse(float amplitude, float duration)
         {
-            foreach (Grabbable grab in _grabs) {
-                if (grab.LeftHand)
-                    grab.LeftHand.SendHapticImpulse(amplitude, duration);
-                if (grab.RightHand)
-                    grab.RightHand.SendHapticImpulse(amplitude, duration);
+            foreach (Grabbable grabbable in Grabbables) {
+                if (grabbable.LeftHand)
+                    grabbable.LeftHand.SendHapticImpulse(amplitude, duration);
+                if (grabbable.RightHand)
+                    grabbable.RightHand.SendHapticImpulse(amplitude, duration);
             }
         }
     }

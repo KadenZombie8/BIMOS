@@ -5,57 +5,42 @@ namespace KadenZombie8.BIMOS.Rig
     [AddComponentMenu("BIMOS/Grabbables/Grabbable (Line)")]
     public class LineGrabbable : SnapGrabbable
     {
-        public Transform Start, End;
+        [Header("Line Properties")]
+        public Transform Origin;
+        public float Length = 1f;
 
-        [SerializeField]
-        private bool _allowHandClipping;
-
-        private int _mask;
-
-        private void Awake()
+        protected void AlignHandBase(Hand hand, out Vector3 position, out Quaternion rotation)
         {
-            _mask = ~LayerMask.GetMask("BIMOSRig");
-        }
-
-        public override float CalculateRank(Hand hand)
-        {
-            if (!_allowHandClipping)
-                if (Physics.OverlapSphere(GetNearestPoint(hand.PalmTransform.position), 0.01f, _mask, QueryTriggerInteraction.Ignore).Length > 0)
-                    return 0f;
-
-            return base.CalculateRank(hand);
+            base.AlignHand(hand, out position, out rotation);
         }
 
         public override void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)
         {
-            Vector3 point = GetNearestPoint(hand.PalmTransform.position);
+            var point = GetNearestPoint(hand.PalmTransform.position);
             base.AlignHand(hand, out position, out rotation);
-            position += point - transform.position;
+            position += point - Origin.position;
         }
 
         public override void CreateCollider()
         {
-            GameObject colliderObject = new GameObject("GrabCollider");
+            GameObject colliderObject = new("GrabCollider");
             colliderObject.transform.parent = transform;
             CapsuleCollider collider = colliderObject.AddComponent<CapsuleCollider>();
             collider.isTrigger = true;
-            colliderObject.transform.position = Vector3.Lerp(Start.position, End.position, 0.5f);
-            colliderObject.transform.up = (Start.position - End.position).normalized;
+            colliderObject.transform.SetPositionAndRotation(transform.position, Origin.rotation);
             collider.radius = 0.01f;
-            collider.height = (Start.position - End.position).magnitude;
+            collider.height = Length;
             Collider = collider;
         }
 
-        private Vector3 GetNearestPoint(Vector3 palmPosition)
+        protected Vector3 GetNearestPoint(Vector3 palmPosition)
         {
-            Vector3 lineVector = End.position - Start.position;
-            float lineLength = lineVector.magnitude;
-            Vector3 lineDirection = lineVector.normalized;
+            var lineDirection = Origin.up;
 
-            var v = palmPosition - Start.position;
+            var v = palmPosition - Origin.position;
             var d = Vector3.Dot(v, lineDirection);
-            d = Mathf.Clamp(d, 0f, lineLength);
-            return Start.position + lineDirection * d;
+            d = Mathf.Clamp(d, -Length / 2f, Length / 2f);
+            return Origin.position + lineDirection * d;
         }
     }
 }

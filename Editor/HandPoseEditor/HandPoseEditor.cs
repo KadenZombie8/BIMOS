@@ -29,9 +29,16 @@ namespace KadenZombie8.BIMOS.Editor
         private DummyHand _rightHand;
         private DummyHand _currentHand;
 
+        private float _lineGrabPosition = 0.5f;
+
         private BoneRenderer _selectedBoneRenderer;
 
-        HandPose _currentHandPose;
+        private HandPose _currentHandPose;
+
+        private bool _showHandModelSettings = true;
+        private bool _showFileHandlingSettings = true;
+        private bool _showMiscSettings = true;
+        private bool _showSubPoseSettings = false;
 
         private enum SubPose
         {
@@ -115,10 +122,10 @@ namespace KadenZombie8.BIMOS.Editor
 
                     if (_currentSelection)
                     {
-                        SnapGrabbable grab = _currentSelection.GetComponent<SnapGrabbable>();
+                        var grab = _currentSelection.GetComponent<SnapGrabbable>();
                         if (grab)
                         {
-                            if (grab.IsLeftHanded && !grab.IsRightHanded)
+                            if (grab.Handedness == Handedness.Left)
                                 _currentHand = _leftHand;
                             else
                                 _currentHand = _rightHand;
@@ -131,8 +138,7 @@ namespace KadenZombie8.BIMOS.Editor
                         }
                     }
 
-                    Vector3 position = _dummyHand.transform.position;
-                    Quaternion rotation = _dummyHand.transform.rotation;
+                    _dummyHand.transform.GetPositionAndRotation(out Vector3 position, out Quaternion rotation);
                     InitializeDummyHand(position, rotation);
                 }
             }
@@ -143,9 +149,15 @@ namespace KadenZombie8.BIMOS.Editor
 
                 Vector3 pos = selection.TransformPoint(_currentHand.Palm.InverseTransformPoint(hand.position));
                 Quaternion rot = selection.rotation * Quaternion.Inverse(_currentHand.Palm.rotation) * hand.rotation;
+
+                var lineGrab = selection.GetComponent<LineGrabbable>();
+                if (lineGrab && lineGrab.Origin)
+                {
+                    pos += (_lineGrabPosition - 0.5f) * lineGrab.Length * lineGrab.Origin.up;
+                }
+
                 _dummyHand.transform.position = pos;
-                hand.transform.position = pos;
-                hand.transform.rotation = rot;
+                hand.transform.SetPositionAndRotation(pos, rot);
             }
         }
 
@@ -163,7 +175,7 @@ namespace KadenZombie8.BIMOS.Editor
             _rightHand = new DummyHand(_animator, false);
             _leftHand = new DummyHand(_animator, true);
 
-            foreach (SkinnedMeshRenderer renderer in _dummyHand.GetComponentsInChildren<SkinnedMeshRenderer>())
+            foreach (var renderer in _dummyHand.GetComponentsInChildren<SkinnedMeshRenderer>())
                 renderer.updateWhenOffscreen = true;
 
             _currentHand = _rightHand;
@@ -217,24 +229,48 @@ namespace KadenZombie8.BIMOS.Editor
         private void OnGUI()
         {
             minSize = new Vector2(150f, 351f);
-            maxSize = new Vector2(265f, 576f);
+            maxSize = new Vector2(265f, 618f);
 
             _scrollPosition = GUILayout.BeginScrollView(_scrollPosition, GUIStyle.none);
 
             //All the controls for the editor
-            GUILayout.Label("Character Model");
-            DummyHandPrefab = EditorGUILayout.ObjectField(DummyHandPrefab, typeof(GameObject), true);
-            if (GUILayout.Button("Select"))
-            {
-                _currentSelection = Selection.activeTransform;
+            _showHandModelSettings = EditorGUILayout.BeginFoldoutHeaderGroup(_showHandModelSettings, "Hand Model");
+            if (_showHandModelSettings) DrawHandModelSettings();
+            EditorGUILayout.EndFoldoutHeaderGroup();
 
-                //Insert the dummy hand into the scene 0.25m in front of the camera
-                Vector3 spawnLocation = SceneView.lastActiveSceneView.camera.transform.TransformPoint(Vector3.forward * 0.25f);
-                Quaternion spawnRotation = Quaternion.LookRotation(Vector3.Cross(SceneView.lastActiveSceneView.camera.transform.right, Vector3.down));
-                CreateDummyHand();
-                InitializeDummyHand(spawnLocation, spawnRotation);
-            }
-            GUILayout.Label("File Handling");
+            _showFileHandlingSettings = EditorGUILayout.BeginFoldoutHeaderGroup(_showFileHandlingSettings, "File Handling");
+            if (_showFileHandlingSettings) DrawFileHandlingSettings();
+            EditorGUILayout.EndFoldoutHeaderGroup();
+
+            _showMiscSettings = EditorGUILayout.BeginFoldoutHeaderGroup(_showMiscSettings, "Misc");
+            if (_showMiscSettings) DrawMiscSettings();
+            EditorGUILayout.EndFoldoutHeaderGroup();
+
+            _showSubPoseSettings = EditorGUILayout.BeginFoldoutHeaderGroup(_showSubPoseSettings, "Sub-Poses");
+            if (_showSubPoseSettings) DrawSubPoseSettings();
+            EditorGUILayout.EndFoldoutHeaderGroup();
+            GUILayout.EndScrollView();
+        }
+
+        private void DrawHandModelSettings()
+        {
+            DummyHandPrefab = EditorGUILayout.ObjectField(DummyHandPrefab, typeof(GameObject), true);
+            if (GUILayout.Button("Select")) SpawnDummyHand();
+        }
+
+        private void SpawnDummyHand()
+        {
+            _currentSelection = Selection.activeTransform;
+
+            //Insert the dummy hand into the scene 0.25m in front of the camera
+            Vector3 spawnLocation = SceneView.lastActiveSceneView.camera.transform.TransformPoint(Vector3.forward * 0.25f);
+            Quaternion spawnRotation = Quaternion.LookRotation(Vector3.Cross(SceneView.lastActiveSceneView.camera.transform.right, Vector3.down));
+            CreateDummyHand();
+            InitializeDummyHand(spawnLocation, spawnRotation);
+        }
+
+        private void DrawFileHandlingSettings()
+        {
             if (GUILayout.Button("New"))
             {
                 _currentAsset = null;
@@ -242,8 +278,7 @@ namespace KadenZombie8.BIMOS.Editor
                 //Reset the dummy hand's pose (by deleting and creating a new one in its position)
                 if (_dummyHand != null)
                 {
-                    Vector3 position = _dummyHand.transform.position;
-                    Quaternion rotation = _dummyHand.transform.rotation;
+                    _dummyHand.transform.GetPositionAndRotation(out var position, out var rotation);
                     CreateDummyHand();
                     _currentHandPose = CreateInstance<HandPose>();
                     _currentHandPose = Instantiate(_currentHandPose);
@@ -258,6 +293,8 @@ namespace KadenZombie8.BIMOS.Editor
 
                 if (path.Length > 0)
                 { //Check that path isn't empty
+                    SpawnDummyHand();
+
                     _currentAsset = AssetDatabase.LoadAssetAtPath(path, typeof(HandPose));
                     HandPose handPose = (HandPose)_currentAsset;
                     _currentHandPose = handPose;
@@ -280,7 +317,10 @@ namespace KadenZombie8.BIMOS.Editor
             }
             if (GUILayout.Button("Save as"))
                 SaveAs();
-            GUILayout.Label("Misc");
+        }
+
+        private void DrawMiscSettings()
+        {
             if (_currentHand == _leftHand)
             {
                 if (GUILayout.Button("Swap to right hand"))
@@ -319,12 +359,12 @@ namespace KadenZombie8.BIMOS.Editor
             {
                 if (GUILayout.Button("Mirror grabs"))
                 {
-                    foreach (GameObject grab in Selection.gameObjects)
+                    foreach (var grab in Selection.gameObjects)
                     {
-                        if (!grab.GetComponent<Grabbable>())
+                        if (!grab.GetComponent<SnapGrabbable>())
                             return;
 
-                        GameObject mirroredGrab = Instantiate(grab, grab.transform.parent);
+                        var mirroredGrab = Instantiate(grab, grab.transform.parent);
                         mirroredGrab.name = grab.name
                             .Replace("Left", "R I G H T")
                             .Replace("Right", "L E F T")
@@ -346,24 +386,25 @@ namespace KadenZombie8.BIMOS.Editor
                             child.parent = mirroredGrab.transform;
                         }
 
-                        Grabbable snapGrab = mirroredGrab.GetComponent<Grabbable>();
-                        if (snapGrab.IsLeftHanded != snapGrab.IsRightHanded)
-                        {
-                            snapGrab.IsLeftHanded = !snapGrab.IsLeftHanded;
-                            snapGrab.IsRightHanded = !snapGrab.IsRightHanded;
-                        }
+                        var snapGrab = mirroredGrab.GetComponent<SnapGrabbable>();
+                        snapGrab.Handedness = snapGrab.Handedness == Handedness.Left
+                            ? Handedness.Right
+                            : Handedness.Left;
                     }
 
                     DestroyImmediate(_mirror);
                 }
             }
-            SubPoseButtons();
-            GUILayout.EndScrollView();
+
+            if (_currentSelection && _currentSelection.GetComponent<LineGrabbable>())
+            {
+                GUILayout.Label("Line grab position");
+                _lineGrabPosition = EditorGUILayout.Slider(_lineGrabPosition, 0f, 1f);
+            }
         }
 
-        private void SubPoseButtons()
+        private void DrawSubPoseSettings()
         {
-            GUILayout.Label("Sub-Poses");
             SubPoseButton("None", SubPose.None);
             GUILayout.Label("Little, Ring, Middle");
             SubPoseButton("Open", SubPose.GripOpen);
@@ -427,6 +468,8 @@ namespace KadenZombie8.BIMOS.Editor
 
         private void Save()
         {
+            if (!_dummyHand) return;
+
             _currentHandPose = DummyToHandPose();
 
             //Overwrite existing pose

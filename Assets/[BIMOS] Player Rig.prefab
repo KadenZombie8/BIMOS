@@ -3268,7 +3268,6 @@ GameObject:
   - component: {fileID: 5217677170083806441}
   - component: {fileID: 5715720381970918571}
   - component: {fileID: 8465649426909595903}
-  - component: {fileID: 6803593838520956062}
   m_Layer: 6
   m_Name: LocomotionSphere
   m_TagString: Player
@@ -3365,18 +3364,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSlopeAngle: 50
---- !u!114 &6803593838520956062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2375750912006841374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bf8a9845661814409db94e5037d80a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2382591102669527397
 GameObject:
   m_ObjectHideFlags: 0
@@ -4720,6 +4707,7 @@ GameObject:
   - component: {fileID: 8827115482949883585}
   - component: {fileID: 5015156576096934076}
   - component: {fileID: 875384604267470677}
+  - component: {fileID: 2259126866414753448}
   m_Layer: 6
   m_Name: Physics
   m_TagString: Player
@@ -4984,6 +4972,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4a3867bfecfaa2a47be1caaaba19fa2b, type: 2}
   - {fileID: 11400000, guid: d3448344338213645bbb346627ab41f5, type: 2}
   InitialState: {fileID: 11400000, guid: 6b8c9b828fb013e4382879494b093b69, type: 2}
+--- !u!114 &2259126866414753448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045650548132499840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b149f430f0839fb4c8ffb95711579fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Movement.AirAcceleration
+  _airAcceleration: 3
+  _moveAction: {fileID: 2329931572188812770, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!1 &3050908923406961855
 GameObject:
   m_ObjectHideFlags: 0
@@ -5846,6 +5848,7 @@ GameObject:
   - component: {fileID: 3685421060059991317}
   - component: {fileID: 5345365301431071427}
   - component: {fileID: 6590687736849649494}
+  - component: {fileID: 8852767680745090534}
   m_Layer: 6
   m_Name: RightHand
   m_TagString: Player
@@ -6035,11 +6038,11 @@ MonoBehaviour:
   PhysicsHand: {fileID: 3921367417498753325}
   PhysicsHandTransform: {fileID: 70422243505131228}
   GrabHandler: {fileID: 3685421060059991317}
-  IsLeftHand: 0
+  Handedness: 1
   OtherHand: {fileID: 1354081709754906145}
   PhysicsHandCollider: {fileID: 437063675725158744}
   GrabJoint: {fileID: 0}
-  _hapticAction: {fileID: 0}
+  _hapticAction: {fileID: 8820351604732332367, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!114 &3685421060059991317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6167,6 +6170,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grabSound: {fileID: 6418180475301049370, guid: 3d3b23d0498171a4a843c4c9db653b2f, type: 2}
   _releaseSound: {fileID: 6418180475301049370, guid: 12e38a6b1db7164458ee893ebce788ac, type: 2}
+--- !u!114 &8852767680745090534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301374950904824340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ee9a2cb31b4b64996577c31620ca38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.HandCollisionHaptics
 --- !u!1 &3350385942640091127
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,6 +6891,7 @@ GameObject:
   - component: {fileID: 2531710907283994335}
   - component: {fileID: 5870694611115305941}
   - component: {fileID: 5423963894524361077}
+  - component: {fileID: 4019303862579688845}
   m_Layer: 6
   m_Name: LeftHand
   m_TagString: Player
@@ -7065,11 +7081,11 @@ MonoBehaviour:
   PhysicsHand: {fileID: 3058073986613258275}
   PhysicsHandTransform: {fileID: 8913552984557658865}
   GrabHandler: {fileID: 2531710907283994335}
-  IsLeftHand: 1
+  Handedness: 0
   OtherHand: {fileID: 1714243675603914674}
   PhysicsHandCollider: {fileID: 1686830156072627729}
   GrabJoint: {fileID: 0}
-  _hapticAction: {fileID: 0}
+  _hapticAction: {fileID: 1113504248145182695, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!114 &2531710907283994335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7197,6 +7213,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _grabSound: {fileID: 6418180475301049370, guid: 3d3b23d0498171a4a843c4c9db653b2f, type: 2}
   _releaseSound: {fileID: 6418180475301049370, guid: 12e38a6b1db7164458ee893ebce788ac, type: 2}
+--- !u!114 &4019303862579688845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812682066745618323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ee9a2cb31b4b64996577c31620ca38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.HandCollisionHaptics
 --- !u!1 &3947534615974695426
 GameObject:
   m_ObjectHideFlags: 0
@@ -8298,10 +8326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandPose: {fileID: 0}
-  IsLeftHanded: 1
-  IsRightHanded: 1
-  EnableGrabs: []
-  DisableGrabs: []
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
@@ -12151,10 +12175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HandPose: {fileID: 0}
-  IsLeftHanded: 1
-  IsRightHanded: 1
-  EnableGrabs: []
-  DisableGrabs: []
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}

@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.XR;
 using UnityEngine.XR.OpenXR.Input;
 
 namespace KadenZombie8.BIMOS.Rig
 {
+    public enum Handedness { Left, Right };
+
     public class Hand : MonoBehaviour
     {
         public HandAnimator HandAnimator;
@@ -13,7 +17,7 @@ namespace KadenZombie8.BIMOS.Rig
         public PhysicsHand PhysicsHand;
         public Transform PhysicsHandTransform;
         public GrabHandler GrabHandler;
-        public bool IsLeftHand;
+        public Handedness Handedness;
         public Hand OtherHand;
         public Collider PhysicsHandCollider;
         public Joint GrabJoint;
@@ -22,6 +26,10 @@ namespace KadenZombie8.BIMOS.Rig
         private InputActionReference _hapticAction;
 
         public void SendHapticImpulse(float amplitude, float duration)
-            => OpenXRInput.SendHapticImpulse(_hapticAction, amplitude, duration);
+        {
+            var device = Handedness == Handedness.Left ? InputDevices.GetDeviceAtXRNode(XRNode.LeftHand) : InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+            if (device.isValid)
+                device.SendHapticImpulse(0, amplitude, duration);
+        }
     }
 }
