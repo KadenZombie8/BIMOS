@@ -42,12 +42,12 @@ namespace KadenZombie8.BIMOS.Guns
 
             int ejectedMagazineCount = 0;
             foreach (GameObject spawnedMagazine in _spawnedMagazines)
-                if (!spawnedMagazine.GetComponentInChildren<Attacher>()?.Socket)
+                if (!spawnedMagazine.GetComponentInChildren<Plug>()?.Socket)
                     ejectedMagazineCount++;
 
             if (ejectedMagazineCount > 5)
                 foreach (GameObject spawnedMagazine in _spawnedMagazines)
-                    if (!spawnedMagazine.GetComponentInChildren<Attacher>().Socket)
+                    if (!spawnedMagazine.GetComponentInChildren<Plug>().Socket)
                     {
                         _spawnedMagazines.Remove(spawnedMagazine);
                         Destroy(spawnedMagazine);
