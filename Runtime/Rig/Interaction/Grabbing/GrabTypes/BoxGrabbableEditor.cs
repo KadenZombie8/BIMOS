@@ -62,19 +62,19 @@ namespace KadenZombie8.BIMOS.Rig
 
             Handles.DrawSolidRectangleWithOutline(new Vector3[]
             {
-                corners.FrontTopLeft,
-                corners.BackTopLeft,
-                corners.BackBottomLeft,
-                corners.FrontBottomLeft
-            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Left) ? _enabledColor : _disabledColor, _outlineColor);
-
-            Handles.DrawSolidRectangleWithOutline(new Vector3[]
-            {
                 corners.FrontTopRight,
                 corners.BackTopRight,
                 corners.BackBottomRight,
                 corners.FrontBottomRight
             }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Right) ? _enabledColor : _disabledColor, _outlineColor);
+
+            Handles.DrawSolidRectangleWithOutline(new Vector3[]
+            {
+                corners.FrontTopLeft,
+                corners.BackTopLeft,
+                corners.BackBottomLeft,
+                corners.FrontBottomLeft
+            }, enabledFaces.HasFlag(BoxGrabbable.BoxFaces.Left) ? _enabledColor : _disabledColor, _outlineColor);
 
             Handles.DrawSolidRectangleWithOutline(new Vector3[]
             {

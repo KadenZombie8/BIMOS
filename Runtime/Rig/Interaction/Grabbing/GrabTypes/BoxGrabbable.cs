@@ -11,8 +11,8 @@ namespace KadenZombie8.BIMOS.Rig
         {
             Front = 1,
             Back = 2,
-            Left = 4,
-            Right = 8,
+            Right = 4,
+            Left = 8,
             Top = 16,
             Bottom = 32
         }
@@ -20,8 +20,8 @@ namespace KadenZombie8.BIMOS.Rig
         public BoxFaces EnabledFaces =
             BoxFaces.Front |
             BoxFaces.Back |
-            BoxFaces.Left |
             BoxFaces.Right |
+            BoxFaces.Left |
             BoxFaces.Top |
             BoxFaces.Bottom;
 
@@ -34,8 +34,8 @@ namespace KadenZombie8.BIMOS.Rig
             return
                 EnabledFaces.HasFlag(BoxFaces.Front) && RoughlyEqual(normal, transform.forward) ||
                 EnabledFaces.HasFlag(BoxFaces.Back) && RoughlyEqual(normal, -transform.forward) ||
-                EnabledFaces.HasFlag(BoxFaces.Left) && RoughlyEqual(normal, -transform.right) ||
                 EnabledFaces.HasFlag(BoxFaces.Right) && RoughlyEqual(normal, transform.right) ||
+                EnabledFaces.HasFlag(BoxFaces.Left) && RoughlyEqual(normal, -transform.right) ||
                 EnabledFaces.HasFlag(BoxFaces.Top) && RoughlyEqual(normal, transform.up) ||
                 EnabledFaces.HasFlag(BoxFaces.Bottom) && RoughlyEqual(normal, -transform.up);
         }
