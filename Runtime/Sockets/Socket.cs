@@ -15,8 +15,7 @@ namespace KadenZombie8.BIMOS.Sockets
 
         public Transform AttachPoint, DetachPoint;
 
-        [SerializeField]
-        private float _insertTime = 0.1f;
+        public float InsertTime = 0.1f;
 
         [HideInInspector]
         public Plug Plug;
@@ -140,10 +139,10 @@ namespace KadenZombie8.BIMOS.Sockets
             OnAttach?.Invoke();
             Plug.Attach();
             elapsedTime = 0f;
-            while (elapsedTime < _insertTime)
+            while (elapsedTime < InsertTime)
             {
-                var targetPosition = Vector3.Lerp(DetachPoint.position, AttachPoint.position, elapsedTime / _insertTime);
-                var targetRotation = Quaternion.Lerp(DetachPoint.rotation, AttachPoint.rotation, elapsedTime / _insertTime);
+                var targetPosition = Vector3.Lerp(DetachPoint.position, AttachPoint.position, elapsedTime / InsertTime);
+                var targetRotation = Quaternion.Lerp(DetachPoint.rotation, AttachPoint.rotation, elapsedTime / InsertTime);
 
                 AttachJoint.connectedAnchor = _body.InverseTransformPoint(targetPosition);
                 AttachJoint.targetRotation = Quaternion.Inverse(targetRotation) * DetachPoint.rotation;
@@ -193,10 +192,10 @@ namespace KadenZombie8.BIMOS.Sockets
             float elapsedTime = 0f;
             var plug = Plug.transform;
 
-            while (elapsedTime < _insertTime)
+            while (elapsedTime < InsertTime)
             {
-                var targetPosition = Vector3.Lerp(AttachPoint.position, DetachPoint.position, elapsedTime / _insertTime);
-                var targetRotation = Quaternion.Lerp(AttachPoint.rotation, DetachPoint.rotation, elapsedTime / _insertTime);
+                var targetPosition = Vector3.Lerp(AttachPoint.position, DetachPoint.position, elapsedTime / InsertTime);
+                var targetRotation = Quaternion.Lerp(AttachPoint.rotation, DetachPoint.rotation, elapsedTime / InsertTime);
 
                 AttachJoint.connectedAnchor = _body.InverseTransformPoint(targetPosition);
                 AttachJoint.targetRotation = Quaternion.Inverse(targetRotation) * DetachPoint.rotation;
@@ -227,7 +226,7 @@ namespace KadenZombie8.BIMOS.Sockets
                 DetachPoint.rotation * Quaternion.Inverse(plug.localRotation)
             );
 
-            Plug.Rigidbody.linearVelocity += (DetachPoint.position - AttachPoint.position) / _insertTime;
+            Plug.Rigidbody.linearVelocity += (DetachPoint.position - AttachPoint.position) / InsertTime;
 
             Plug.Socket = null;
             Plug = null;

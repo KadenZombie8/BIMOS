@@ -143,6 +143,7 @@ namespace KadenZombie8.BIMOS.Rig
             var rotationDifference = Quaternion.Angle(initialRotation, rotation) / 180f;
             var averageDifference = Mathf.Min(positionDifference + rotationDifference, 1f);
             var grabTime = MaxGrabTime * averageDifference;
+            hand.SendHapticImpulse(0.05f, grabTime);
             while (elapsedTime < grabTime)
             {
                 if (!grabJoint)
@@ -157,6 +158,7 @@ namespace KadenZombie8.BIMOS.Rig
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
+            hand.SendHapticImpulse(0.2f, 0.05f);
 
             if (!grabJoint)
                 yield break;

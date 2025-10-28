@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
 {
-    [RequireComponent(typeof(GrabHapticsHandler))]
+    [RequireComponent(typeof(GrabbableHapticsHandler))]
     public class GrabCollisionHaptics : MonoBehaviour
     {
-        private GrabHapticsHandler _hapticsHandler;
+        private GrabbableHapticsHandler _hapticsHandler;
 
         private readonly float _collisionHapticDuration = 0.1f;
         private readonly float _minimumImpulseMagnitude = 0.2f;
         private readonly float _maximumImpulseMagnitude = 20f;
 
-        private void Awake() => _hapticsHandler = GetComponent<GrabHapticsHandler>();
+        private void Awake() => _hapticsHandler = GetComponent<GrabbableHapticsHandler>();
 
         private void OnCollisionEnter(Collision collision)
         {

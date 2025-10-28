@@ -90,8 +90,6 @@ namespace KadenZombie8.BIMOS.Rig
             if (!_chosenGrab)
                 return;
 
-            _hand.SendHapticImpulse(0.2f, _grabHapticDuration);
-
             _chosenGrab.Grab(_hand);
             OnGrab?.Invoke();
         }
