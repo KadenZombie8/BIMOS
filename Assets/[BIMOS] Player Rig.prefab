@@ -1997,6 +1997,8 @@ GameObject:
   - component: {fileID: 2694021587767092372}
   - component: {fileID: 885622543067193119}
   - component: {fileID: 105042008559700056}
+  - component: {fileID: 7548754279496097255}
+  - component: {fileID: 7843211550119763695}
   m_Layer: 6
   m_Name: Head
   m_TagString: Player
@@ -2164,6 +2166,34 @@ MonoBehaviour:
   _pelvis: {fileID: 8556203494894390205}
   _headJoint: {fileID: 885622543067193119}
   _headCameraOffset: {fileID: 2083655086568588637}
+--- !u!114 &7548754279496097255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770814561973506831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0a8bb51fa0c624c8a9a1079b1e550a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.ImpactProperties.MaterialGiver
+  Material: {fileID: 11400000, guid: 98a34a80544d7254bbf79bd9860e71a9, type: 2}
+--- !u!114 &7843211550119763695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770814561973506831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _impulseRange:
+    Minimum: 0.2
+    Maximum: 20
 --- !u!1 &1911872062164619493
 GameObject:
   m_ObjectHideFlags: 0
@@ -3268,6 +3298,8 @@ GameObject:
   - component: {fileID: 5217677170083806441}
   - component: {fileID: 5715720381970918571}
   - component: {fileID: 8465649426909595903}
+  - component: {fileID: 4312393692740464888}
+  - component: {fileID: 3005325754436993507}
   m_Layer: 6
   m_Name: LocomotionSphere
   m_TagString: Player
@@ -3364,6 +3396,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSlopeAngle: 50
+--- !u!114 &4312393692740464888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375750912006841374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0a8bb51fa0c624c8a9a1079b1e550a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.ImpactProperties.MaterialGiver
+  Material: {fileID: 11400000, guid: 75ef71179d4439f43ac29a5f0388225d, type: 2}
+--- !u!114 &3005325754436993507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375750912006841374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _impulseRange:
+    Minimum: 0.2
+    Maximum: 20
 --- !u!1 &2382591102669527397
 GameObject:
   m_ObjectHideFlags: 0
@@ -5849,6 +5909,8 @@ GameObject:
   - component: {fileID: 5345365301431071427}
   - component: {fileID: 6590687736849649494}
   - component: {fileID: 8852767680745090534}
+  - component: {fileID: 8050519698042287081}
+  - component: {fileID: 1738721986649257008}
   m_Layer: 6
   m_Name: RightHand
   m_TagString: Player
@@ -6182,6 +6244,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ee9a2cb31b4b64996577c31620ca38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.HandCollisionHaptics
+--- !u!114 &8050519698042287081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301374950904824340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0a8bb51fa0c624c8a9a1079b1e550a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.ImpactProperties.MaterialGiver
+  Material: {fileID: 11400000, guid: 98a34a80544d7254bbf79bd9860e71a9, type: 2}
+--- !u!114 &1738721986649257008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301374950904824340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _impulseRange:
+    Minimum: 0.2
+    Maximum: 20
 --- !u!1 &3350385942640091127
 GameObject:
   m_ObjectHideFlags: 0
@@ -6892,6 +6982,8 @@ GameObject:
   - component: {fileID: 5870694611115305941}
   - component: {fileID: 5423963894524361077}
   - component: {fileID: 4019303862579688845}
+  - component: {fileID: 8908107651780780551}
+  - component: {fileID: 7232480368526836369}
   m_Layer: 6
   m_Name: LeftHand
   m_TagString: Player
@@ -7225,6 +7317,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47ee9a2cb31b4b64996577c31620ca38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.HandCollisionHaptics
+--- !u!114 &8908107651780780551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812682066745618323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0a8bb51fa0c624c8a9a1079b1e550a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.ImpactProperties.MaterialGiver
+  Material: {fileID: 11400000, guid: 98a34a80544d7254bbf79bd9860e71a9, type: 2}
+--- !u!114 &7232480368526836369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812682066745618323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _impulseRange:
+    Minimum: 0.2
+    Maximum: 20
 --- !u!1 &3947534615974695426
 GameObject:
   m_ObjectHideFlags: 0
@@ -7715,6 +7835,8 @@ GameObject:
   - component: {fileID: 8556203494894390205}
   - component: {fileID: 3294666784809313299}
   - component: {fileID: 4187641605383468551}
+  - component: {fileID: 7668371486623199229}
+  - component: {fileID: 4323243242698487427}
   m_Layer: 6
   m_Name: Pelvis
   m_TagString: Player
@@ -7867,6 +7989,34 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &7668371486623199229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272984985020779467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0a8bb51fa0c624c8a9a1079b1e550a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.ImpactProperties.MaterialGiver
+  Material: {fileID: 11400000, guid: 98a34a80544d7254bbf79bd9860e71a9, type: 2}
+--- !u!114 &4323243242698487427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272984985020779467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _impulseRange:
+    Minimum: 0.2
+    Maximum: 20
 --- !u!1 &4345478241430128097
 GameObject:
   m_ObjectHideFlags: 0
@@ -8325,6 +8475,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffed3ad86871d404d9505fb61434d7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
   HandPose: {fileID: 0}
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
@@ -8368,6 +8524,8 @@ GameObject:
   - component: {fileID: 8025579406049291928}
   - component: {fileID: 4107036072679230787}
   - component: {fileID: 2622799556790702774}
+  - component: {fileID: 3833568985715084544}
+  - component: {fileID: 7947319449556933405}
   m_Layer: 6
   m_Name: Knee
   m_TagString: Player
@@ -8519,6 +8677,34 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &3833568985715084544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798193701684832079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0a8bb51fa0c624c8a9a1079b1e550a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.ImpactProperties.MaterialGiver
+  Material: {fileID: 11400000, guid: 98a34a80544d7254bbf79bd9860e71a9, type: 2}
+--- !u!114 &7947319449556933405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798193701684832079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _impulseRange:
+    Minimum: 0.2
+    Maximum: 20
 --- !u!1 &4806955070773646681
 GameObject:
   m_ObjectHideFlags: 0
@@ -12174,6 +12360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1649ee5a65de2fb4f93f977782842d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
   HandPose: {fileID: 0}
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
