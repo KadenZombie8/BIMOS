@@ -37,8 +37,8 @@ namespace KadenZombie8.BIMOS.Sockets
 
         private bool HasMatchingTag(Plug plug)
         {
-            foreach (string socketTag in Tags)
-                foreach (string plugTag in plug.Tags)
+            foreach (var socketTag in Tags)
+                foreach (var plugTag in plug.Tags)
                     if (socketTag == plugTag)
                         return true;
 
