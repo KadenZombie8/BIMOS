@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
 using UnityEngine.XR.Management;
@@ -12,6 +13,10 @@ namespace KadenZombie8.BIMOS.Rig
         private BIMOSRig _player;
         public ControllerRigTransforms Transforms;
         public float HeadsetStandingHeight = 1.65f;
+
+        public Quaternion HeadForwardRotation => Quaternion.LookRotation(Vector3.Cross(Transforms.Camera.right, Vector3.up));
+
+        public Vector3 HeadForwardDirection => HeadForwardRotation * Vector3.forward;
 
         private TrackedPoseDriver
             _headsetDriver,

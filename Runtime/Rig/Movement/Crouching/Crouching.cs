@@ -51,7 +51,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         {
             collider.height = Vector3.Distance(to, from) + collider.radius * 2f;
             collider.transform.position = (to + from) / 2f;
-            collider.transform.up = to - from;
         }
     }
 }

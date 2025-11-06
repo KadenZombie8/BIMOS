@@ -8,6 +8,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     /// </summary>
     public class SmoothLocomotion : MonoBehaviour
     {
+        private ControllerRig _controllerRig;
+
         [SerializeField]
         [Tooltip("The walk speed of the character")]
         private float _defaultWalkSpeed = 1.5f;
@@ -20,7 +22,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         public LocomotionSphere LocomotionSphere { get; private set; }
 
-        private Transform _mainCameraTransform;
         private Vector2 _moveDirection;
 
         public float WalkSpeed { get; set; }
@@ -34,7 +35,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Awake()
         {
-            _mainCameraTransform = Camera.main?.transform;
             LocomotionSphere = GetComponentInChildren<LocomotionSphere>();
 
             _moveAction.action.Enable();
@@ -42,6 +42,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             ResetWalkSpeed();
         }
+
+        private void Start() => _controllerRig = BIMOSRig.Instance.ControllerRig;
 
         private void OnEnable()
         {
@@ -73,8 +75,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             if (IsRunning)
                 currentSpeed *= RunSpeedMultiplier;
 
-            var headYaw = Quaternion.LookRotation(Vector3.Cross(_mainCameraTransform.right, Vector3.up));
-            var targetLinearVelocity = headYaw * new Vector3(_moveDirection.x, 0, _moveDirection.y) * currentSpeed;
+            var targetLinearVelocity = _controllerRig.HeadForwardRotation * new Vector3(_moveDirection.x, 0, _moveDirection.y) * currentSpeed;
             LocomotionSphere.RollFromLinearVelocity(targetLinearVelocity);
         }
 
