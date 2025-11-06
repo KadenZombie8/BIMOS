@@ -36,7 +36,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             var deltaCameraRotation = Quaternion.FromToRotation(_lastForwardDirection, currentForwardDirection);
             _rig.PhysicsRig.Rigidbodies.Pelvis.rotation *= deltaCameraRotation;
-            _rig.ControllerRig.Transforms.RoomscaleOffset.rotation *= Quaternion.Inverse(deltaCameraRotation);
+            _rig.ControllerRig.transform.rotation *= Quaternion.Inverse(deltaCameraRotation);
 
             _lastForwardDirection = currentForwardDirection;
         }
