@@ -297,9 +297,9 @@ namespace KadenZombie8.BIMOS.Rig
 //        }
 //        public void ToggleAnimation()
 //        {
-//            bool visible = !_player.AnimationRig.Transforms.Character.GetComponentInChildren<SkinnedMeshRenderer>().enabled;
+//            bool visible = !_player._animationRig.Transforms.Character.GetComponentInChildren<SkinnedMeshRenderer>().enabled;
 
-//            foreach (var renderer in _player.AnimationRig.Transforms.Character.GetComponentsInChildren<SkinnedMeshRenderer>())
+//            foreach (var renderer in _player._animationRig.Transforms.Character.GetComponentsInChildren<SkinnedMeshRenderer>())
 //                renderer.enabled = visible;
 
 //            _toggleAnimationDisplay.text = visible ? "Hide animation rig" : "Show animation rig";
