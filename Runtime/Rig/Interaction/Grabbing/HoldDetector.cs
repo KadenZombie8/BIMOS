@@ -50,7 +50,6 @@ namespace KadenZombie8.BIMOS.Rig
             foreach (var socket in _sockets)
             {
                 void attachListener() => UpdateSocketColliders(socket, true);
-
                 void detachListener() => UpdateSocketColliders(socket, false);
 
                 _socketListeners[socket] = (attachListener, detachListener);

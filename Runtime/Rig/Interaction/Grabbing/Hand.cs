@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
-using UnityEngine.XR.OpenXR.Input;
 
 namespace KadenZombie8.BIMOS.Rig
 {

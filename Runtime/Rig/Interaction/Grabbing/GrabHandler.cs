@@ -99,10 +99,9 @@ namespace KadenZombie8.BIMOS.Rig
             if (!_hand.CurrentGrab)
                 return;
 
-            _hand.SendHapticImpulse(0.1f, _grabHapticDuration);
-
-            _hand.CurrentGrab.Release(_hand);
             OnRelease?.Invoke();
+            _hand.SendHapticImpulse(0.1f, _grabHapticDuration);
+            _hand.CurrentGrab.Release(_hand);
         }
 
         private void OnDisable() => AttemptRelease();
