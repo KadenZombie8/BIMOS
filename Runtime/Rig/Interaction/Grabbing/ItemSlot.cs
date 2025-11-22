@@ -11,7 +11,7 @@ namespace KadenZombie8.BIMOS.Rig
         public event Action OnRetrieve;
 
         public string[] Tags = { "Light", "Heavy" };
-        public StorableItem StoredItem;
+        public Storable StoredStorable;
 
         private readonly Dictionary<GrabHandler, Action> _grabHandlerListeners = new();
         private readonly Dictionary<Interactable, UnityAction> _triggerListeners = new();
@@ -65,45 +65,50 @@ namespace KadenZombie8.BIMOS.Rig
             var grab = hand.CurrentGrab;
             if (!grab) return;
 
-            var item = grab.transform.GetComponentInParent<StorableItem>();
+            var holdDetector = grab.GetComponentInParent<HoldDetector>();
+            if (!holdDetector) return;
+
+            var item = holdDetector.GetComponent<Storable>();
             if (!item) return;
 
             StoreItem(item);
         }
 
-        public void StoreItem(StorableItem item)
+        public void StoreItem(Storable storable)
         {
-            if (StoredItem) return;
-            if (!HasMatchingTag(item)) return;
+            if (StoredStorable) return;
+            if (!storable.TryGetComponent<Item>(out var item)) return;
+            if (!HasMatchingTag(storable)) return;
 
             foreach (var gameObject in item.GameObjects)
                 gameObject.SetActive(false);
 
-            StoredItem = item;
+            StoredStorable = storable;
             OnStore?.Invoke();
         }
 
         public void RetrieveItem(SnapGrabbable grabbable)
         {
-            if (!StoredItem) return;
+            if (!StoredStorable) return;
+            if (!StoredStorable.TryGetComponent<Item>(out var storedItem)) return;
 
-            foreach (var gameObject in StoredItem.GameObjects)
+            foreach (var gameObject in storedItem.GameObjects)
                 gameObject.SetActive(true);
 
             var hand = grabbable.LeftHand ? grabbable.LeftHand : grabbable.RightHand;
             hand.GrabHandler.AttemptRelease();
 
             var retrieveGrabbable = hand.Handedness == Handedness.Left
-                ? StoredItem.RetrieveGrabbables.Left
-                : StoredItem.RetrieveGrabbables.Right;
+                ? StoredStorable.RetrieveGrabbables.Left
+                : StoredStorable.RetrieveGrabbables.Right;
 
             retrieveGrabbable.Grab(hand);
 
-            StoredItem = null;
+            StoredStorable = null;
             OnRetrieve?.Invoke();
         }
 
-        private bool HasMatchingTag(StorableItem item)
+        private bool HasMatchingTag(Storable item)
         {
             foreach (var slotTag in Tags)
                 foreach (var itemTag in item.Tags)

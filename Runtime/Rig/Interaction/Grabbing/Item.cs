@@ -5,28 +5,18 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
 {
-    public class StorableItem : MonoBehaviour
+    /// <summary>
+    /// Keeps track of an assembly of rigidbodies
+    /// </summary>
+    public class Item : MonoBehaviour
     {
-        public event Action OnStored;
-        public event Action OnRetrieved;
-
-        public string[] Tags = { "Light" };
-        public RetrieveGrabbablesStruct RetrieveGrabbables;
-
-        [Serializable]
-        public struct RetrieveGrabbablesStruct
-        {
-            public Grabbable Left;
-            public Grabbable Right;
-        }
+        public event Action<GameObject> OnGameObjectAdded;
+        public event Action<GameObject> OnGameObjectRemoved;
 
         public readonly HashSet<GameObject> GameObjects = new();
 
         private readonly Dictionary<Socket, (Action, Action)> _socketListeners = new();
         private readonly HashSet<Socket> _sockets = new();
-
-        public event Action<GameObject> OnGameObjectAdded;
-        public event Action<GameObject> OnGameObjectRemoved;
 
         private void Awake()
         {
@@ -41,8 +31,8 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (var socket in _sockets)
             {
-                void attachListener() => UpdateGameObjects(socket, true);
-                void detachListener() => UpdateGameObjects(socket, false);
+                void attachListener() => OnSocketChanged(socket, true);
+                void detachListener() => OnSocketChanged(socket, false);
 
                 _socketListeners[socket] = (attachListener, detachListener);
 
@@ -65,7 +55,7 @@ namespace KadenZombie8.BIMOS.Rig
             _socketListeners.Clear();
         }
 
-        private void UpdateGameObjects(Socket socket, bool isAttaching)
+        private void OnSocketChanged(Socket socket, bool isAttaching)
         {
             var plug = socket.Plug;
             if (!plug) return;
@@ -75,9 +65,15 @@ namespace KadenZombie8.BIMOS.Rig
 
             var plugGameObject = rigidbody.gameObject;
             if (isAttaching)
-                GameObjects.Add(plugGameObject);
+            {
+                if (GameObjects.Add(plugGameObject))
+                    OnGameObjectAdded?.Invoke(plugGameObject);
+            }
             else
-                GameObjects.Remove(plugGameObject);
+            {
+                if (GameObjects.Remove(plugGameObject))
+                    OnGameObjectRemoved?.Invoke(plugGameObject);
+            }
         }
     }
 }
