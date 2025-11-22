@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
 {
-    public class InventorySlot : MonoBehaviour
+    public class ItemSlot : MonoBehaviour
     {
         public string[] Tags = { "Light", "Heavy" };
         public Storable StoredItem;
