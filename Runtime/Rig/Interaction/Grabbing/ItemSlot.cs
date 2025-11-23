@@ -16,6 +16,15 @@ namespace KadenZombie8.BIMOS.Rig
         private readonly Dictionary<GrabHandler, Action> _grabHandlerListeners = new();
         private readonly Dictionary<Interactable, UnityAction> _triggerListeners = new();
 
+        private class ItemPhysicsState
+        {
+            public Dictionary<Collider, bool> Colliders = new();
+            public Dictionary<Rigidbody, bool> Rigidbodies = new();
+            public Dictionary<ArticulationBody, bool> ArticulationBodies = new();
+            public Dictionary<Renderer, bool> Renderers = new();
+        }
+        private readonly ItemPhysicsState _itemData = new();
+
         private void OnEnable()
         {
             foreach (var interactable in GetComponentsInChildren<Interactable>())
@@ -40,6 +49,8 @@ namespace KadenZombie8.BIMOS.Rig
             var rigidbody = other.attachedRigidbody;
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
+            if (other.transform != grabHandler.GrabBounds) return;
+            if (_grabHandlerListeners.TryGetValue(grabHandler, out var _)) return;
 
             void storeListener() => LookForStorableItem(grabHandler);
 
@@ -52,6 +63,7 @@ namespace KadenZombie8.BIMOS.Rig
             var rigidbody = other.attachedRigidbody;
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
+            if (other.transform != grabHandler.GrabBounds) return;
             if (!_grabHandlerListeners.TryGetValue(grabHandler, out var storeListener)) return;
 
             grabHandler.OnRelease -= storeListener;
@@ -65,13 +77,71 @@ namespace KadenZombie8.BIMOS.Rig
             var grab = hand.CurrentGrab;
             if (!grab) return;
 
-            var holdDetector = grab.GetComponentInParent<HoldDetector>();
-            if (!holdDetector) return;
+            if (hand.OtherHand.CurrentGrab) return;
 
-            var item = holdDetector.GetComponent<Storable>();
-            if (!item) return;
+            var storable = grab.GetComponentInParent<Storable>();
+            if (!storable) return;
 
-            StoreItem(item);
+            StoreItem(storable);
+        }
+
+        private void DisableItem(Item item)
+        {
+            HashSet<Collider> colliders = new();
+            HashSet<Rigidbody> rigidbodies = new();
+            HashSet<ArticulationBody> articulationBodies = new();
+            HashSet<Renderer> renderers = new();
+
+            foreach (var gameObject in item.GameObjects)
+            {
+                foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
+                    colliders.Add(collider);
+                foreach (var rigidbody in gameObject.GetComponentsInChildren<Rigidbody>())
+                    rigidbodies.Add(rigidbody);
+                foreach (var articulationBody in gameObject.GetComponentsInChildren<ArticulationBody>())
+                    articulationBodies.Add(articulationBody);
+                foreach (var renderer in gameObject.GetComponentsInChildren<Renderer>())
+                    renderers.Add(renderer);
+            }
+
+            _itemData.Colliders.Clear();
+            _itemData.Rigidbodies.Clear();
+            _itemData.ArticulationBodies.Clear();
+            _itemData.Renderers.Clear();
+
+            foreach (var collider in colliders)
+            {
+                _itemData.Colliders[collider] = collider.enabled;
+                collider.enabled = false;
+            }
+            foreach (var rigidbody in rigidbodies)
+            {
+                _itemData.Rigidbodies[rigidbody] = rigidbody.isKinematic;
+                rigidbody.isKinematic = true;
+            }
+            foreach (var articulationBody in articulationBodies)
+            {
+                if (!articulationBody.isRoot) continue;
+                _itemData.ArticulationBodies[articulationBody] = articulationBody.immovable;
+                articulationBody.immovable = true;
+            }
+            foreach (var renderer in renderers)
+            {
+                _itemData.Renderers[renderer] = renderer.enabled;
+                renderer.enabled = false;
+            }
+        }
+
+        private void EnableItem()
+        {
+            foreach (var pair in _itemData.Colliders)
+                pair.Key.enabled = pair.Value;
+            foreach (var pair in _itemData.Rigidbodies)
+                pair.Key.isKinematic = pair.Value;
+            foreach (var pair in _itemData.ArticulationBodies)
+                pair.Key.immovable = pair.Value;
+            foreach (var pair in _itemData.Renderers)
+                pair.Key.enabled = pair.Value;
         }
 
         public void StoreItem(Storable storable)
@@ -80,8 +150,7 @@ namespace KadenZombie8.BIMOS.Rig
             if (!storable.TryGetComponent<Item>(out var item)) return;
             if (!HasMatchingTag(storable)) return;
 
-            foreach (var gameObject in item.GameObjects)
-                gameObject.SetActive(false);
+            DisableItem(item);
 
             StoredStorable = storable;
             OnStore?.Invoke();
@@ -92,8 +161,7 @@ namespace KadenZombie8.BIMOS.Rig
             if (!StoredStorable) return;
             if (!StoredStorable.TryGetComponent<Item>(out var storedItem)) return;
 
-            foreach (var gameObject in storedItem.GameObjects)
-                gameObject.SetActive(true);
+            EnableItem();
 
             var hand = grabbable.LeftHand ? grabbable.LeftHand : grabbable.RightHand;
             hand.GrabHandler.AttemptRelease();

@@ -78,7 +78,7 @@ namespace KadenZombie8.BIMOS.Rig
             _wasHolding = isHolding;
         }
 
-        private bool IsHolding()
+        public bool IsHolding()
         {
             foreach (var grabbable in _grabbables)
                 if (grabbable.LeftHand != grabbable.RightHand) return true;
