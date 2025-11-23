@@ -49,7 +49,6 @@ namespace KadenZombie8.BIMOS.Rig
             var rigidbody = other.attachedRigidbody;
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
-            if (other.transform != grabHandler.GrabBounds) return;
             if (_grabHandlerListeners.TryGetValue(grabHandler, out var _)) return;
 
             void storeListener() => LookForStorableItem(grabHandler);
@@ -63,7 +62,6 @@ namespace KadenZombie8.BIMOS.Rig
             var rigidbody = other.attachedRigidbody;
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
-            if (other.transform != grabHandler.GrabBounds) return;
             if (!_grabHandlerListeners.TryGetValue(grabHandler, out var storeListener)) return;
 
             grabHandler.OnRelease -= storeListener;
@@ -156,12 +154,38 @@ namespace KadenZombie8.BIMOS.Rig
             OnStore?.Invoke();
         }
 
+        private void AlignHand(Hand hand, Grabbable grabbable)
+        {
+            var item = StoredStorable.GetComponent<Item>();
+            var grabbablePosition = grabbable.transform.position;
+            var grabbableRotation = grabbable.transform.rotation;
+            foreach (var gameObject in item.GameObjects)
+            {
+                var localPosition = Quaternion.Inverse(grabbableRotation) * (gameObject.transform.position - grabbablePosition);
+                var worldPosition = hand.PalmTransform.TransformPoint(localPosition);
+
+                var localRotation = Quaternion.Inverse(grabbableRotation) * gameObject.transform.rotation;
+                var worldRotation = hand.PalmTransform.rotation * localRotation;
+
+                if (gameObject.TryGetComponent<ArticulationBody>(out var articulationBody) && articulationBody.isRoot)
+                {
+                    articulationBody.transform.SetPositionAndRotation(worldPosition, worldRotation);
+                    articulationBody.TeleportRoot(worldPosition, worldRotation);
+                }
+
+                if (gameObject.TryGetComponent<Rigidbody>(out var rigidbody))
+                {
+                    rigidbody.position = worldPosition;
+                    rigidbody.rotation = worldRotation;
+                    gameObject.transform.SetPositionAndRotation(worldPosition, worldRotation);
+                }
+            }
+        }
+
         public void RetrieveItem(SnapGrabbable grabbable)
         {
             if (!StoredStorable) return;
             if (!StoredStorable.TryGetComponent<Item>(out var storedItem)) return;
-
-            EnableItem();
 
             var hand = grabbable.LeftHand ? grabbable.LeftHand : grabbable.RightHand;
             hand.GrabHandler.AttemptRelease();
@@ -170,6 +194,8 @@ namespace KadenZombie8.BIMOS.Rig
                 ? StoredStorable.RetrieveGrabbables.Left
                 : StoredStorable.RetrieveGrabbables.Right;
 
+            AlignHand(hand, retrieveGrabbable);
+            EnableItem();
             retrieveGrabbable.Grab(hand);
 
             StoredStorable = null;
