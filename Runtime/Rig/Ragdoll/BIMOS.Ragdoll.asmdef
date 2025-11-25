@@ -1,0 +1,14 @@
+{
+    "name": "kadenzombie8.bimos.ragdoll",
+    "rootNamespace": "KadenZombie8.BIMOS.Ragdoll",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 54f5132bbbd2a439ab78e2413f4c5324
+timeCreated: 1519189658
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 49288
+  packageName: Ragdoll helper
+  packageVersion: 1.5
+  assetPath: Packages/bz-soft.ragdoll-helper/Editor/RagdollController.cs
+  uploadId: 605993

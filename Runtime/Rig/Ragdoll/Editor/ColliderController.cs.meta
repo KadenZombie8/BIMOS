@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: edee53248c637476d83b7633ff6189d9
+timeCreated: 1519018753
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 49288
+  packageName: Ragdoll helper
+  packageVersion: 1.5
+  assetPath: Packages/bz-soft.ragdoll-helper/Editor/ColliderController.cs
+  uploadId: 605993
