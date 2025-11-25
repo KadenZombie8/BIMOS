@@ -8,6 +8,7 @@ namespace KadenZombie8.BIMOS.Rig
     /// <summary>
     /// Keeps track of an assembly of rigidbodies
     /// </summary>
+    [DefaultExecutionOrder(-1)]
     public class Item : MonoBehaviour
     {
         public event Action<GameObject> OnGameObjectAdded;

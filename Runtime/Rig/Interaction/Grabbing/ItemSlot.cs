@@ -50,6 +50,7 @@ namespace KadenZombie8.BIMOS.Rig
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
             if (_grabHandlerListeners.TryGetValue(grabHandler, out var _)) return;
+            if (other.transform != grabHandler.GrabBounds) return;
 
             void storeListener() => LookForStorableItem(grabHandler);
 
@@ -63,6 +64,7 @@ namespace KadenZombie8.BIMOS.Rig
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
             if (!_grabHandlerListeners.TryGetValue(grabHandler, out var storeListener)) return;
+            if (other.transform != grabHandler.GrabBounds) return;
 
             grabHandler.OnRelease -= storeListener;
             _grabHandlerListeners.Remove(grabHandler);

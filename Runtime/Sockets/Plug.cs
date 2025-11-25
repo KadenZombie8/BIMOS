@@ -1,13 +1,14 @@
 using System;
 using KadenZombie8.BIMOS.Rig;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace KadenZombie8.BIMOS.Sockets
 {
     [AddComponentMenu("BIMOS/Plug")]
     public class Plug : MonoBehaviour
     {
-        public event Action
+        public UnityEvent
             OnAttach,
             OnDetach;
 

@@ -38,6 +38,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void OnEnable()
         {
+            print(_item.GameObjects.Count);
             foreach (GameObject gameObject in _item.GameObjects)
             {
                 foreach (var grabbable in gameObject.GetComponentsInChildren<Grabbable>())
