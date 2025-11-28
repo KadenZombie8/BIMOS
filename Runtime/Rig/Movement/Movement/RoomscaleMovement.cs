@@ -10,7 +10,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     {
         private BIMOSRig _rig;
 
-        private void Start() => _rig = BIMOSRig.Instance;
+        private void Start() => _rig = GetComponentInParent<BIMOSRig>();
 
         private void FixedUpdate()
         {

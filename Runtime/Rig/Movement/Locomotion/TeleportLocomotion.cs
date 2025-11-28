@@ -23,7 +23,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Awake()
         {
-            _player = BIMOSRig.Instance;
+            _player = GetComponentInParent<BIMOSRig>();
         }
 
         private void Start()

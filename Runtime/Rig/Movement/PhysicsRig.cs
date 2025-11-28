@@ -28,7 +28,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Awake()
         {
-            PlayerLayerMask = LayerMask.GetMask("Player");
+            PlayerLayerMask = LayerMask.GetMask("LocalPlayer");
             Crouching = GetComponent<Crouching>();
             Movement = GetComponent<SmoothLocomotion>();
             LocomotionSphere = Rigidbodies.LocomotionSphere.GetComponent<LocomotionSphere>();

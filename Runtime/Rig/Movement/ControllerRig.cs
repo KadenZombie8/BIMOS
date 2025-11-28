@@ -20,7 +20,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         public void Start()
         {
-            _player = BIMOSRig.Instance;
+            _player = GetComponentInParent<BIMOSRig>();
             transform.parent = _player.PhysicsRig.Rigidbodies.Pelvis.transform;
             transform.localPosition = Vector3.zero;
 

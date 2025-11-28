@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Ragdoll
 {
+    [DisallowMultipleComponent]
     public class PhysicsRagdoll : MonoBehaviour
     {
         public static List<PhysicsRagdoll> Ragdolls = new();   
@@ -13,6 +14,7 @@ namespace KadenZombie8.BIMOS.Ragdoll
             get; private set;
         }
 
+        public float forceMultiplier = 1f;
         public float inertiaTensorResitance = 0.2f;
         public float proportionalGain = 10f;
         public float derivativeGain = 1f;

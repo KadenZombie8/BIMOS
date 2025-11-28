@@ -16,6 +16,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private PDVector3 _pdVector3;
 
+        [SerializeField]
         private BIMOSRig _player;
 
         private Rigidbody _rigidbody;
@@ -24,7 +25,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Start()
         {
-            _player = BIMOSRig.Instance;
+            _player = GetComponentInParent<BIMOSRig>();
 
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.solverIterations = 60;

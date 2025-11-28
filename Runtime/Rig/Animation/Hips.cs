@@ -16,7 +16,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Start()
         {
-            _rig = BIMOSRig.Instance;
+            _rig = GetComponentInParent<BIMOSRig>();
             _locomotionSphereRigidbody = _rig.PhysicsRig.Rigidbodies.LocomotionSphere;
             _headCameraOffset = _rig.ControllerRig.Transforms.HeadCameraOffset;
             _spineLength = Vector3.Distance(_rig.AnimationRig.Transforms.Head.position, _rig.AnimationRig.Transforms.Hips.position);

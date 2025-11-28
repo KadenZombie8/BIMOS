@@ -24,7 +24,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private PhysicsRigColliders _colliders;
 
-        private void Start() => _colliders = BIMOSRig.Instance.PhysicsRig.Colliders;
+        private void Start() => _colliders = GetComponentInParent<BIMOSRig>().PhysicsRig.Colliders;
 
         private void OnEnable()
         {

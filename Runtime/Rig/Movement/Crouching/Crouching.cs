@@ -11,6 +11,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public float TargetLegHeight;
         public VirtualCrouching VirtualCrouching { get; private set; }
 
+        [SerializeField]
         private BIMOSRig _rig;
 
         public float TiptoesLegHeightGain { get; private set; } = 0.2f;
@@ -24,7 +25,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Start()
         {
-            _rig = BIMOSRig.Instance;
+            _rig = GetComponentInParent<BIMOSRig>();
             TargetLegHeight = StandingLegHeight;
             VirtualCrouching = GetComponent<VirtualCrouching>();
 

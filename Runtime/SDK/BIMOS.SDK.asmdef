@@ -1,0 +1,17 @@
+{
+    "name": "kadenzombie8.bimos.sdk",
+    "rootNamespace": "KadenZombie8.BIMOS.SDK",
+    "references": [
+        "GUID:303e84476c52562438a4cea31bf9b794",
+        "GUID:9e24947de15b9834991c9d8411ea37cf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

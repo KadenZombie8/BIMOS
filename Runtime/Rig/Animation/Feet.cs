@@ -21,7 +21,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Start()
         {
-            _player = BIMOSRig.Instance;
+            _player = GetComponentInParent<BIMOSRig>();
             _leftFoot = new Foot(_player.AnimationRig.Transforms.LeftFootAnchor, _player.AnimationRig.Transforms.LeftFootTarget, -0.08f);
             _rightFoot = new Foot(_player.AnimationRig.Transforms.RightFootAnchor, _player.AnimationRig.Transforms.RightFootTarget, 0.08f);
             _currentFoot = _rightFoot;

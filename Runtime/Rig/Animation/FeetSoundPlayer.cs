@@ -18,8 +18,8 @@ namespace KadenZombie8.BIMOS.Rig
         protected override void Awake()
         {
             base.Awake();
-            _feet = BIMOSRig.Instance.AnimationRig.Feet;
-            _smoothLocomotion = BIMOSRig.Instance.PhysicsRig.GetComponent<SmoothLocomotion>();
+            _feet = GetComponentInParent<BIMOSRig>().AnimationRig.Feet;
+            _smoothLocomotion = GetComponentInParent<BIMOSRig>().PhysicsRig.GetComponent<SmoothLocomotion>();
         }
 
         private void OnEnable() => _feet.OnStep += Stepped;

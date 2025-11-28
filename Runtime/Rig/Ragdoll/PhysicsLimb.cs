@@ -38,7 +38,7 @@ namespace KadenZombie8.BIMOS.Ragdoll {
 
             torque = Vector3.ClampMagnitude(torque, Ragdoll.maxStrength);
 
-            Rigidbody.AddTorque(torque * forceMultiplier, ForceMode.Force);
+            Rigidbody.AddTorque(torque * forceMultiplier * Ragdoll.forceMultiplier, ForceMode.Force);
         }
 
         public void SetVirtualBone(Transform newBone) => virtualLimb = newBone;

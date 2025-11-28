@@ -9,23 +9,28 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
     public class SpawnPointManager : MonoBehaviour
     {
         public static SpawnPointManager Instance { get; private set; }
+        [Header("Runtime References")]
+        public BIMOSRig LocalPlayer;
 
-        public event Action OnRespawn;
+        public event Action OnRespawn;  
 
+        [Header("References")]
         public SpawnPoint SpawnPoint;
+        public BIMOSRig PlayerPrefab;
 
-        private BIMOSRig _player;
+        public bool SingleRig = true;
+        public bool AutoCreatePlayer = true;
 
-        private void Awake()
-        {
-            if (Instance != null && Instance != this)
-            {
+        private void Awake() {
+            if (Instance != null && Instance != this) {
                 Destroy(gameObject);
                 return;
             }
+
             Instance = this;
 
-            _player = BIMOSRig.Instance;
+            if(AutoCreatePlayer)
+                SpawnPlayer(true);
 
             if (!SpawnPoint)
             {
@@ -38,24 +43,38 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             }
         }
 
+        public void SpawnPlayer(bool overrideCurrentPlayer = false) {
+            if (LocalPlayer != null && SingleRig)
+                return;
+            var player = Instantiate(PlayerPrefab);
+            Persistent.InvokeSpawn(player);
+            if(overrideCurrentPlayer)
+                LocalPlayer = player;
+        }
+
         private void Start() => Respawn();
 
         public void SetSpawnPoint(SpawnPoint spawnPoint) => SpawnPoint = spawnPoint;
 
-        public void Respawn()
+        public void Respawn(BIMOSRig rig = null)
         {
+            if (!rig)
+                rig = LocalPlayer;
             TeleportToSpawnPoint(SpawnPoint.transform);
 
             OnRespawn?.Invoke();
+            Persistent.InvokeRespawn(this, SpawnPoint, rig);
         }
 
-        private void TeleportToSpawnPoint(Transform spawnPoint)
+        private void TeleportToSpawnPoint(Transform spawnPoint, BIMOSRig rig = null)
         {
-            _player.PhysicsRig.GrabHandlers.Left.AttemptRelease();
-            _player.PhysicsRig.GrabHandlers.Right.AttemptRelease();
+            if (!rig)
+                rig = LocalPlayer;
+            rig.PhysicsRig.GrabHandlers.Left.AttemptRelease();
+            rig.PhysicsRig.GrabHandlers.Right.AttemptRelease();
 
             var rigidbodies = transform.GetComponentsInChildren<Rigidbody>();
-            var rootPosition = _player.PhysicsRig.Rigidbodies.LocomotionSphere.position;
+            var rootPosition = rig.PhysicsRig.Rigidbodies.LocomotionSphere.position;
             foreach (var rigidbody in rigidbodies)
             {
                 var offset = rigidbody.position - rootPosition; //Calculates the offset between the locoball and the rigidbody
@@ -70,12 +89,12 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             }
 
             //Update the animation rig's position
-            _player.AnimationRig.Transforms.Hips.position += spawnPoint.position - rootPosition;
+            rig.AnimationRig.Transforms.Hips.position += spawnPoint.position - rootPosition;
 
             //Move the player's animated feet to the new position
-            _player.AnimationRig.Feet.TeleportFeet();
+            rig.AnimationRig.Feet.TeleportFeet();
 
-            _player.ControllerRig.transform.rotation = transform.rotation;
+            rig.ControllerRig.transform.rotation = transform.rotation;
         }
     }
 }
