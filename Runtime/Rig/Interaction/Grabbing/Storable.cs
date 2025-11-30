@@ -12,6 +12,9 @@ namespace KadenZombie8.BIMOS.Rig
         public string[] Tags = { "Light" };
         public RetrieveGrabbablesStruct RetrieveGrabbables;
 
+        [HideInInspector]
+        public ItemSlot ItemSlot;
+
         [Serializable]
         public struct RetrieveGrabbablesStruct
         {

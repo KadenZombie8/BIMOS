@@ -462,6 +462,95 @@ Transform:
   - {fileID: 8732192180056757238}
   m_Father: {fileID: 523550101305634140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &796931917056182779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5307080268977316901}
+  - component: {fileID: 266841300537950947}
+  - component: {fileID: 4388667843547358227}
+  m_Layer: 6
+  m_Name: GrabBoundsVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5307080268977316901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796931917056182779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 839232331233800408}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &266841300537950947
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796931917056182779}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4388667843547358227
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796931917056182779}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 49c4a229e6af75c4da3ae68c66eba3e4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &889285692519056120
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,7 +4228,7 @@ GameObject:
   - component: {fileID: 4171827945995778278}
   - component: {fileID: 7719696691149798968}
   - component: {fileID: 6492731383586567698}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ChestRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4183,7 +4272,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.3, z: 0.2}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1932598672650125828
 Rigidbody:
@@ -6505,7 +6594,7 @@ GameObject:
   - component: {fileID: 7918404704073734448}
   - component: {fileID: 7969472529548669940}
   - component: {fileID: 5869095897070220760}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ShoulderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6548,7 +6637,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6921832747096594276
 Rigidbody:
@@ -9256,7 +9345,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Interactable
   TriggerDownEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7918404704073734448}
+        m_TargetAssemblyTypeName: KadenZombie8.BIMOS.Rig.ItemSlot, kadenzombie8.bimos
+        m_MethodName: RetrieveItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8962602863746391865}
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
+            kadenzombie8.bimos
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TriggerUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -9764,7 +9866,7 @@ GameObject:
   - component: {fileID: 8799561720574260732}
   - component: {fileID: 7076923659664955340}
   - component: {fileID: 5504469502154005116}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ChestLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9808,7 +9910,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.2, y: 0.3, z: 0.2}
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &196227393193485649
 Rigidbody:
@@ -10780,7 +10882,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.06, z: 0.08}
   m_LocalScale: {x: 0.16, y: 0.24, z: 0.19999999}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1611052123283129594}
   m_Father: {fileID: 5949157817692562273}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9129141341405644573
@@ -10869,7 +10972,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.06, z: 0.08}
   m_LocalScale: {x: 0.16, y: 0.24, z: 0.19999999}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5307080268977316901}
   m_Father: {fileID: 5836866895375934951}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &853746317153295439
@@ -10963,7 +11067,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Interactable
   TriggerDownEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7918404704073734448}
+        m_TargetAssemblyTypeName: KadenZombie8.BIMOS.Rig.ItemSlot, kadenzombie8.bimos
+        m_MethodName: RetrieveItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 469394393600309552}
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
+            kadenzombie8.bimos
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TriggerUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -11165,7 +11282,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Interactable
   TriggerDownEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8799561720574260732}
+        m_TargetAssemblyTypeName: KadenZombie8.BIMOS.Rig.ItemSlot, kadenzombie8.bimos
+        m_MethodName: RetrieveItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5475579485443638215}
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
+            kadenzombie8.bimos
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TriggerUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -11257,7 +11387,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Interactable
   TriggerDownEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4171827945995778278}
+        m_TargetAssemblyTypeName: KadenZombie8.BIMOS.Rig.ItemSlot, kadenzombie8.bimos
+        m_MethodName: RetrieveItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5087439410090881274}
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
+            kadenzombie8.bimos
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TriggerUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -13227,6 +13370,95 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5118447787777737986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7517534913467023647
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611052123283129594}
+  - component: {fileID: 2880538277978182612}
+  - component: {fileID: 2163402895904402838}
+  m_Layer: 6
+  m_Name: GrabBoundsVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1611052123283129594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7517534913467023647}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5804958950668699553}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2880538277978182612
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7517534913467023647}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2163402895904402838
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7517534913467023647}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 49c4a229e6af75c4da3ae68c66eba3e4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7545433446076340860
 GameObject:
   m_ObjectHideFlags: 0
@@ -14687,13 +14919,13 @@ GameObject:
   - component: {fileID: 8112497109755595915}
   - component: {fileID: 1111212425549124781}
   - component: {fileID: 2097825494987511760}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SlotVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8112497109755595915
 Transform:
   m_ObjectHideFlags: 0
@@ -14704,7 +14936,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3467358031497396416}
@@ -15067,7 +15299,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Interactable
   TriggerDownEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4171827945995778278}
+        m_TargetAssemblyTypeName: KadenZombie8.BIMOS.Rig.ItemSlot, kadenzombie8.bimos
+        m_MethodName: RetrieveItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 50590591007697354}
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
+            kadenzombie8.bimos
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TriggerUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -16024,7 +16269,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Interactable
   TriggerDownEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8799561720574260732}
+        m_TargetAssemblyTypeName: KadenZombie8.BIMOS.Rig.ItemSlot, kadenzombie8.bimos
+        m_MethodName: RetrieveItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3692154500885044994}
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
+            kadenzombie8.bimos
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TriggerUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -16475,13 +16733,13 @@ GameObject:
   - component: {fileID: 1109148285139907350}
   - component: {fileID: 8893719151303994312}
   - component: {fileID: 6141563073951275361}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SlotVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1109148285139907350
 Transform:
   m_ObjectHideFlags: 0
@@ -16492,7 +16750,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6943536414495544880}

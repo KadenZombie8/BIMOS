@@ -14,7 +14,6 @@ namespace KadenZombie8.BIMOS.Rig
         public Storable StoredStorable;
 
         private readonly Dictionary<GrabHandler, Action> _grabHandlerListeners = new();
-        private readonly Dictionary<Interactable, UnityAction> _triggerListeners = new();
 
         private class ItemPhysicsState
         {
@@ -25,32 +24,12 @@ namespace KadenZombie8.BIMOS.Rig
         }
         private readonly ItemPhysicsState _itemData = new();
 
-        private void OnEnable()
-        {
-            foreach (var interactable in GetComponentsInChildren<Interactable>())
-            {
-                var grabbable = interactable.GetComponent<SnapGrabbable>();
-
-                void action() => RetrieveItem(grabbable);
-                _triggerListeners[interactable] = action;
-
-                interactable.TriggerDownEvent.AddListener(action);
-            }
-        }
-
-        private void OnDisable()
-        {
-            foreach (var interactable in GetComponentsInChildren<Interactable>())
-                interactable.TriggerDownEvent.RemoveListener(_triggerListeners[interactable]);
-        }
-
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             var rigidbody = other.attachedRigidbody;
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
             if (_grabHandlerListeners.TryGetValue(grabHandler, out var _)) return;
-            if (other.transform != grabHandler.GrabBounds) return;
 
             void storeListener() => LookForStorableItem(grabHandler);
 
@@ -64,7 +43,6 @@ namespace KadenZombie8.BIMOS.Rig
             if (!rigidbody) return;
             if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
             if (!_grabHandlerListeners.TryGetValue(grabHandler, out var storeListener)) return;
-            if (other.transform != grabHandler.GrabBounds) return;
 
             grabHandler.OnRelease -= storeListener;
             _grabHandlerListeners.Remove(grabHandler);
@@ -81,6 +59,8 @@ namespace KadenZombie8.BIMOS.Rig
 
             var storable = grab.GetComponentInParent<Storable>();
             if (!storable) return;
+
+            if (storable.ItemSlot) return;
 
             StoreItem(storable);
         }
@@ -153,14 +133,14 @@ namespace KadenZombie8.BIMOS.Rig
             DisableItem(item);
 
             StoredStorable = storable;
+            StoredStorable.ItemSlot = this;
             OnStore?.Invoke();
         }
 
-        private void AlignHand(Hand hand, Grabbable grabbable)
+        private void AlignGrabbable(Hand hand, Grabbable grabbable)
         {
             var item = StoredStorable.GetComponent<Item>();
-            var grabbablePosition = grabbable.transform.position;
-            var grabbableRotation = grabbable.transform.rotation;
+            grabbable.transform.GetPositionAndRotation(out var grabbablePosition, out var grabbableRotation);
             foreach (var gameObject in item.GameObjects)
             {
                 var localPosition = Quaternion.Inverse(grabbableRotation) * (gameObject.transform.position - grabbablePosition);
@@ -196,10 +176,11 @@ namespace KadenZombie8.BIMOS.Rig
                 ? StoredStorable.RetrieveGrabbables.Left
                 : StoredStorable.RetrieveGrabbables.Right;
 
-            AlignHand(hand, retrieveGrabbable);
+            AlignGrabbable(hand, retrieveGrabbable);
             EnableItem();
             retrieveGrabbable.Grab(hand);
 
+            StoredStorable.ItemSlot = null;
             StoredStorable = null;
             OnRetrieve?.Invoke();
         }
