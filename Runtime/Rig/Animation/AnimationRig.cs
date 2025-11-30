@@ -62,6 +62,14 @@ namespace KadenZombie8.BIMOS.Rig
                 headBone.localScale = Vector3.zero;
 
             // Arms
+            Transform leftShoulder = _animator.GetBoneTransform(HumanBodyBones.LeftShoulder);
+            if (leftShoulder)
+                _constraints.LeftShoulder.data.constrainedObject = _animator.GetBoneTransform(HumanBodyBones.LeftShoulder);
+
+            Transform rightShoulder = _animator.GetBoneTransform(HumanBodyBones.RightShoulder);
+            if (rightShoulder)
+                _constraints.RightShoulder.data.constrainedObject = _animator.GetBoneTransform(HumanBodyBones.RightShoulder);
+
             _constraints.LeftArm.data.root = _animator.GetBoneTransform(HumanBodyBones.LeftUpperArm);
             _constraints.LeftArm.data.mid = _animator.GetBoneTransform(HumanBodyBones.LeftLowerArm);
             _constraints.LeftArm.data.tip = _animator.GetBoneTransform(HumanBodyBones.LeftHand);
@@ -138,6 +146,8 @@ namespace KadenZombie8.BIMOS.Rig
     [Serializable]
     public struct AnimationRigConstraints
     {
+        public MultiAimConstraint LeftShoulder;
+        public MultiAimConstraint RightShoulder;
         public TwoBoneIKConstraint LeftArm;
         public TwoBoneIKConstraint RightArm;
         public TwoBoneIKConstraint LeftLeg;
