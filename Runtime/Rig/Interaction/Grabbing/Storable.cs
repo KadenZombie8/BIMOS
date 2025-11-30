@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.XR;
 
 namespace KadenZombie8.BIMOS.Rig
 {
@@ -14,6 +13,9 @@ namespace KadenZombie8.BIMOS.Rig
         public RetrieveGrabbablesStruct RetrieveGrabbables;
 
         [HideInInspector]
+        public Storable ParentStorable;
+
+        [HideInInspector]
         public ItemSlot ItemSlot;
 
         [Serializable]
@@ -24,12 +26,41 @@ namespace KadenZombie8.BIMOS.Rig
         }
 
         private HoldDetector _holdDetector;
+        private Item _item;
 
-        private void Awake() => _holdDetector = GetComponent<HoldDetector>();
+        private void Awake()
+        {
+            _holdDetector = GetComponent<HoldDetector>();
+            _item = GetComponent<Item>();
+        }
 
-        private void OnEnable() => _holdDetector.OnLastRelease.AddListener(LookForItemSlot);
+        private void OnEnable()
+        {
+            _holdDetector.OnLastRelease.AddListener(LookForItemSlot);
+            _item.OnGameObjectAdded += AddStorables;
+            _item.OnGameObjectRemoved += RemoveStorables;
+        }
 
-        private void OnDisable() => _holdDetector.OnLastRelease.RemoveListener(LookForItemSlot);
+        private void OnDisable()
+        {
+            _holdDetector.OnLastRelease.RemoveListener(LookForItemSlot);
+            _item.OnGameObjectAdded -= AddStorables;
+            _item.OnGameObjectRemoved -= RemoveStorables;
+        }
+
+        private void AddStorables(GameObject gameObject)
+        {
+            var storables = gameObject.GetComponentsInChildren<Storable>();
+            foreach (var storable in storables)
+                storable.ParentStorable = this;
+        }
+
+        private void RemoveStorables(GameObject gameObject)
+        {
+            var storables = gameObject.GetComponentsInChildren<Storable>();
+            foreach (var storable in storables)
+                storable.ParentStorable = null;
+        }
 
         private void LookForItemSlot(Hand hand)
         {
@@ -59,7 +90,21 @@ namespace KadenZombie8.BIMOS.Rig
             }
 
             if (!highestRankItemSlot) return;
-            highestRankItemSlot.StoreItem(this);
+
+            if (ParentStorable)
+            {
+                highestRankItemSlot.StoreItem(ParentStorable);
+            }
+
+            TryStore(highestRankItemSlot);
+        }
+
+        public void TryStore(ItemSlot itemSlot)
+        {
+            if (ParentStorable)
+                ParentStorable.TryStore(itemSlot);
+            else
+                itemSlot.StoreItem(this);
         }
     }
 }

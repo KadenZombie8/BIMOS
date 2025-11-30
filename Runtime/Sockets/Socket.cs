@@ -136,6 +136,12 @@ namespace KadenZombie8.BIMOS.Sockets
                 yield return new WaitForFixedUpdate();
             }
 
+            if (!gameObject.activeInHierarchy || !Plug.Rigidbody.gameObject.activeInHierarchy)
+            {
+                Destroy(AttachJoint);
+                yield break;
+            }
+
             OnAttach?.Invoke();
             Plug.Attach();
             elapsedTime = 0f;
