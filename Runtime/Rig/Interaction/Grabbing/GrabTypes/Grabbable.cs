@@ -20,6 +20,10 @@ namespace KadenZombie8.BIMOS.Rig
         [HideInInspector]
         public Collider Collider;
 
+        [SerializeField]
+        [Range(0f, 1f)]
+        private float _maxRotationDifference = 0.5f;
+
         protected readonly float MaxGrabTime = 0.2f;
         protected readonly float MaxPositionDifference = 0.2f;
 
@@ -28,7 +32,7 @@ namespace KadenZombie8.BIMOS.Rig
             Body = Utilities.GetBody(transform, out RigidBody, out ArticulationBody);
             if (!Body)
             {
-                Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
+                var rigidbody = gameObject.AddComponent<Rigidbody>();
                 rigidbody.isKinematic = true;
                 RigidBody = rigidbody;
                 Body = RigidBody.transform;
@@ -65,7 +69,7 @@ namespace KadenZombie8.BIMOS.Rig
             var rotationDifference = Quaternion.Angle(hand.PalmTransform.rotation, rotation) / 180f;
             var averageDifference = (positionDifference + rotationDifference * 2f) / 3f;
 
-            if (rotationDifference > 0.5f)
+            if (rotationDifference > _maxRotationDifference)
                 return 0f;
 
             return 1f / averageDifference; //Reciprocal of distance from hand to grab

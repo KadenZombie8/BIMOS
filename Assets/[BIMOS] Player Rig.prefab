@@ -8816,6 +8816,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 0.5
   AmmoPrefab: {fileID: 0}
 --- !u!54 &1895092773906539588
 Rigidbody:
@@ -9361,6 +9362,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 1
   Handedness: 0
 --- !u!114 &912001624019823121
 MonoBehaviour:
@@ -11172,6 +11174,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 1
   Handedness: 1
 --- !u!114 &4884480099664690005
 MonoBehaviour:
@@ -11387,6 +11390,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 1
   Handedness: 1
 --- !u!114 &11095342933235653
 MonoBehaviour:
@@ -11492,6 +11496,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 1
   Handedness: 0
 --- !u!114 &6423323776309400895
 MonoBehaviour:
@@ -13835,6 +13840,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 0.5
 --- !u!1 &7643006279973107364
 GameObject:
   m_ObjectHideFlags: 0
@@ -15405,6 +15411,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 1
   Handedness: 1
 --- !u!114 &7304721184870288937
 MonoBehaviour:
@@ -16375,6 +16382,7 @@ MonoBehaviour:
   LeftHand: {fileID: 0}
   RightHand: {fileID: 0}
   Collider: {fileID: 0}
+  _maxRotationDifference: 1
   Handedness: 0
 --- !u!114 &1849458715135502253
 MonoBehaviour:
