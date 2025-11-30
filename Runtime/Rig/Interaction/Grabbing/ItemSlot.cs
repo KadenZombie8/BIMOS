@@ -21,6 +21,14 @@ namespace KadenZombie8.BIMOS.Rig
         }
         private readonly ItemPhysicsState _itemData = new();
 
+        private Grabbable[] _itemSlotGrabbables;
+
+        private void Awake()
+        {
+            _itemSlotGrabbables = GetComponentsInChildren<Grabbable>();
+            SetItemSlotGrabbablesEnabled(false);
+        }
+
         private void DisableItem(Item item)
         {
             HashSet<Collider> colliders = new();
@@ -90,6 +98,7 @@ namespace KadenZombie8.BIMOS.Rig
 
             StoredStorable = storable;
             StoredStorable.ItemSlot = this;
+            SetItemSlotGrabbablesEnabled(true);
             OnStore?.Invoke();
         }
 
@@ -138,6 +147,7 @@ namespace KadenZombie8.BIMOS.Rig
 
             StoredStorable.ItemSlot = null;
             StoredStorable = null;
+            SetItemSlotGrabbablesEnabled(false);
             OnRetrieve?.Invoke();
         }
 
@@ -149,6 +159,12 @@ namespace KadenZombie8.BIMOS.Rig
                         return true;
 
             return false;
+        }
+        
+        private void SetItemSlotGrabbablesEnabled(bool isEnabled)
+        {
+            foreach(var itemSlotGrabbable in _itemSlotGrabbables)
+                itemSlotGrabbable.enabled = isEnabled;
         }
     }
 }
