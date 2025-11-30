@@ -1,0 +1,25 @@
+{
+    "name": "kadenzombie8.bimos.networking",
+    "rootNamespace": "KadenZombie8.BIMOS.Networking",
+    "references": [
+        "GUID:303e84476c52562438a4cea31bf9b794",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:30817c1a0e6d646d99c048fc403f5979",
+        "GUID:627104647b9c04b4ebb8978a92ecac63",
+        "GUID:72872094b21c16e48b631b2224833d49",
+        "GUID:7aab54717b4c67d47828e4b33a097953"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        ""
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "MIRROR"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

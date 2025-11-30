@@ -8,42 +8,21 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
     /// </summary>
     public class SpawnPointManager : MonoBehaviour
     {
-        public static SpawnPointManager Instance { get; private set; }
+        public static SpawnPointManager Instance { get; protected set; }
         [Header("Runtime References")]
         public BIMOSRig LocalPlayer;
 
-        public event Action OnRespawn;  
+        public event Action OnRespawn;
 
         [Header("References")]
+        public LayerMask RigLayerMask;
         public SpawnPoint SpawnPoint;
         public BIMOSRig PlayerPrefab;
 
         public bool SingleRig = true;
         public bool AutoCreatePlayer = true;
 
-        private void Awake() {
-            if (Instance != null && Instance != this) {
-                Destroy(gameObject);
-                return;
-            }
-
-            Instance = this;
-
-            if(AutoCreatePlayer)
-                SpawnPlayer(true);
-
-            if (!SpawnPoint)
-            {
-                SpawnPoint = FindFirstObjectByType<SpawnPoint>();
-                if (!SpawnPoint)
-                {
-                    Debug.LogError("You must have at least one spawn point!");
-                    return;
-                }
-            }
-        }
-
-        public void SpawnPlayer(bool overrideCurrentPlayer = false) {
+        public virtual void SpawnPlayer(bool overrideCurrentPlayer = false) {
             if (LocalPlayer != null && SingleRig)
                 return;
             var player = Instantiate(PlayerPrefab);
@@ -52,11 +31,32 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
                 LocalPlayer = player;
         }
 
-        private void Start() => Respawn();
+        public virtual void Start() {
+            Physics.IgnoreLayerCollision(RigLayerMask.value, RigLayerMask.value);
 
-        public void SetSpawnPoint(SpawnPoint spawnPoint) => SpawnPoint = spawnPoint;
+            if (Instance != null && Instance != this) {
+                Destroy(gameObject);
+                return;
+            }
 
-        public void Respawn(BIMOSRig rig = null)
+            Instance = this;
+
+            if (AutoCreatePlayer)
+                SpawnPlayer(true);
+
+            if (!SpawnPoint) {
+                SpawnPoint = FindFirstObjectByType<SpawnPoint>();
+                if (!SpawnPoint) {
+                    Debug.LogError("You must have at least one spawn point!");
+                    return;
+                }
+            }
+            Respawn();
+        }
+
+        public virtual void SetSpawnPoint(SpawnPoint spawnPoint) => SpawnPoint = spawnPoint;
+
+        public virtual void Respawn(BIMOSRig rig = null)
         {
             if (!rig)
                 rig = LocalPlayer;
@@ -66,7 +66,7 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             Persistent.InvokeRespawn(this, SpawnPoint, rig);
         }
 
-        private void TeleportToSpawnPoint(Transform spawnPoint, BIMOSRig rig = null)
+        public void TeleportToSpawnPoint(Transform spawnPoint, BIMOSRig rig = null)
         {
             if (!rig)
                 rig = LocalPlayer;

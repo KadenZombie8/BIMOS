@@ -4542,6 +4542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetLegHeight: 0
+  _rig: {fileID: 0}
 --- !u!114 &9143494609847232379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5062,6 +5063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 337d4096490926743b0e2f611ed226cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Poolee: 0
   Bodies:
   - {fileID: 3550472727981796829}
   - {fileID: 4529679309809523350}
@@ -5595,6 +5597,7 @@ MonoBehaviour:
   TargetOffsetRotation: {x: 0, y: 0, z: 0, w: 0}
   _pGain: 25
   _dGain: 0.75
+  _player: {fileID: 0}
 --- !u!114 &1714243675603914674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6613,6 +6616,7 @@ MonoBehaviour:
   TargetOffsetRotation: {x: 0, y: 0, z: 0, w: 0}
   _pGain: 25
   _dGain: 0.75
+  _player: {fileID: 0}
 --- !u!114 &1354081709754906145
 MonoBehaviour:
   m_ObjectHideFlags: 0

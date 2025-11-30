@@ -14,7 +14,6 @@ namespace KadenZombie8.BIMOS.SDK {
             EditorGUI.BeginDisabledGroup(true);
             EditorGUILayout.IntField($"Pool ID [1 .. {ushort.MaxValue}]", target.PoolId);
             EditorGUI.EndDisabledGroup();
-            target.Poolee = EditorGUILayout.Toggle($"Poolee", target.Poolee);
             if (GUILayout.Button("Validate")) {
                 foreach (var m_target in targets) {
                     EditorUtility.SetDirty(m_target);
