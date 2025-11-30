@@ -48,11 +48,11 @@ namespace KadenZombie8.BIMOS.Rig
 
         private Grabbable GetChosenGrab()
         {
-            var grabColliders = Physics.OverlapBox(GrabBounds.position, GrabBounds.localScale / 2, GrabBounds.rotation, Physics.AllLayers, QueryTriggerInteraction.Collide); //Get all grabs in the grab bounds
+            var grabColliders = Physics.OverlapBox(GrabBounds.position, GrabBounds.localScale / 2f, GrabBounds.rotation, Physics.AllLayers, QueryTriggerInteraction.Collide); //Get all grabs in the grab bounds
             float highestRank = 0;
             Grabbable highestRankGrab = null;
 
-            foreach (Collider grabCollider in grabColliders) //Loop through found grab colliders to find grab with highest rank
+            foreach (var grabCollider in grabColliders) //Loop through found grab colliders to find grab with highest rank
             {
                 var grabbable = grabCollider.GetComponent<Grabbable>();
 

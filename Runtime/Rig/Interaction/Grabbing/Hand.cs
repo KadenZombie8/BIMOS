@@ -17,7 +17,7 @@ namespace KadenZombie8.BIMOS.Rig
         public GrabHandler GrabHandler;
         public Handedness Handedness;
         public Hand OtherHand;
-        public Collider PhysicsHandCollider;
+        public BoxCollider PhysicsHandCollider;
         public Joint GrabJoint;
 
         [SerializeField]

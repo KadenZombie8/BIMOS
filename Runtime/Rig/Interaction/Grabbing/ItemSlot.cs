@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace KadenZombie8.BIMOS.Rig
 {
@@ -13,8 +12,6 @@ namespace KadenZombie8.BIMOS.Rig
         public string[] Tags = { "Light", "Heavy" };
         public Storable StoredStorable;
 
-        private readonly Dictionary<GrabHandler, Action> _grabHandlerListeners = new();
-
         private class ItemPhysicsState
         {
             public Dictionary<Collider, bool> Colliders = new();
@@ -23,47 +20,6 @@ namespace KadenZombie8.BIMOS.Rig
             public Dictionary<Renderer, bool> Renderers = new();
         }
         private readonly ItemPhysicsState _itemData = new();
-
-        private void OnTriggerStay(Collider other)
-        {
-            var rigidbody = other.attachedRigidbody;
-            if (!rigidbody) return;
-            if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
-            if (_grabHandlerListeners.TryGetValue(grabHandler, out var _)) return;
-
-            void storeListener() => LookForStorableItem(grabHandler);
-
-            _grabHandlerListeners[grabHandler] = storeListener;
-            grabHandler.OnRelease += storeListener;
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            var rigidbody = other.attachedRigidbody;
-            if (!rigidbody) return;
-            if (!rigidbody.TryGetComponent<GrabHandler>(out var grabHandler)) return;
-            if (!_grabHandlerListeners.TryGetValue(grabHandler, out var storeListener)) return;
-
-            grabHandler.OnRelease -= storeListener;
-            _grabHandlerListeners.Remove(grabHandler);
-        }
-
-        private void LookForStorableItem(GrabHandler grabHandler)
-        {
-            if (!grabHandler.TryGetComponent<Hand>(out var hand)) return;
-
-            var grab = hand.CurrentGrab;
-            if (!grab) return;
-
-            if (hand.OtherHand.CurrentGrab) return;
-
-            var storable = grab.GetComponentInParent<Storable>();
-            if (!storable) return;
-
-            if (storable.ItemSlot) return;
-
-            StoreItem(storable);
-        }
 
         private void DisableItem(Item item)
         {

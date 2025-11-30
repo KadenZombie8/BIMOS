@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using KadenZombie8.BIMOS.Sockets;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,8 +11,8 @@ namespace KadenZombie8.BIMOS.Rig
     [RequireComponent(typeof(Item))]
     public class HoldDetector : MonoBehaviour
     {
-        public UnityEvent OnFirstGrab;
-        public UnityEvent OnLastRelease;
+        public UnityEvent<Hand> OnFirstGrab;
+        public UnityEvent<Hand> OnLastRelease;
 
         private readonly HashSet<Grabbable> _grabbables = new();
         private Item _item;
@@ -38,7 +36,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void OnEnable()
         {
-            foreach (GameObject gameObject in _item.GameObjects)
+            foreach (var gameObject in _item.GameObjects)
             {
                 foreach (var grabbable in gameObject.GetComponentsInChildren<Grabbable>())
                     AddGrabbable(grabbable);
@@ -69,12 +67,12 @@ namespace KadenZombie8.BIMOS.Rig
                 RemoveGrabbable(grabbable);
         }
 
-        private void CheckIsHolding()
+        private void CheckIsHolding(Hand hand)
         {
             var isHolding = IsHolding();
             if (isHolding == _wasHolding) return;
 
-            (isHolding ? OnFirstGrab : OnLastRelease)?.Invoke();
+            (isHolding ? OnFirstGrab : OnLastRelease)?.Invoke(hand);
             _wasHolding = isHolding;
         }
 

@@ -6,8 +6,8 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public abstract class Grabbable : MonoBehaviour
     {
-        public UnityEvent OnGrab;
-        public UnityEvent OnRelease;
+        public UnityEvent<Hand> OnGrab;
+        public UnityEvent<Hand> OnRelease;
         public HandPose HandPose;
 
         [HideInInspector]
@@ -87,7 +87,7 @@ namespace KadenZombie8.BIMOS.Rig
 
             IgnoreCollision(hand, true);
 
-            OnGrab?.Invoke();
+            OnGrab?.Invoke(hand);
         }
 
         public virtual void IgnoreCollision(Hand hand, bool ignore)
@@ -185,7 +185,7 @@ namespace KadenZombie8.BIMOS.Rig
             else
                 RightHand = null;
 
-            OnRelease?.Invoke();
+            OnRelease?.Invoke(hand);
         }
 
         public virtual void DestroyGrabJoint(Hand hand)
