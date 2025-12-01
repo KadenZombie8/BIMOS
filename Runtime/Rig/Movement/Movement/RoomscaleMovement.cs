@@ -10,9 +10,11 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     public class RoomscaleMovement : MonoBehaviour
     {
         private BIMOSRig _rig;
-        private Vector3 _lastForwardDirection;
 
-        private void Start() => _rig = BIMOSRig.Instance;
+        private void Start()
+        {
+            _rig = BIMOSRig.Instance;
+        }
 
         private void FixedUpdate()
         {
@@ -32,13 +34,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _rig.PhysicsRig.Crouching.TargetLegHeight += deltaCameraPosition.y;
 
             // Rotation
-            var currentForwardDirection = _rig.ControllerRig.HeadForwardDirection;
+            var baseForwardRotation = _rig.ControllerRig.BaseForwardRotation;
+            var headForwardRotation = _rig.ControllerRig.HeadForwardRotation;
 
-            var deltaCameraRotation = Quaternion.FromToRotation(_lastForwardDirection, currentForwardDirection);
-            _rig.PhysicsRig.Rigidbodies.Pelvis.rotation *= deltaCameraRotation;
-            _rig.ControllerRig.transform.rotation *= Quaternion.Inverse(deltaCameraRotation);
-
-            _lastForwardDirection = currentForwardDirection;
+            var deltaCameraRotation = headForwardRotation * Quaternion.Inverse(baseForwardRotation);
+            _rig.PhysicsRig.Rigidbodies.Pelvis.rotation = deltaCameraRotation * baseForwardRotation;
+            _rig.ControllerRig.transform.localRotation = Quaternion.Inverse(deltaCameraRotation);
         }
     }
 }

@@ -154,7 +154,7 @@ namespace KadenZombie8.BIMOS.Rig
                     yield break;
 
                 var lerpedTargetPosition = Vector3.Lerp(initialLocalPosition, finalLocalPosition, elapsedTime / grabTime);
-                var lerpedTargetRotation = Quaternion.Lerp(initialLocalRotation, Quaternion.identity, elapsedTime / grabTime);
+                var lerpedTargetRotation = Quaternion.Slerp(initialLocalRotation, Quaternion.identity, elapsedTime / grabTime);
 
                 grabJoint.connectedAnchor = lerpedTargetPosition;
                 grabJoint.targetRotation = lerpedTargetRotation;
