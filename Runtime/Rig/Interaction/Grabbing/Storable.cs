@@ -64,7 +64,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void LookForItemSlot(Hand hand)
         {
-            var handCollider = hand.PhysicsHandCollider;
+            var handCollider = hand.ArmColliders.Hand;
             var handColliderTransform = handCollider.transform;
             var itemSlotColliders = Physics.OverlapBox(
                 handColliderTransform.position,

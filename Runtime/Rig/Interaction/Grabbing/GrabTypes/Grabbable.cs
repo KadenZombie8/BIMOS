@@ -97,7 +97,11 @@ namespace KadenZombie8.BIMOS.Rig
         public virtual void IgnoreCollision(Hand hand, bool ignore)
         {
             foreach (Collider collider in Body.GetComponentsInChildren<Collider>())
-                Physics.IgnoreCollision(collider, hand.PhysicsHandCollider, ignore);
+            {
+                Physics.IgnoreCollision(collider, hand.ArmColliders.UpperArm, ignore);
+                Physics.IgnoreCollision(collider, hand.ArmColliders.LowerArm, ignore);
+                Physics.IgnoreCollision(collider, hand.ArmColliders.Hand, ignore);
+            }
         }
 
         public virtual void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)

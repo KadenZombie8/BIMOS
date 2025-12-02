@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.Rig.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
@@ -17,7 +18,7 @@ namespace KadenZombie8.BIMOS.Rig
         public GrabHandler GrabHandler;
         public Handedness Handedness;
         public Hand OtherHand;
-        public BoxCollider PhysicsHandCollider;
+        public ArmColliders ArmColliders;
         public Joint GrabJoint;
 
         [SerializeField]

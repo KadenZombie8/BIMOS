@@ -66,8 +66,16 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public Rigidbody Knee;
         public Rigidbody Pelvis;
         public Rigidbody Head;
-        public Rigidbody LeftHand;
-        public Rigidbody RightHand;
+        public ArmRigidbodies LeftArm;
+        public ArmRigidbodies RightArm;
+    }
+
+    [Serializable]
+    public struct ArmRigidbodies
+    {
+        public Rigidbody UpperArm;
+        public Rigidbody LowerArm;
+        public Rigidbody Hand;
     }
 
     [Serializable]
@@ -76,8 +84,16 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public SphereCollider LocomotionSphere;
         public CapsuleCollider Body;
         public CapsuleCollider Head;
-        public BoxCollider LeftHand;
-        public BoxCollider RightHand;
+        public ArmColliders LeftArm;
+        public ArmColliders RightArm;
+    }
+
+    [Serializable]
+    public struct ArmColliders
+    {
+        public CapsuleCollider UpperArm;
+        public CapsuleCollider LowerArm;
+        public BoxCollider Hand;
     }
 
     [Serializable]
