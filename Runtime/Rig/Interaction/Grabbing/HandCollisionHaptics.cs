@@ -4,12 +4,12 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public class HandCollisionHaptics : MonoBehaviour
     {
+        [SerializeField]
         private Hand _hand;
+
         private readonly float _collisionHapticDuration = 0.1f;
         private readonly float _minimumImpulseMagnitude = 0.2f;
         private readonly float _maximumImpulseMagnitude = 20f;
-
-        private void Awake() => _hand = GetComponent<Hand>();
 
         private void OnCollisionEnter(Collision collision)
         {

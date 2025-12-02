@@ -39,7 +39,5 @@ namespace KadenZombie8.BIMOS.Rig
             rotation = rotation * Quaternion.Inverse(hand.PalmTransform.rotation) * hand.PhysicsHandTransform.rotation;
             position += rotation * hand.PalmTransform.InverseTransformPoint(hand.PhysicsHandTransform.position);
         }
-
-        public override void IgnoreCollision(Hand hand, bool ignore) { }
     }
 }
