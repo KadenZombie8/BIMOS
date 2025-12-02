@@ -38,8 +38,6 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             }
         }
 
-        private void Start() => Respawn();
-
         public void SetSpawnPoint(SpawnPoint spawnPoint) => SpawnPoint = spawnPoint;
 
         public void Respawn()
@@ -54,16 +52,13 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             _player.PhysicsRig.GrabHandlers.Left.AttemptRelease();
             _player.PhysicsRig.GrabHandlers.Right.AttemptRelease();
 
-            var rigidbodies = transform.GetComponentsInChildren<Rigidbody>();
+            var rigidbodies = _player.PhysicsRig.transform.GetComponentsInChildren<Rigidbody>();
             var rootPosition = _player.PhysicsRig.Rigidbodies.LocomotionSphere.position;
+
             foreach (var rigidbody in rigidbodies)
             {
                 var offset = rigidbody.position - rootPosition; //Calculates the offset between the locoball and the rigidbody
                 rigidbody.position = spawnPoint.position + offset; //Sets the rigidbody's position
-                rigidbody.transform.position = spawnPoint.position + offset; //Sets the transform's position
-
-                if (rigidbody.isKinematic)
-                    continue;
 
                 rigidbody.linearVelocity = Vector3.zero;
                 rigidbody.angularVelocity = Vector3.zero;
@@ -75,7 +70,8 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             //Move the player's animated feet to the new position
             _player.AnimationRig.Feet.TeleportFeet();
 
-            _player.ControllerRig.transform.rotation = transform.rotation;
+            var deltaCameraRotation = (_player.ControllerRig.HeadForwardRotation * Quaternion.Inverse(spawnPoint.rotation)).eulerAngles;
+            _player.ControllerRig.BaseForwardRotation *= Quaternion.Euler(0f, -deltaCameraRotation.y, 0f);
         }
     }
 }

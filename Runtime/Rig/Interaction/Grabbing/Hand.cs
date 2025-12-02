@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
-using UnityEngine.XR.OpenXR.Input;
 
 namespace KadenZombie8.BIMOS.Rig
 {
@@ -19,7 +17,7 @@ namespace KadenZombie8.BIMOS.Rig
         public GrabHandler GrabHandler;
         public Handedness Handedness;
         public Hand OtherHand;
-        public Collider PhysicsHandCollider;
+        public BoxCollider PhysicsHandCollider;
         public Joint GrabJoint;
 
         [SerializeField]

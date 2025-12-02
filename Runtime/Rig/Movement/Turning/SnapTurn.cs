@@ -12,7 +12,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public float TurnIncrement = 45;
 
         private VirtualTurning _virtualTurning;
-        private PhysicsRig _physicsRig;
+        private ControllerRig _controllerRig;
         private bool _isTurning;
 
         #region Enabling and disabling
@@ -29,8 +29,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Awake()
         {
-            _physicsRig = GetComponent<PhysicsRig>();
             _virtualTurning = GetComponent<VirtualTurning>();
+        }
+
+        private void Start()
+        {
+            _controllerRig = BIMOSRig.Instance.ControllerRig;
         }
 
         private void Turn(Vector2 vector)
@@ -53,7 +57,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             {
                 var degreesToTurn = Mathf.Min(degreesLeftToTurn, _virtualTurning.TurnSpeed * Time.deltaTime);
                 degreesLeftToTurn -= degreesToTurn;
-                _physicsRig.Rigidbodies.Pelvis.transform.Rotate(0f, degreesToTurn * turnDirection, 0f);
+                _controllerRig.BaseForwardRotation *= Quaternion.Euler(0f, degreesToTurn * turnDirection, 0f);
                 yield return null;
             }
         }

@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.XR;
-using UnityEngine.XR.Management;
 
 namespace KadenZombie8.BIMOS.Rig
 {
@@ -13,10 +9,17 @@ namespace KadenZombie8.BIMOS.Rig
         public ControllerRigTransforms Transforms;
         public float HeadsetStandingHeight = 1.65f;
 
-        private TrackedPoseDriver
-            _headsetDriver,
-            _leftControllerDriver,
-            _rightControllerDriver;
+        [HideInInspector]
+        public Quaternion BaseForwardRotation;
+
+        public Quaternion HeadForwardRotation => Quaternion.LookRotation(Vector3.Cross(Transforms.Camera.right, Vector3.up));
+
+        public Vector3 HeadForwardDirection => HeadForwardRotation * Vector3.forward;
+
+        private void Awake()
+        {
+            BaseForwardRotation = HeadForwardRotation;
+        }
 
         public void Start()
         {
@@ -36,38 +39,6 @@ namespace KadenZombie8.BIMOS.Rig
             #endregion
 
             ScaleCharacter();
-            //StartCoroutine(WaitForMotionControls());
-        }
-
-        private IEnumerator WaitForMotionControls()
-        {
-            _headsetDriver = Transforms.Camera.GetComponent<TrackedPoseDriver>();
-            _leftControllerDriver = Transforms.LeftController.GetComponent<TrackedPoseDriver>();
-            _rightControllerDriver = Transforms.RightController.GetComponent<TrackedPoseDriver>();
-
-            _headsetDriver.enabled
-                = _leftControllerDriver.enabled
-                    = _rightControllerDriver.enabled
-                        = false;
-
-            var headsetActive = false;
-
-            while (!headsetActive)
-            {
-                try
-                {
-                    var display = XRGeneralSettings.Instance.Manager.activeLoader.GetLoadedSubsystem<XRDisplaySubsystem>();
-                    if (display.running)
-                        headsetActive = true;
-                }
-                catch { }
-                yield return null;
-            }
-
-            _headsetDriver.enabled
-                = _leftControllerDriver.enabled
-                    = _rightControllerDriver.enabled
-                        = true;
         }
 
         public void ScaleCharacter()

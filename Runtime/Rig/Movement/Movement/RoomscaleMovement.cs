@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace KadenZombie8.BIMOS.Rig.Movement
 {
@@ -10,10 +11,14 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     {
         private BIMOSRig _rig;
 
-        private void Start() => _rig = BIMOSRig.Instance;
+        private void Start()
+        {
+            _rig = BIMOSRig.Instance;
+        }
 
         private void FixedUpdate()
         {
+            // Position
             var deltaCameraPosition = _rig.ControllerRig.Transforms.HeadCameraOffset.position - _rig.ControllerRig.transform.position;
 
             var deltaCameraPositionFlattened = deltaCameraPosition;
@@ -27,6 +32,14 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _rig.PhysicsRig.Rigidbodies.Head.position += deltaCameraPosition;
 
             _rig.PhysicsRig.Crouching.TargetLegHeight += deltaCameraPosition.y;
+
+            // Rotation
+            var baseForwardRotation = _rig.ControllerRig.BaseForwardRotation;
+            var headForwardRotation = _rig.ControllerRig.HeadForwardRotation;
+
+            var deltaCameraRotation = headForwardRotation * Quaternion.Inverse(baseForwardRotation);
+            _rig.PhysicsRig.Rigidbodies.Pelvis.rotation = deltaCameraRotation * baseForwardRotation;
+            _rig.ControllerRig.transform.localRotation = Quaternion.Inverse(deltaCameraRotation);
         }
     }
 }

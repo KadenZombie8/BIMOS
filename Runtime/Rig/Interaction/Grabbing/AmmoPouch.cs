@@ -1,19 +1,23 @@
-using KadenZombie8.BIMOS.Rig;
-using KadenZombie8.BIMOS.Sockets;
 using System.Collections.Generic;
+using KadenZombie8.BIMOS.Sockets;
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS.Guns
+namespace KadenZombie8.BIMOS.Rig
 {
-    public class AmmoPouch : Grabbable
+    public class AmmoPouch : ItemSlot
     {
         public static AmmoPouch Instance;
 
-        public GameObject AmmoPrefab;
+        public GameObject AmmoPrefab { get; private set; }
+
+        [SerializeField]
+        private int _maxSpawnedMagazines = 5;
+
         private readonly List<GameObject> _spawnedMagazines = new();
 
         private void Awake()
         {
+            SetItemSlotGrabbablesEnabled(false);
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -22,37 +26,46 @@ namespace KadenZombie8.BIMOS.Guns
             Instance = this;
         }
 
-        public override void Grab(Hand hand) //Triggered when player grabs the grab
+        public void SetAmmoPrefab(GameObject ammoPrefab)
+        {
+            SetItemSlotGrabbablesEnabled(true);
+            AmmoPrefab = ammoPrefab;
+        }
+
+        public override void StoreItem(Storable storable)
+        {
+            base.StoreItem(storable);
+            _spawnedMagazines.Remove(storable.gameObject);
+            DestroyStoredItem();
+        }
+
+        public override void RetrieveItem(SnapGrabbable grabbable)
         {
             if (AmmoPrefab == null)
                 return;
 
-            Release(hand);
-            GameObject magazine = Instantiate(AmmoPrefab);
-            magazine.transform.SetPositionAndRotation(hand.PhysicsHandTransform.position, hand.PhysicsHandTransform.rotation);
-
-            foreach (var grabbable in magazine.GetComponentsInChildren<SnapGrabbable>())
-                if (grabbable.Handedness == hand.Handedness)
-                {
-                    grabbable.Grab(hand);
-                    break;
-                }
-
+            var magazine = Instantiate(AmmoPrefab);
             _spawnedMagazines.Add(magazine);
+            StoredStorable = magazine.GetComponent<Storable>();
 
-            int ejectedMagazineCount = 0;
-            foreach (GameObject spawnedMagazine in _spawnedMagazines)
-                if (!spawnedMagazine.GetComponentInChildren<Plug>()?.Socket)
-                    ejectedMagazineCount++;
+            List<GameObject> ejectedMagazines = new();
+            foreach (var spawnedMagazine in _spawnedMagazines)
+            {
+                var plug = spawnedMagazine.GetComponentInChildren<Plug>();
+                if (!plug) continue;
+                if (!plug.Socket) ejectedMagazines.Add(spawnedMagazine);
+            }
 
-            if (ejectedMagazineCount > 5)
-                foreach (GameObject spawnedMagazine in _spawnedMagazines)
-                    if (!spawnedMagazine.GetComponentInChildren<Plug>().Socket)
-                    {
-                        _spawnedMagazines.Remove(spawnedMagazine);
-                        Destroy(spawnedMagazine);
-                        break;
-                    }
+            while (ejectedMagazines.Count > _maxSpawnedMagazines)
+            {
+                var magazineToRemove = ejectedMagazines[0];
+                ejectedMagazines.Remove(magazineToRemove);
+
+                _spawnedMagazines.Remove(magazineToRemove);
+                Destroy(magazineToRemove);
+            }
+
+            base.RetrieveItem(grabbable);
         }
     }
 }

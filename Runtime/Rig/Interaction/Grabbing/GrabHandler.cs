@@ -12,8 +12,7 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private Hand _hand;
 
-        [SerializeField]
-        private Transform _grabBounds;
+        public Transform GrabBounds;
 
         [SerializeField]
         private HandPose _hoverHandPose, _defaultGrabHandPose;
@@ -49,11 +48,11 @@ namespace KadenZombie8.BIMOS.Rig
 
         private Grabbable GetChosenGrab()
         {
-            var grabColliders = Physics.OverlapBox(_grabBounds.position, _grabBounds.localScale / 2, _grabBounds.rotation, Physics.AllLayers, QueryTriggerInteraction.Collide); //Get all grabs in the grab bounds
+            var grabColliders = Physics.OverlapBox(GrabBounds.position, GrabBounds.localScale / 2f, GrabBounds.rotation, Physics.AllLayers, QueryTriggerInteraction.Collide); //Get all grabs in the grab bounds
             float highestRank = 0;
             Grabbable highestRankGrab = null;
 
-            foreach (Collider grabCollider in grabColliders) //Loop through found grab colliders to find grab with highest rank
+            foreach (var grabCollider in grabColliders) //Loop through found grab colliders to find grab with highest rank
             {
                 var grabbable = grabCollider.GetComponent<Grabbable>();
 
@@ -99,10 +98,9 @@ namespace KadenZombie8.BIMOS.Rig
             if (!_hand.CurrentGrab)
                 return;
 
-            _hand.SendHapticImpulse(0.1f, _grabHapticDuration);
-
-            _hand.CurrentGrab.Release(_hand);
             OnRelease?.Invoke();
+            _hand.SendHapticImpulse(0.1f, _grabHapticDuration);
+            _hand.CurrentGrab.Release(_hand);
         }
 
         private void OnDisable() => AttemptRelease();

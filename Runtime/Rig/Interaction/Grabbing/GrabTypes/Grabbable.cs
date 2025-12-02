@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,8 +6,8 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public abstract class Grabbable : MonoBehaviour
     {
-        public UnityEvent OnGrab;
-        public UnityEvent OnRelease;
+        public UnityEvent<Hand> OnGrab;
+        public UnityEvent<Hand> OnRelease;
         public HandPose HandPose;
 
         [HideInInspector]
@@ -21,6 +20,10 @@ namespace KadenZombie8.BIMOS.Rig
         [HideInInspector]
         public Collider Collider;
 
+        [SerializeField]
+        [Range(0f, 1f)]
+        private float _maxRotationDifference = 0.5f;
+
         protected readonly float MaxGrabTime = 0.2f;
         protected readonly float MaxPositionDifference = 0.2f;
 
@@ -29,7 +32,7 @@ namespace KadenZombie8.BIMOS.Rig
             Body = Utilities.GetBody(transform, out RigidBody, out ArticulationBody);
             if (!Body)
             {
-                Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
+                var rigidbody = gameObject.AddComponent<Rigidbody>();
                 rigidbody.isKinematic = true;
                 RigidBody = rigidbody;
                 Body = RigidBody.transform;
@@ -66,7 +69,7 @@ namespace KadenZombie8.BIMOS.Rig
             var rotationDifference = Quaternion.Angle(hand.PalmTransform.rotation, rotation) / 180f;
             var averageDifference = (positionDifference + rotationDifference * 2f) / 3f;
 
-            if (rotationDifference > 0.5f)
+            if (rotationDifference > _maxRotationDifference)
                 return 0f;
 
             return 1f / averageDifference; //Reciprocal of distance from hand to grab
@@ -88,7 +91,7 @@ namespace KadenZombie8.BIMOS.Rig
 
             IgnoreCollision(hand, true);
 
-            OnGrab?.Invoke();
+            OnGrab?.Invoke(hand);
         }
 
         public virtual void IgnoreCollision(Hand hand, bool ignore)
@@ -151,7 +154,7 @@ namespace KadenZombie8.BIMOS.Rig
                     yield break;
 
                 var lerpedTargetPosition = Vector3.Lerp(initialLocalPosition, finalLocalPosition, elapsedTime / grabTime);
-                var lerpedTargetRotation = Quaternion.Lerp(initialLocalRotation, Quaternion.identity, elapsedTime / grabTime);
+                var lerpedTargetRotation = Quaternion.Slerp(initialLocalRotation, Quaternion.identity, elapsedTime / grabTime);
 
                 grabJoint.connectedAnchor = lerpedTargetPosition;
                 grabJoint.targetRotation = lerpedTargetRotation;
@@ -186,7 +189,7 @@ namespace KadenZombie8.BIMOS.Rig
             else
                 RightHand = null;
 
-            OnRelease?.Invoke();
+            OnRelease?.Invoke(hand);
         }
 
         public virtual void DestroyGrabJoint(Hand hand)

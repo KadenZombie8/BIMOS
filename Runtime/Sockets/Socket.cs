@@ -37,8 +37,8 @@ namespace KadenZombie8.BIMOS.Sockets
 
         private bool HasMatchingTag(Plug plug)
         {
-            foreach (string socketTag in Tags)
-                foreach (string plugTag in plug.Tags)
+            foreach (var socketTag in Tags)
+                foreach (var plugTag in plug.Tags)
                     if (socketTag == plugTag)
                         return true;
 
@@ -134,6 +134,12 @@ namespace KadenZombie8.BIMOS.Sockets
 
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
+            }
+
+            if (!gameObject.activeInHierarchy || !Plug.Rigidbody.gameObject.activeInHierarchy)
+            {
+                Destroy(AttachJoint);
+                yield break;
             }
 
             OnAttach?.Invoke();
