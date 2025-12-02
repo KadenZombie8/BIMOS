@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using KadenZombie8.BIMOS.Rig;
 using KadenZombie8.BIMOS.Sockets;
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS.Guns
+namespace KadenZombie8.BIMOS.Rig
 {
     public class AmmoPouch : ItemSlot
     {

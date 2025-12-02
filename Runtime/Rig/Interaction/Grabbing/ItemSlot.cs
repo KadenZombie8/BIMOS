@@ -169,6 +169,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         protected void DestroyStoredItem()
         {
+            if (!StoredStorable) return;
             Destroy(StoredStorable.gameObject);
             StoredStorable = null;
 
