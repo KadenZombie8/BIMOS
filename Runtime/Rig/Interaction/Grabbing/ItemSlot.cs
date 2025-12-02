@@ -88,7 +88,7 @@ namespace KadenZombie8.BIMOS.Rig
                 pair.Key.enabled = pair.Value;
         }
 
-        public void StoreItem(Storable storable)
+        public virtual void StoreItem(Storable storable)
         {
             if (StoredStorable) return;
             if (!storable.TryGetComponent<Item>(out var item)) return;
@@ -129,7 +129,7 @@ namespace KadenZombie8.BIMOS.Rig
             }
         }
 
-        public void RetrieveItem(SnapGrabbable grabbable)
+        public virtual void RetrieveItem(SnapGrabbable grabbable)
         {
             if (!StoredStorable) return;
             if (!StoredStorable.TryGetComponent<Item>(out var storedItem)) return;
@@ -161,10 +161,21 @@ namespace KadenZombie8.BIMOS.Rig
             return false;
         }
         
-        private void SetItemSlotGrabbablesEnabled(bool isEnabled)
+        protected void SetItemSlotGrabbablesEnabled(bool isEnabled)
         {
             foreach(var itemSlotGrabbable in _itemSlotGrabbables)
                 itemSlotGrabbable.enabled = isEnabled;
+        }
+
+        protected void DestroyStoredItem()
+        {
+            Destroy(StoredStorable.gameObject);
+            StoredStorable = null;
+
+            _itemData.Colliders.Clear();
+            _itemData.Rigidbodies.Clear();
+            _itemData.ArticulationBodies.Clear();
+            _itemData.Renderers.Clear();
         }
     }
 }
