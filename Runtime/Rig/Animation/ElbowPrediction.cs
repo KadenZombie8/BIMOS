@@ -59,7 +59,7 @@ namespace KadenZombie8.BIMOS.Rig
             new(WristAxis.Y, WristAxis.X, WristAxis.Zp, 50f),
             new(WristAxis.Y, WristAxis.Xp, WristAxis.Z, 90f),
             new(WristAxis.Y, WristAxis.Z, WristAxis.X, 50f), // 2 values
-            new(WristAxis.Y, WristAxis.Zp, WristAxis.Xp, 70f),
+            new(WristAxis.Y, WristAxis.Zp, WristAxis.Xp, 90f),
 
             new(WristAxis.Yp, WristAxis.X, WristAxis.Z, -45f),
             new(WristAxis.Yp, WristAxis.Xp, WristAxis.Zp, 90f),
@@ -107,18 +107,21 @@ namespace KadenZombie8.BIMOS.Rig
         private void LateUpdate()
         {
             //Find the elbow circle origin and radius
-            var shoulderWristDisplacement = _handBone.position - _upperArmBone.position;
-            var shoulderWristDirection = shoulderWristDisplacement.normalized;
+            var shoulderToHandDirection = (_handBone.position - _upperArmBone.position).normalized;
 
-            var elbowOrigin = _upperArmBone.position + shoulderWristDirection * Vector3.Dot(_lowerArmBone.position - _upperArmBone.position, shoulderWristDirection);
+            var elbowOrigin = _upperArmBone.position + shoulderToHandDirection * Vector3.Dot(_lowerArmBone.position - _upperArmBone.position, shoulderToHandDirection);
             var elbowRadius = Vector3.Distance(elbowOrigin, _lowerArmBone.position);
 
             //Find elbow down
-            var elbowDownRotation = Quaternion.FromToRotation(_pelvis.forward, shoulderWristDirection);
+            var elbowDownRotation = Quaternion.FromToRotation(_pelvis.forward, shoulderToHandDirection);
 
             //Predict elbow direction
             var accumulatedAngle = 0f;
             var accumulatedWeight = 0f;
+
+            var refForward = shoulderToHandDirection;
+            var refUp = elbowDownRotation * Vector3.up;
+            var refRight = Vector3.Cross(refUp, refForward);
 
             foreach (var influencer in _influencers)
             {
@@ -126,11 +129,11 @@ namespace KadenZombie8.BIMOS.Rig
                 var influencerUp = GetAxis(influencer.UpAxis);
                 var influencerForward = GetAxis(influencer.ForwardAxis);
 
-                var weightRight = Mathf.Max(0f, Vector3.Dot(influencerRight, _pelvis.right));
-                var weightUp = Mathf.Max(Vector3.Dot(influencerUp, _pelvis.up));
-                var weightForward = Mathf.Max(Vector3.Dot(influencerForward, _pelvis.forward));
+                var weightRight = Mathf.Max(0f, Vector3.Dot(influencerRight, refRight));
+                var weightUp = Mathf.Max(0f, Vector3.Dot(influencerUp, refUp));
+                var weightForward = Mathf.Max(0f, Vector3.Dot(influencerForward, refForward));
 
-                var weightCombined = (weightRight + weightUp + weightForward) / 3f;
+                var weightCombined = weightRight * weightUp * weightForward;
 
                 accumulatedAngle += weightCombined * influencer.Angle;
                 accumulatedWeight += weightCombined;
@@ -142,11 +145,11 @@ namespace KadenZombie8.BIMOS.Rig
                 ? accumulatedAngle / accumulatedWeight
                 : 0f;
 
-            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(-elbowAngle , shoulderWristDirection) * Vector3.down;
+            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(-elbowAngle , shoulderToHandDirection) * Vector3.down;
 
             //Position elbow
             _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, elbowDirection, Time.deltaTime * _elbowSmoothing);
-            Quaternion elbowRotation = Quaternion.LookRotation(shoulderWristDirection, _smoothElbowDirection);
+            Quaternion elbowRotation = Quaternion.LookRotation(shoulderToHandDirection, _smoothElbowDirection);
 
             _hint.position = elbowOrigin + elbowRotation * Vector3.up * elbowRadius;
         }
