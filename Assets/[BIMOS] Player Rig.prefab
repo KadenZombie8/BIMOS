@@ -6869,9 +6869,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -11872,9 +11872,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -15166,9 +15166,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -15293,7 +15293,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.02
+  m_Radius: 0.04
   m_Height: 0.36
   m_Direction: 1
   m_Center: {x: 0, y: 0.14, z: 0}
@@ -15411,9 +15411,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1

@@ -36,6 +36,9 @@ namespace KadenZombie8.BIMOS.Rig
 
             InitializeCollider(_upperArm, _animationUpperArm, _animationLowerArm);
             InitializeCollider(_lowerArm, _animationLowerArm, animationHand);
+
+            _lowerArm.Collider.height -= _lowerArm.Collider.radius;
+            _lowerArm.Collider.center += _lowerArm.Collider.radius / 2f * Vector3.down;
         }
         
         private void InitializeCollider(ArmSegment segment, Transform upperBone, Transform lowerBone)
