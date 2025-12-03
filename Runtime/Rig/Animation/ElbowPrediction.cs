@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace KadenZombie8.BIMOS.Rig
 {
@@ -21,6 +22,10 @@ namespace KadenZombie8.BIMOS.Rig
         private Vector3 _smoothElbowDirection;
         private readonly float _elbowSmoothing = 20f;
 
+        private Vector3 _refRight;
+        private Vector3 _refUp;
+        private Vector3 _refForward;
+
         private enum WristAxis
         {
             X, Xp,
@@ -32,43 +37,64 @@ namespace KadenZombie8.BIMOS.Rig
         {
             public WristAxis UpAxis;
             public WristAxis RightAxis;
+            public WristAxis ForwardAxis;
             public float Angle;
 
-            public Influencer(WristAxis upAxis, WristAxis rightAxis, float angle)
+            public Influencer(WristAxis rightAxis, WristAxis upAxis, WristAxis forwardAxis, float angle)
             {
-                UpAxis = upAxis;
                 RightAxis = rightAxis;
+                UpAxis = upAxis;
+                ForwardAxis = forwardAxis;
                 Angle = angle;
             }
         }
 
         readonly Influencer[] _influencers =
         {
-            new(WristAxis.X, WristAxis.Y, 50f),
-            new(WristAxis.X, WristAxis.Yp, -45f),
-            new(WristAxis.X, WristAxis.Z, 30f),
-            new(WristAxis.X, WristAxis.Zp, 90f),
-            new(WristAxis.Xp, WristAxis.Y, 90f),
-            new(WristAxis.Xp, WristAxis.Yp, 90f),
-            new(WristAxis.Xp, WristAxis.Z, 70f),
-            new(WristAxis.Xp, WristAxis.Zp, 90f),
-            new(WristAxis.Y, WristAxis.X, 20f),
-            new(WristAxis.Y, WristAxis.Xp, 0f),
-            new(WristAxis.Y, WristAxis.Z, 20f),
-            new(WristAxis.Y, WristAxis.Zp, 0f), // 2 values
-            new(WristAxis.Yp, WristAxis.X, 130f),
-            new(WristAxis.Yp, WristAxis.Xp, 180f), // 2 values
-            new(WristAxis.Yp, WristAxis.Z, 130f),
-            new(WristAxis.Yp, WristAxis.Zp, 130f),
-            new(WristAxis.Z, WristAxis.X, 0f), // 2 values
-            new(WristAxis.Z, WristAxis.Xp, 10f),
-            new(WristAxis.Z, WristAxis.Y, 50f), // 2 values
-            new(WristAxis.Z, WristAxis.Yp, -30f), // 2 values
-            new(WristAxis.Zp, WristAxis.X, 40f),
-            new(WristAxis.Zp, WristAxis.Xp, 0f), // 2 values
-            new(WristAxis.Zp, WristAxis.Y, 70f),
-            new(WristAxis.Zp, WristAxis.Yp, 20f), // 2 values
+            new(WristAxis.X, WristAxis.Y, WristAxis.Z, 20f),
+            new(WristAxis.X, WristAxis.Yp, WristAxis.Zp, 130f),
+            new(WristAxis.X, WristAxis.Z, WristAxis.Yp, 0f), // 2 values
+            new(WristAxis.X, WristAxis.Zp, WristAxis.Y, 40f),
+
+            new(WristAxis.Xp, WristAxis.Y, WristAxis.Zp, 0f), // 2 values
+            new(WristAxis.Xp, WristAxis.Yp, WristAxis.Z, 180f), // 2 values
+            new(WristAxis.Xp, WristAxis.Z, WristAxis.Y, 10f),
+            new(WristAxis.Xp, WristAxis.Zp, WristAxis.Yp, 0f), // 2 values
+
+            new(WristAxis.Y, WristAxis.X, WristAxis.Zp, 50f),
+            new(WristAxis.Y, WristAxis.Xp, WristAxis.Z, 90f),
+            new(WristAxis.Y, WristAxis.Z, WristAxis.X, 50f), // 2 values
+            new(WristAxis.Y, WristAxis.Zp, WristAxis.Xp, 70f),
+
+            new(WristAxis.Yp, WristAxis.X, WristAxis.Z, -45f),
+            new(WristAxis.Yp, WristAxis.Xp, WristAxis.Zp, 90f),
+            new(WristAxis.Yp, WristAxis.Z, WristAxis.Xp, -30f), // 2 values
+            new(WristAxis.Yp, WristAxis.Zp, WristAxis.X, 20f), // 2 values
+
+            new(WristAxis.Z, WristAxis.X, WristAxis.Y, 30f),
+            new(WristAxis.Z, WristAxis.Xp, WristAxis.Yp, 70f),
+            new(WristAxis.Z, WristAxis.Y, WristAxis.Xp, 20f),
+            new(WristAxis.Z, WristAxis.Yp, WristAxis.X, 130f),
+
+            new(WristAxis.Zp, WristAxis.X, WristAxis.Yp, 90f),
+            new(WristAxis.Zp, WristAxis.Xp, WristAxis.Y, 90f),
+            new(WristAxis.Zp, WristAxis.Y, WristAxis.X, 0f), // 2 values
+            new(WristAxis.Zp, WristAxis.Yp, WristAxis.Xp, 130f)
         };
+
+        Vector3 GetAxis(WristAxis axis)
+        {
+            return axis switch
+            {
+                WristAxis.X => _controller.right,
+                WristAxis.Xp => -_controller.right,
+                WristAxis.Y => _controller.up,
+                WristAxis.Yp => -_controller.up,
+                WristAxis.Z => _controller.forward,
+                WristAxis.Zp => -_controller.forward,
+                _ => Vector3.zero
+            };
+        }
 
         private void Start()
         {
@@ -86,74 +112,64 @@ namespace KadenZombie8.BIMOS.Rig
         private void LateUpdate()
         {
             //Find the elbow circle origin and radius
-            Vector3 shoulderWristDisplacement = _handBone.position - _upperArmBone.position;
-            Vector3 shoulderWristDirection = shoulderWristDisplacement.normalized;
-            Vector3 elbowOrigin = _upperArmBone.position + shoulderWristDirection * Vector3.Dot(_lowerArmBone.position - _upperArmBone.position, shoulderWristDirection);
-            float elbowRadius = Vector3.Distance(elbowOrigin, _lowerArmBone.position);
+            var shoulderWristDisplacement = _handBone.position - _upperArmBone.position;
+            var shoulderWristDirection = shoulderWristDisplacement.normalized;
+
+            var elbowOrigin = _upperArmBone.position + shoulderWristDirection * Vector3.Dot(_lowerArmBone.position - _upperArmBone.position, shoulderWristDirection);
+            var elbowRadius = Vector3.Distance(elbowOrigin, _lowerArmBone.position);
 
             //Find elbow down
-            Quaternion elbowDownRotation = Quaternion.FromToRotation(_pelvis.forward, shoulderWristDirection);
-            Vector3 elbowDownDirection = elbowDownRotation * Vector3.down;
+            var elbowDownRotation = Quaternion.FromToRotation(_pelvis.forward, shoulderWristDirection);
+            var elbowDownDirection = elbowDownRotation * Vector3.down;
 
-            //Dot products
-            float elbowForwardDot = Vector3.Dot(elbowDownDirection, _controller.forward);
-            float elbowRightDot = Vector3.Dot(elbowDownDirection, _controller.right);
-            float elbowUpDot = Vector3.Dot(elbowDownDirection, _controller.up);
+            _refForward = shoulderWristDirection;
+            _refUp = -elbowDownDirection;
+            _refRight = Vector3.Cross(_refUp, _refForward);
 
             //Predict elbow direction
-            Vector3 elbowDirection = Vector3.zero;
+            var accumulatedAngle = 0f;
+            var accumulatedWeight = 0f;
 
-            #region dot product calculations
-            float controllerRightShoulderWristDot = Vector3.Dot(_controller.right , shoulderWristDirection);
-            float rightForwardInfluence = Mathf.Max(controllerRightShoulderWristDot, 0);
-            float rightBackInfluence = -Mathf.Min(controllerRightShoulderWristDot, 0);
+            var bestScore = 0f;
+            var elbowAngle = 0f;
+            Influencer bestInfluencer = new();
 
-            elbowDirection += Mathf.Max(0, elbowUpDot) * rightForwardInfluence * (-_controller.forward);
-            elbowDirection += Mathf.Max(0, -elbowUpDot) * rightForwardInfluence * (-_controller.up - _controller.forward);
-            elbowDirection += Mathf.Max(0, elbowForwardDot) * rightForwardInfluence * (_controller.forward);
-            elbowDirection += Mathf.Max(0, -elbowForwardDot) * rightForwardInfluence * (-_controller.up - _controller.forward);
+            foreach (var influencer in _influencers)
+            {
+                var influencerRight = GetAxis(influencer.RightAxis);
+                var influencerUp = GetAxis(influencer.UpAxis);
+                var influencerForward = GetAxis(influencer.ForwardAxis);
 
-            elbowDirection += Mathf.Max(0, elbowUpDot) * rightBackInfluence * (_controller.forward);
-            elbowDirection += Mathf.Max(0, -elbowUpDot) * rightBackInfluence * (-_controller.up - _controller.forward);
-            elbowDirection += Mathf.Max(0, elbowForwardDot) * rightBackInfluence * (-_controller.up + _controller.forward * 0.5f);
-            elbowDirection += Mathf.Max(0, -elbowForwardDot) * rightBackInfluence * (-_controller.forward);
+                var weightRight = Vector3.Dot(influencerRight, _refRight);
+                var weightUp = Vector3.Dot(influencerUp, _refUp);
+                var weightForward = Vector3.Dot(influencerForward, _refForward);
 
-            float controllerUpShoulderWristDot = Vector3.Dot(_controller.up, shoulderWristDirection);
-            float upForwardInfluence = Mathf.Max(controllerUpShoulderWristDot, 0);
-            float upBackInfluence = -Mathf.Min(controllerUpShoulderWristDot, 0);
+                var weightCombined = (weightRight + weightUp + weightForward) / 3f;
 
-            elbowDirection += Mathf.Max(0, elbowRightDot) * upForwardInfluence * (_controller.right - _controller.forward * 0.5f);
-            elbowDirection += Mathf.Max(0, -elbowRightDot) * upForwardInfluence * (-_controller.right - _controller.forward);
-            elbowDirection += Mathf.Max(0, elbowForwardDot) * upForwardInfluence * (-_controller.right * 0.5f - _controller.forward);
-            elbowDirection += Mathf.Max(0, -elbowForwardDot) * upForwardInfluence * (-_controller.forward);
+                accumulatedAngle += weightCombined * influencer.Angle;
+                accumulatedWeight += weightCombined;
 
-            elbowDirection += Mathf.Max(0, elbowRightDot) * upBackInfluence * (-_controller.forward);
-            elbowDirection += Mathf.Max(0, -elbowRightDot) * upBackInfluence * (-_controller.right - _controller.forward);
-            elbowDirection += Mathf.Max(0, elbowForwardDot) * upBackInfluence * (-_controller.forward);
-            elbowDirection += Mathf.Max(0, -elbowForwardDot) * upBackInfluence * (-_controller.forward);
+                if (weightCombined > bestScore)
+                {
+                    bestScore = weightCombined;
+                    elbowAngle = influencer.Angle;
+                    bestInfluencer = influencer;
+                }
+            }
 
-            float controllerForwardShoulderWristDot = Vector3.Dot(_controller.forward, shoulderWristDirection);
-            float forwardForwardInfluence = Mathf.Max(controllerForwardShoulderWristDot, 0);
-            float forwardBackInfluence = -Mathf.Min(controllerForwardShoulderWristDot, 0);
-
-            elbowDirection += forwardForwardInfluence * Mathf.Max(0, elbowRightDot) * (_controller.right - _controller.up);
-            elbowDirection += forwardForwardInfluence * Mathf.Max(0, -elbowRightDot) * (-_controller.right);
-            elbowDirection += forwardForwardInfluence * Mathf.Max(0, elbowUpDot) * (_controller.right - _controller.up);
-            elbowDirection += forwardForwardInfluence * Mathf.Max(0, -elbowUpDot) * (-_controller.right - _controller.up);
-
-            elbowDirection += forwardBackInfluence * Mathf.Max(0, elbowRightDot) * (_controller.right);
-            elbowDirection += forwardBackInfluence * Mathf.Max(0, -elbowRightDot) * (-_controller.right);
-            elbowDirection += forwardBackInfluence * Mathf.Max(0, elbowUpDot) * (-_controller.right);
-            elbowDirection += forwardBackInfluence * Mathf.Max(0, -elbowUpDot) * (_controller.right - _controller.up);
-            #endregion
+            print(bestInfluencer.RightAxis + ", " + bestInfluencer.UpAxis + ", " + bestInfluencer.ForwardAxis);
 
             //Check limits
-            float elbowAngle = Vector3.SignedAngle(elbowDirection, elbowDownDirection, shoulderWristDirection);
-            elbowDirection = elbowDownRotation * Quaternion.AngleAxis(-elbowAngle , shoulderWristDirection) * Vector3.down;
+
+            //var elbowAngle = accumulatedWeight > 0f
+            //    ? accumulatedAngle / accumulatedWeight
+            //    : 0f;
+
+            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(-elbowAngle , shoulderWristDirection) * Vector3.down;
 
             //Position elbow
-            _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, elbowDirection, Time.deltaTime * _elbowSmoothing);
-            Quaternion elbowRotation = Quaternion.LookRotation(shoulderWristDirection, _smoothElbowDirection);
+            //_smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, elbowDirection, Time.deltaTime * _elbowSmoothing);
+            Quaternion elbowRotation = Quaternion.LookRotation(shoulderWristDirection, elbowDirection);
 
             _hint.position = elbowOrigin + elbowRotation * Vector3.up * elbowRadius;
         }

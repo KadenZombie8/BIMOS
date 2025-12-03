@@ -2711,11 +2711,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041544511745397434}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32415ff22cd041a4fad505cb716e87cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.ElbowPrediction
+  _controller: {fileID: 8105584686134532683}
 --- !u!1 &2053210023924917134
 GameObject:
   m_ObjectHideFlags: 0
@@ -5885,6 +5886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2675245826105910234}
   - component: {fileID: 4625447755221202705}
+  - component: {fileID: 8680544358169117187}
   m_Layer: 6
   m_Name: LeftArmIK
   m_TagString: Untagged
@@ -5932,6 +5934,19 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!114 &8680544358169117187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228650216333327577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32415ff22cd041a4fad505cb716e87cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.ElbowPrediction
+  _controller: {fileID: 302060809740126155}
 --- !u!1 &3259180518487581369
 GameObject:
   m_ObjectHideFlags: 0
