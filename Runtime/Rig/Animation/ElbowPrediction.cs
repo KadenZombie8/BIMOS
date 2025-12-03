@@ -11,6 +11,9 @@ namespace KadenZombie8.BIMOS.Rig
     public class ElbowPrediction : MonoBehaviour
     {
         [SerializeField]
+        private Handedness _handedness;
+
+        [SerializeField]
         private Transform _controller;
 
         private Transform _upperArmBone;
@@ -81,10 +84,11 @@ namespace KadenZombie8.BIMOS.Rig
 
         Vector3 GetAxis(WristAxis axis)
         {
+            var isLeftHand = _handedness == Handedness.Left;
             return axis switch
             {
-                WristAxis.X => _controller.right,
-                WristAxis.Xp => -_controller.right,
+                WristAxis.X => isLeftHand ? _controller.right : -_controller.right,
+                WristAxis.Xp => isLeftHand ? -_controller.right : _controller.right,
                 WristAxis.Y => _controller.up,
                 WristAxis.Yp => -_controller.up,
                 WristAxis.Z => _controller.forward,
@@ -125,6 +129,9 @@ namespace KadenZombie8.BIMOS.Rig
             var refUp = elbowDownRotation * Vector3.up;
             var refRight = Vector3.Cross(refUp, refForward);
 
+            var isRightHand = _handedness == Handedness.Right;
+            if (isRightHand) refRight *= -1f;
+
             foreach (var influencer in _influencers)
             {
                 var influencerRight = GetAxis(influencer.RightAxis);
@@ -145,7 +152,9 @@ namespace KadenZombie8.BIMOS.Rig
                 ? accumulatedAngle / accumulatedWeight
                 : 0f;
 
-            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(-elbowAngle , shoulderToHandDirection) * Vector3.down;
+            if (isRightHand) elbowAngle *= -1f;
+
+            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(-elbowAngle, shoulderToHandDirection) * Vector3.down;
 
             //Position elbow
             _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, elbowDirection, Time.deltaTime * _elbowSmoothing);
