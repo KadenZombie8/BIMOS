@@ -3,6 +3,10 @@ using UnityEngine.Animations.Rigging;
 
 namespace KadenZombie8.BIMOS.Rig
 {
+    /// <summary>
+    /// Predict's the player's elbow location for the two-bone IK hint
+    /// This heuristic method is based upon one shared by TundraFightSchool on YouTube <3
+    /// </summary>
     [RequireComponent(typeof(TwoBoneIKConstraint))]
     public class ElbowPrediction : MonoBehaviour
     {
@@ -32,49 +36,47 @@ namespace KadenZombie8.BIMOS.Rig
         {
             public WristAxis UpAxis;
             public WristAxis RightAxis;
-            public WristAxis ForwardAxis;
             public float Angle;
 
-            public Influencer(WristAxis rightAxis, WristAxis upAxis, WristAxis forwardAxis, float angle)
+            public Influencer(WristAxis rightAxis, WristAxis upAxis, float angle)
             {
                 RightAxis = rightAxis;
                 UpAxis = upAxis;
-                ForwardAxis = forwardAxis;
                 Angle = angle;
             }
         }
 
         readonly Influencer[] _influencers =
         {
-            new(WristAxis.X, WristAxis.Y, WristAxis.Z, 20f),
-            new(WristAxis.X, WristAxis.Yp, WristAxis.Zp, 130f),
-            new(WristAxis.X, WristAxis.Z, WristAxis.Yp, 0f), // 2 values
-            new(WristAxis.X, WristAxis.Zp, WristAxis.Y, 40f),
+            new(WristAxis.X, WristAxis.Y, 20f),
+            new(WristAxis.X, WristAxis.Yp, 130f),
+            new(WristAxis.X, WristAxis.Z, 0f), // 2 values
+            new(WristAxis.X, WristAxis.Zp, 40f),
 
-            new(WristAxis.Xp, WristAxis.Y, WristAxis.Zp, 0f), // 2 values
-            new(WristAxis.Xp, WristAxis.Yp, WristAxis.Z, 180f), // 2 values
-            new(WristAxis.Xp, WristAxis.Z, WristAxis.Y, 10f),
-            new(WristAxis.Xp, WristAxis.Zp, WristAxis.Yp, 0f), // 2 values
+            new(WristAxis.Xp, WristAxis.Y, 0f), // 2 values
+            new(WristAxis.Xp, WristAxis.Yp, 180f), // 2 values
+            new(WristAxis.Xp, WristAxis.Z, 10f),
+            new(WristAxis.Xp, WristAxis.Zp, 0f), // 2 values
 
-            new(WristAxis.Y, WristAxis.X, WristAxis.Zp, 50f),
-            new(WristAxis.Y, WristAxis.Xp, WristAxis.Z, 90f),
-            new(WristAxis.Y, WristAxis.Z, WristAxis.X, 50f), // 2 values
-            new(WristAxis.Y, WristAxis.Zp, WristAxis.Xp, 90f),
+            new(WristAxis.Y, WristAxis.X, 50f),
+            new(WristAxis.Y, WristAxis.Xp, 90f),
+            new(WristAxis.Y, WristAxis.Z, 50f), // 2 values
+            new(WristAxis.Y, WristAxis.Zp, 90f),
 
-            new(WristAxis.Yp, WristAxis.X, WristAxis.Z, -45f),
-            new(WristAxis.Yp, WristAxis.Xp, WristAxis.Zp, 90f),
-            new(WristAxis.Yp, WristAxis.Z, WristAxis.Xp, -30f), // 2 values
-            new(WristAxis.Yp, WristAxis.Zp, WristAxis.X, 20f), // 2 values
+            new(WristAxis.Yp, WristAxis.X, -45f),
+            new(WristAxis.Yp, WristAxis.Xp, 90f),
+            new(WristAxis.Yp, WristAxis.Z, -30f), // 2 values
+            new(WristAxis.Yp, WristAxis.Zp, 20f), // 2 values
 
-            new(WristAxis.Z, WristAxis.X, WristAxis.Y, 30f),
-            new(WristAxis.Z, WristAxis.Xp, WristAxis.Yp, 70f),
-            new(WristAxis.Z, WristAxis.Y, WristAxis.Xp, 20f),
-            new(WristAxis.Z, WristAxis.Yp, WristAxis.X, 130f),
+            new(WristAxis.Z, WristAxis.X, 30f),
+            new(WristAxis.Z, WristAxis.Xp, 70f),
+            new(WristAxis.Z, WristAxis.Y, 20f),
+            new(WristAxis.Z, WristAxis.Yp, 130f),
 
-            new(WristAxis.Zp, WristAxis.X, WristAxis.Yp, 90f),
-            new(WristAxis.Zp, WristAxis.Xp, WristAxis.Y, 90f),
-            new(WristAxis.Zp, WristAxis.Y, WristAxis.X, 0f), // 2 values
-            new(WristAxis.Zp, WristAxis.Yp, WristAxis.Xp, 130f)
+            new(WristAxis.Zp, WristAxis.X, 90f),
+            new(WristAxis.Zp, WristAxis.Xp, 90f),
+            new(WristAxis.Zp, WristAxis.Y, 0f), // 2 values
+            new(WristAxis.Zp, WristAxis.Yp, 130f)
         };
 
         Vector3 GetAxis(WristAxis axis)
@@ -127,19 +129,17 @@ namespace KadenZombie8.BIMOS.Rig
             {
                 var influencerRight = GetAxis(influencer.RightAxis);
                 var influencerUp = GetAxis(influencer.UpAxis);
-                var influencerForward = GetAxis(influencer.ForwardAxis);
 
                 var weightRight = Mathf.Max(0f, Vector3.Dot(influencerRight, refRight));
                 var weightUp = Mathf.Max(0f, Vector3.Dot(influencerUp, refUp));
-                var weightForward = Mathf.Max(0f, Vector3.Dot(influencerForward, refForward));
 
-                var weightCombined = weightRight * weightUp * weightForward;
+                var weightCombined = weightRight * weightUp;
 
                 accumulatedAngle += weightCombined * influencer.Angle;
                 accumulatedWeight += weightCombined;
             }
 
-            //Check limits
+            // TODO: Check limits
 
             var elbowAngle = accumulatedWeight > 0f
                 ? accumulatedAngle / accumulatedWeight
