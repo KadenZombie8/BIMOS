@@ -51,28 +51,28 @@ namespace KadenZombie8.BIMOS.Rig
 
         readonly Influencer[] _influencers =
         {
-            new(WristAxis.X, WristAxis.Y, 20f),
-            new(WristAxis.X, WristAxis.Yp, 130f),
-            new(WristAxis.X, WristAxis.Z, 0f), // 2 values
-            new(WristAxis.X, WristAxis.Zp, 40f),
+            new(WristAxis.X, WristAxis.Y, 0f), // 2 values
+            new(WristAxis.X, WristAxis.Yp, 180f), // 2 values
+            new(WristAxis.X, WristAxis.Z, 10f),
+            new(WristAxis.X, WristAxis.Zp, 0f), // 2 values
 
-            new(WristAxis.Xp, WristAxis.Y, 0f), // 2 values
-            new(WristAxis.Xp, WristAxis.Yp, 180f), // 2 values
-            new(WristAxis.Xp, WristAxis.Z, 10f),
-            new(WristAxis.Xp, WristAxis.Zp, 0f), // 2 values
+            new(WristAxis.Xp, WristAxis.Y, 20f),
+            new(WristAxis.Xp, WristAxis.Yp, 130f),
+            new(WristAxis.Xp, WristAxis.Z, 0f), // 2 values
+            new(WristAxis.Xp, WristAxis.Zp, 40f),
 
-            new(WristAxis.Y, WristAxis.X, 50f),
-            new(WristAxis.Y, WristAxis.Xp, 90f),
+            new(WristAxis.Y, WristAxis.X, 90f),
+            new(WristAxis.Y, WristAxis.Xp, 50f),
             new(WristAxis.Y, WristAxis.Z, 50f), // 2 values
             new(WristAxis.Y, WristAxis.Zp, 90f),
 
-            new(WristAxis.Yp, WristAxis.X, -45f),
-            new(WristAxis.Yp, WristAxis.Xp, 90f),
+            new(WristAxis.Yp, WristAxis.X, 90f),
+            new(WristAxis.Yp, WristAxis.Xp, -45f),
             new(WristAxis.Yp, WristAxis.Z, -30f), // 2 values
             new(WristAxis.Yp, WristAxis.Zp, 20f), // 2 values
 
-            new(WristAxis.Z, WristAxis.X, 30f),
-            new(WristAxis.Z, WristAxis.Xp, 70f),
+            new(WristAxis.Z, WristAxis.X, 70f),
+            new(WristAxis.Z, WristAxis.Xp, 30f),
             new(WristAxis.Z, WristAxis.Y, 20f),
             new(WristAxis.Z, WristAxis.Yp, 130f),
 
@@ -84,11 +84,11 @@ namespace KadenZombie8.BIMOS.Rig
 
         Vector3 GetAxis(WristAxis axis)
         {
-            var isLeftHand = _handedness == Handedness.Left;
+            var isRightHand = _handedness == Handedness.Right;
             return axis switch
             {
-                WristAxis.X => isLeftHand ? _controller.right : -_controller.right,
-                WristAxis.Xp => isLeftHand ? -_controller.right : _controller.right,
+                WristAxis.X => isRightHand ? _controller.right : -_controller.right,
+                WristAxis.Xp => isRightHand ? -_controller.right : _controller.right,
                 WristAxis.Y => _controller.up,
                 WristAxis.Yp => -_controller.up,
                 WristAxis.Z => _controller.forward,
@@ -152,9 +152,9 @@ namespace KadenZombie8.BIMOS.Rig
                 ? accumulatedAngle / accumulatedWeight
                 : 0f;
 
-            if (isRightHand) elbowAngle *= -1f;
+            if (!isRightHand) elbowAngle *= -1f;
 
-            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(-elbowAngle, shoulderToHandDirection) * Vector3.down;
+            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(elbowAngle, shoulderToHandDirection) * Vector3.down;
 
             //Position elbow
             _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, elbowDirection, Time.deltaTime * _elbowSmoothing);
