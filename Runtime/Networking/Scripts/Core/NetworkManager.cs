@@ -14,6 +14,7 @@ namespace KadenZombie8.BIMOS.Networking {
         public static NetworkManager Instance {
             get; private set;
         }
+        public static bool IsNetworkActive => NetworkServer.active || NetworkClient.active;
         public override void Awake() {
             InitializeOnce();
             base.Awake();

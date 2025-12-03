@@ -12850,6 +12850,26 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &2107647142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4527843923321488551, guid: cf1e6a2ddb87217498a6c58675a1e9cb, type: 3}
+  m_PrefabInstance: {fileID: 3598053962283815548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2107647147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107647142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936f52145e4a632419ad51c21e1c0047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Port: 7777
+  MaxMessagePayloadSize: 65535
+  UseRiptideLogger: 1
 --- !u!1 &2129671019
 GameObject:
   m_ObjectHideFlags: 0
@@ -13207,10 +13227,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8612345899705193254, guid: cf1e6a2ddb87217498a6c58675a1e9cb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4527843923321488551, guid: cf1e6a2ddb87217498a6c58675a1e9cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2107647147}
   m_SourcePrefab: {fileID: 100100000, guid: cf1e6a2ddb87217498a6c58675a1e9cb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

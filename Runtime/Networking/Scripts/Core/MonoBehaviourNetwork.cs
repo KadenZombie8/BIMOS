@@ -10,7 +10,6 @@ namespace KadenZombie8.BIMOS.Networking {
         }
         public override void OnStartClient() {
             if (HostIsOwnerDefault && NetworkServer.active) {
-                NetworkServer.Spawn(netIdentity.gameObject, NetworkServer.localConnection);
                 netIdentity.RemoveClientAuthority();
                 netIdentity.AssignClientAuthority(NetworkServer.localConnection);
             }
