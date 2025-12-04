@@ -28,6 +28,14 @@ namespace KadenZombie8.BIMOS.Rig
         private Vector3 _smoothElbowDirection;
         private readonly float _elbowSmoothing = 10f;
 
+        private enum ElbowState
+        {
+            Outward,
+            Inward
+        }
+
+        private ElbowState _elbowState;
+
         private enum WristAxis
         {
             X, Xp,
@@ -39,45 +47,47 @@ namespace KadenZombie8.BIMOS.Rig
         {
             public WristAxis UpAxis;
             public WristAxis RightAxis;
-            public float Angle;
+            public float InnerAngle;
+            public float OuterAngle;
 
-            public Influencer(WristAxis rightAxis, WristAxis upAxis, float angle)
+            public Influencer(WristAxis rightAxis, WristAxis upAxis, float innerAngle, float? outerAngle = null)
             {
                 RightAxis = rightAxis;
                 UpAxis = upAxis;
-                Angle = angle;
+                InnerAngle = innerAngle;
+                OuterAngle = outerAngle ?? innerAngle;
             }
         }
 
         readonly Influencer[] _influencers =
         {
-            new(WristAxis.X, WristAxis.Y, 0f), // 2 values
-            new(WristAxis.X, WristAxis.Yp, 180f), // 2 values
-            new(WristAxis.X, WristAxis.Z, 10f),
-            new(WristAxis.X, WristAxis.Zp, 0f), // 2 values
+            new(WristAxis.Xp, WristAxis.Y, 0f), // 2 values
+            new(WristAxis.Xp, WristAxis.Yp, 180f), // 2 values
+            new(WristAxis.Xp, WristAxis.Z, 10f),
+            new(WristAxis.Xp, WristAxis.Zp, 0f), // 2 values
 
-            new(WristAxis.Xp, WristAxis.Y, 20f),
-            new(WristAxis.Xp, WristAxis.Yp, 130f),
-            new(WristAxis.Xp, WristAxis.Z, 0f), // 2 values
-            new(WristAxis.Xp, WristAxis.Zp, 40f),
+            new(WristAxis.X, WristAxis.Y, 20f),
+            new(WristAxis.X, WristAxis.Yp, 130f),
+            new(WristAxis.X, WristAxis.Z, 0f, 150f), // 2 values
+            new(WristAxis.X, WristAxis.Zp, 40f),
 
-            new(WristAxis.Y, WristAxis.X, 90f),
-            new(WristAxis.Y, WristAxis.Xp, 50f),
+            new(WristAxis.Y, WristAxis.Xp, 90f),
+            new(WristAxis.Y, WristAxis.X, 50f),
             new(WristAxis.Y, WristAxis.Z, 50f), // 2 values
             new(WristAxis.Y, WristAxis.Zp, 90f),
 
-            new(WristAxis.Yp, WristAxis.X, 90f),
-            new(WristAxis.Yp, WristAxis.Xp, -45f),
+            new(WristAxis.Yp, WristAxis.Xp, 90f),
+            new(WristAxis.Yp, WristAxis.X, -45f),
             new(WristAxis.Yp, WristAxis.Z, -30f), // 2 values
             new(WristAxis.Yp, WristAxis.Zp, 20f), // 2 values
 
-            new(WristAxis.Z, WristAxis.X, 70f),
-            new(WristAxis.Z, WristAxis.Xp, 30f),
+            new(WristAxis.Z, WristAxis.Xp, 70f),
+            new(WristAxis.Z, WristAxis.X, 30f),
             new(WristAxis.Z, WristAxis.Y, 20f),
             new(WristAxis.Z, WristAxis.Yp, 130f),
 
-            new(WristAxis.Zp, WristAxis.X, 90f),
             new(WristAxis.Zp, WristAxis.Xp, 90f),
+            new(WristAxis.Zp, WristAxis.X, 90f),
             new(WristAxis.Zp, WristAxis.Y, 0f), // 2 values
             new(WristAxis.Zp, WristAxis.Yp, 130f)
         };
@@ -130,13 +140,16 @@ namespace KadenZombie8.BIMOS.Rig
 
             // Get reference vectors
             var refUp = elbowDownRotation * Vector3.up;
-            var refRight = Vector3.Cross(shoulderToHandDirection, refUp);
+            var refRight = Vector3.Cross(refUp, shoulderToHandDirection);
 
             if (!IsRightHand) refRight *= -1f;
 
             // Process influencer data
             var angleSum = 0f;
             var weightSum = 0f;
+
+            Influencer bestInfluencer = new();
+            var bestWeight = 0f;
 
             foreach (var influencer in _influencers)
             {
@@ -148,14 +161,33 @@ namespace KadenZombie8.BIMOS.Rig
 
                 var weightProduct = weightRight * weightUp;
 
-                angleSum += weightProduct * influencer.Angle;
+                var influencerAngle = _elbowState == ElbowState.Inward ? influencer.InnerAngle : influencer.OuterAngle;
+
+                angleSum += weightProduct * influencerAngle;
                 weightSum += weightProduct;
+
+                if (influencer.RightAxis == WristAxis.Xp && influencer.UpAxis == WristAxis.Z)
+                {
+                    print(weightRight + ", " + weightUp);
+                    Debug.DrawRay(_controller.position, refRight, Color.red);
+                    Debug.DrawRay(_controller.position, refUp, Color.green);
+                }
+
+                if (weightProduct > bestWeight)
+                {
+                    bestWeight = weightProduct;
+                    bestInfluencer = influencer;
+                }
             }
+
+            print(bestInfluencer.RightAxis + ", " + bestInfluencer.UpAxis);
 
             // Predict elbow angle using influencer data average
             var predictedElbowAngle = 0f;
             if (weightSum > 0f)
                 predictedElbowAngle = angleSum / weightSum;
+
+            _elbowState = predictedElbowAngle > 45f ? ElbowState.Outward : ElbowState.Inward;
 
             if (!IsRightHand) predictedElbowAngle *= -1f;
 
