@@ -6838,19 +6838,19 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
@@ -11841,19 +11841,19 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
@@ -15135,19 +15135,19 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
@@ -15380,19 +15380,19 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
+    positionSpring: 100000
     positionDamper: 500
     maximumForce: 15000
     useAcceleration: 0

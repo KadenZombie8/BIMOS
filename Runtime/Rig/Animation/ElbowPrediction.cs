@@ -25,16 +25,9 @@ namespace KadenZombie8.BIMOS.Rig
         private TwoBoneIKConstraint _constraint;
         private Transform _pelvis;
 
+        private Vector3 _targetElbowDirection;
         private Vector3 _smoothElbowDirection;
         private readonly float _elbowSmoothing = 10f;
-
-        private enum ElbowState
-        {
-            Outward,
-            Inward
-        }
-
-        private ElbowState _elbowState;
 
         private enum WristAxis
         {
@@ -47,49 +40,62 @@ namespace KadenZombie8.BIMOS.Rig
         {
             public WristAxis UpAxis;
             public WristAxis RightAxis;
-            public float InnerAngle;
-            public float OuterAngle;
+            public float Angle;
 
-            public Influencer(WristAxis rightAxis, WristAxis upAxis, float innerAngle, float? outerAngle = null)
+            public Influencer(WristAxis rightAxis, WristAxis upAxis, float angle)
             {
                 RightAxis = rightAxis;
                 UpAxis = upAxis;
-                InnerAngle = innerAngle;
-                OuterAngle = outerAngle ?? innerAngle;
+                Angle = angle;
             }
         }
 
         readonly Influencer[] _influencers =
         {
             new(WristAxis.X, WristAxis.Y, 30f),
-            new(WristAxis.X, WristAxis.Yp, 20f, 140f),
-            new(WristAxis.X, WristAxis.Z, 20f, 150f),
+            new(WristAxis.X, WristAxis.Yp, 20f),
+            new(WristAxis.X, WristAxis.Z, 20f),
             new(WristAxis.X, WristAxis.Zp, 30f),
 
             new(WristAxis.Xp, WristAxis.Y, 0f),
-            new(WristAxis.Xp, WristAxis.Yp, 0f, 170f),
-            new(WristAxis.Xp, WristAxis.Z, 0f, 160f),
-            new(WristAxis.Xp, WristAxis.Zp, 0f, 150f),
+            new(WristAxis.Xp, WristAxis.Yp, 0f),
+            new(WristAxis.Xp, WristAxis.Z, 0f),
+            new(WristAxis.Xp, WristAxis.Zp, 0f),
 
-            new(WristAxis.Y, WristAxis.X, -60f, 140f),
+            new(WristAxis.Y, WristAxis.X, -60f),
             new(WristAxis.Y, WristAxis.Xp, -30f),
-            new(WristAxis.Y, WristAxis.Z, -20f, 170f),
+            new(WristAxis.Y, WristAxis.Z, -20f),
             new(WristAxis.Y, WristAxis.Zp, -40f),
 
             new(WristAxis.Yp, WristAxis.X, 90f),
             new(WristAxis.Yp, WristAxis.Xp, 50f),
-            new(WristAxis.Yp, WristAxis.Z, 50f, 140f),
+            new(WristAxis.Yp, WristAxis.Z, 50f),
             new(WristAxis.Yp, WristAxis.Zp, 50f),
 
-            new(WristAxis.Z, WristAxis.X, -20, 140f),
+            new(WristAxis.Z, WristAxis.X, -20),
             new(WristAxis.Z, WristAxis.Xp, 70f),
-            new(WristAxis.Z, WristAxis.Y, 0f, 90f),
+            new(WristAxis.Z, WristAxis.Y, 0f),
             new(WristAxis.Z, WristAxis.Yp, 90f),
 
-            new(WristAxis.Zp, WristAxis.X, -20f, 70f),
+            new(WristAxis.Zp, WristAxis.X, -20f),
             new(WristAxis.Zp, WristAxis.Xp, 20f),
             new(WristAxis.Zp, WristAxis.Y, 10f),
-            new(WristAxis.Zp, WristAxis.Yp, 30f, 150f)
+            new(WristAxis.Zp, WristAxis.Yp, 30f),
+
+
+
+            new(WristAxis.X, WristAxis.Yp, 140f),
+            new(WristAxis.X, WristAxis.Z, 150f),
+            new(WristAxis.Xp, WristAxis.Yp, 170f),
+            new(WristAxis.Xp, WristAxis.Z, 160f),
+            new(WristAxis.Xp, WristAxis.Zp, 150f),
+            new(WristAxis.Y, WristAxis.X, 140f),
+            new(WristAxis.Y, WristAxis.Z, 170f),
+            new(WristAxis.Yp, WristAxis.Z, 140f),
+            new(WristAxis.Z, WristAxis.X, 140f),
+            new(WristAxis.Z, WristAxis.Y, 90f),
+            new(WristAxis.Zp, WristAxis.X, 70f),
+            new(WristAxis.Zp, WristAxis.Yp, 150f)
         };
 
         private bool IsRightHand => _handedness == Handedness.Right;
@@ -156,9 +162,12 @@ namespace KadenZombie8.BIMOS.Rig
                 var weightRight = Mathf.Max(0f, Vector3.Dot(influencerRight, refRight));
                 var weightUp = Mathf.Max(0f, Vector3.Dot(influencerUp, refUp));
 
-                var weightProduct = weightRight * weightUp;
+                var influencerAngle = influencer.Angle;
+                if (!IsRightHand) influencerAngle *= -1f;
+                var influencerDirection = elbowDownRotation * Quaternion.AngleAxis(influencerAngle, shoulderToHandDirection) * Vector3.down;
+                var weightDot = Mathf.Max(0f, Vector3.Dot(_targetElbowDirection, influencerDirection));
 
-                var influencerAngle = _elbowState == ElbowState.Inward ? influencer.InnerAngle : influencer.OuterAngle;
+                var weightProduct = weightRight * weightUp * weightDot;
 
                 angleSum += weightProduct * influencerAngle;
                 weightSum += weightProduct;
@@ -169,15 +178,11 @@ namespace KadenZombie8.BIMOS.Rig
             if (weightSum > 0f)
                 predictedElbowAngle = angleSum / weightSum;
 
-            _elbowState = predictedElbowAngle > 60f ? ElbowState.Outward : ElbowState.Inward;
-
-            if (!IsRightHand) predictedElbowAngle *= -1f;
-
             // Calculate target elbow direction
-            var elbowDirection = elbowDownRotation * Quaternion.AngleAxis(predictedElbowAngle, shoulderToHandDirection) * Vector3.down;
+            _targetElbowDirection = elbowDownRotation * Quaternion.AngleAxis(predictedElbowAngle, shoulderToHandDirection) * Vector3.down;
 
             // Smooth elbow direction
-            _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, elbowDirection, Time.deltaTime * _elbowSmoothing);
+            _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, _targetElbowDirection, Time.deltaTime * _elbowSmoothing);
             Quaternion elbowRotation = Quaternion.LookRotation(shoulderToHandDirection, _smoothElbowDirection);
 
             // Apply smoothed direction to hint
