@@ -55,7 +55,7 @@ namespace KadenZombie8.BIMOS.Rig
             new(WristAxis.X, WristAxis.Y, 30f),
             new(WristAxis.X, WristAxis.Yp, 20f),
             new(WristAxis.X, WristAxis.Z, 20f),
-            new(WristAxis.X, WristAxis.Zp, 30f),
+            new(WristAxis.X, WristAxis.Zp, 40f),
 
             new(WristAxis.Xp, WristAxis.Y, 0f),
             new(WristAxis.Xp, WristAxis.Yp, 0f),
@@ -92,10 +92,11 @@ namespace KadenZombie8.BIMOS.Rig
             new(WristAxis.Y, WristAxis.X, 140f),
             new(WristAxis.Y, WristAxis.Z, 170f),
             new(WristAxis.Yp, WristAxis.Z, 140f),
-            new(WristAxis.Z, WristAxis.X, 140f),
+            new(WristAxis.Z, WristAxis.X, 90f),
             new(WristAxis.Z, WristAxis.Y, 90f),
             new(WristAxis.Zp, WristAxis.X, 70f),
-            new(WristAxis.Zp, WristAxis.Yp, 150f)
+            new(WristAxis.Zp, WristAxis.Yp, 150f),
+            new(WristAxis.Y, WristAxis.Xp, 140f)
         };
 
         private bool IsRightHand => _handedness == Handedness.Right;
