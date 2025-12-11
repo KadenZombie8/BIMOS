@@ -13,7 +13,7 @@ namespace KadenZombie8.BIMOS.Rig
         public Grabbable CurrentGrab;
         public HandInputReader HandInputReader;
         public Transform PalmTransform;
-        public PhysicsHand PhysicsHand;
+        public PhysicsArm PhysicsArm;
         public Transform PhysicsHandTransform;
         public GrabHandler GrabHandler;
         public Handedness Handedness;

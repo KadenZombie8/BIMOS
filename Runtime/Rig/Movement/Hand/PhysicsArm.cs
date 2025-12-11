@@ -5,61 +5,100 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public class PhysicsArm : MonoBehaviour
     {
-        [SerializeField]
-        private Handedness _handedness;
+        public ArmPhysicsBone Shoulder;
+        public ArmPhysicsBone UpperArm;
+        public ArmPhysicsBone LowerArm;
+        public HandPhysicsBone Hand;
 
-        [SerializeField]
-        private ArmSegment _upperArm;
-
-        [SerializeField]
-        private ArmSegment _lowerArm;
-
-        [Serializable]
-        private struct ArmSegment
+        public abstract class Segment
         {
-            public CapsuleCollider Collider;
+            public HumanBodyBones Bone;
             public ConfigurableJoint Joint;
+
+            [HideInInspector]
+            public Transform Target;
+
+            protected Transform AnimationBone;
+
+            private Transform _upperArmBone;
+            private float _maxLength;
+
+            public virtual void Initialize(Animator animator, HumanBodyBones upperArmBone)
+            {
+                AnimationBone = animator.GetBoneTransform(Bone);
+                _upperArmBone = animator.GetBoneTransform(upperArmBone);
+
+                _maxLength = Vector3.Distance(AnimationBone.position, _upperArmBone.position) - 0.002f;
+
+                var linearLimit = Joint.linearLimit;
+                linearLimit.limit = _maxLength;
+                Joint.linearLimit = linearLimit;
+            }
+
+            public void UpdateJoint()
+            {
+                var pelvis = Joint.connectedBody;
+                var pelvisToUpperArm = pelvis.transform.InverseTransformPoint(_upperArmBone.position);
+                Joint.connectedAnchor = pelvisToUpperArm;
+
+                var pelvisToTarget = pelvis.transform.InverseTransformPoint(Target.position);
+                Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - pelvisToUpperArm, _maxLength);
+                Joint.targetRotation = Quaternion.Inverse(pelvis.rotation) * Target.rotation;
+            }
         }
 
-        private Transform _animationUpperArm;
-        private Transform _animationLowerArm;
+        [Serializable]
+        public class ArmPhysicsBone : Segment
+        {
+            public CapsuleCollider Collider;
+
+            public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
+            {
+                base.Initialize(animator, shoulderBone);
+
+                Target = AnimationBone;
+
+                var childBone = AnimationBone.GetChild(0);
+                Collider.height = Vector3.Distance(childBone.position, AnimationBone.position) + Collider.radius * 2f;
+                Collider.center = (Collider.height / 2f - Collider.radius) * Vector3.up;
+            }
+        }
+
+        [Serializable]
+        public class HandPhysicsBone : Segment
+        {
+            public Transform Controller;
+            public Vector3 PositionOffset;
+            public Quaternion RotationOffset;
+
+            public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
+            {
+                base.Initialize(animator, shoulderBone);
+
+                Target = Controller;
+            }
+        }
 
         private void Start()
         {
             var rig = BIMOSRig.Instance;
-
             var animator = rig.AnimationRig.Animator;
 
-            _animationUpperArm = _handedness == Handedness.Left ? animator.GetBoneTransform(HumanBodyBones.LeftUpperArm) : animator.GetBoneTransform(HumanBodyBones.RightUpperArm);
-            _animationLowerArm = _handedness == Handedness.Left ? animator.GetBoneTransform(HumanBodyBones.LeftLowerArm) : animator.GetBoneTransform(HumanBodyBones.RightLowerArm);
-            var animationHand = _handedness == Handedness.Left ? animator.GetBoneTransform(HumanBodyBones.LeftHand) : animator.GetBoneTransform(HumanBodyBones.RightHand);
+            Shoulder.Initialize(animator, UpperArm.Bone);
+            UpperArm.Initialize(animator, UpperArm.Bone);
+            LowerArm.Initialize(animator, UpperArm.Bone);
+            Hand.Initialize(animator, UpperArm.Bone);
 
-            InitializeCollider(_upperArm, _animationUpperArm, _animationLowerArm);
-            InitializeCollider(_lowerArm, _animationLowerArm, animationHand);
-
-            _lowerArm.Collider.height -= _lowerArm.Collider.radius;
-            _lowerArm.Collider.center += _lowerArm.Collider.radius / 2f * Vector3.down;
-        }
-        
-        private void InitializeCollider(ArmSegment segment, Transform upperBone, Transform lowerBone)
-        {
-            var collider = segment.Collider;
-            collider.height = Vector3.Distance(upperBone.position, lowerBone.position) + segment.Collider.radius * 2f;
-            collider.center = (collider.height / 2f - segment.Collider.radius) * Vector3.up;
+            LowerArm.Collider.height -= LowerArm.Collider.radius;
+            LowerArm.Collider.center += LowerArm.Collider.radius / 2f * Vector3.down;
         }
 
         private void FixedUpdate()
         {
-            TargetJoint(_upperArm, _animationUpperArm);
-            TargetJoint(_lowerArm, _animationLowerArm);
-        }
-
-        private void TargetJoint(ArmSegment segment, Transform target)
-        {
-            var joint = segment.Joint;
-            var connectedBody = joint.connectedBody;
-            joint.targetPosition = connectedBody.transform.InverseTransformPoint(target.position);
-            joint.targetRotation = Quaternion.Inverse(connectedBody.rotation) * target.rotation;
+            //Shoulder.UpdateJoint();
+            //UpperArm.UpdateJoint();
+            //LowerArm.UpdateJoint();
+            Hand.UpdateJoint();
         }
     }
 }

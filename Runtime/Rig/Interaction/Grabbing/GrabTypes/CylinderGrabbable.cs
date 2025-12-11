@@ -8,10 +8,10 @@ namespace KadenZombie8.BIMOS.Rig
         public override void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)
         {
             var palmForwardLocal = Origin.InverseTransformDirection(hand.PalmTransform.forward);
-            palmForwardLocal.y = 0f;
+            palmForwardLocal.z = 0f;
             palmForwardLocal.Normalize();
             var grabForwardLocal = Origin.InverseTransformDirection(transform.forward);
-            grabForwardLocal.y = 0f;
+            grabForwardLocal.z = 0f;
             grabForwardLocal.Normalize();
 
             var palmForwardWorld = Origin.TransformDirection(palmForwardLocal);
@@ -32,6 +32,7 @@ namespace KadenZombie8.BIMOS.Rig
         {
             base.CreateCollider();
             var collider = (CapsuleCollider)Collider;
+            collider.direction = 2;
             collider.radius = Vector3.Distance(Origin.position, transform.position) + 0.005f;
             Collider.transform.SetPositionAndRotation(Origin.position, Origin.rotation);
         }

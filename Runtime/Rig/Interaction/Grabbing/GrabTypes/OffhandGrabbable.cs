@@ -16,7 +16,7 @@ namespace KadenZombie8.BIMOS.Rig
         private IEnumerator TargetOffsetCoroutine(Hand hand)
         {
             Transform otherPhysicsHand = hand.OtherHand.PhysicsHandTransform;
-            hand.PhysicsHand.Target = hand.OtherHand.PhysicsHand.Target;
+            hand.PhysicsArm.Hand.Target = hand.OtherHand.PhysicsArm.Hand.Target;
 
             if (!hand.OtherHand.CurrentGrab)
                 yield return null;
@@ -51,8 +51,8 @@ namespace KadenZombie8.BIMOS.Rig
                 var lerpedTargetPosition = Vector3.Lerp(initialOffsetPosition, finalOffsetPosition, elapsedTime / grabTime);
                 var lerpedTargetRotation = Quaternion.Lerp(initialOffsetRotation, finalOffsetRotation, elapsedTime / grabTime);
 
-                hand.PhysicsHand.TargetOffsetPosition = lerpedTargetPosition;
-                hand.PhysicsHand.TargetOffsetRotation = lerpedTargetRotation;
+                hand.PhysicsArm.Hand.PositionOffset = lerpedTargetPosition;
+                hand.PhysicsArm.Hand.RotationOffset = lerpedTargetRotation;
 
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
@@ -60,22 +60,22 @@ namespace KadenZombie8.BIMOS.Rig
 
             if (hand.GrabJoint)
             {
-                hand.PhysicsHand.TargetOffsetPosition = finalOffsetPosition;
-                hand.PhysicsHand.TargetOffsetRotation = finalOffsetRotation;
+                hand.PhysicsArm.Hand.PositionOffset = finalOffsetPosition;
+                hand.PhysicsArm.Hand.RotationOffset = finalOffsetRotation;
             }
             else
             {
-                hand.PhysicsHand.TargetOffsetPosition = Vector3.zero;
-                hand.PhysicsHand.TargetOffsetRotation = Quaternion.identity;
+                hand.PhysicsArm.Hand.PositionOffset = Vector3.zero;
+                hand.PhysicsArm.Hand.RotationOffset = Quaternion.identity;
             }
         }
 
         public override void DestroyGrabJoint(Hand hand)
         {
             base.DestroyGrabJoint(hand);
-            hand.PhysicsHand.Target = hand.PhysicsHand.Controller;
-            hand.PhysicsHand.TargetOffsetPosition = Vector3.zero;
-            hand.PhysicsHand.TargetOffsetRotation = Quaternion.identity;
+            hand.PhysicsArm.Hand.Target = hand.PhysicsArm.Hand.Controller;
+            hand.PhysicsArm.Hand.PositionOffset = Vector3.zero;
+            hand.PhysicsArm.Hand.RotationOffset = Quaternion.identity;
         }
     }
 }

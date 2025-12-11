@@ -12,8 +12,8 @@ namespace KadenZombie8.BIMOS.Rig
 
             if (!lineOrigin) return;
             
-            var start = lineOrigin.position + lineOrigin.up * lineGrabbable.Length / 2f;
-            var end = lineOrigin.position - lineOrigin.up * lineGrabbable.Length / 2f;
+            var start = lineOrigin.position + lineOrigin.forward * lineGrabbable.Length / 2f;
+            var end = lineOrigin.position - lineOrigin.forward * lineGrabbable.Length / 2f;
 
             Handles.DrawDottedLine(start, end, 4f);
         }

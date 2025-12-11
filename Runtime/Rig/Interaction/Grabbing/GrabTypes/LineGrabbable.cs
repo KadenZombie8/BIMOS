@@ -35,7 +35,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         protected Vector3 GetNearestPoint(Vector3 palmPosition)
         {
-            var lineDirection = Origin.up;
+            var lineDirection = Origin.forward;
 
             var v = palmPosition - Origin.position;
             var d = Vector3.Dot(v, lineDirection);
