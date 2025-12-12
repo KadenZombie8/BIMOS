@@ -7526,7 +7526,7 @@ GameObject:
   - component: {fileID: 7251668691989030867}
   - component: {fileID: 7877303348130894249}
   m_Layer: 6
-  m_Name: ControllerRig
+  m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18047,7 +18047,7 @@ GameObject:
   - component: {fileID: 5003449384936182098}
   - component: {fileID: 8041458702957288490}
   m_Layer: 6
-  m_Name: AnimationRig
+  m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18697,7 +18697,7 @@ GameObject:
   - component: {fileID: 5663511733037994295}
   - component: {fileID: 1952738380949281530}
   m_Layer: 6
-  m_Name: UIRig
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

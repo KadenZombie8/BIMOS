@@ -3,6 +3,13 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
 {
+    [Serializable]
+    public struct LeftRightGrabbables
+    {
+        public Grabbable Left;
+        public Grabbable Right;
+    }
+
     [RequireComponent(typeof(HoldDetector))]
     public class Storable : MonoBehaviour
     {
@@ -10,20 +17,13 @@ namespace KadenZombie8.BIMOS.Rig
         public event Action OnRetrieved;
 
         public string[] Tags = { "Light" };
-        public RetrieveGrabbablesStruct RetrieveGrabbables;
+        public LeftRightGrabbables RetrieveGrabbables;
 
         [HideInInspector]
         public Storable ParentStorable;
 
         [HideInInspector]
         public ItemSlot ItemSlot;
-
-        [Serializable]
-        public struct RetrieveGrabbablesStruct
-        {
-            public Grabbable Left;
-            public Grabbable Right;
-        }
 
         private HoldDetector _holdDetector;
         private Item _item;

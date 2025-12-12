@@ -16,7 +16,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         public readonly HashSet<GameObject> GameObjects = new();
 
-        private readonly Dictionary<Socket, (Action, Action)> _socketListeners = new();
+        private readonly Dictionary<Socket, (Action<Plug>, Action<Plug>)> _socketListeners = new();
         private readonly HashSet<Socket> _sockets = new();
 
         private void Awake()
@@ -32,13 +32,13 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (var socket in _sockets)
             {
-                void attachListener() => OnSocketChanged(socket, true);
-                void detachListener() => OnSocketChanged(socket, false);
+                void attachListener(Plug _) => OnSocketChanged(socket, true);
+                void detachListener(Plug _) => OnSocketChanged(socket, false);
 
                 _socketListeners[socket] = (attachListener, detachListener);
 
-                socket.OnAttach += attachListener;
-                socket.OnDetach += detachListener;
+                socket.OnAttachStart += attachListener;
+                socket.OnDetachStart += detachListener;
             }
         }
 
@@ -48,8 +48,8 @@ namespace KadenZombie8.BIMOS.Rig
             {
                 if (_socketListeners.TryGetValue(socket, out var pair))
                 {
-                    socket.OnAttach -= pair.Item1;
-                    socket.OnDetach -= pair.Item2;
+                    socket.OnAttachStart -= pair.Item1;
+                    socket.OnDetachStart -= pair.Item2;
                 }
             }
 

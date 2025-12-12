@@ -1,4 +1,3 @@
-using System;
 using KadenZombie8.BIMOS.Rig;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,13 +7,10 @@ namespace KadenZombie8.BIMOS.Sockets
     [AddComponentMenu("BIMOS/Plug")]
     public class Plug : MonoBehaviour
     {
-        public UnityEvent
-            OnAttach,
-            OnDetach;
+        public UnityEvent OnAttach;
+        public UnityEvent OnDetach;
 
         public string[] Tags;
-
-        public Grabbable[] EnableGrabs, DisableGrabs;
 
         [HideInInspector]
         public Rigidbody Rigidbody;
