@@ -33,7 +33,9 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private AnimationRigConstraints _constraints;
 
+        [HideInInspector]
         public Animator Animator;
+
         private RigBuilder _rigBuilder;
 
         public void Awake()

@@ -69,15 +69,15 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             UpdateCapsuleShape(_body, _colliders.Body);
             UpdateCapsuleShape(_head, _colliders.Head);
 
-            // Left arm
-            //UpdateCapsuleShape(_leftUpperArm, _colliders.LeftArm.UpperArm);
-            //UpdateCapsuleShape(_leftLowerArm, _colliders.LeftArm.LowerArm);
-            //_leftHand.localScale = _colliders.LeftArm.Hand.size;
+            //Left arm
+            UpdateCapsuleShape(_leftUpperArm, _colliders.LeftArm.UpperArm);
+            UpdateCapsuleShape(_leftLowerArm, _colliders.LeftArm.LowerArm);
+            _leftHand.localScale = _colliders.LeftArm.Hand.size;
 
-            //// Right arm
-            //UpdateCapsuleShape(_rightUpperArm, _colliders.RightArm.UpperArm);
-            //UpdateCapsuleShape(_rightLowerArm, _colliders.RightArm.LowerArm);
-            //_rightHand.localScale = _colliders.RightArm.Hand.size;
+            // Right arm
+            UpdateCapsuleShape(_rightUpperArm, _colliders.RightArm.UpperArm);
+            UpdateCapsuleShape(_rightLowerArm, _colliders.RightArm.LowerArm);
+            _rightHand.localScale = _colliders.RightArm.Hand.size;
         }
 
         private void UpdateCapsuleShape(Transform visual, CapsuleCollider collider)

@@ -5,7 +5,6 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public class PhysicsArm : MonoBehaviour
     {
-        public ArmPhysicsBone Shoulder;
         public ArmPhysicsBone UpperArm;
         public ArmPhysicsBone LowerArm;
         public HandPhysicsBone Hand;
@@ -35,14 +34,14 @@ namespace KadenZombie8.BIMOS.Rig
                 Joint.linearLimit = linearLimit;
             }
 
-            public void UpdateJoint()
+            public virtual void UpdateJoint()
             {
                 var pelvis = Joint.connectedBody;
                 var pelvisToUpperArm = pelvis.transform.InverseTransformPoint(_upperArmBone.position);
                 Joint.connectedAnchor = pelvisToUpperArm;
 
                 var pelvisToTarget = pelvis.transform.InverseTransformPoint(Target.position);
-                Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - pelvisToUpperArm, _maxLength);
+                Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - Joint.connectedAnchor, _maxLength);
                 Joint.targetRotation = Quaternion.Inverse(pelvis.rotation) * Target.rotation;
             }
         }
@@ -55,7 +54,6 @@ namespace KadenZombie8.BIMOS.Rig
             public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
             {
                 base.Initialize(animator, shoulderBone);
-
                 Target = AnimationBone;
 
                 var childBone = AnimationBone.GetChild(0);
@@ -74,7 +72,6 @@ namespace KadenZombie8.BIMOS.Rig
             public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
             {
                 base.Initialize(animator, shoulderBone);
-
                 Target = Controller;
             }
         }
@@ -84,7 +81,6 @@ namespace KadenZombie8.BIMOS.Rig
             var rig = BIMOSRig.Instance;
             var animator = rig.AnimationRig.Animator;
 
-            Shoulder.Initialize(animator, UpperArm.Bone);
             UpperArm.Initialize(animator, UpperArm.Bone);
             LowerArm.Initialize(animator, UpperArm.Bone);
             Hand.Initialize(animator, UpperArm.Bone);
@@ -93,12 +89,12 @@ namespace KadenZombie8.BIMOS.Rig
             LowerArm.Collider.center += LowerArm.Collider.radius / 2f * Vector3.down;
         }
 
-        private void FixedUpdate()
+        private void FixedUpdate() => Hand.UpdateJoint();
+
+        private void LateUpdate()
         {
-            //Shoulder.UpdateJoint();
-            //UpperArm.UpdateJoint();
-            //LowerArm.UpdateJoint();
-            Hand.UpdateJoint();
+            UpperArm.UpdateJoint();
+            LowerArm.UpdateJoint();
         }
     }
 }
