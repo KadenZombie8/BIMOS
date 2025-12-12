@@ -19,29 +19,29 @@ namespace KadenZombie8.BIMOS.Rig
 
             protected Transform AnimationBone;
 
-            private Transform _upperArmBone;
-            private float _maxLength;
+            protected Transform UpperArmBone;
+            protected float MaxLength;
 
             public virtual void Initialize(Animator animator, HumanBodyBones upperArmBone)
             {
                 AnimationBone = animator.GetBoneTransform(Bone);
-                _upperArmBone = animator.GetBoneTransform(upperArmBone);
+                UpperArmBone = animator.GetBoneTransform(upperArmBone);
 
-                _maxLength = Vector3.Distance(AnimationBone.position, _upperArmBone.position) - 0.002f;
+                MaxLength = Vector3.Distance(AnimationBone.position, UpperArmBone.position) - 0.002f;
 
                 var linearLimit = Joint.linearLimit;
-                linearLimit.limit = _maxLength;
+                linearLimit.limit = MaxLength;
                 Joint.linearLimit = linearLimit;
             }
 
             public virtual void UpdateJoint()
             {
                 var pelvis = Joint.connectedBody;
-                var pelvisToUpperArm = pelvis.transform.InverseTransformPoint(_upperArmBone.position);
+                var pelvisToUpperArm = pelvis.transform.InverseTransformPoint(UpperArmBone.position);
                 Joint.connectedAnchor = pelvisToUpperArm;
 
                 var pelvisToTarget = pelvis.transform.InverseTransformPoint(Target.position);
-                Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - Joint.connectedAnchor, _maxLength);
+                Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - Joint.connectedAnchor, MaxLength);
                 Joint.targetRotation = Quaternion.Inverse(pelvis.rotation) * Target.rotation;
             }
         }
@@ -73,6 +73,21 @@ namespace KadenZombie8.BIMOS.Rig
             {
                 base.Initialize(animator, shoulderBone);
                 Target = Controller;
+                RotationOffset = Quaternion.identity;
+            }
+
+            public override void UpdateJoint()
+            {
+                var pelvis = Joint.connectedBody;
+                var pelvisToUpperArm = pelvis.transform.InverseTransformPoint(UpperArmBone.position);
+                Joint.connectedAnchor = pelvisToUpperArm;
+
+                var targetPosition = Target.TransformPoint(PositionOffset);
+                var targetRotation = Target.rotation * RotationOffset;
+
+                var pelvisToTarget = pelvis.transform.InverseTransformPoint(targetPosition);
+                Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - Joint.connectedAnchor, MaxLength);
+                Joint.targetRotation = Quaternion.Inverse(pelvis.rotation) * targetRotation;
             }
         }
 

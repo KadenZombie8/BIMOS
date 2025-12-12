@@ -49,7 +49,7 @@ namespace KadenZombie8.BIMOS.Rig
                     yield break;
 
                 var lerpedTargetPosition = Vector3.Lerp(initialOffsetPosition, finalOffsetPosition, elapsedTime / grabTime);
-                var lerpedTargetRotation = Quaternion.Lerp(initialOffsetRotation, finalOffsetRotation, elapsedTime / grabTime);
+                var lerpedTargetRotation = Quaternion.Slerp(initialOffsetRotation, finalOffsetRotation, elapsedTime / grabTime);
 
                 hand.PhysicsArm.Hand.PositionOffset = lerpedTargetPosition;
                 hand.PhysicsArm.Hand.RotationOffset = lerpedTargetRotation;
