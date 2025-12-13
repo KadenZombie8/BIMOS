@@ -92,9 +92,7 @@ namespace KadenZombie8.BIMOS.Rig
             if (!highestRankItemSlot) return;
 
             if (ParentStorable)
-            {
                 highestRankItemSlot.StoreItem(ParentStorable);
-            }
 
             TryStore(highestRankItemSlot);
         }

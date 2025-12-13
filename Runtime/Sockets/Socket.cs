@@ -138,6 +138,12 @@ namespace KadenZombie8.BIMOS.Sockets
 
             while (elapsedTime < alignTime)
             {
+                if (!Plug || !Plug.Rigidbody || !Plug.Rigidbody.gameObject.activeInHierarchy)
+                {
+                    ForceReset();
+                    yield break;
+                }
+
                 var initialWorldPosition = _body.TransformPoint(initialLocalPosition);
                 var initialWorldRotation = _body.rotation * initialLocalRotation;
                 var targetPosition = Vector3.Lerp(initialWorldPosition, DetachPoint.position, elapsedTime / alignTime);
@@ -150,17 +156,17 @@ namespace KadenZombie8.BIMOS.Sockets
                 yield return new WaitForFixedUpdate();
             }
 
-            if (!gameObject.activeInHierarchy || !Plug.Rigidbody.gameObject.activeInHierarchy)
-            {
-                Destroy(AttachJoint);
-                yield break;
-            }
-
             elapsedTime = 0f;
             Events.Attach.OnStart?.Invoke(Plug);
             Plug.Events.Attach.OnStart?.Invoke(this);
             while (elapsedTime < InsertTime)
             {
+                if (!Plug || !Plug.Rigidbody || !Plug.Rigidbody.gameObject.activeInHierarchy)
+                {
+                    ForceReset();
+                    yield break;
+                }
+
                 var targetPosition = Vector3.Lerp(DetachPoint.position, AttachPoint.position, elapsedTime / InsertTime);
                 var targetRotation = Quaternion.Lerp(DetachPoint.rotation, AttachPoint.rotation, elapsedTime / InsertTime);
 
@@ -170,6 +176,7 @@ namespace KadenZombie8.BIMOS.Sockets
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
+
             Events.Attach.OnEnd?.Invoke(Plug);
             Plug.Events.Attach.OnEnd?.Invoke(this);
 
@@ -180,6 +187,14 @@ namespace KadenZombie8.BIMOS.Sockets
 
             if (_waitingForDetach)
                 Detach();
+        }
+
+        private void ForceReset()
+        {
+            Destroy(AttachJoint);
+            Plug = null;
+            _onCooldown = false;
+            _waitingForDetach = false;
         }
 
         public void Detach()

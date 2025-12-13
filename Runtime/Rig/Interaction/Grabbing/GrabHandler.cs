@@ -62,7 +62,7 @@ namespace KadenZombie8.BIMOS.Rig
                 if (!grabbable)
                     continue;
 
-                if (!grabbable.enabled)
+                if (!grabbable.isActiveAndEnabled)
                     continue;
 
                 var snapGrabbable = grabbable as SnapGrabbable;

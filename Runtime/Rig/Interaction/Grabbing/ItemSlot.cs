@@ -38,6 +38,12 @@ namespace KadenZombie8.BIMOS.Rig
 
             foreach (var gameObject in item.GameObjects)
             {
+                if (!gameObject)
+                {
+                    item.GameObjects.Remove(gameObject);
+                    continue;
+                }
+
                 foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
                     colliders.Add(collider);
                 foreach (var rigidbody in gameObject.GetComponentsInChildren<Rigidbody>())

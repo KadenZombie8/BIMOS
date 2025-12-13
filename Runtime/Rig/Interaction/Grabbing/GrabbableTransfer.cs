@@ -16,12 +16,12 @@ namespace KadenZombie8.BIMOS.Rig
             var rightHand = grabbable.RightHand;
             if (leftHand && _transferGrabbables.Left.isActiveAndEnabled)
             {
-                leftHand.GrabHandler.AttemptRelease();
+                grabbable.Release(leftHand);
                 _transferGrabbables.Left.Grab(leftHand);
             }
             if (rightHand && _transferGrabbables.Right.isActiveAndEnabled)
             {
-                rightHand.GrabHandler.AttemptRelease();
+                grabbable.Release(rightHand);
                 _transferGrabbables.Right.Grab(rightHand);
             }
         }
