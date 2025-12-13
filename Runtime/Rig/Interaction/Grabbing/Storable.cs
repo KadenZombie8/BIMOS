@@ -36,14 +36,14 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void OnEnable()
         {
-            _holdDetector.OnLastRelease.AddListener(LookForItemSlot);
+            _holdDetector.OnLastRelease?.AddListener(LookForItemSlot);
             _item.OnGameObjectAdded += AddStorables;
             _item.OnGameObjectRemoved += RemoveStorables;
         }
 
         private void OnDisable()
         {
-            _holdDetector.OnLastRelease.RemoveListener(LookForItemSlot);
+            _holdDetector.OnLastRelease?.RemoveListener(LookForItemSlot);
             _item.OnGameObjectAdded -= AddStorables;
             _item.OnGameObjectRemoved -= RemoveStorables;
         }

@@ -16,7 +16,6 @@ namespace KadenZombie8.BIMOS.Rig
 
         public readonly HashSet<GameObject> GameObjects = new();
 
-        private readonly Dictionary<Socket, (Action<Plug>, Action<Plug>)> _socketListeners = new();
         private readonly HashSet<Socket> _sockets = new();
 
         private void Awake()
@@ -32,13 +31,8 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (var socket in _sockets)
             {
-                void attachListener(Plug _) => OnSocketChanged(socket, true);
-                void detachListener(Plug _) => OnSocketChanged(socket, false);
-
-                _socketListeners[socket] = (attachListener, detachListener);
-
-                socket.OnAttachStart += attachListener;
-                socket.OnDetachStart += detachListener;
+                socket.Events.Attach.OnStart?.AddListener(OnSocketAttach);
+                socket.Events.Detach.OnStart?.AddListener(OnSocketDetach);
             }
         }
 
@@ -46,35 +40,33 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (var socket in _sockets)
             {
-                if (_socketListeners.TryGetValue(socket, out var pair))
-                {
-                    socket.OnAttachStart -= pair.Item1;
-                    socket.OnDetachStart -= pair.Item2;
-                }
+                socket.Events.Attach.OnStart?.RemoveListener(OnSocketAttach);
+                socket.Events.Detach.OnStart?.RemoveListener(OnSocketDetach);
             }
-
-            _socketListeners.Clear();
         }
 
-        private void OnSocketChanged(Socket socket, bool isAttaching)
+        private void OnSocketAttach(Plug plug)
         {
-            var plug = socket.Plug;
-            if (!plug) return;
+            var plugGameObject = GetPlugGameObject(plug);
 
+            if (GameObjects.Add(plugGameObject))
+                OnGameObjectAdded?.Invoke(plugGameObject);
+        }
+
+        private void OnSocketDetach(Plug plug)
+        {
+            var plugGameObject = GetPlugGameObject(plug);
+
+            if (GameObjects.Remove(plugGameObject))
+                OnGameObjectRemoved?.Invoke(plugGameObject);
+        }
+
+        private GameObject GetPlugGameObject(Plug plug)
+        {
             var rigidbody = plug.Rigidbody;
-            if (!rigidbody) return;
+            if (!rigidbody) return null;
 
-            var plugGameObject = rigidbody.gameObject;
-            if (isAttaching)
-            {
-                if (GameObjects.Add(plugGameObject))
-                    OnGameObjectAdded?.Invoke(plugGameObject);
-            }
-            else
-            {
-                if (GameObjects.Remove(plugGameObject))
-                    OnGameObjectRemoved?.Invoke(plugGameObject);
-            }
+            return rigidbody.gameObject;
         }
     }
 }

@@ -1,16 +1,27 @@
-using KadenZombie8.BIMOS.Rig;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace KadenZombie8.BIMOS.Sockets
 {
     public class Socket : MonoBehaviour
     {
-        public event Action<Plug> OnAttachStart;
-        public event Action<Plug> OnAttachEnd;
-        public event Action<Plug> OnDetachStart;
-        public event Action<Plug> OnDetachEnd;
+        [Serializable]
+        public struct SocketEvents
+        {
+            public SocketAnimationEvents Attach;
+            public SocketAnimationEvents Detach;
+        }
+
+        [Serializable]
+        public struct SocketAnimationEvents
+        {
+            public UnityEvent<Plug> OnStart;
+            public UnityEvent<Plug> OnEnd;
+        }
+
+        public SocketEvents Events;
 
         public string[] Tags;
 
@@ -145,9 +156,9 @@ namespace KadenZombie8.BIMOS.Sockets
                 yield break;
             }
 
-            Plug.Attach();
             elapsedTime = 0f;
-            OnAttachStart?.Invoke(Plug);
+            Events.Attach.OnStart?.Invoke(Plug);
+            Plug.Events.Attach.OnStart?.Invoke(this);
             while (elapsedTime < InsertTime)
             {
                 var targetPosition = Vector3.Lerp(DetachPoint.position, AttachPoint.position, elapsedTime / InsertTime);
@@ -159,7 +170,8 @@ namespace KadenZombie8.BIMOS.Sockets
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
-            OnAttachEnd?.Invoke(Plug);
+            Events.Attach.OnEnd?.Invoke(Plug);
+            Plug.Events.Attach.OnEnd?.Invoke(this);
 
             AttachJoint.connectedAnchor = _body.InverseTransformPoint(AttachPoint.position);
             AttachJoint.targetRotation = Quaternion.Inverse(AttachPoint.rotation) * DetachPoint.rotation;
@@ -185,7 +197,6 @@ namespace KadenZombie8.BIMOS.Sockets
             _onCooldown = true;
 
             StartCoroutine(DetachCoroutine());
-            Plug.Detach();
         }
 
         private IEnumerator DetachCoroutine()
@@ -193,7 +204,8 @@ namespace KadenZombie8.BIMOS.Sockets
             float elapsedTime = 0f;
             var plug = Plug.transform;
 
-            OnDetachStart?.Invoke(Plug);
+            Events.Detach.OnStart?.Invoke(Plug);
+            Plug.Events.Detach.OnStart?.Invoke(this);
             while (elapsedTime < InsertTime)
             {
                 var targetPosition = Vector3.Lerp(AttachPoint.position, DetachPoint.position, elapsedTime / InsertTime);
@@ -205,7 +217,8 @@ namespace KadenZombie8.BIMOS.Sockets
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
-            OnDetachEnd?.Invoke(Plug);
+            Events.Detach.OnEnd?.Invoke(Plug);
+            Plug.Events.Detach.OnEnd?.Invoke(this);
 
             AttachJoint.connectedAnchor = _body.InverseTransformPoint(DetachPoint.position);
             AttachJoint.targetRotation = Quaternion.Inverse(DetachPoint.rotation) * DetachPoint.rotation;
