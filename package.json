@@ -12,7 +12,8 @@
     "com.unity.render-pipelines.universal": "17.0.3",
     "com.unity.xr.openxr": "1.12.1",
     "com.unity.inputsystem": "1.6.3",
-    "com.unity.animation.rigging": "1.3.0"
+    "com.unity.animation.rigging": "1.3.0",
+    "com.unity.xr.meta-openxr": "2.3.0"
   },
   "keywords": [
     "vr",
