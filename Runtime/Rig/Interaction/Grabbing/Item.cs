@@ -31,8 +31,8 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (var socket in _sockets)
             {
-                socket.Events.Attach.OnStart?.AddListener(OnSocketAttach);
-                socket.Events.Detach.OnEnd?.AddListener(OnSocketDetach);
+                socket.Events.Align.OnStart?.AddListener(OnSocketAttach);
+                socket.Events.Detach.OnStart?.AddListener(OnSocketDetach);
             }
         }
 
@@ -40,8 +40,8 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (var socket in _sockets)
             {
-                socket.Events.Attach.OnStart?.RemoveListener(OnSocketAttach);
-                socket.Events.Detach.OnEnd?.RemoveListener(OnSocketDetach);
+                socket.Events.Align.OnStart?.RemoveListener(OnSocketAttach);
+                socket.Events.Detach.OnStart?.RemoveListener(OnSocketDetach);
             }
         }
 

@@ -10,6 +10,7 @@ namespace KadenZombie8.BIMOS.Sockets
         [Serializable]
         public struct SocketEvents
         {
+            public SocketAnimationEvents Align;
             public SocketAnimationEvents Attach;
             public SocketAnimationEvents Detach;
         }
@@ -136,6 +137,8 @@ namespace KadenZombie8.BIMOS.Sockets
             if (averageDifference > 0.1f)
                 alignTime = _maxAlignTime * (averageDifference - 0.1f) / 0.9f;
 
+            Events.Align.OnStart?.Invoke(Plug);
+            Plug.Events.Align.OnStart?.Invoke(this);
             while (elapsedTime < alignTime)
             {
                 if (!Plug || !Plug.Rigidbody || !Plug.Rigidbody.gameObject.activeInHierarchy)
@@ -155,6 +158,8 @@ namespace KadenZombie8.BIMOS.Sockets
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
+            Events.Align.OnEnd?.Invoke(Plug);
+            Plug.Events.Align.OnEnd?.Invoke(this);
 
             elapsedTime = 0f;
             Events.Attach.OnStart?.Invoke(Plug);

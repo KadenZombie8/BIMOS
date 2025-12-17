@@ -11,6 +11,7 @@ namespace KadenZombie8.BIMOS.Sockets
         [Serializable]
         public struct PlugEvents
         {
+            public PlugAnimationEvents Align;
             public PlugAnimationEvents Attach;
             public PlugAnimationEvents Detach;
         }

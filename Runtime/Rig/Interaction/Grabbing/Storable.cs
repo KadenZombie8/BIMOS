@@ -25,25 +25,26 @@ namespace KadenZombie8.BIMOS.Rig
         [HideInInspector]
         public ItemSlot ItemSlot;
 
-        private HoldDetector _holdDetector;
+        [HideInInspector]
+        public HoldDetector HoldDetector;
         private Item _item;
 
         private void Awake()
         {
-            _holdDetector = GetComponent<HoldDetector>();
+            HoldDetector = GetComponent<HoldDetector>();
             _item = GetComponent<Item>();
         }
 
         private void OnEnable()
         {
-            _holdDetector.OnLastRelease?.AddListener(LookForItemSlot);
+            HoldDetector.OnLastRelease?.AddListener(LookForItemSlot);
             _item.OnGameObjectAdded += AddStorables;
             _item.OnGameObjectRemoved += RemoveStorables;
         }
 
         private void OnDisable()
         {
-            _holdDetector.OnLastRelease?.RemoveListener(LookForItemSlot);
+            HoldDetector.OnLastRelease?.RemoveListener(LookForItemSlot);
             _item.OnGameObjectAdded -= AddStorables;
             _item.OnGameObjectRemoved -= RemoveStorables;
         }
@@ -52,14 +53,20 @@ namespace KadenZombie8.BIMOS.Rig
         {
             var storables = gameObject.GetComponentsInChildren<Storable>();
             foreach (var storable in storables)
+            {
                 storable.ParentStorable = this;
+                storable.HoldDetector.enabled = false;
+            }
         }
 
         private void RemoveStorables(GameObject gameObject)
         {
             var storables = gameObject.GetComponentsInChildren<Storable>();
             foreach (var storable in storables)
+            {
                 storable.ParentStorable = null;
+                storable.HoldDetector.enabled = true;
+            }
         }
 
         private void LookForItemSlot(Hand hand)
@@ -91,18 +98,16 @@ namespace KadenZombie8.BIMOS.Rig
 
             if (!highestRankItemSlot) return;
 
-            if (ParentStorable)
-                highestRankItemSlot.StoreItem(ParentStorable);
-
-            TryStore(highestRankItemSlot);
+            highestRankItemSlot.StoreItem(GetRootStorable(this));
         }
 
-        public void TryStore(ItemSlot itemSlot)
+        private Storable GetRootStorable(Storable storable)
         {
-            if (ParentStorable)
-                ParentStorable.TryStore(itemSlot);
+            var parentStorable = storable.ParentStorable;
+            if (parentStorable)
+                return GetRootStorable(parentStorable);
             else
-                itemSlot.StoreItem(this);
+                return storable;
         }
     }
 }
