@@ -109,5 +109,9 @@ namespace KadenZombie8.BIMOS.Rig
             else
                 return storable;
         }
+
+        public void Store() => OnStored?.Invoke();
+
+        public void Retrieve() => OnRetrieved?.Invoke();
     }
 }

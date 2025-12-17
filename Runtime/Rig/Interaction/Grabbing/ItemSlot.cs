@@ -106,6 +106,7 @@ namespace KadenZombie8.BIMOS.Rig
             StoredStorable.ItemSlot = this;
             SetItemSlotGrabbablesEnabled(true);
             OnStore?.Invoke();
+            storable.Store();
         }
 
         private void AlignGrabbable(Hand hand, Grabbable grabbable)
@@ -151,6 +152,7 @@ namespace KadenZombie8.BIMOS.Rig
             EnableItem();
             retrieveGrabbable.Grab(hand);
 
+            StoredStorable.Retrieve();
             StoredStorable.ItemSlot = null;
             StoredStorable = null;
             SetItemSlotGrabbablesEnabled(false);

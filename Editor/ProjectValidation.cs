@@ -102,12 +102,6 @@ namespace KadenZombie8.BIMOS.Editor
                     var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Standalone);
                     if (!settings.GetFeature<OculusTouchControllerProfile>().enabled)
                         return false;
-                    else if (!settings.GetFeature<HTCViveControllerProfile>().enabled)
-                        return false;
-                    else if (!settings.GetFeature<HPReverbG2ControllerProfile>().enabled)
-                        return false;
-                    else if (!settings.GetFeature<ValveIndexControllerProfile>().enabled)
-                        return false;
                     else if (!settings.GetFeature<PalmPoseInteraction>().enabled)
                         return false;
 
@@ -117,9 +111,6 @@ namespace KadenZombie8.BIMOS.Editor
                 {
                     var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Standalone);
                     settings.GetFeature<OculusTouchControllerProfile>().enabled
-                        = settings.GetFeature<HTCViveControllerProfile>().enabled
-                        = settings.GetFeature<HPReverbG2ControllerProfile>().enabled
-                        = settings.GetFeature<ValveIndexControllerProfile>().enabled
                         = settings.GetFeature<PalmPoseInteraction>().enabled
                         = true;
                 },
