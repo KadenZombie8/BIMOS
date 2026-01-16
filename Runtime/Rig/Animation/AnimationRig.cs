@@ -36,6 +36,8 @@ namespace KadenZombie8.BIMOS.Rig
         [HideInInspector]
         public Animator Animator;
 
+        public Head Head;
+
         private RigBuilder _rigBuilder;
 
         public void Awake()

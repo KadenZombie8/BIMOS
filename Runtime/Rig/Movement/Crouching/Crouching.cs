@@ -36,7 +36,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         {
             ApplyCrouch();
             UpdateCollider(_rig.PhysicsRig.Colliders.Body,
-                _rig.PhysicsRig.Rigidbodies.LocomotionSphere.position,
+                _rig.PhysicsRig.Rigidbodies.LocomotionSphere.transform.position,
                 _rig.ControllerRig.Transforms.HeadCameraOffset.position);
         }
 

@@ -34,12 +34,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _rig.PhysicsRig.Crouching.TargetLegHeight += deltaCameraPosition.y;
 
             // Rotation
-            var baseForwardRotation = _rig.ControllerRig.BaseForwardRotation;
             var headForwardRotation = _rig.ControllerRig.HeadForwardRotation;
-
-            var deltaCameraRotation = headForwardRotation * Quaternion.Inverse(baseForwardRotation);
-            _rig.PhysicsRig.Rigidbodies.Pelvis.rotation = deltaCameraRotation * baseForwardRotation;
-            _rig.ControllerRig.transform.localRotation = Quaternion.Inverse(deltaCameraRotation);
+            _rig.PhysicsRig.Rigidbodies.Pelvis.rotation = headForwardRotation;
         }
     }
 }

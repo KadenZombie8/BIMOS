@@ -9,23 +9,13 @@ namespace KadenZombie8.BIMOS.Rig
         public ControllerRigTransforms Transforms;
         public float HeadsetStandingHeight = 1.65f;
 
-        [HideInInspector]
-        public Quaternion BaseForwardRotation;
-
         public Quaternion HeadForwardRotation => Quaternion.LookRotation(Vector3.Cross(Transforms.Camera.right, Vector3.up));
 
         public Vector3 HeadForwardDirection => HeadForwardRotation * Vector3.forward;
 
-        private void Awake()
-        {
-            BaseForwardRotation = HeadForwardRotation;
-        }
-
         public void Start()
         {
             _player = BIMOSRig.Instance;
-            transform.parent = _player.PhysicsRig.Rigidbodies.Pelvis.transform;
-            transform.localPosition = Vector3.zero;
 
             Transforms.Camera.GetComponent<Camera>().cullingMask = ~LayerMask.GetMask("BIMOSMenu");
             Transforms.MenuCamera.GetComponent<Camera>().cullingMask = LayerMask.GetMask("BIMOSMenu");
