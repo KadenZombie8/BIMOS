@@ -67,18 +67,18 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             }
             MoveRigidbody(_player.PhysicsRig.Rigidbodies.Knee, spawnPoint, kneeOffset);
 
-            // Update the animation rig's position
-            _player.AnimationRig.Transforms.HipsIK.position += spawnPoint.position - rootPosition;
-
-            // Move the player's animated feet to the new position
-            _player.AnimationRig.Feet.TeleportFeet();
-
-            _player.ControllerRig.transform.position = _player.PhysicsRig.Rigidbodies.Pelvis.position;
-            _player.AnimationRig.Head.UpdateCharacter();
-
             // Rotate the player to face the spawn point's forward direction
             var deltaCameraRotation = (_player.ControllerRig.HeadForwardRotation * Quaternion.Inverse(spawnPoint.rotation)).eulerAngles;
             _player.ControllerRig.transform.rotation *= Quaternion.Euler(0f, -deltaCameraRotation.y, 0f);
+
+            // Update the animation rig's position
+            _player.ControllerRig.transform.position = _player.PhysicsRig.Rigidbodies.Pelvis.position;
+            _player.AnimationRig.transform.rotation = _player.ControllerRig.transform.rotation;
+            _player.AnimationRig.Transforms.HipsIK.position += spawnPoint.position - rootPosition;
+            _player.AnimationRig.Head.UpdateCharacter();
+
+            // Move the player's animated feet to the new position
+            _player.AnimationRig.Feet.TeleportFeet();
         }
 
         private void MoveRigidbody(Rigidbody rigidbody, Transform spawnPoint, Vector3 kneeOffset)

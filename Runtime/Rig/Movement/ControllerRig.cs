@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
 {
+    [DefaultExecutionOrder(-10)]
     public class ControllerRig : MonoBehaviour
     {
         private BIMOSRig _player;
@@ -35,6 +36,11 @@ namespace KadenZombie8.BIMOS.Rig
         {
             float scaleFactor = _player.AnimationRig.AvatarEyeHeight / HeadsetStandingHeight;
             transform.localScale = Vector3.one * scaleFactor;
+        }
+
+        private void Update()
+        {
+            transform.position = _player.PhysicsRig.Rigidbodies.Pelvis.position;
         }
 
         [Serializable]

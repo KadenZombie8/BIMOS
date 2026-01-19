@@ -30,8 +30,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         [Header("Transforms")]
 
-        [SerializeField]
-        private AnimationRigConstraints _constraints;
+        public AnimationRigConstraints Constraints;
 
         [HideInInspector]
         public Animator Animator;
@@ -60,7 +59,7 @@ namespace KadenZombie8.BIMOS.Rig
             _headCameraOffset.localPosition = _eyeCenter.InverseTransformPoint(headBone.position);
 
             Transforms.Head = headBone;
-            _constraints.Head.data.constrainedObject = headBone;
+            Constraints.Head.data.constrainedObject = headBone;
 
             if (_shrinkHeadBone)
                 headBone.localScale = Vector3.zero;
@@ -68,19 +67,19 @@ namespace KadenZombie8.BIMOS.Rig
             // Arms
             Transform leftShoulder = Animator.GetBoneTransform(HumanBodyBones.LeftShoulder);
             if (leftShoulder)
-                _constraints.LeftShoulder.data.constrainedObject = Animator.GetBoneTransform(HumanBodyBones.LeftShoulder);
+                Constraints.LeftShoulder.data.constrainedObject = Animator.GetBoneTransform(HumanBodyBones.LeftShoulder);
 
             Transform rightShoulder = Animator.GetBoneTransform(HumanBodyBones.RightShoulder);
             if (rightShoulder)
-                _constraints.RightShoulder.data.constrainedObject = Animator.GetBoneTransform(HumanBodyBones.RightShoulder);
+                Constraints.RightShoulder.data.constrainedObject = Animator.GetBoneTransform(HumanBodyBones.RightShoulder);
 
-            _constraints.LeftArm.data.root = Animator.GetBoneTransform(HumanBodyBones.LeftUpperArm);
-            _constraints.LeftArm.data.mid = Animator.GetBoneTransform(HumanBodyBones.LeftLowerArm);
-            _constraints.LeftArm.data.tip = Animator.GetBoneTransform(HumanBodyBones.LeftHand);
+            Constraints.LeftArm.data.root = Animator.GetBoneTransform(HumanBodyBones.LeftUpperArm);
+            Constraints.LeftArm.data.mid = Animator.GetBoneTransform(HumanBodyBones.LeftLowerArm);
+            Constraints.LeftArm.data.tip = Animator.GetBoneTransform(HumanBodyBones.LeftHand);
 
-            _constraints.RightArm.data.root = Animator.GetBoneTransform(HumanBodyBones.RightUpperArm);
-            _constraints.RightArm.data.mid = Animator.GetBoneTransform(HumanBodyBones.RightLowerArm);
-            _constraints.RightArm.data.tip = Animator.GetBoneTransform(HumanBodyBones.RightHand);
+            Constraints.RightArm.data.root = Animator.GetBoneTransform(HumanBodyBones.RightUpperArm);
+            Constraints.RightArm.data.mid = Animator.GetBoneTransform(HumanBodyBones.RightLowerArm);
+            Constraints.RightArm.data.tip = Animator.GetBoneTransform(HumanBodyBones.RightHand);
 
             // Hands
             Transform leftHand = Animator.GetBoneTransform(HumanBodyBones.LeftHand);
@@ -118,19 +117,19 @@ namespace KadenZombie8.BIMOS.Rig
             Destroy(rightPalm);
 
             // Legs
-            _constraints.LeftLeg.data.root = Animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
-            _constraints.LeftLeg.data.mid = Animator.GetBoneTransform(HumanBodyBones.LeftLowerLeg);
-            _constraints.LeftLeg.data.tip = Animator.GetBoneTransform(HumanBodyBones.LeftFoot);
+            Constraints.LeftLeg.data.root = Animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
+            Constraints.LeftLeg.data.mid = Animator.GetBoneTransform(HumanBodyBones.LeftLowerLeg);
+            Constraints.LeftLeg.data.tip = Animator.GetBoneTransform(HumanBodyBones.LeftFoot);
 
-            _constraints.RightLeg.data.root = Animator.GetBoneTransform(HumanBodyBones.RightUpperLeg);
-            _constraints.RightLeg.data.mid = Animator.GetBoneTransform(HumanBodyBones.RightLowerLeg);
-            _constraints.RightLeg.data.tip = Animator.GetBoneTransform(HumanBodyBones.RightFoot);
+            Constraints.RightLeg.data.root = Animator.GetBoneTransform(HumanBodyBones.RightUpperLeg);
+            Constraints.RightLeg.data.mid = Animator.GetBoneTransform(HumanBodyBones.RightLowerLeg);
+            Constraints.RightLeg.data.tip = Animator.GetBoneTransform(HumanBodyBones.RightFoot);
 
             // Torso
             Transforms.Hips = Animator.GetBoneTransform(HumanBodyBones.Hips);
-            _constraints.Hip.data.constrainedObject = Transforms.Hips;
+            Constraints.Hip.data.constrainedObject = Transforms.Hips;
 
-            _constraints.Chest.data.constrainedObject = Transforms.Hips;
+            Constraints.Chest.data.constrainedObject = Transforms.Hips;
         }
     }
 

@@ -18139,7 +18139,7 @@ MonoBehaviour:
     HipsIK: {fileID: 6855366230050040258}
     Head: {fileID: 0}
   _shrinkHeadBone: 0
-  _constraints:
+  Constraints:
     LeftShoulder: {fileID: 1843583381221137719}
     RightShoulder: {fileID: 2333595246700603270}
     LeftArm: {fileID: 4625447755221202705}
