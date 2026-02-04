@@ -52,6 +52,8 @@ namespace KadenZombie8.BIMOS.Rig
 
         readonly Influencer[] _influencers =
         {
+            // Base influencers
+
             new(WristAxis.X, WristAxis.Y, 30f),
             new(WristAxis.X, WristAxis.Yp, 20f),
             new(WristAxis.X, WristAxis.Z, 20f),
@@ -67,10 +69,10 @@ namespace KadenZombie8.BIMOS.Rig
             new(WristAxis.Y, WristAxis.Z, -20f),
             new(WristAxis.Y, WristAxis.Zp, -40f),
 
-            new(WristAxis.Yp, WristAxis.X, 90f),
+            new(WristAxis.Yp, WristAxis.X, 110f),
             new(WristAxis.Yp, WristAxis.Xp, 50f),
             new(WristAxis.Yp, WristAxis.Z, 50f),
-            new(WristAxis.Yp, WristAxis.Zp, 50f),
+            new(WristAxis.Yp, WristAxis.Zp, 80f),
 
             new(WristAxis.Z, WristAxis.X, -20),
             new(WristAxis.Z, WristAxis.Xp, 70f),
@@ -82,7 +84,7 @@ namespace KadenZombie8.BIMOS.Rig
             new(WristAxis.Zp, WristAxis.Y, 10f),
             new(WristAxis.Zp, WristAxis.Yp, 30f),
 
-
+            // Additional influencers
 
             new(WristAxis.X, WristAxis.Yp, 140f),
             new(WristAxis.X, WristAxis.Z, 150f),
@@ -91,12 +93,12 @@ namespace KadenZombie8.BIMOS.Rig
             new(WristAxis.Xp, WristAxis.Zp, 150f),
             new(WristAxis.Y, WristAxis.X, 140f),
             new(WristAxis.Y, WristAxis.Z, 170f),
+            new(WristAxis.Y, WristAxis.Xp, 140f),
             new(WristAxis.Yp, WristAxis.Z, 140f),
             new(WristAxis.Z, WristAxis.X, 90f),
             new(WristAxis.Z, WristAxis.Y, 90f),
             new(WristAxis.Zp, WristAxis.X, 70f),
-            new(WristAxis.Zp, WristAxis.Yp, 150f),
-            new(WristAxis.Y, WristAxis.Xp, 140f)
+            new(WristAxis.Zp, WristAxis.Yp, 150f)
         };
 
         private bool IsRightHand => _handedness == Handedness.Right;
