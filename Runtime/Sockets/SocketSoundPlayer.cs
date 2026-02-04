@@ -23,18 +23,18 @@ namespace KadenZombie8.BIMOS.Guns
 
         private void OnEnable()
         {
-            _socket.OnAttach += Attached;
-            _socket.OnDetach += Detached;
+            _socket.Events.Attach.OnStart?.AddListener(Attached);
+            _socket.Events.Detach.OnStart?.AddListener(Detached);
         }
 
         private void OnDisable()
         {
-            _socket.OnAttach -= Attached;
-            _socket.OnDetach -= Detached;
+            _socket.Events.Attach.OnStart?.RemoveListener(Attached);
+            _socket.Events.Detach.OnStart?.RemoveListener(Detached);
         }
 
-        private void Attached() => Play(_attachSound);
+        private void Attached(Plug _) => Play(_attachSound);
 
-        private void Detached() => Play(_detachSound);
+        private void Detached(Plug _) => Play(_detachSound);
     }
 }

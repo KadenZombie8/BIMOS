@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace KadenZombie8.BIMOS.Rig.Movement
 {
+    [DefaultExecutionOrder(1)]
     public class ScreenModeController : MonoBehaviour
     {
         public bool IsPositionUnlocked { get; private set; }

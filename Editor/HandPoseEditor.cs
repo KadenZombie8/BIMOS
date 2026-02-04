@@ -153,7 +153,7 @@ namespace KadenZombie8.BIMOS.Editor
                 var lineGrab = selection.GetComponent<LineGrabbable>();
                 if (lineGrab && lineGrab.Origin)
                 {
-                    pos += (_lineGrabPosition - 0.5f) * lineGrab.Length * lineGrab.Origin.up;
+                    pos += (_lineGrabPosition - 0.5f) * lineGrab.Length * lineGrab.Origin.forward;
                 }
 
                 _dummyHand.transform.position = pos;

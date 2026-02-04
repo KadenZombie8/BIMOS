@@ -23,15 +23,15 @@ namespace KadenZombie8.BIMOS.Rig
         private void AddGrabbable(Grabbable grabbable)
         {
             _grabbables.Add(grabbable);
-            grabbable.OnGrab.AddListener(CheckIsHolding);
-            grabbable.OnRelease.AddListener(CheckIsHolding);
+            grabbable.OnGrab?.AddListener(CheckIsHolding);
+            grabbable.OnRelease?.AddListener(CheckIsHolding);
         }
 
         private void RemoveGrabbable(Grabbable grabbable)
         {
             _grabbables.Remove(grabbable);
-            grabbable.OnGrab.RemoveListener(CheckIsHolding);
-            grabbable.OnRelease.RemoveListener(CheckIsHolding);
+            grabbable.OnGrab?.RemoveListener(CheckIsHolding);
+            grabbable.OnRelease?.RemoveListener(CheckIsHolding);
         }
 
         private void OnEnable()

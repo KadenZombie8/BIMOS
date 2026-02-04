@@ -12,17 +12,17 @@ namespace KadenZombie8.BIMOS
 
         private void OnEnable()
         {
-            _plug.OnAttach.AddListener(PlaySocketHaptics);
-            _plug.OnDetach.AddListener(PlaySocketHaptics);
+            _plug.Events.Attach.OnStart?.AddListener(PlaySocketHaptics);
+            _plug.Events.Detach.OnStart?.AddListener(PlaySocketHaptics);
         }
 
         private void OnDisable()
         {
-            _plug.OnAttach.RemoveListener(PlaySocketHaptics);
-            _plug.OnDetach.RemoveListener(PlaySocketHaptics);
+            _plug.Events.Attach.OnStart?.RemoveListener(PlaySocketHaptics);
+            _plug.Events.Detach.OnStart?.RemoveListener(PlaySocketHaptics);
         }
 
-        private void PlaySocketHaptics()
+        private void PlaySocketHaptics(Socket _)
         {
             HapticSettings.Duration = _plug.Socket.InsertTime;
             Play();

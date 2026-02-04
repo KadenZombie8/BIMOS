@@ -88,6 +88,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &95637656410594278
 GameObject:
@@ -2645,6 +2646,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2041544511745397434
 GameObject:
@@ -2656,6 +2658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3552196413856021950}
   - component: {fileID: 6378187275511441504}
+  - component: {fileID: 7995150270698625952}
   m_Layer: 6
   m_Name: RightArmIK
   m_TagString: Untagged
@@ -2703,6 +2706,20 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!114 &7995150270698625952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041544511745397434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32415ff22cd041a4fad505cb716e87cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.ElbowPrediction
+  _handedness: 1
+  _controller: {fileID: 8105584686134532683}
 --- !u!1 &2053210023924917134
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,6 +3365,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2375750912006841374
 GameObject:
@@ -3810,6 +3828,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2490644406697845498
 GameObject:
@@ -3855,16 +3874,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2490644406697845498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fbabd8b3f70d864d83d6a589421b4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: fab5756f3719fed4bb320adebd858ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.ArmColliders
-  _handedness: 1
-  _upperArm:
-    Collider: {fileID: 7914421213196651011}
+  UpperArm:
+    Bone: 14
     Joint: {fileID: 8793667267893373276}
-  _lowerArm:
-    Collider: {fileID: 4000170418315679276}
+    Target: {fileID: 0}
+    Collider: {fileID: 7914421213196651011}
+  LowerArm:
+    Bone: 16
     Joint: {fileID: 2256954725155713936}
+    Target: {fileID: 0}
+    Collider: {fileID: 4000170418315679276}
+  Hand:
+    Bone: 18
+    Joint: {fileID: 83577362301115900}
+    Target: {fileID: 0}
+    Controller: {fileID: 8563664812807291384}
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2514652766759430098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4129,6 +4158,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2713723860522244511
 GameObject:
@@ -5872,6 +5902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2675245826105910234}
   - component: {fileID: 4625447755221202705}
+  - component: {fileID: 8680544358169117187}
   m_Layer: 6
   m_Name: LeftArmIK
   m_TagString: Untagged
@@ -5919,6 +5950,20 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!114 &8680544358169117187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228650216333327577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32415ff22cd041a4fad505cb716e87cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.ElbowPrediction
+  _handedness: 0
+  _controller: {fileID: 302060809740126155}
 --- !u!1 &3259180518487581369
 GameObject:
   m_ObjectHideFlags: 0
@@ -5994,7 +6039,6 @@ GameObject:
   - component: {fileID: 70422243505131228}
   - component: {fileID: 7145884608247560419}
   - component: {fileID: 83577362301115900}
-  - component: {fileID: 3921367417498753325}
   - component: {fileID: 1714243675603914674}
   - component: {fileID: 3685421060059991317}
   - component: {fileID: 5345365301431071427}
@@ -6154,24 +6198,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3921367417498753325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3301374950904824340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d7ed831d7fc4147bc56a6f05232ed2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 8563664812807291384}
-  Controller: {fileID: 8563664812807291384}
-  TargetOffsetPosition: {x: 0, y: 0, z: 0}
-  TargetOffsetRotation: {x: 0, y: 0, z: 0, w: 0}
-  _pGain: 25
-  _dGain: 0.75
 --- !u!114 &1714243675603914674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6188,7 +6214,7 @@ MonoBehaviour:
   CurrentGrab: {fileID: 0}
   HandInputReader: {fileID: 4166488413971264423}
   PalmTransform: {fileID: 5949157817692562273}
-  PhysicsHand: {fileID: 3921367417498753325}
+  PhysicsArm: {fileID: 6549317280390772655}
   PhysicsHandTransform: {fileID: 70422243505131228}
   GrabHandler: {fileID: 3685421060059991317}
   Handedness: 1
@@ -6655,16 +6681,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3361647610277727160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fbabd8b3f70d864d83d6a589421b4a6, type: 3}
+  m_Script: {fileID: 11500000, guid: fab5756f3719fed4bb320adebd858ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.ArmColliders
-  _handedness: 0
-  _upperArm:
-    Collider: {fileID: 3743446252171197821}
+  UpperArm:
+    Bone: 13
     Joint: {fileID: 8729865808058354501}
-  _lowerArm:
-    Collider: {fileID: 6891862437502569283}
+    Target: {fileID: 0}
+    Collider: {fileID: 3743446252171197821}
+  LowerArm:
+    Bone: 15
     Joint: {fileID: 6323291587469408274}
+    Target: {fileID: 0}
+    Collider: {fileID: 6891862437502569283}
+  Hand:
+    Bone: 17
+    Joint: {fileID: 7352707488692903835}
+    Target: {fileID: 0}
+    Controller: {fileID: 5488886840134976617}
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3414075759266772195
 GameObject:
   m_ObjectHideFlags: 0
@@ -6808,20 +6844,20 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 1500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6841,9 +6877,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -7494,8 +7530,9 @@ GameObject:
   - component: {fileID: 5068128423746160875}
   - component: {fileID: 7251668691989030867}
   - component: {fileID: 7877303348130894249}
+  - component: {fileID: 2419908477883435937}
   m_Layer: 6
-  m_Name: ControllerRig
+  m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7510,7 +7547,7 @@ Transform:
   m_GameObject: {fileID: 3740902940346483565}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.4971749, z: -0.030010462}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7539,7 +7576,6 @@ MonoBehaviour:
     LeftController: {fileID: 6592363549466593726}
     RightController: {fileID: 1478771343154856604}
   HeadsetStandingHeight: 1.65
-  BaseForwardRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &7877303348130894249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7577,6 +7613,26 @@ MonoBehaviour:
       m_Action: User Presence
       m_Flags: 0
     m_Flags: 0
+--- !u!1818360608 &2419908477883435937
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3740902940346483565}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 1.4971749, z: -0.030010462}
+  m_TranslationOffset: {x: 0, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_Active: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 8556203494894390205}
+    weight: 1
 --- !u!1 &3792790874959211797
 GameObject:
   m_ObjectHideFlags: 0
@@ -7619,7 +7675,6 @@ GameObject:
   - component: {fileID: 8913552984557658865}
   - component: {fileID: 6721878567911761852}
   - component: {fileID: 7352707488692903835}
-  - component: {fileID: 3058073986613258275}
   - component: {fileID: 1354081709754906145}
   - component: {fileID: 2531710907283994335}
   - component: {fileID: 5870694611115305941}
@@ -7779,24 +7834,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &3058073986613258275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3812682066745618323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3d7ed831d7fc4147bc56a6f05232ed2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 5488886840134976617}
-  Controller: {fileID: 5488886840134976617}
-  TargetOffsetPosition: {x: 0, y: 0, z: 0}
-  TargetOffsetRotation: {x: 0, y: 0, z: 0, w: 0}
-  _pGain: 25
-  _dGain: 0.75
 --- !u!114 &1354081709754906145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7813,7 +7850,7 @@ MonoBehaviour:
   CurrentGrab: {fileID: 0}
   HandInputReader: {fileID: 2670558484249623212}
   PalmTransform: {fileID: 5836866895375934951}
-  PhysicsHand: {fileID: 3058073986613258275}
+  PhysicsArm: {fileID: 5839016542486597819}
   PhysicsHandTransform: {fileID: 8913552984557658865}
   GrabHandler: {fileID: 2531710907283994335}
   Handedness: 0
@@ -9691,6 +9728,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 1
@@ -9998,6 +10036,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5035903974498608736
 GameObject:
@@ -10087,6 +10126,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5081465939377218559
 GameObject:
@@ -11049,6 +11089,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5341896755727794834
 GameObject:
@@ -11138,6 +11179,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5363055093399457029
 GameObject:
@@ -11328,6 +11370,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5448648883937535604
 GameObject:
@@ -11811,20 +11854,20 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 1500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -11844,9 +11887,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -13184,6 +13227,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6766415829069358579
 GameObject:
@@ -14501,6 +14545,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3692678508500652005
 BoxCollider:
@@ -14889,6 +14934,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7838871240788655433
 GameObject:
@@ -15105,20 +15151,20 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 1500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -15138,9 +15184,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -15265,7 +15311,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.02
+  m_Radius: 0.04
   m_Height: 0.36
   m_Direction: 1
   m_Center: {x: 0, y: 0.14, z: 0}
@@ -15350,20 +15396,20 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 1500
     maximumForce: 15000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 300000
-    positionDamper: 500
+    positionSpring: 50000
+    positionDamper: 2500
     maximumForce: 15000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -15383,9 +15429,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 9000
+    positionSpring: 100000
     positionDamper: 10
-    maximumForce: 300
+    maximumForce: 100000
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -16487,7 +16533,7 @@ Transform:
   m_GameObject: {fileID: 8373157052378793860}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.497175, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17154,7 +17200,7 @@ MonoBehaviour:
   m_Version: 2
 --- !u!120 &6797300517880368269
 LineRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -17200,6 +17246,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -17258,7 +17305,6 @@ LineRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MaskInteraction: 0
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
@@ -18035,7 +18081,7 @@ GameObject:
   - component: {fileID: 5003449384936182098}
   - component: {fileID: 8041458702957288490}
   m_Layer: 6
-  m_Name: AnimationRig
+  m_Name: Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18093,7 +18139,7 @@ MonoBehaviour:
     HipsIK: {fileID: 6855366230050040258}
     Head: {fileID: 0}
   _shrinkHeadBone: 0
-  _constraints:
+  Constraints:
     LeftShoulder: {fileID: 1843583381221137719}
     RightShoulder: {fileID: 2333595246700603270}
     LeftArm: {fileID: 4625447755221202705}
@@ -18104,6 +18150,7 @@ MonoBehaviour:
     Chest: {fileID: 4334824465788531484}
     Head: {fileID: 4717682133324186070}
   Animator: {fileID: 0}
+  Head: {fileID: 999753132014674236}
 --- !u!114 &8041458702957288490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18685,7 +18732,7 @@ GameObject:
   - component: {fileID: 5663511733037994295}
   - component: {fileID: 1952738380949281530}
   m_Layer: 6
-  m_Name: UIRig
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19143,4 +19190,5 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}

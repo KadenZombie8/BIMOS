@@ -38,6 +38,12 @@ namespace KadenZombie8.BIMOS.Rig
 
             foreach (var gameObject in item.GameObjects)
             {
+                if (!gameObject)
+                {
+                    item.GameObjects.Remove(gameObject);
+                    continue;
+                }
+
                 foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
                     colliders.Add(collider);
                 foreach (var rigidbody in gameObject.GetComponentsInChildren<Rigidbody>())
@@ -100,6 +106,7 @@ namespace KadenZombie8.BIMOS.Rig
             StoredStorable.ItemSlot = this;
             SetItemSlotGrabbablesEnabled(true);
             OnStore?.Invoke();
+            storable.Store();
         }
 
         private void AlignGrabbable(Hand hand, Grabbable grabbable)
@@ -145,6 +152,7 @@ namespace KadenZombie8.BIMOS.Rig
             EnableItem();
             retrieveGrabbable.Grab(hand);
 
+            StoredStorable.Retrieve();
             StoredStorable.ItemSlot = null;
             StoredStorable = null;
             SetItemSlotGrabbablesEnabled(false);

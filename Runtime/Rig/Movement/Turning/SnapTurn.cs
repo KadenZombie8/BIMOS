@@ -57,7 +57,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             {
                 var degreesToTurn = Mathf.Min(degreesLeftToTurn, _virtualTurning.TurnSpeed * Time.deltaTime);
                 degreesLeftToTurn -= degreesToTurn;
-                _controllerRig.BaseForwardRotation *= Quaternion.Euler(0f, degreesToTurn * turnDirection, 0f);
+                _controllerRig.transform.Rotate(0f, degreesToTurn * turnDirection, 0f);
                 yield return null;
             }
         }

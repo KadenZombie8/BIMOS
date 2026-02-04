@@ -22,8 +22,8 @@ namespace KadenZombie8.BIMOS.Rig
         private void Start()
         {
             _player = BIMOSRig.Instance;
-            _leftFoot = new Foot(_player.AnimationRig.Transforms.LeftFootAnchor, _player.AnimationRig.Transforms.LeftFootTarget, -0.08f);
-            _rightFoot = new Foot(_player.AnimationRig.Transforms.RightFootAnchor, _player.AnimationRig.Transforms.RightFootTarget, 0.08f);
+            _leftFoot = new(_player.AnimationRig.Transforms.LeftFootAnchor, _player.AnimationRig.Transforms.LeftFootTarget, -0.08f);
+            _rightFoot = new(_player.AnimationRig.Transforms.RightFootAnchor, _player.AnimationRig.Transforms.RightFootTarget, 0.08f);
             _currentFoot = _rightFoot;
             _pelvisRigidbody = _player.PhysicsRig.Rigidbodies.Pelvis;
             _mask = ~LayerMask.GetMask("BIMOSRig");
@@ -41,7 +41,7 @@ namespace KadenZombie8.BIMOS.Rig
             }
             else
             {
-                if ((_currentFoot.Transform.position - _currentFoot.Target.position).magnitude > _stepLength) //Step if foot far enough from target
+                if ((_currentFoot.Anchor.position - _currentFoot.Target.position).magnitude > _stepLength) //Step if foot far enough from target
                 {
                     StartCoroutine(Step());
                 }
@@ -67,8 +67,10 @@ namespace KadenZombie8.BIMOS.Rig
             if (Physics.Raycast(foot.Target.position, Vector3.down, out RaycastHit hit, 1.25f, _mask, QueryTriggerInteraction.Ignore) && _player.PhysicsRig.LocomotionSphere.IsGrounded)
             {
                 foot.IsGrounded = true;
-                foot.Target.position = hit.point;
-                foot.Target.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(_player.AnimationRig.Transforms.Character.forward, hit.normal), hit.normal);
+                foot.Target.SetPositionAndRotation(
+                    hit.point,
+                    Quaternion.LookRotation(Vector3.ProjectOnPlane(_player.AnimationRig.Transforms.Character.forward, hit.normal), hit.normal)
+                );
             }
             else
             {
@@ -91,8 +93,8 @@ namespace KadenZombie8.BIMOS.Rig
             }
             _isStepping = true;
 
-            Quaternion startRot = _currentFoot.Transform.rotation;
-            Vector3 startPoint = _currentFoot.Transform.position;
+            Quaternion startRot = _currentFoot.Anchor.rotation;
+            Vector3 startPoint = _currentFoot.Anchor.position;
 
             float timeElapsed = 0;
             do
@@ -110,18 +112,18 @@ namespace KadenZombie8.BIMOS.Rig
 
                 startPoint += _groundVelocity * Time.deltaTime;
 
-                Quaternion endRot = _currentFoot.Target.rotation;
-                Vector3 endPoint = _currentFoot.Target.position;
-                Vector3 centerPoint = (startPoint + endPoint) / 2;
+                _currentFoot.Target.GetPositionAndRotation(out var endPoint, out var endRot);
+                var centerPoint = (startPoint + endPoint) / 2;
                 centerPoint += Vector3.up * _stepHeight;
 
                 timeElapsed += Time.deltaTime;
                 float normalizedTime = timeElapsed / (_stepTime * 2);
-                _currentFoot.Transform.position = Vector3.Lerp(
+
+                _currentFoot.Anchor.SetPositionAndRotation(Vector3.Lerp(
                     Vector3.Lerp(startPoint, centerPoint, normalizedTime),
                     Vector3.Lerp(centerPoint, endPoint, normalizedTime),
-                    normalizedTime);
-                _currentFoot.Transform.rotation = Quaternion.Slerp(startRot, endRot, normalizedTime);
+                    normalizedTime), Quaternion.Slerp(startRot, endRot, normalizedTime));
+
                 yield return null;
             } while (timeElapsed < _stepTime * 2);
 
@@ -138,7 +140,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void SnapFootToTarget(Foot foot)
         {
-            foot.Transform.SetPositionAndRotation(
+            foot.Anchor.SetPositionAndRotation(
                 foot.Target.position,
                 foot.Target.rotation
             );
@@ -146,6 +148,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         public void TeleportFeet()
         {
+            _pelvisVelocity = Vector3.zero;
             UpdateTarget(_leftFoot);
             UpdateTarget(_rightFoot);
             SnapFootToTarget(_leftFoot);
@@ -155,14 +158,14 @@ namespace KadenZombie8.BIMOS.Rig
 
     class Foot
     {
-        public Transform Transform;
+        public Transform Anchor;
         public Transform Target;
         public float Offset;
         public bool IsGrounded;
 
-        public Foot(Transform transform, Transform target, float offset, bool isGrounded = false)
+        public Foot(Transform anchor, Transform target, float offset, bool isGrounded = false)
         {
-            Transform = transform;
+            Anchor = anchor;
             Target = target;
             Offset = offset;
             IsGrounded = isGrounded;

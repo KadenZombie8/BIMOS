@@ -16,14 +16,14 @@ namespace KadenZombie8.BIMOS.Rig {
 
         private void OnEnable()
         {
-            _holdDetector.OnFirstGrab.AddListener(UpdateAmmoPrefab);
-            _holdDetector.OnLastRelease.AddListener(TryUpdateToOtherHand);
+            _holdDetector.OnFirstGrab?.AddListener(UpdateAmmoPrefab);
+            _holdDetector.OnLastRelease?.AddListener(TryUpdateToOtherHand);
         }
 
         private void OnDisable()
         {
-            _holdDetector.OnFirstGrab.RemoveListener(UpdateAmmoPrefab);
-            _holdDetector.OnLastRelease.RemoveListener(TryUpdateToOtherHand);
+            _holdDetector.OnFirstGrab?.RemoveListener(UpdateAmmoPrefab);
+            _holdDetector.OnLastRelease?.RemoveListener(TryUpdateToOtherHand);
         }
 
         public void UpdateAmmoPrefab(Hand _) => AmmoPouch.Instance.SetAmmoPrefab(_ammoPrefab);

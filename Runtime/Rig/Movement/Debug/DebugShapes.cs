@@ -64,27 +64,26 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void LateUpdate()
         {
+            // Body
             _locomotionSphere.localScale = _colliders.LocomotionSphere.radius * 2f * Vector3.one;
-            _body.localScale = new(_colliders.Body.radius * 2f, _colliders.Body.height / 2f, _colliders.Body.radius * 2f);
-            _head.localScale = new(_colliders.Head.radius * 2f, _colliders.Head.height / 2f, _colliders.Head.radius * 2f);
+            UpdateCapsuleShape(_body, _colliders.Body);
+            UpdateCapsuleShape(_head, _colliders.Head);
 
-            // Left arm
-            _leftUpperArm.localScale = new(_colliders.LeftArm.UpperArm.radius * 2f, _colliders.LeftArm.UpperArm.height / 2f, _colliders.LeftArm.UpperArm.radius * 2f);
-            _leftUpperArm.localPosition = _colliders.LeftArm.UpperArm.center;
-
-            _leftLowerArm.localScale = new(_colliders.LeftArm.LowerArm.radius * 2f, _colliders.LeftArm.LowerArm.height / 2f, _colliders.LeftArm.LowerArm.radius * 2f);
-            _leftLowerArm.localPosition = _colliders.LeftArm.LowerArm.center;
-
+            //Left arm
+            UpdateCapsuleShape(_leftUpperArm, _colliders.LeftArm.UpperArm);
+            UpdateCapsuleShape(_leftLowerArm, _colliders.LeftArm.LowerArm);
             _leftHand.localScale = _colliders.LeftArm.Hand.size;
 
             // Right arm
-            _rightUpperArm.localScale = new(_colliders.RightArm.UpperArm.radius * 2f, _colliders.RightArm.UpperArm.height / 2f, _colliders.RightArm.UpperArm.radius * 2f);
-            _rightUpperArm.localPosition = _colliders.RightArm.UpperArm.center;
-
-            _rightLowerArm.localScale = new(_colliders.RightArm.LowerArm.radius * 2f, _colliders.RightArm.LowerArm.height / 2f, _colliders.RightArm.LowerArm.radius * 2f);
-            _rightLowerArm.localPosition = _colliders.RightArm.LowerArm.center;
-
+            UpdateCapsuleShape(_rightUpperArm, _colliders.RightArm.UpperArm);
+            UpdateCapsuleShape(_rightLowerArm, _colliders.RightArm.LowerArm);
             _rightHand.localScale = _colliders.RightArm.Hand.size;
+        }
+
+        private void UpdateCapsuleShape(Transform visual, CapsuleCollider collider)
+        {
+            visual.localScale = new(collider.radius * 2f, collider.height / 2f, collider.radius * 2f);
+            visual.localPosition = collider.center;
         }
     }
 }

@@ -1,5 +1,5 @@
-using System;
 using KadenZombie8.BIMOS.Rig;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,13 +8,24 @@ namespace KadenZombie8.BIMOS.Sockets
     [AddComponentMenu("BIMOS/Plug")]
     public class Plug : MonoBehaviour
     {
-        public UnityEvent
-            OnAttach,
-            OnDetach;
+        [Serializable]
+        public struct PlugEvents
+        {
+            public PlugAnimationEvents Align;
+            public PlugAnimationEvents Attach;
+            public PlugAnimationEvents Detach;
+        }
+
+        [Serializable]
+        public struct PlugAnimationEvents
+        {
+            public UnityEvent<Socket> OnStart;
+            public UnityEvent<Socket> OnEnd;
+        }
+
+        public PlugEvents Events;
 
         public string[] Tags;
-
-        public Grabbable[] EnableGrabs, DisableGrabs;
 
         [HideInInspector]
         public Rigidbody Rigidbody;
@@ -33,17 +44,10 @@ namespace KadenZombie8.BIMOS.Sockets
             return false;
         }
 
-        public void Attach() => OnAttach?.Invoke();
-
-        public void Detach() => OnDetach?.Invoke();
-
         public void AttemptDetach()
         {
-            if (!Socket)
-                return;
-
+            if (!Socket) return;
             Socket.Detach();
-            OnDetach?.Invoke();
         }
     }
 }
