@@ -59,7 +59,7 @@ namespace KadenZombie8.BIMOS.Editor
                 },
                 FixIt = () =>
                 {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return;
                     XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
                     XRPackageMetadataStore.AssignLoader(settings.Manager, _openXRLoaderTypeName, BuildTargetGroup.Standalone);
                 },
@@ -73,7 +73,7 @@ namespace KadenZombie8.BIMOS.Editor
                 Category = _category,
                 CheckPredicate = () =>
                 {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return false;
                     XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
                     var activeLoaders = settings.Manager.activeLoaders;
                     if (activeLoaders.Count <= 0)
@@ -85,7 +85,7 @@ namespace KadenZombie8.BIMOS.Editor
                 },
                 FixIt = () =>
                 {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return;
                     XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
                     XRPackageMetadataStore.AssignLoader(settings.Manager, _openXRLoaderTypeName, BuildTargetGroup.Android);
                 },
