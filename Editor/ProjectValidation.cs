@@ -47,7 +47,7 @@ namespace KadenZombie8.BIMOS.Editor
                 Category = _category,
                 CheckPredicate = () =>
                 {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return false;
                     XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
                     var activeLoaders = settings.Manager.activeLoaders;
                     if (activeLoaders.Count <= 0)
