@@ -58,6 +58,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             Crouching = GetComponent<Crouching>();
         }
 
-        private void FixedUpdate() => StateMachine.UpdateState();
+        private void Update() => StateMachine.UpdateState();
     }
 }

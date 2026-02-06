@@ -34,7 +34,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             Jumping.PhysicsRig.Joints.Pelvis.massScale = 0.01f;
 
             // Calculate required velocity to reach target jump height
-            _targetVelocity = Mathf.Sqrt(2f * -UnityEngine.Physics.gravity.y * jumpHeight);
+            _targetVelocity = Mathf.Sqrt(2f * -Physics.gravity.y * jumpHeight);
             Jumping.PhysicsRig.Joints.Pelvis.targetVelocity = Vector3.up * _targetVelocity;
             _timeToRise = difference / _targetVelocity;
 
@@ -53,7 +53,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             if (_pushTime > _timeToRise)
                 StateMachine.ChangeState<FlyState>();
 
-            _pushTime += Time.fixedDeltaTime;
+            _pushTime += Time.deltaTime;
         }
 
         protected override void Exit()

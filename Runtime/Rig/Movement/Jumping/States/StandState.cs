@@ -20,7 +20,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             if (_isStanding) return;
 
             var fullHeight = Crouching.StandingLegHeight - Crouching.CrouchingLegHeight;
-            Crouching.TargetLegHeight += Crouching.VirtualCrouching.CrouchSpeed * fullHeight * Time.fixedDeltaTime;
+            Crouching.TargetLegHeight += Crouching.VirtualCrouching.CrouchSpeed * fullHeight * Time.deltaTime;
 
             if (Crouching.TargetLegHeight > Crouching.StandingLegHeight)
                 _isStanding = true;

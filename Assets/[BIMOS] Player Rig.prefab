@@ -3380,6 +3380,7 @@ GameObject:
   - component: {fileID: 5217677170083806441}
   - component: {fileID: 5715720381970918571}
   - component: {fileID: 8465649426909595903}
+  - component: {fileID: 517655673511817879}
   - component: {fileID: 4312393692740464888}
   - component: {fileID: 3005325754436993507}
   m_Layer: 0
@@ -3412,7 +3413,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375750912006841374}
-  m_Material: {fileID: 13400000, guid: da17bf85099e10e46892802c58993c16, type: 2}
+  m_Material: {fileID: 13400000, guid: e6df68717b9090a4196a01fedd68aaed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3477,6 +3478,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3fd3417ca7be64d83a9b2183939a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxSlopeAngle: 50
+--- !u!114 &517655673511817879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375750912006841374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb3c35ede44ee944b6fbc986596224c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.SlipPastSlopeAngle
   _maxSlopeAngle: 50
 --- !u!114 &4312393692740464888
 MonoBehaviour:
@@ -4947,6 +4961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8429808874163754829}
   - component: {fileID: 5599650215153196575}
+  - component: {fileID: 3185585528755773045}
   m_Layer: 0
   m_Name: HeadCollider
   m_TagString: Player
@@ -4977,7 +4992,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2940052044353419808}
-  m_Material: {fileID: 13400000, guid: a931175c33b3db74698b0ae205ae04de, type: 2}
+  m_Material: {fileID: 13400000, guid: e6df68717b9090a4196a01fedd68aaed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4993,6 +5008,19 @@ CapsuleCollider:
   m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3185585528755773045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940052044353419808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb3c35ede44ee944b6fbc986596224c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.SlipPastSlopeAngle
+  _maxSlopeAngle: 50
 --- !u!1 &3041674455559788440
 GameObject:
   m_ObjectHideFlags: 0
@@ -8385,6 +8413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8760112872668989957}
   - component: {fileID: 457432215563285942}
+  - component: {fileID: 7917140022108091634}
   m_Layer: 0
   m_Name: BodyCollider
   m_TagString: Untagged
@@ -8415,7 +8444,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4203101908320151375}
-  m_Material: {fileID: 13400000, guid: a931175c33b3db74698b0ae205ae04de, type: 2}
+  m_Material: {fileID: 13400000, guid: e6df68717b9090a4196a01fedd68aaed, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8431,6 +8460,19 @@ CapsuleCollider:
   m_Height: 1.45
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7917140022108091634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203101908320151375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb3c35ede44ee944b6fbc986596224c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.SlipPastSlopeAngle
+  _maxSlopeAngle: 50
 --- !u!1 &4218705993375853909
 GameObject:
   m_ObjectHideFlags: 0
