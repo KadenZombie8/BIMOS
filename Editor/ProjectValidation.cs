@@ -47,8 +47,12 @@ namespace KadenZombie8.BIMOS.Editor
                 Category = _category,
                 CheckPredicate = () =>
                 {
-                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return false;
-                    XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
+                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!buildTargetSettings) return false;
+
+                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
+                    if (!settings) return false;
+
                     var activeLoaders = settings.Manager.activeLoaders;
                     if (activeLoaders.Count <= 0)
                         return false;
@@ -59,8 +63,12 @@ namespace KadenZombie8.BIMOS.Editor
                 },
                 FixIt = () =>
                 {
-                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return;
-                    XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
+                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!buildTargetSettings) return;
+
+                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
+                    if (!settings) return;
+
                     XRPackageMetadataStore.AssignLoader(settings.Manager, _openXRLoaderTypeName, BuildTargetGroup.Standalone);
                 },
                 FixItAutomatic = true,
@@ -73,8 +81,12 @@ namespace KadenZombie8.BIMOS.Editor
                 Category = _category,
                 CheckPredicate = () =>
                 {
-                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return false;
-                    XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
+                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!buildTargetSettings) return false;
+
+                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
+                    if (!settings) return false;
+
                     var activeLoaders = settings.Manager.activeLoaders;
                     if (activeLoaders.Count <= 0)
                         return false;
@@ -85,8 +97,12 @@ namespace KadenZombie8.BIMOS.Editor
                 },
                 FixIt = () =>
                 {
-                    if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings)) return;
-                    XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
+                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+                    if (!buildTargetSettings) return;
+
+                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
+                    if (!settings) return;
+
                     XRPackageMetadataStore.AssignLoader(settings.Manager, _openXRLoaderTypeName, BuildTargetGroup.Android);
                 },
                 FixItAutomatic = true,
@@ -100,16 +116,17 @@ namespace KadenZombie8.BIMOS.Editor
                 CheckPredicate = () =>
                 {
                     var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Standalone);
-                    if (!settings.GetFeature<OculusTouchControllerProfile>().enabled)
-                        return false;
-                    else if (!settings.GetFeature<PalmPoseInteraction>().enabled)
-                        return false;
+
+                    if (!settings.GetFeature<OculusTouchControllerProfile>().enabled) return false;
+                    if (!settings.GetFeature<PalmPoseInteraction>().enabled) return false;
 
                     return true;
                 },
                 FixIt = () =>
                 {
                     var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Standalone);
+                    if (!settings) return;
+
                     settings.GetFeature<OculusTouchControllerProfile>().enabled
                         = settings.GetFeature<PalmPoseInteraction>().enabled
                         = true;
@@ -125,22 +142,21 @@ namespace KadenZombie8.BIMOS.Editor
                 CheckPredicate = () =>
                 {
                     var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Android);
-                    if (!settings.GetFeature<OculusTouchControllerProfile>().enabled)
-                        return false;
-                    else if (!settings.GetFeature<MetaQuestTouchPlusControllerProfile>().enabled)
-                        return false;
-                    else if (!settings.GetFeature<MetaQuestTouchProControllerProfile>().enabled)
-                        return false;
-                    else if (!settings.GetFeature<PalmPoseInteraction>().enabled)
-                        return false;
-                    else if (!settings.GetFeature<MetaQuestFeature>().enabled)
-                        return false;
+                    if (!settings) return false;
+
+                    if (!settings.GetFeature<OculusTouchControllerProfile>().enabled) return false;
+                    if (!settings.GetFeature<MetaQuestTouchPlusControllerProfile>().enabled) return false;
+                    if (!settings.GetFeature<MetaQuestTouchProControllerProfile>().enabled) return false;
+                    if (!settings.GetFeature<PalmPoseInteraction>().enabled) return false;
+                    if (!settings.GetFeature<MetaQuestFeature>().enabled) return false;
 
                     return true;
                 },
                 FixIt = () =>
                 {
                     var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Android);
+                    if (!settings) return;
+
                     settings.GetFeature<OculusTouchControllerProfile>().enabled
                         = settings.GetFeature<MetaQuestTouchPlusControllerProfile>().enabled
                         = settings.GetFeature<MetaQuestTouchProControllerProfile>().enabled
