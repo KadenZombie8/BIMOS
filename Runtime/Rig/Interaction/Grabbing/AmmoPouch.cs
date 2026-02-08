@@ -15,9 +15,10 @@ namespace KadenZombie8.BIMOS.Rig
 
         private readonly List<GameObject> _spawnedMagazines = new();
 
-        private void Awake()
+        protected override void Awake()
         {
-            SetItemSlotGrabbablesEnabled(false);
+            base.Awake();
+
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);

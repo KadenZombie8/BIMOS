@@ -3,12 +3,28 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS
 {
-    public class HandWallSlipping : MonoBehaviour
+    /// <summary>
+    /// Uses contact modification to make objects lose friction on slopes greater than a specified angle
+    /// </summary>
+    public class SlipPastSlopeAngle : MonoBehaviour
     {
         [SerializeField]
+        [Range(0f, 89f)]
+        [Tooltip("The maximum slope angle (in degrees) that can be reached before slipping")]
         private float _maxSlopeAngle = 50f;
 
         private float _minSlopeDot;
+
+        public float MaxSlopeAngle
+        {
+            get => _maxSlopeAngle;
+            set
+            {
+                _maxSlopeAngle = Mathf.Clamp(value, 0f, 89f);
+                _minSlopeDot = Mathf.Cos((_maxSlopeAngle + 0.001f) * Mathf.Deg2Rad);
+            }
+        }
+
         private Collider _collider;
 
         private int _colliderId;
@@ -19,7 +35,8 @@ namespace KadenZombie8.BIMOS
             _collider.hasModifiableContacts = true;
             _colliderId = _collider.GetInstanceID();
 
-            _minSlopeDot = Mathf.Cos((_maxSlopeAngle + 0.001f) * Mathf.Deg2Rad);
+            MaxSlopeAngle = _maxSlopeAngle;
+            _minSlopeDot = Mathf.Cos((MaxSlopeAngle + 0.001f) * Mathf.Deg2Rad);
         }
 
         private void OnEnable() => Physics.ContactModifyEvent += OnContactModify;
@@ -28,10 +45,13 @@ namespace KadenZombie8.BIMOS
 
         private void OnContactModify(PhysicsScene scene, NativeArray<ModifiableContactPair> pairs)
         {
-            if (Physics.gravity.sqrMagnitude == 0f) return;
+            var gravity = Physics.gravity;
 
-            var upDirection = -Physics.gravity.normalized;
+            if (gravity.sqrMagnitude == 0f) return;
+
+            var upDirection = -gravity.normalized;
             
+            // Should really use a manager to avoid repeat checks for optimisation
             foreach (var pair in pairs)
             {
                 if (pair.colliderInstanceID != _colliderId && pair.otherColliderInstanceID != _colliderId) continue;

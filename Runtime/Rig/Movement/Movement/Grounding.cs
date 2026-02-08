@@ -1,5 +1,4 @@
 using System;
-using Unity.Collections;
 using UnityEngine;
 
 namespace KadenZombie8.BIMOS
@@ -15,9 +14,6 @@ namespace KadenZombie8.BIMOS
         private readonly float _minFriction = 0.1f;
 
         private Rigidbody _rigidbody;
-        private SphereCollider _collider;
-
-        private int _colliderId;
 
         public float MaxSlopeAngle
         {
@@ -38,50 +34,20 @@ namespace KadenZombie8.BIMOS
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _collider = GetComponent<SphereCollider>();
-            _collider.hasModifiableContacts = true;
-            _colliderId = _collider.GetInstanceID();
             MaxSlopeAngle = _maxSlopeAngle;
         }
 
-        private void OnEnable() => Physics.ContactModifyEvent += OnContactModify;
-
-        private void OnDisable() => Physics.ContactModifyEvent -= OnContactModify;
-
-        private void OnContactModify(PhysicsScene scene, NativeArray<ModifiableContactPair> pairs)
+        private void FixedUpdate()
         {
-            if (Physics.gravity.sqrMagnitude == 0f) return;
+            if (!enabled) return;
 
             IsGrounded = false;
-            var upDirection = -Physics.gravity.normalized;
-
-            foreach (var pair in pairs)
-            {
-                if (pair.colliderInstanceID != _colliderId && pair.otherColliderInstanceID != _colliderId) continue;
-
-                var groundNormal = pair.GetNormal(0);
-                if (pair.colliderInstanceID != _colliderId)
-                    groundNormal *= -1f;
-
-                var slopeDot = Vector3.Dot(groundNormal, upDirection);
-
-                if (slopeDot < _minSlopeDot)
-                {
-                    pair.SetDynamicFriction(0, 0f);
-                    pair.SetStaticFriction(0, 0f);
-                    continue;
-                }
-
-                IsGrounded = true;
-                GroundNormal = groundNormal;
-            }
+            IsSlipping = false;
         }
-
-        private void OnCollisionExit() => IsGrounded = false;
 
         private void OnCollisionStay(Collision collision)
         {
-            if (!enabled) return;
+            if (!enabled || IsGrounded) return;
 
             IsSlipping = collision.collider.material.staticFriction < _minFriction;
             if (IsSlipping) return;
@@ -98,26 +64,35 @@ namespace KadenZombie8.BIMOS
                 var groundNormal = contactPoint.normal;
                 var slopeDot = Vector3.Dot(groundNormal, upDirection);
 
-                if (slopeDot < _minSlopeDot) continue;
+                IsSlipping = slopeDot < _minSlopeDot;
+                if (IsSlipping) continue;
+
+                IsGrounded = true;
+                GroundNormal = groundNormal;
 
                 Vector3 alongPlaneVector = Vector3.Cross(groundNormal, upDirection);
                 Vector3 upPlaneVector = Vector3.Cross(alongPlaneVector, groundNormal);
 
                 var impulse = contactPoint.impulse;
                 var counterImpulse = impulse.magnitude / slopeDot * upPlaneVector;
-                _rigidbody.AddForce(counterImpulse, ForceMode.Impulse);
 
-                switch (otherBody)
-                {
-                    case Rigidbody otherRigidbody:
-                        otherRigidbody.AddForceAtPosition(-counterImpulse, contactPoint.point, ForceMode.Impulse);
-                        break;
-                    case ArticulationBody otherArticulationBody:
-                        otherArticulationBody.AddForceAtPosition(-counterImpulse, contactPoint.point, ForceMode.Impulse);
-                        break;
-                }
+                _rigidbody.AddForce(counterImpulse, ForceMode.Impulse);
+                AddForceAtPosition(otherBody, -counterImpulse, contactPoint.point, ForceMode.Impulse);
 
                 return;
+            }
+        }
+
+        private void AddForceAtPosition(Component body, Vector3 force, Vector3 position, ForceMode mode)
+        {
+            switch (body)
+            {
+                case Rigidbody otherRigidbody:
+                    otherRigidbody.AddForceAtPosition(force, position, mode);
+                    break;
+                case ArticulationBody otherArticulationBody:
+                    otherArticulationBody.AddForceAtPosition(force, position, mode);
+                    break;
             }
         }
     }

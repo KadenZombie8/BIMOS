@@ -30,10 +30,15 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         protected override void Update()
         {
-            _compressTime += Time.fixedDeltaTime;
+            _compressTime += Time.deltaTime;
 
             if (_jumpBuffer && _compressTime > _minCompressTime)
-                StateMachine.ChangeState<PushState>();
+            {
+                if (Jumping.LocomotionSphere.IsGrounded)
+                    StateMachine.ChangeState<PushState>();
+                else
+                    StateMachine.ChangeState<StandState>();
+            }
         }
 
         protected override void Exit()

@@ -26,6 +26,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         [HideInInspector]
         public LocomotionSphere LocomotionSphere;
 
+        private int _rigLayer;
+
         private void Awake()
         {
             PlayerLayerMask = LayerMask.GetMask("Player");
@@ -33,6 +35,30 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             Movement = GetComponent<SmoothLocomotion>();
             LocomotionSphere = Rigidbodies.LocomotionSphere.GetComponent<LocomotionSphere>();
             InitializeJointDrives();
+            SetRigidbodyLayers();
+        }
+
+        private void SetRigidbodyLayers()
+        {
+            _rigLayer = LayerMask.NameToLayer("BIMOSRig");
+            Physics.IgnoreLayerCollision(_rigLayer, _rigLayer);
+
+            SetRigLayerRecursive(Rigidbodies.LocomotionSphere.gameObject);
+            SetRigLayerRecursive(Rigidbodies.Knee.gameObject);
+            SetRigLayerRecursive(Rigidbodies.Pelvis.gameObject);
+            SetRigLayerRecursive(Rigidbodies.Head.gameObject);
+            SetRigLayerRecursive(Rigidbodies.LeftArm.UpperArm.gameObject);
+            SetRigLayerRecursive(Rigidbodies.LeftArm.LowerArm.gameObject);
+            SetRigLayerRecursive(Rigidbodies.LeftArm.Hand.gameObject);
+            SetRigLayerRecursive(Rigidbodies.RightArm.UpperArm.gameObject);
+            SetRigLayerRecursive(Rigidbodies.RightArm.LowerArm.gameObject);
+            SetRigLayerRecursive(Rigidbodies.RightArm.Hand.gameObject);
+        }
+
+        private void SetRigLayerRecursive(GameObject gameObject)
+        {
+            gameObject.layer = _rigLayer;
+            foreach (Transform child in gameObject.transform) SetRigLayerRecursive(child.gameObject);
         }
 
         private void InitializeJointDrives()
