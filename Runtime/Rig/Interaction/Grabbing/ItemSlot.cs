@@ -23,7 +23,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private Grabbable[] _itemSlotGrabbables;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _itemSlotGrabbables = GetComponentsInChildren<Grabbable>();
             SetItemSlotGrabbablesEnabled(false);
