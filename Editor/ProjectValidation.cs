@@ -135,7 +135,6 @@ namespace KadenZombie8.BIMOS.Editor
                         = settings.GetFeature<PalmPoseInteraction>().enabled
                         = true;
                 },
-                FixItAutomatic = true,
                 Error = true
             },
             new()
@@ -168,7 +167,6 @@ namespace KadenZombie8.BIMOS.Editor
                         = settings.GetFeature<MetaQuestFeature>().enabled
                         = true;
                 },
-                FixItAutomatic = true,
                 Error = true
             },
             new()
