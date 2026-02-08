@@ -16,7 +16,7 @@ namespace KadenZombie8.BIMOS.Editor
     /// <summary>
     /// Throws errors with fix buttons if project is configured incorrectly for BIMOS
     /// </summary>
-    public class ProjectValidation : MonoBehaviour
+    public static class ProjectValidation
     {
         private const string _category = "BIMOS";
         const string _projectValidationSettingsPath = "Project/XR Plug-in Management/Project Validation";
@@ -25,6 +25,39 @@ namespace KadenZombie8.BIMOS.Editor
 
         private static readonly BuildTargetGroup[] _buildTargetGroups =
             ((BuildTargetGroup[])Enum.GetValues(typeof(BuildTargetGroup))).Distinct().ToArray();
+
+        private static bool TryGetManager(BuildTargetGroup targetGroup, out XRManagerSettings manager)
+        {
+            manager = null;
+
+            EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
+            if (!buildTargetSettings) return false;
+
+            var settings = buildTargetSettings.SettingsForBuildTarget(targetGroup);
+            if (!settings) return false;
+
+            manager = settings.Manager;
+            if (!manager) return false;
+
+            return true;
+        }
+
+        private static bool IsOpenXRLoaderActive(BuildTargetGroup targetGroup)
+        {
+            if (!TryGetManager(targetGroup, out var manager)) return false;
+
+            var activeLoaders = manager.activeLoaders;
+            if (activeLoaders.Count <= 0)
+                return false;
+
+            return activeLoaders.Any(loader => loader != null && loader.GetType().FullName.Equals(_openXRLoaderTypeName));
+        }
+
+        private static void AssignOpenXRLoader(BuildTargetGroup targetGroup)
+        {
+            if (!TryGetManager(targetGroup, out var manager)) return;
+            XRPackageMetadataStore.AssignLoader(manager, _openXRLoaderTypeName, targetGroup);
+        }
 
         private static readonly List<BuildValidationRule> _buildValidationRules = new()
         {
@@ -35,7 +68,8 @@ namespace KadenZombie8.BIMOS.Editor
                 Category = _category,
                 CheckPredicate = () =>
                 {
-                    var major = int.Parse(Application.unityVersion.Split(".")[0]);
+                    var version = Application.unityVersion;
+                    if (!int.TryParse(version.Split(".")[0], out var major)) return false;
                     return major >= 6000;
                 },
                 Error = true
@@ -45,33 +79,8 @@ namespace KadenZombie8.BIMOS.Editor
                 IsRuleEnabled = () => true,
                 Message = "Plug-in Provider must be OpenXR for PC",
                 Category = _category,
-                CheckPredicate = () =>
-                {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
-                    if (!buildTargetSettings) return false;
-
-                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
-                    if (!settings) return false;
-
-                    var activeLoaders = settings.Manager.activeLoaders;
-                    if (activeLoaders.Count <= 0)
-                        return false;
-
-                    var activeLoader = activeLoaders[0];
-                    var loaderTypeName = activeLoader.GetType().FullName;
-                    return activeLoader.GetType().FullName.Equals(_openXRLoaderTypeName);
-                },
-                FixIt = () =>
-                {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
-                    if (!buildTargetSettings) return;
-
-                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Standalone);
-                    if (!settings) return;
-
-                    XRPackageMetadataStore.AssignLoader(settings.Manager, _openXRLoaderTypeName, BuildTargetGroup.Standalone);
-                },
-                FixItAutomatic = true,
+                CheckPredicate = () => IsOpenXRLoaderActive(BuildTargetGroup.Standalone),
+                FixIt = () => AssignOpenXRLoader(BuildTargetGroup.Standalone),
                 Error = true
             },
             new()
@@ -79,33 +88,8 @@ namespace KadenZombie8.BIMOS.Editor
                 IsRuleEnabled = () => true,
                 Message = "Plug-in Provider must be OpenXR for Android",
                 Category = _category,
-                CheckPredicate = () =>
-                {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
-                    if (!buildTargetSettings) return false;
-
-                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
-                    if (!settings) return false;
-
-                    var activeLoaders = settings.Manager.activeLoaders;
-                    if (activeLoaders.Count <= 0)
-                        return false;
-
-                    var activeLoader = activeLoaders[0];
-                    var loaderTypeName = activeLoader.GetType().FullName;
-                    return activeLoader.GetType().FullName.Equals(_openXRLoaderTypeName);
-                },
-                FixIt = () =>
-                {
-                    EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings);
-                    if (!buildTargetSettings) return;
-
-                    var settings = buildTargetSettings.SettingsForBuildTarget(BuildTargetGroup.Android);
-                    if (!settings) return;
-
-                    XRPackageMetadataStore.AssignLoader(settings.Manager, _openXRLoaderTypeName, BuildTargetGroup.Android);
-                },
-                FixItAutomatic = true,
+                CheckPredicate = () => IsOpenXRLoaderActive(BuildTargetGroup.Android),
+                FixIt = () => AssignOpenXRLoader(BuildTargetGroup.Android),
                 Error = true
             },
             new()
@@ -172,19 +156,9 @@ namespace KadenZombie8.BIMOS.Editor
                 IsRuleEnabled = () => true,
                 Message = "Must have a layer called \"BIMOSRig\"",
                 Category = _category,
-                CheckPredicate = () =>
-                {
-                    for (int i = 0; i < 32; i++)
-                        if (LayerMask.LayerToName(i).Equals("BIMOSRig"))
-                            return true;
-
-                    return false;
-                },
-                FixIt = () =>
-                {
-                    SettingsService.OpenProjectSettings("Project/Tags and Layers");
-                },
-                FixItAutomatic = true,
+                CheckPredicate = () => LayerMask.NameToLayer("BIMOSRig") != -1,
+                FixIt = () => SettingsService.OpenProjectSettings("Project/Tags and Layers"),
+                FixItAutomatic = false,
                 Error = true
             },
             new()
@@ -192,19 +166,9 @@ namespace KadenZombie8.BIMOS.Editor
                 IsRuleEnabled = () => true,
                 Message = "Must have a layer called \"BIMOSMenu\"",
                 Category = _category,
-                CheckPredicate = () =>
-                {
-                    for (int i = 0; i < 32; i++)
-                        if (LayerMask.LayerToName(i).Equals("BIMOSMenu"))
-                            return true;
-
-                    return false;
-                },
-                FixIt = () =>
-                {
-                    SettingsService.OpenProjectSettings("Project/Tags and Layers");
-                },
-                FixItAutomatic = true,
+                CheckPredicate = () => LayerMask.NameToLayer("BIMOSMenu") != -1,
+                FixIt = () => SettingsService.OpenProjectSettings("Project/Tags and Layers"),
+                FixItAutomatic = false,
                 Error = true
             }
         };
