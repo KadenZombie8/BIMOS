@@ -17,7 +17,6 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Awake()
         {
-            SetItemSlotGrabbablesEnabled(false);
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -25,6 +24,8 @@ namespace KadenZombie8.BIMOS.Rig
             }
             Instance = this;
         }
+
+        private void Start() => SetItemSlotGrabbablesEnabled(false);
 
         public void SetAmmoPrefab(GameObject ammoPrefab)
         {
