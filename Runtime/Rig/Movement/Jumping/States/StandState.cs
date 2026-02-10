@@ -17,6 +17,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         protected override void Update()
         {
+            if (Crouching.VirtualCrouching.IsCrouchChanging)
+                _isStanding = true;
+
             if (_isStanding) return;
 
             var fullHeight = Crouching.StandingLegHeight - Crouching.CrouchingLegHeight;

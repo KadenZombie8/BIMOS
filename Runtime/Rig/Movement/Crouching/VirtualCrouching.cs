@@ -15,6 +15,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         [Tooltip("The speed (in %/s) the legs can extend/retract at")]
         public float CrouchSpeed = 2.5f;
 
+        public bool IsCrouchChanging { get; private set; }
+
         private Crouching _crouching;
         private Jumping _jumping;
         private float _crouchInputMagnitude;
@@ -52,10 +54,10 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void FixedUpdate()
         {
-            var isCrouchChanging = Mathf.Abs(_crouchInputMagnitude) >= 0.75f;
+            IsCrouchChanging = Mathf.Abs(_crouchInputMagnitude) >= 0.75f;
             var isCompressed = _jumping.StateMachine.CurrentState == _compressState;
 
-            if (isCrouchChanging)
+            if (IsCrouchChanging)
             {
                 var fullHeight = _crouching.StandingLegHeight - _crouching.CrouchingLegHeight;
                 _crouching.TargetLegHeight += _crouchInputMagnitude * CrouchSpeed * fullHeight * Time.fixedDeltaTime;
@@ -70,13 +72,13 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             }
             else
             {
-                if (!isCrouchChanging && _wasCrouchChanging)
+                if (!IsCrouchChanging && _wasCrouchChanging)
                 {
                     _crouching.TargetLegHeight = Mathf.Clamp(_crouching.TargetLegHeight, _crouching.CrouchingLegHeight, _crouching.StandingLegHeight);
                 }
             }
 
-            _wasCrouchChanging = isCrouchChanging;
+            _wasCrouchChanging = IsCrouchChanging;
         }
     }
 }
