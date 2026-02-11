@@ -1,135 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1233149941 &-7033832730275498480
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-39_{-7033832730275498480}
-  m_AudioClip: {fileID: 8300000, guid: fe9f6b76ffbb82a4a8f051a1180cea6c, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-6587759260721268403
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-34_{-6587759260721268403}
-  m_AudioClip: {fileID: 8300000, guid: 7d9ba2d988073d449ba80be4b210c7a3, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-4907961931531965673
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-29_{-4907961931531965673}
-  m_AudioClip: {fileID: 8300000, guid: f42c6f20c9d3dd141aef3b42179e0fc6, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-4633408645435193958
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-13_{-4633408645435193958}
-  m_AudioClip: {fileID: 8300000, guid: 7a6b18e1f8e6d364fa189f0667a99ba3, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-4114312253394995695
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-12_{-4114312253394995695}
-  m_AudioClip: {fileID: 8300000, guid: 44eab44b7b048354db374230fe8bb1a5, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-3830800755011414742
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-14_{-3830800755011414742}
-  m_AudioClip: {fileID: 8300000, guid: be765f766121bc64ca235a5e9b0b5fdd, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-3779143038150802104
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-05_{-3779143038150802104}
-  m_AudioClip: {fileID: 8300000, guid: 1d5f8319f7a208547833c5de751bd26a, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-2974504957842433878
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-17_{-2974504957842433878}
-  m_AudioClip: {fileID: 8300000, guid: 037d1f68c3e0f78449c9db39066b9936, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-2504074648492265174
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-07_{-2504074648492265174}
-  m_AudioClip: {fileID: 8300000, guid: 4951e2d2883918544ac282e915d0f1c7, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-1937927861978520818
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-27_{-1937927861978520818}
-  m_AudioClip: {fileID: 8300000, guid: a193b726d10f2dc44aa0da833f238258, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-1278482683208508480
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-20_{-1278482683208508480}
-  m_AudioClip: {fileID: 8300000, guid: ab5e44e5dc427384ea3b32596b520290, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-1266377573297070973
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-03_{-1266377573297070973}
-  m_AudioClip: {fileID: 8300000, guid: fcd72ab5053939a469701c8b300ecd70, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &-1061065850507565627
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-28_{-1061065850507565627}
-  m_AudioClip: {fileID: 8300000, guid: 05af362650c24ef4a81ce3cbc1d6b113, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
 --- !u!1233149941 &-339727148921456940
 AudioContainerElement:
   m_ObjectHideFlags: 1
@@ -138,46 +8,6 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: FootstepVinyl-21_{-339727148921456940}
   m_AudioClip: {fileID: 8300000, guid: 508cdcece98ed5744add27ba60e0b091, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &70210427419404959
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-02_{70210427419404959}
-  m_AudioClip: {fileID: 8300000, guid: c2c0cb276dabd52448634c7ef106dc11, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &229970617549465252
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-33_{229970617549465252}
-  m_AudioClip: {fileID: 8300000, guid: 0ff3d0357de9c5e4f83816a86f75efa8, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &391729857439326985
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-18_{391729857439326985}
-  m_AudioClip: {fileID: 8300000, guid: bda66597817b2cd4db87356baef5a395, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &1141414709878192959
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-16_{1141414709878192959}
-  m_AudioClip: {fileID: 8300000, guid: b5ec7fcb490d7714aa2cab27a514721f, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1233149941 &1286144049877671502
@@ -190,16 +20,6 @@ AudioContainerElement:
   m_AudioClip: {fileID: 8300000, guid: 66061b49cb0b85f49a39d104d05625ef, type: 3}
   m_Volume: 0
   m_Enabled: 1
---- !u!1233149941 &1410706978664926724
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-01_{1410706978664926724}
-  m_AudioClip: {fileID: 8300000, guid: 33db7d7c2596fd94fbaab3e8d5b8fd41, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
 --- !u!1233149941 &2828224401289820963
 AudioContainerElement:
   m_ObjectHideFlags: 1
@@ -208,16 +28,6 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: FootstepVinyl-37_{2828224401289820963}
   m_AudioClip: {fileID: 8300000, guid: e1331eb6337d4e74783b76f37c1b412e, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &3554090542930142107
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-25_{3554090542930142107}
-  m_AudioClip: {fileID: 8300000, guid: 6ab917d97ea86da4e908d4fea5e2cf09, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1233149941 &3681099247691957798
@@ -230,16 +40,6 @@ AudioContainerElement:
   m_AudioClip: {fileID: 8300000, guid: e9468c238d5428e4fb87f265f2d3fe91, type: 3}
   m_Volume: 0
   m_Enabled: 1
---- !u!1233149941 &3682593226393055577
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-15_{3682593226393055577}
-  m_AudioClip: {fileID: 8300000, guid: ca714ce7c066afe4caf502e9e859dcc0, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
 --- !u!1233149941 &3930588075401284127
 AudioContainerElement:
   m_ObjectHideFlags: 1
@@ -248,26 +48,6 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: FootstepVinyl-23_{3930588075401284127}
   m_AudioClip: {fileID: 8300000, guid: e708bf8f2ff1bc64bbc17a0e5342e560, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &4676057805876140576
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-26_{4676057805876140576}
-  m_AudioClip: {fileID: 8300000, guid: 397fb0e2562910f469b613231db7060c, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &5503651199219676129
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-06_{5503651199219676129}
-  m_AudioClip: {fileID: 8300000, guid: e254643409f1a204496c3fc66d6be3ff, type: 3}
   m_Volume: 0
   m_Enabled: 1
 --- !u!1307931743 &6418180475301049370
@@ -286,39 +66,14 @@ AudioRandomContainer:
   m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
   m_LoopCountRandomizationRange: {x: 0, y: 0}
   m_Elements:
-  - {fileID: 1410706978664926724}
-  - {fileID: 70210427419404959}
-  - {fileID: -1266377573297070973}
-  - {fileID: 7914506420376391372}
-  - {fileID: -3779143038150802104}
-  - {fileID: 5503651199219676129}
-  - {fileID: -2504074648492265174}
   - {fileID: 7345315184805862363}
   - {fileID: 1286144049877671502}
-  - {fileID: -4114312253394995695}
-  - {fileID: -4633408645435193958}
-  - {fileID: -3830800755011414742}
-  - {fileID: 3682593226393055577}
-  - {fileID: 1141414709878192959}
-  - {fileID: -2974504957842433878}
-  - {fileID: 391729857439326985}
-  - {fileID: 9216098698808603102}
-  - {fileID: -1278482683208508480}
   - {fileID: -339727148921456940}
   - {fileID: 3930588075401284127}
   - {fileID: 3681099247691957798}
-  - {fileID: 3554090542930142107}
-  - {fileID: 4676057805876140576}
-  - {fileID: -1937927861978520818}
-  - {fileID: -1061065850507565627}
-  - {fileID: -4907961931531965673}
-  - {fileID: 229970617549465252}
-  - {fileID: -6587759260721268403}
-  - {fileID: 8894695242636247146}
   - {fileID: 2828224401289820963}
-  - {fileID: -7033832730275498480}
   m_AvoidRepeatingLast: 0
-  m_PlaybackMode: 1
+  m_PlaybackMode: 0
   m_TriggerMode: 0
   m_AutomaticTriggerMode: 1
   m_LoopMode: 2
@@ -334,35 +89,5 @@ AudioContainerElement:
   m_PrefabAsset: {fileID: 0}
   m_Name: FootstepVinyl-08_{7345315184805862363}
   m_AudioClip: {fileID: 8300000, guid: e8535c542ae6bf74e86b3a7aeccac295, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &7914506420376391372
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-04_{7914506420376391372}
-  m_AudioClip: {fileID: 8300000, guid: 432c80c9ffd2324498f88a2a17bf043d, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &8894695242636247146
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-35_{8894695242636247146}
-  m_AudioClip: {fileID: 8300000, guid: 4fc83246b9365bb439f33a1c40e78e2c, type: 3}
-  m_Volume: 0
-  m_Enabled: 1
---- !u!1233149941 &9216098698808603102
-AudioContainerElement:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: FootstepVinyl-19_{9216098698808603102}
-  m_AudioClip: {fileID: 8300000, guid: 454510d03c93d6e4fb0ed32a00f0a0e2, type: 3}
   m_Volume: 0
   m_Enabled: 1

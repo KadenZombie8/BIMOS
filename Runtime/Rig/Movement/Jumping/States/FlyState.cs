@@ -39,17 +39,22 @@ namespace KadenZombie8.BIMOS.Rig.Movement
                 //Debug.LogError("Height reached: " + height);
             }
 
+            if (_airTime > _minAirTime && Jumping.LocomotionSphere.IsGrounded)
+            {
+                StateMachine.ChangeState<StandState>();
+                return;
+            }
+
             if (!_hasOverridenLift)
             {
                 var sign = _isFalling ? -1f : 1f;
-                var crouchRate = Crouching.StandingLegHeight * sign * 4f;
+                var crouchRate = Crouching.StandingLegHeight * sign * 8f;
+                if (_isFalling)
+                    crouchRate *= 0.5f;
                 var newLegHeight = Crouching.TargetLegHeight - crouchRate * Time.deltaTime;
 
                 Crouching.TargetLegHeight = Mathf.Clamp(newLegHeight, _maxCrouch, Crouching.StandingLegHeight);
             }
-
-            if (_airTime > _minAirTime && Jumping.LocomotionSphere.IsGrounded)
-                StateMachine.ChangeState<StandState>();
         }
 
         protected override void Exit()

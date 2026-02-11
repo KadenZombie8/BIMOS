@@ -1184,7 +1184,7 @@
                     "id": "fa17d0b8-0b11-453c-b37f-557f0b30139d",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "UnscaledDeltaTime,ScaleVector2(x=10000,y=10000)",
+                    "processors": "UnscaledDeltaTime,ScaleVector2(x=2500,y=2500)",
                     "groups": "",
                     "action": "Look",
                     "isComposite": false,
