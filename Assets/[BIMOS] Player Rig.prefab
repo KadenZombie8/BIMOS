@@ -5067,6 +5067,8 @@ GameObject:
   - component: {fileID: 8683728267804074144}
   - component: {fileID: 6258398633430799671}
   - component: {fileID: 9143494609847232379}
+  - component: {fileID: 29937996771633840}
+  - component: {fileID: 438023460498623465}
   - component: {fileID: 1585967732411247227}
   - component: {fileID: 7745990403062909187}
   - component: {fileID: 5568752332480941085}
@@ -5209,6 +5211,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crouchAction: {fileID: -5873772996935874777, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   CrouchSpeed: 2.5
+--- !u!114 &29937996771633840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045650548132499840}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba16508a188ed9439f20b3f8cae0578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Movement.ContinuousCrouch
+--- !u!114 &438023460498623465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045650548132499840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37bfa4ba98b534438d934452b19a82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Movement.DiscreteCrouch
 --- !u!114 &1585967732411247227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6751,7 +6777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1027696754645216730
 Transform:
   m_ObjectHideFlags: 0
@@ -11775,7 +11801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2033902798256079023
 Transform:
   m_ObjectHideFlags: 0
@@ -15072,7 +15098,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &331705728982073872
 Transform:
   m_ObjectHideFlags: 0
@@ -15317,7 +15343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1571179798712693619
 Transform:
   m_ObjectHideFlags: 0

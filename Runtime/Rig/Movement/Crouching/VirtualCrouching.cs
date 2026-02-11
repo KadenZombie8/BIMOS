@@ -1,3 +1,4 @@
+using System;
 using KadenZombie8.BIMOS.Core.StateMachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,18 +16,13 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         [Tooltip("The speed (in %/s) the legs can extend/retract at")]
         public float CrouchSpeed = 2.5f;
 
+        public float CrouchInputMagnitude { get; private set; }
         public bool IsCrouchChanging { get; private set; }
 
         private Crouching _crouching;
         private Jumping _jumping;
-        private float _crouchInputMagnitude;
         private bool _wasCrouchChanging;
         private IState<JumpStateMachine> _compressState;
-
-        private void Crouch(InputAction.CallbackContext context)
-        {
-            _crouchInputMagnitude = context.ReadValue<Vector2>().y;
-        }
 
         private void Awake()
         {
@@ -47,6 +43,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _crouchAction.action.canceled -= Crouch;
         }
 
+        private void Crouch(InputAction.CallbackContext context)
+        {
+            CrouchInputMagnitude = context.ReadValue<Vector2>().y;
+            IsCrouchChanging = Mathf.Abs(CrouchInputMagnitude) >= 0.75f;
+        }
+
         private void Start()
         {
             _compressState = _jumping.StateMachine.GetState<CompressState>();
@@ -54,14 +56,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void FixedUpdate()
         {
-            IsCrouchChanging = Mathf.Abs(_crouchInputMagnitude) >= 0.75f;
+            IsCrouchChanging = Mathf.Abs(CrouchInputMagnitude) >= 0.75f;
             var isCompressed = _jumping.StateMachine.CurrentState == _compressState;
-
-            if (IsCrouchChanging)
-            {
-                var fullHeight = _crouching.StandingLegHeight - _crouching.CrouchingLegHeight;
-                _crouching.TargetLegHeight += _crouchInputMagnitude * CrouchSpeed * fullHeight * Time.fixedDeltaTime;
-            }
 
             if (isCompressed)
             {
