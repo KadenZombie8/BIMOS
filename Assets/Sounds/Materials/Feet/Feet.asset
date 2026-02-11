@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611b17de4eb11bb43b6c836766aa5d6c, type: 3}
   m_Name: Feet
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.Material
-  CollisionSound: {fileID: 6418180475301049370, guid: 5a61b267f9398914db50e47f77242733, type: 2}
+  CollisionSound: {fileID: 6418180475301049370, guid: ae9bd6111271025498e3fe32d01407b9, type: 2}
