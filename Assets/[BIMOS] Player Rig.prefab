@@ -10386,8 +10386,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.FlatscreenHand
   _moveReference: {fileID: -1384019015999760364, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _scrollReference: {fileID: 0}
   _unlockPositionReference: {fileID: -6327910928494003691, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _unlockDepthReference: {fileID: 3064121233825726504, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -6467379195346607368, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _cycleReference: {fileID: 7794634920248216458, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 0
@@ -11035,8 +11035,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.FlatscreenHand
   _moveReference: {fileID: -1384019015999760364, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _scrollReference: {fileID: 0}
   _unlockPositionReference: {fileID: 7062888808316791388, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _unlockDepthReference: {fileID: 4700314416854644307, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -3327611042938395074, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _cycleReference: {fileID: 7846344387286869021, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 1

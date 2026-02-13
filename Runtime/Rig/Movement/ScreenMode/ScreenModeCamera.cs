@@ -28,7 +28,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private void Update()
         {
             if (_leftHand.IsPositionUnlocked || _rightHand.IsPositionUnlocked) return;
-            if (_leftHand.IsDepthUnlocked || _rightHand.IsDepthUnlocked) return;
             if (_leftHand.IsRotationUnlocked || _rightHand.IsRotationUnlocked) return;
 
             var look = _lookSensitivity * _lookReference.action.ReadValue<Vector2>();

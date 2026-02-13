@@ -1095,6 +1095,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "75d94242-ff2d-42d3-93f8-735550b96a5e",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "UnlockPositionLeft",
                     "type": "Button",
                     "id": "26e2d4e5-d3a2-46e0-8e0a-e254151691f5",
@@ -1107,24 +1116,6 @@
                     "name": "UnlockPositionRight",
                     "type": "Button",
                     "id": "cd20f34b-b804-41cc-882e-3117692ec28e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UnlockDepthLeft",
-                    "type": "Button",
-                    "id": "c91dcd24-8675-40ef-bd9c-c12b8925604f",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "UnlockDepthRight",
-                    "type": "Button",
-                    "id": "0b866866-3601-416c-a018-413f9aaf1406",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -1163,7 +1154,7 @@
                     "id": "56ef1f33-8c6e-479d-8b11-453e656bd9a1",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
@@ -1258,28 +1249,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2a0ac30e-7aac-47ab-8f62-f8b203f74780",
-                    "path": "<Keyboard>/capsLock",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UnlockDepthLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6c3c8c6a-3ffb-464d-a696-f9916b789f7d",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UnlockDepthRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e33e6d3c-3450-4d2e-9433-a98335ea3b30",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "Tap",
@@ -1297,6 +1266,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CycleRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1616def5-5083-4e82-9fd1-bfebb69a9726",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
