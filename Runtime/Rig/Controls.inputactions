@@ -1113,12 +1113,30 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ResetPositionLeft",
+                    "type": "Button",
+                    "id": "d3465e30-fbb3-4c43-859a-8bb291346935",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "UnlockPositionRight",
                     "type": "Button",
                     "id": "cd20f34b-b804-41cc-882e-3117692ec28e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetPositionRight",
+                    "type": "Button",
+                    "id": "20ed287c-50f3-49a0-90c1-1d11a876826b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -1131,12 +1149,30 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ResetRotationLeft",
+                    "type": "Button",
+                    "id": "f2f1bd36-087f-41b0-89b7-504ebc83930b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "UnlockRotationRight",
                     "type": "Button",
                     "id": "6b292973-9ccb-4aca-aeb4-4c5cffc64dcf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetRotationRight",
+                    "type": "Button",
+                    "id": "db85793c-668e-4413-8fe2-ea7d42d4daab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -1205,6 +1241,28 @@
                 },
                 {
                     "name": "",
+                    "id": "61f3ce58-f3ba-4dc3-b95f-de53c1e35e73",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetPositionLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a40d0e31-430d-4362-b78a-5472f4e41bda",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetPositionLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "aff0d55d-468f-4dc1-a82f-46107005c85a",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -1227,6 +1285,28 @@
                 },
                 {
                     "name": "",
+                    "id": "780426ee-8e0d-4115-a3c5-d21521e24e0e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetPositionRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dca80ce8-4e1d-4aa0-8ee1-aa454d326df8",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetPositionRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "eb09b41d-0806-4eae-80c1-5dcca0251f49",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -1238,12 +1318,34 @@
                 },
                 {
                     "name": "",
+                    "id": "e4240c92-0c75-4325-b871-3f6b009a4c1b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetRotationLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "37d0934b-ab75-446e-81f0-eafe04f79aeb",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "UnlockRotationRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "018dddb9-c830-4b46-a077-715f9129a1a6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetRotationRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

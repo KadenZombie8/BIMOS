@@ -5182,7 +5182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultWalkSpeed: 1.5
-  RunMode: 0
+  RunMode: 1
   _moveAction: {fileID: 2329931572188812770, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _runAction: {fileID: -6406039945800244612, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   RunSpeedMultiplier: 2
@@ -5213,7 +5213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _crouchAction: {fileID: -5873772996935874777, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  CrouchSpeed: 2.5
+  CrouchSpeed: 4
 --- !u!114 &29937996771633840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10386,9 +10386,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.FlatscreenHand
   _moveReference: {fileID: -1384019015999760364, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _scrollReference: {fileID: 0}
+  _scrollReference: {fileID: 7221233404829171277, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockPositionReference: {fileID: -6327910928494003691, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetPositionReference: {fileID: 1628154324861046211, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -6467379195346607368, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetRotationReference: {fileID: -7562356250811964731, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _cycleReference: {fileID: 7794634920248216458, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 0
 --- !u!1 &5090928283351871714
@@ -11035,9 +11037,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.FlatscreenHand
   _moveReference: {fileID: -1384019015999760364, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _scrollReference: {fileID: 0}
+  _scrollReference: {fileID: 7221233404829171277, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockPositionReference: {fileID: 7062888808316791388, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetPositionReference: {fileID: 2890652955096479617, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -3327611042938395074, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetRotationReference: {fileID: -8373557058271985924, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _cycleReference: {fileID: 7846344387286869021, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 1
 --- !u!1 &5242651681496455548

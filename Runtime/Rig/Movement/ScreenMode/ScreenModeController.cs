@@ -19,14 +19,14 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         [SerializeField]
         private InputActionReference _unlockPositionReference;
 
-        //[SerializeField]
-        //private InputActionReference _resetPositionReference;
+        [SerializeField]
+        private InputActionReference _resetPositionReference;
 
         [SerializeField]
         private InputActionReference _unlockRotationReference;
 
-        //[SerializeField]
-        //private InputActionReference _resetRotationReference;
+        [SerializeField]
+        private InputActionReference _resetRotationReference;
 
         [SerializeField]
         private InputActionReference _cycleReference;
@@ -44,10 +44,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private LockState _lockState;
         private readonly int _lockStateCount = Enum.GetValues(typeof(LockState)).Length;
 
-        private Vector3 _position = new(-0.2f, -0.1f, 0.3f);
+        private Vector3 _defaultPosition = new(-0.2f, -0.1f, 0.4f);
+        private Vector3 _position;
         private Vector3 _centerPosition = new(-0.2f, 0f, 0.3f);
         private Vector3 _dimensions = new(0.5f, 0.5f, 0.5f);
 
+        private Vector3 _defaultRotation = new(0f, 0f, 0f);
         private Vector3 _rotation;
 
         private readonly float _moveSensitivity = 0.0005f;
@@ -57,9 +59,13 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         {
             if (!_isLeftHand)
             {
-                _position.x *= -1f;
+                _defaultPosition.x *= -1f;
+                _defaultRotation.x *= -1f;
                 _centerPosition.x *= -1f;
             }
+
+            _position = _defaultPosition;
+            _rotation = _defaultRotation;
 
             _camera = Camera.main.transform;
 
@@ -74,12 +80,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _unlockPositionReference.action.performed += UnlockPosition;
             _unlockPositionReference.action.canceled += LockPosition;
 
-            //_resetPositionReference.action.performed += ResetPosition;
+            _resetPositionReference.action.performed += ResetPosition;
 
             _unlockRotationReference.action.performed += UnlockRotation;
             _unlockRotationReference.action.canceled += LockRotation;
 
-            //_resetRotationReference.action.performed += ResetRotation;
+            _resetRotationReference.action.performed += ResetRotation;
 
             _cycleReference.action.performed += Cycle;
         }
@@ -89,12 +95,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _unlockPositionReference.action.performed -= UnlockPosition;
             _unlockPositionReference.action.canceled -= LockPosition;
 
-            //_resetPositionReference.action.performed -= ResetPosition;
+            _resetPositionReference.action.performed -= ResetPosition;
 
             _unlockRotationReference.action.performed -= UnlockRotation;
             _unlockRotationReference.action.canceled -= LockRotation;
 
-            //_resetRotationReference.action.performed -= ResetRotation;
+            _resetRotationReference.action.performed -= ResetRotation;
 
             _cycleReference.action.performed -= Cycle;
         }
@@ -103,7 +109,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void LockPosition(InputAction.CallbackContext _) => IsPositionUnlocked = false;
 
-        private void ResetPosition(InputAction.CallbackContext _) => _position = _centerPosition;
+        private void ResetPosition(InputAction.CallbackContext _) => _position = _defaultPosition;
 
         private void UnlockRotation(InputAction.CallbackContext _)
         {
@@ -113,7 +119,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void LockRotation(InputAction.CallbackContext _) => IsRotationUnlocked = false;
 
-        private void ResetRotation(InputAction.CallbackContext _) => _rotation = Vector3.zero;
+        private void ResetRotation(InputAction.CallbackContext _) => _rotation = _defaultRotation;
 
         private void Cycle(InputAction.CallbackContext _) => _lockState = (LockState)(((int)_lockState + 1) % _lockStateCount);
 
@@ -168,7 +174,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             _rotation.x = Mathf.Clamp(_rotation.x, -180f, 180f);
             _rotation.y = Mathf.Clamp(_rotation.y, -180f, 180f);
-            _rotation.z = Mathf.Clamp(_rotation.z, -180f, 180f);
+            _rotation.z = Mathf.Clamp(_rotation.z, -90f, 90f);
         }
     }
 }
