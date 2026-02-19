@@ -41,7 +41,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             if (_airTime > _minAirTime && Jumping.LocomotionSphere.IsGrounded)
             {
-                StateMachine.ChangeState<StandState>();
+                StateMachine.ChangeState<RecoverState>();
                 return;
             }
 
