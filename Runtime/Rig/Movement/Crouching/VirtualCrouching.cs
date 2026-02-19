@@ -17,7 +17,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public float CrouchSpeed = 2.5f;
 
         public float CrouchInputMagnitude { get; private set; }
-        public bool IsCrouchChanging { get; private set; }
+        public bool IsCrouchChanging { get; set; }
 
         private Crouching _crouching;
         private Jumping _jumping;

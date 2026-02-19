@@ -97,7 +97,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Move()
         {
-            var isCrouching = _crouching.TargetLegHeight <= (_crouching.CrouchingLegHeight + _crouching.StandingLegHeight) / 2f;
+            var cameraHeight = _controllerRig.Transforms.Camera.position.y - LocomotionSphere.transform.position.y;
+            var crouchingHeight = (_crouching.CrouchingLegHeight + _crouching.StandingLegHeight) / 2f;
+            var isCrouching = cameraHeight < crouchingHeight;
 
             if (RunMode == RunModeType.Hold) IsRunning = _isRunPressed;
 

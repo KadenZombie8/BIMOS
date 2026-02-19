@@ -14,10 +14,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _virtualCrouching = GetComponent<VirtualCrouching>();
         }
 
-        private void Start()
-        {
-            _controllerRig = BIMOSRig.Instance.ControllerRig;
-        }
+        private void Start() => _controllerRig = BIMOSRig.Instance.ControllerRig;
 
         private void FixedUpdate()
         {
@@ -29,6 +26,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             var sign = isCrouching ? -1f : 1f;
             var fullHeight = _crouching.StandingLegHeight - _crouching.CrouchingLegHeight;
             var crouchChange = sign * _virtualCrouching.CrouchSpeed * fullHeight * Time.fixedDeltaTime;
+
+            _virtualCrouching.IsCrouchChanging = true;
 
             _crouching.TargetLegHeight = Mathf.Clamp(_crouching.TargetLegHeight + crouchChange, minLegHeight, maxLegHeight);
         }
