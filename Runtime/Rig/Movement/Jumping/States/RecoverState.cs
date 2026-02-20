@@ -12,7 +12,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             if (Crouching.TargetLegHeight > Crouching.StandingLegHeight)
                 StateMachine.ChangeState<StandState>();
 
-            Debug.Log(Crouching.VirtualCrouching.CrouchInputMagnitude);
             if (Crouching.VirtualCrouching.IsCrouchChanging)
                 StateMachine.ChangeState<StandState>();
         }

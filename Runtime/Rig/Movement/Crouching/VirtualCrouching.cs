@@ -29,8 +29,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private Crouching _crouching;
         private Jumping _jumping;
         private bool _wasCrouchChanging;
-        private IState<JumpStateMachine> _compressState;
         private IState<JumpStateMachine> _standState;
+        private IState<JumpStateMachine> _compressState;
+        private IState<JumpStateMachine> _flyState;
         private ControllerRig _controllerRig;
 
         private void Awake()
@@ -63,8 +64,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Start()
         {
-            _compressState = _jumping.StateMachine.GetState<CompressState>();
             _standState = _jumping.StateMachine.GetState<StandState>();
+            _compressState = _jumping.StateMachine.GetState<CompressState>();
+            _flyState = _jumping.StateMachine.GetState<RiseState>();
             _controllerRig = BIMOSRig.Instance.ControllerRig;
         }
 
@@ -72,8 +74,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         {
             var fullHeight = _crouching.StandingLegHeight - _crouching.CrouchingLegHeight;
             var isStanding = _jumping.StateMachine.CurrentState == _standState;
+            var isFlying = _jumping.StateMachine.CurrentState == _flyState;
 
-            _crouching.TargetLegHeight += CrouchInputMagnitude * CrouchSpeed * fullHeight * Time.fixedDeltaTime;
+            if (VirtualCrouchMode == VirtualCrouchModeType.Continuous || isStanding)
+            {
+                _crouching.TargetLegHeight += CrouchInputMagnitude * CrouchSpeed * fullHeight * Time.fixedDeltaTime;
+            }
 
             var isCompressed = _jumping.StateMachine.CurrentState == _compressState;
 

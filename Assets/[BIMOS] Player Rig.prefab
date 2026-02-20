@@ -5067,8 +5067,6 @@ GameObject:
   - component: {fileID: 8683728267804074144}
   - component: {fileID: 6258398633430799671}
   - component: {fileID: 9143494609847232379}
-  - component: {fileID: 29937996771633840}
-  - component: {fileID: 438023460498623465}
   - component: {fileID: 1585967732411247227}
   - component: {fileID: 7745990403062909187}
   - component: {fileID: 5568752332480941085}
@@ -5182,7 +5180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultWalkSpeed: 1.5
-  RunMode: 1
+  RunMode: 0
   _moveAction: {fileID: 2329931572188812770, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _runAction: {fileID: -6406039945800244612, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   RunSpeedMultiplier: 2
@@ -5214,30 +5212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrouchAction: {fileID: -5873772996935874777, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   CrouchSpeed: 4
---- !u!114 &29937996771633840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3045650548132499840}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba16508a188ed9439f20b3f8cae0578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Movement.ContinuousCrouch
---- !u!114 &438023460498623465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3045650548132499840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37bfa4ba98b534438d934452b19a82b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Movement.DiscreteCrouch
+  VirtualCrouchMode: 0
 --- !u!114 &1585967732411247227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5381,7 +5356,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b8c9b828fb013e4382879494b093b69, type: 2}
   - {fileID: 11400000, guid: 9d5b1d523de3f1a4584f4f93433eb62b, type: 2}
   - {fileID: 11400000, guid: 4a3867bfecfaa2a47be1caaaba19fa2b, type: 2}
-  - {fileID: 11400000, guid: d3448344338213645bbb346627ab41f5, type: 2}
+  - {fileID: 11400000, guid: 7654bf1745bc58e4684f7e39457efdde, type: 2}
+  - {fileID: 11400000, guid: 30f8a23a4f02ec640b790190a7efee9d, type: 2}
   - {fileID: 11400000, guid: bd24e3d61c8e03a458c0bebb9a8abd2b, type: 2}
   InitialState: {fileID: 11400000, guid: 6b8c9b828fb013e4382879494b093b69, type: 2}
 --- !u!114 &2259126866414753448
