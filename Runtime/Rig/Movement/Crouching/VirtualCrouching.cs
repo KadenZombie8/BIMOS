@@ -10,70 +10,100 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     /// </summary>
     public class VirtualCrouching : MonoBehaviour
     {
-        [SerializeField]
-        private InputActionReference _crouchAction;
+        public InputActionReference CrouchAction;
 
         [Tooltip("The speed (in %/s) the legs can extend/retract at")]
         public float CrouchSpeed = 2.5f;
 
-        public float CrouchInputMagnitude { get; private set; }
-        public bool IsCrouchChanging { get; set; }
+        public float CrouchInputMagnitude { get; set; }
+
+        public bool IsCrouchChanging => Mathf.Abs(CrouchInputMagnitude) >= 0.75f;
+
+        public enum VirtualCrouchModeType
+        {
+            Continuous,
+            Discrete
+        }
+        public VirtualCrouchModeType VirtualCrouchMode = VirtualCrouchModeType.Continuous;
 
         private Crouching _crouching;
         private Jumping _jumping;
         private bool _wasCrouchChanging;
         private IState<JumpStateMachine> _compressState;
+        private IState<JumpStateMachine> _standState;
+        private ControllerRig _controllerRig;
 
         private void Awake()
         {
-            _crouchAction.action.Enable();
+            CrouchAction.action.Enable();
             _crouching = GetComponent<Crouching>();
             _jumping = GetComponent<Jumping>();
         }
 
         private void OnEnable()
         {
-            _crouchAction.action.performed += Crouch;
-            _crouchAction.action.canceled += Crouch;
+            CrouchAction.action.performed += Crouch;
+            CrouchAction.action.canceled += Crouch;
         }
 
         private void OnDisable()
         {
-            _crouchAction.action.performed -= Crouch;
-            _crouchAction.action.canceled -= Crouch;
+            CrouchAction.action.performed -= Crouch;
+            CrouchAction.action.canceled -= Crouch;
         }
 
         private void Crouch(InputAction.CallbackContext context)
         {
             CrouchInputMagnitude = context.ReadValue<Vector2>().y;
-            IsCrouchChanging = Mathf.Abs(CrouchInputMagnitude) >= 0.75f;
+            if (VirtualCrouchMode == VirtualCrouchModeType.Discrete)
+            {
+                CrouchInputMagnitude = CrouchInputMagnitude < 0f ? -1f : 1f;
+            }
         }
 
         private void Start()
         {
             _compressState = _jumping.StateMachine.GetState<CompressState>();
+            _standState = _jumping.StateMachine.GetState<StandState>();
+            _controllerRig = BIMOSRig.Instance.ControllerRig;
         }
 
         private void FixedUpdate()
         {
-            IsCrouchChanging = Mathf.Abs(CrouchInputMagnitude) >= 0.75f;
+            var fullHeight = _crouching.StandingLegHeight - _crouching.CrouchingLegHeight;
+            var isStanding = _jumping.StateMachine.CurrentState == _standState;
+
+            _crouching.TargetLegHeight += CrouchInputMagnitude * CrouchSpeed * fullHeight * Time.fixedDeltaTime;
+
             var isCompressed = _jumping.StateMachine.CurrentState == _compressState;
 
-            if (isCompressed)
-            {
-                var minLegHeight = _crouching.CrouchingLegHeight - _jumping.AnticipationHeight;
-                var maxLegHeight = _crouching.StandingLegHeight - _jumping.AnticipationHeight;
+            float minLegHeight;
+            float maxLegHeight;
 
-                _crouching.TargetLegHeight = Mathf.Clamp(_crouching.TargetLegHeight, minLegHeight, maxLegHeight);
+            if (VirtualCrouchMode == VirtualCrouchModeType.Continuous)
+            {
+                minLegHeight = _crouching.CrawlingLegHeight;
+                maxLegHeight = _crouching.StandingLegHeight + _crouching.TiptoesLegHeightGain;
             }
             else
             {
-                if (!IsCrouchChanging && _wasCrouchChanging)
-                {
-                    _crouching.TargetLegHeight = Mathf.Clamp(_crouching.TargetLegHeight, _crouching.CrouchingLegHeight, _crouching.StandingLegHeight);
-                }
+                var neckYDifference = _controllerRig.Transforms.Camera.position.y - _controllerRig.Transforms.HeadCameraOffset.position.y;
+                minLegHeight = _crouching.CrawlingLegHeight - neckYDifference;
+                maxLegHeight = _crouching.StandingLegHeight - neckYDifference - _controllerRig.Transforms.HeadCameraOffset.localPosition.y;
             }
 
+            if (isCompressed)
+            {
+                minLegHeight -= _jumping.AnticipationHeight;
+                maxLegHeight -= _jumping.AnticipationHeight;
+            }
+            else if (!IsCrouchChanging && _wasCrouchChanging)
+            {
+                minLegHeight = _crouching.CrouchingLegHeight;
+                maxLegHeight = _crouching.StandingLegHeight;
+            }
+
+            _crouching.TargetLegHeight = Mathf.Clamp(_crouching.TargetLegHeight, minLegHeight, maxLegHeight);
             _wasCrouchChanging = IsCrouchChanging;
         }
     }

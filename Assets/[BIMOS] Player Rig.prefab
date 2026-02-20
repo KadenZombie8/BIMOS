@@ -5212,7 +5212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9899afb5a92a784c8a7edce71043e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crouchAction: {fileID: -5873772996935874777, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  CrouchAction: {fileID: -5873772996935874777, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   CrouchSpeed: 4
 --- !u!114 &29937996771633840
 MonoBehaviour:

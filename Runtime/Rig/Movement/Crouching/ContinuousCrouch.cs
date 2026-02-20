@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 namespace KadenZombie8.BIMOS.Rig.Movement
 {
@@ -13,13 +15,18 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _virtualCrouching = GetComponent<VirtualCrouching>();
         }
 
-        private void FixedUpdate()
+        private void OnEnable()
         {
-            if (_virtualCrouching.IsCrouchChanging)
-            {
-                var fullHeight = _crouching.StandingLegHeight - _crouching.CrouchingLegHeight;
-                _crouching.TargetLegHeight += _virtualCrouching.CrouchInputMagnitude * _virtualCrouching.CrouchSpeed * fullHeight * Time.fixedDeltaTime;
-            }
+            _virtualCrouching.CrouchAction.action.performed += Crouch;
+            _virtualCrouching.CrouchAction.action.canceled += Crouch;
         }
+
+        private void OnDisable()
+        {
+            _virtualCrouching.CrouchAction.action.performed -= Crouch;
+            _virtualCrouching.CrouchAction.action.canceled -= Crouch;
+        }
+
+        private void Crouch(InputAction.CallbackContext context) => _virtualCrouching.CrouchInputMagnitude = context.ReadValue<Vector2>().y;
     }
 }
