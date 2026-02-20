@@ -390,7 +390,7 @@
                     "name": "SecondaryButton",
                     "type": "Button",
                     "id": "4bd6c9de-2b32-44e2-8089-471e1d282236",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -458,7 +458,7 @@
                 {
                     "name": "",
                     "id": "38e07890-18e5-4d46-a443-a88171567aaf",
-                    "path": "<Gamepad>/dpad/right",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -568,7 +568,7 @@
                 {
                     "name": "",
                     "id": "5ae80f80-ee20-4dc0-84da-2ec29c80ee0c",
-                    "path": "<Gamepad>/dpad/left",
+                    "path": "<Gamepad>/dpad/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -656,7 +656,7 @@
                 {
                     "name": "",
                     "id": "a0f93cad-a3d6-4f2a-8c0a-49fdda69d20b",
-                    "path": "<Gamepad>/dpad/right",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -756,7 +756,7 @@
                     "name": "ThumbrestTouched",
                     "type": "Button",
                     "id": "c7333abf-8b28-46de-b38b-c611540e332f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -851,7 +851,7 @@
                 {
                     "name": "",
                     "id": "17bce535-dbe8-43a3-bd83-26655d692c02",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -961,7 +961,7 @@
                 {
                     "name": "",
                     "id": "41dde177-eede-47e4-9131-87454d0aebf8",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

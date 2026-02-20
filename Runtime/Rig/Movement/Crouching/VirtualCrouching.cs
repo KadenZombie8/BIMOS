@@ -22,7 +22,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public enum VirtualCrouchModeType
         {
             Continuous,
-            Discrete
+            Discrete,
+            DiscreteToggle
         }
         public VirtualCrouchModeType VirtualCrouchMode = VirtualCrouchModeType.Continuous;
 
@@ -33,6 +34,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private IState<JumpStateMachine> _compressState;
         private IState<JumpStateMachine> _flyState;
         private ControllerRig _controllerRig;
+        private bool _isCrouching;
 
         private void Awake()
         {
@@ -55,10 +57,19 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Crouch(InputAction.CallbackContext context)
         {
-            CrouchInputMagnitude = context.ReadValue<Vector2>().y;
-            if (VirtualCrouchMode == VirtualCrouchModeType.Discrete)
+            switch (VirtualCrouchMode)
             {
-                CrouchInputMagnitude = CrouchInputMagnitude < 0f ? -1f : 1f;
+                case VirtualCrouchModeType.Continuous:
+                    CrouchInputMagnitude = context.ReadValue<Vector2>().y;
+                    break;
+                case VirtualCrouchModeType.Discrete:
+                    CrouchInputMagnitude = context.ReadValue<Vector2>().y;
+                    CrouchInputMagnitude = CrouchInputMagnitude < 0f ? -1f : 1f;
+                    break;
+                case VirtualCrouchModeType.DiscreteToggle when context.performed:
+                    _isCrouching = !_isCrouching;
+                    CrouchInputMagnitude = _isCrouching ? -1f : 1f;
+                    break;
             }
         }
 
