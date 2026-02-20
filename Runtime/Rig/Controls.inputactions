@@ -421,15 +421,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Haptic",
-                    "type": "Value",
-                    "id": "30e9cf1d-27d2-4c94-9f1f-16022bad9061",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -707,17 +698,6 @@
                     "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f6ae580f-5403-4d0b-acd0-278bde2a0b62",
-                    "path": "<XRController>{LeftHand}/haptic",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Haptic",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -814,15 +794,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Haptic",
-                    "type": "Value",
-                    "id": "febb43d7-a247-4de1-a62d-5a70f269f9d8",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -1049,22 +1020,11 @@
                 {
                     "name": "",
                     "id": "e246dc3c-b587-4fd1-9b66-323d692b0fbc",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "TriggerButton",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "48f4f228-3b4a-48b2-840b-37cd4d3737b2",
-                    "path": "<XRController>{RightHand}/haptic",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Haptic",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
