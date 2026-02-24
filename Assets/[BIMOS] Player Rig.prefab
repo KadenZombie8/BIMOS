@@ -6258,7 +6258,6 @@ MonoBehaviour:
     LowerArm: {fileID: 4000170418315679276}
     Hand: {fileID: 437063675725158744}
   GrabJoint: {fileID: 0}
-  _hapticAction: {fileID: 8820351604732332367, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!114 &3685421060059991317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7894,7 +7893,6 @@ MonoBehaviour:
     LowerArm: {fileID: 6891862437502569283}
     Hand: {fileID: 1686830156072627729}
   GrabJoint: {fileID: 0}
-  _hapticAction: {fileID: 1113504248145182695, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!114 &2531710907283994335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10368,7 +10366,9 @@ MonoBehaviour:
   _resetPositionReference: {fileID: 1628154324861046211, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -6467379195346607368, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _resetRotationReference: {fileID: -7562356250811964731, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _cycleReference: {fileID: 7794634920248216458, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockDepthReference: {fileID: 3603537324557499813, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockReference: {fileID: 3017017056272676260, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _cycleReference: {fileID: 5017062946137298883, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 0
 --- !u!1 &5090928283351871714
 GameObject:
@@ -11019,7 +11019,9 @@ MonoBehaviour:
   _resetPositionReference: {fileID: 2890652955096479617, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -3327611042938395074, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _resetRotationReference: {fileID: -8373557058271985924, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _cycleReference: {fileID: 7846344387286869021, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockDepthReference: {fileID: 3603537324557499813, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockReference: {fileID: 6572488123449721989, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _cycleReference: {fileID: 8993505295937417608, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 1
 --- !u!1 &5242651681496455548
 GameObject:

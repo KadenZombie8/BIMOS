@@ -1062,30 +1062,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ResetPositionLeft",
-                    "type": "Button",
-                    "id": "d3465e30-fbb3-4c43-859a-8bb291346935",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "MultiTap",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "UnlockPositionRight",
                     "type": "Button",
                     "id": "cd20f34b-b804-41cc-882e-3117692ec28e",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ResetPositionRight",
-                    "type": "Button",
-                    "id": "20ed287c-50f3-49a0-90c1-1d11a876826b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -1098,21 +1080,39 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ResetRotationLeft",
-                    "type": "Button",
-                    "id": "f2f1bd36-087f-41b0-89b7-504ebc83930b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "MultiTap",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "UnlockRotationRight",
                     "type": "Button",
                     "id": "6b292973-9ccb-4aca-aeb4-4c5cffc64dcf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetPositionLeft",
+                    "type": "Button",
+                    "id": "d3465e30-fbb3-4c43-859a-8bb291346935",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetPositionRight",
+                    "type": "Button",
+                    "id": "20ed287c-50f3-49a0-90c1-1d11a876826b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ResetRotationLeft",
+                    "type": "Button",
+                    "id": "f2f1bd36-087f-41b0-89b7-504ebc83930b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap",
                     "initialStateCheck": false
                 },
                 {
@@ -1125,21 +1125,48 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CycleLeft",
+                    "name": "UnlockDepth",
                     "type": "Button",
-                    "id": "5843e462-f259-420f-8cba-3e934a947f41",
+                    "id": "d40d0694-d991-4c6d-b414-a0f26a1e0809",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CycleRight",
+                    "name": "UnlockLeft",
                     "type": "Button",
-                    "id": "56ef1f33-8c6e-479d-8b11-453e656bd9a1",
+                    "id": "27afaac1-034f-4d9f-baf5-5bd26946d60d",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnlockRight",
+                    "type": "Button",
+                    "id": "fab7ee04-b087-407a-9480-3381b1f28874",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CycleLeft",
+                    "type": "Button",
+                    "id": "9b4979d3-4b7b-44df-b8ed-2d3a56ab34d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap(tapDelay=0.2),Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CycleRight",
+                    "type": "Button",
+                    "id": "7f8d5a90-e40a-44db-8d43-3824d74264a3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "MultiTap(tapDelay=0.2),Tap",
                     "initialStateCheck": false
                 }
             ],
@@ -1179,12 +1206,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c10fee3a-5a5f-4c8f-b3e1-13413aea5021",
+                    "id": "108364e9-5383-457c-9e36-3400f6a5d1f6",
                     "path": "<Gamepad>/leftShoulder",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UnlockPositionLeft",
+                    "action": "UnlockLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1201,12 +1228,23 @@
                 },
                 {
                     "name": "",
-                    "id": "a40d0e31-430d-4362-b78a-5472f4e41bda",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "Hold",
+                    "id": "e5e5a40d-c004-4026-bfec-9c948c6cc01b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ResetPositionLeft",
+                    "action": "CycleRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b18458ee-ec7c-4157-8bb7-ce633f555089",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1223,12 +1261,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c8abc883-a212-4057-9a61-9f470dce4c41",
+                    "id": "3abfc220-4e5a-4120-bf2e-1d579131ac50",
                     "path": "<Gamepad>/rightShoulder",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UnlockPositionRight",
+                    "action": "UnlockRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1245,23 +1283,23 @@
                 },
                 {
                     "name": "",
-                    "id": "dca80ce8-4e1d-4aa0-8ee1-aa454d326df8",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ResetPositionRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "eb09b41d-0806-4eae-80c1-5dcca0251f49",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "UnlockRotationLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f7415ddd-acd1-4a75-9836-44dc3b8a0048",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnlockDepth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1300,28 +1338,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e33e6d3c-3450-4d2e-9433-a98335ea3b30",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CycleLeft",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "319d6449-0b77-477d-8441-95de382bf61a",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CycleRight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "1616def5-5083-4e82-9fd1-bfebb69a9726",
                     "path": "<Mouse>/scroll/y",
                     "interactions": "",
@@ -1330,6 +1346,39 @@
                     "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Gamepad",
+                    "id": "358595b7-1453-4391-a332-8db7314a5ab6",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "AxisDeadzone,Scale(factor=0.2)",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Modifier",
+                    "id": "26ce2a9f-0454-4624-84ee-a7cddde02542",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "6fc694b1-0396-4834-9750-eb2d2acbde25",
+                    "path": "<Gamepad>/rightStick/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

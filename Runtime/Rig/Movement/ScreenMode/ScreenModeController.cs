@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 namespace KadenZombie8.BIMOS.Rig.Movement
 {
@@ -9,6 +10,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     {
         public bool IsPositionUnlocked { get; private set; }
         public bool IsRotationUnlocked { get; private set; }
+        public bool IsUnlocked { get; private set; }
+        public bool IsDepthUnlocked { get; private set; }
 
         [SerializeField]
         private InputActionReference _moveReference;
@@ -29,6 +32,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private InputActionReference _resetRotationReference;
 
         [SerializeField]
+        private InputActionReference _unlockDepthReference;
+
+        [SerializeField]
+        private InputActionReference _unlockReference;
+
+        [SerializeField]
         private InputActionReference _cycleReference;
 
         [SerializeField]
@@ -41,7 +50,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             Position,
             Rotation
         }
-        private LockState _lockState;
+        private LockState _lockState = LockState.Position;
         private readonly int _lockStateCount = Enum.GetValues(typeof(LockState)).Length;
 
         private Vector3 _defaultPosition = new(-0.2f, -0.1f, 0.4f);
@@ -87,6 +96,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             _resetRotationReference.action.performed += ResetRotation;
 
+            _unlockDepthReference.action.performed += UnlockDepth;
+            _unlockDepthReference.action.canceled += LockDepth;
+
+            _unlockReference.action.performed += Unlock;
+            _unlockReference.action.canceled += Lock;
+
             _cycleReference.action.performed += Cycle;
         }
 
@@ -102,6 +117,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             _resetRotationReference.action.performed -= ResetRotation;
 
+            _unlockDepthReference.action.performed -= UnlockDepth;
+            _unlockDepthReference.action.canceled -= LockDepth;
+
+            _unlockReference.action.performed -= Unlock;
+            _unlockReference.action.canceled -= Lock;
+
             _cycleReference.action.performed -= Cycle;
         }
 
@@ -111,38 +132,56 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void ResetPosition(InputAction.CallbackContext _) => _position = _defaultPosition;
 
-        private void UnlockRotation(InputAction.CallbackContext _)
-        {
-            _lockState = LockState.Position;
-            IsRotationUnlocked = true;
-        }
+        private void UnlockRotation(InputAction.CallbackContext _) => IsRotationUnlocked = true;
 
         private void LockRotation(InputAction.CallbackContext _) => IsRotationUnlocked = false;
 
         private void ResetRotation(InputAction.CallbackContext _) => _rotation = _defaultRotation;
 
-        private void Cycle(InputAction.CallbackContext _) => _lockState = (LockState)(((int)_lockState + 1) % _lockStateCount);
+        private void UnlockDepth(InputAction.CallbackContext _) => IsDepthUnlocked = true;
+
+        private void LockDepth(InputAction.CallbackContext _) => IsDepthUnlocked = false;
+
+        private void Unlock(InputAction.CallbackContext _) => IsUnlocked = true;
+
+        private void Lock(InputAction.CallbackContext _) => IsUnlocked = false;
+
+        private void Cycle(InputAction.CallbackContext context)
+        {
+            if (context.interaction is TapInteraction)
+            {
+                _lockState = (LockState)(((int)_lockState + 1) % _lockStateCount);
+            }
+            else if (context.interaction is MultiTapInteraction)
+            {
+                switch (_lockState)
+                {
+                    case LockState.Position:
+                        _position = _defaultPosition;
+                        break;
+                    case LockState.Rotation:
+                        _rotation = _defaultRotation;
+                        break;
+                }
+            }
+        }
 
         private void Update()
         {
-            if (IsPositionUnlocked)
-            {
-                if (!IsRotationUnlocked)
-                {
-                    switch (_lockState)
-                    {
-                        case LockState.Position:
-                            PositionHand();
-                            break;
-                        case LockState.Rotation:
-                            RotateHand();
-                            break;
-                    }
-                }
-                else PositionHand();
-            }
-
+            if (IsPositionUnlocked) PositionHand();
             if (IsRotationUnlocked) RotateHand();
+            if (IsUnlocked)
+            {
+                switch (_lockState)
+                {
+                    case LockState.Position:
+                        PositionHand();
+                        break;
+                    case LockState.Rotation:
+                        RotateHand();
+                        break;
+                }
+            }
 
             transform.SetPositionAndRotation(
                 _camera.TransformPoint(_position),
@@ -152,8 +191,14 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void PositionHand()
         {
-            var move = _moveReference.action.ReadValue<Vector2>() * _moveSensitivity;
-            var scroll = _scrollReference.action.ReadValue<float>() * _moveSensitivity * 40f;
+            var moveInput = _moveReference.action.ReadValue<Vector2>();
+            var move = moveInput * _moveSensitivity;
+
+            var scrollInput = _scrollReference.action.ReadValue<float>();
+            var scroll = scrollInput * _moveSensitivity * 40f;
+
+            if (IsDepthUnlocked) move = Vector2.zero;
+
             _position.x += move.x;
             _position.y += move.y;
             _position.z += scroll;
@@ -165,10 +210,13 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void RotateHand()
         {
-            var sign = 1f; // _isLeftHand ? -1f : 1f;
-            var rotateInput = _rotateSensitivity * _moveReference.action.ReadValue<Vector2>();
-            var scroll = _scrollReference.action.ReadValue<float>() * _rotateSensitivity * 80f;
-            var rotate = new Vector3(rotateInput.x * sign, rotateInput.y, scroll * sign);
+            var sign = 1f;
+            var rotateInput = _moveReference.action.ReadValue<Vector2>();
+
+            if (IsDepthUnlocked) rotateInput = Vector2.zero;
+
+            var scroll = _scrollReference.action.ReadValue<float>() * 80f;
+            var rotate = _rotateSensitivity * new Vector3(rotateInput.x * sign, rotateInput.y, scroll * sign);
 
             _rotation += rotate;
 
