@@ -3955,7 +3955,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5180,8 +5180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultWalkSpeed: 1.5
+  RunMode: 0
   _moveAction: {fileID: 2329931572188812770, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _runAction: {fileID: -6406039945800244612, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  RunSpeedMultiplier: 2
+  CrouchSpeedMultiplier: 0.5
 --- !u!114 &6258398633430799671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5207,8 +5210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9899afb5a92a784c8a7edce71043e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _crouchAction: {fileID: -5873772996935874777, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  CrouchSpeed: 2.5
+  CrouchAction: {fileID: -5873772996935874777, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  CrouchSpeed: 4
+  VirtualCrouchMode: 0
 --- !u!114 &1585967732411247227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5352,7 +5356,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b8c9b828fb013e4382879494b093b69, type: 2}
   - {fileID: 11400000, guid: 9d5b1d523de3f1a4584f4f93433eb62b, type: 2}
   - {fileID: 11400000, guid: 4a3867bfecfaa2a47be1caaaba19fa2b, type: 2}
-  - {fileID: 11400000, guid: d3448344338213645bbb346627ab41f5, type: 2}
+  - {fileID: 11400000, guid: 7654bf1745bc58e4684f7e39457efdde, type: 2}
+  - {fileID: 11400000, guid: 30f8a23a4f02ec640b790190a7efee9d, type: 2}
+  - {fileID: 11400000, guid: bd24e3d61c8e03a458c0bebb9a8abd2b, type: 2}
   InitialState: {fileID: 11400000, guid: 6b8c9b828fb013e4382879494b093b69, type: 2}
 --- !u!114 &2259126866414753448
 MonoBehaviour:
@@ -6252,7 +6258,6 @@ MonoBehaviour:
     LowerArm: {fileID: 4000170418315679276}
     Hand: {fileID: 437063675725158744}
   GrabJoint: {fileID: 0}
-  _hapticAction: {fileID: 8820351604732332367, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!114 &3685421060059991317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7888,7 +7893,6 @@ MonoBehaviour:
     LowerArm: {fileID: 6891862437502569283}
     Hand: {fileID: 1686830156072627729}
   GrabJoint: {fileID: 0}
-  _hapticAction: {fileID: 1113504248145182695, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
 --- !u!114 &2531710907283994335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9107,7 +9111,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.15
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -10357,10 +10361,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.FlatscreenHand
   _moveReference: {fileID: -1384019015999760364, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _scrollReference: {fileID: 7221233404829171277, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockPositionReference: {fileID: -6327910928494003691, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _unlockDepthReference: {fileID: 3064121233825726504, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetPositionReference: {fileID: 1628154324861046211, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -6467379195346607368, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _cycleReference: {fileID: 7794634920248216458, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetRotationReference: {fileID: -7562356250811964731, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockDepthReference: {fileID: 3603537324557499813, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockReference: {fileID: 3017017056272676260, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _cycleReference: {fileID: 5017062946137298883, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 0
 --- !u!1 &5090928283351871714
 GameObject:
@@ -11006,10 +11014,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.FlatscreenHand
   _moveReference: {fileID: -1384019015999760364, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _scrollReference: {fileID: 7221233404829171277, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockPositionReference: {fileID: 7062888808316791388, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _unlockDepthReference: {fileID: 4700314416854644307, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetPositionReference: {fileID: 2890652955096479617, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _unlockRotationReference: {fileID: -3327611042938395074, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _cycleReference: {fileID: 7846344387286869021, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _resetRotationReference: {fileID: -8373557058271985924, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockDepthReference: {fileID: 3603537324557499813, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _unlockReference: {fileID: 6572488123449721989, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _cycleReference: {fileID: 8993505295937417608, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _isLeftHand: 1
 --- !u!1 &5242651681496455548
 GameObject:

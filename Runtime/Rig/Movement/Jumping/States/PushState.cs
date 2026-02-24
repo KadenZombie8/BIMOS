@@ -51,7 +51,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         {
             // Wait for player to stand up before jumping
             if (_pushTime > _timeToRise)
-                StateMachine.ChangeState<FlyState>();
+                StateMachine.ChangeState<RiseState>();
 
             _pushTime += Time.deltaTime;
         }
