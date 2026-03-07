@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 7416311091770419290}
   - component: {fileID: 114591911805579239}
   - component: {fileID: 1376416776539912389}
+  - component: {fileID: 3908885760947750126}
   m_Layer: 0
   m_Name: Scrollbar
   m_TagString: Untagged
@@ -225,14 +226,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.09411764, g: 0.27973855, b: 0.4, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -241,7 +242,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.5
 --- !u!114 &1376416776539912389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,10 +264,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.8, g: 0.2509804, b: 0.2, a: 1}
-    m_HighlightedColor: {r: 0.6, g: 0.1882353, b: 0.14901961, a: 1}
-    m_PressedColor: {r: 1, g: 0.3137255, b: 0.25, a: 1}
-    m_SelectedColor: {r: 0.8, g: 0.2509804, b: 0.2, a: 1}
+    m_NormalColor: {r: 0.1882353, g: 0.5568628, b: 0.8, a: 1}
+    m_HighlightedColor: {r: 0.14117646, g: 0.41764718, b: 0.6, a: 1}
+    m_PressedColor: {r: 0.2352941, g: 0.6960786, b: 1, a: 1}
+    m_SelectedColor: {r: 0.18823528, g: 0.5568629, b: 0.8, a: 1}
     m_DisabledColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -291,6 +292,25 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3908885760947750126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983626093336834576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b3638c2f5db5b479ff24c2859713d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit.Samples.StarterAssets::UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets.XRPokeFollowAffordance
+  m_PokeFollowTransform: {fileID: 1969616559953416430}
+  m_SmoothingSpeed: 16
+  m_ReturnToInitialPosition: 1
+  m_ApplyIfChildIsTarget: 1
+  m_ClampToMaxDistance: 1
+  m_MaxDistance: 5
+  m_PokeFilter: {fileID: 0}
 --- !u!1 &4264407877861085883
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +509,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4901502675549784286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -524,10 +544,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.6, g: 0.18823531, b: 0.15, a: 1}
-    m_HighlightedColor: {r: 0.8, g: 0.2509804, b: 0.2, a: 1}
-    m_PressedColor: {r: 0.8, g: 0.25098038, b: 0.20078431, a: 1}
-    m_SelectedColor: {r: 0.8, g: 0.25098038, b: 0.1986928, a: 1}
+    m_NormalColor: {r: 0.14117646, g: 0.41764718, b: 0.6, a: 1}
+    m_HighlightedColor: {r: 0.09411764, g: 0.27843145, b: 0.4, a: 1}
+    m_PressedColor: {r: 0.1882353, g: 0.5568628, b: 0.8, a: 1}
+    m_SelectedColor: {r: 0.14117646, g: 0.41764718, b: 0.6, a: 1}
     m_DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -746,15 +766,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -762,7 +782,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.5
 --- !u!1 &6994191824537673570
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +809,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6994191824537673570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -821,14 +841,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8941177, g: 0.8941177, b: 0.8941177, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b562dd0a8294f54a87c02b70b052759, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -837,7 +857,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 40
+  m_PixelsPerUnitMultiplier: 0.5
 --- !u!1 &7056873151237797982
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,15 +919,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 0.0625, b: 0.05, a: 1}
+  m_Color: {r: 0.04705882, g: 0.13921572, b: 0.2, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -915,7 +935,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 4
+  m_PixelsPerUnitMultiplier: 0.5
 --- !u!114 &8973039343323415616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1184,6 +1204,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5289182684458692540, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5484623864731516355}
+    - targetCorrespondingSourceObject: {fileID: 5289182684458692540, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9200074283570145070}
     - targetCorrespondingSourceObject: {fileID: 909881759767330623, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 707183112642338628}
@@ -1257,6 +1280,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &9200074283570145070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4048489171198886008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b3638c2f5db5b479ff24c2859713d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit.Samples.StarterAssets::UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets.XRPokeFollowAffordance
+  m_PokeFollowTransform: {fileID: 5997373227791358388}
+  m_SmoothingSpeed: 16
+  m_ReturnToInitialPosition: 1
+  m_ApplyIfChildIsTarget: 1
+  m_ClampToMaxDistance: 1
+  m_MaxDistance: 10
+  m_PokeFilter: {fileID: 0}
 --- !u!224 &4048489171198886009 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5289182684458692541, guid: 4674350c9052065499153117eb1bfbc8, type: 3}

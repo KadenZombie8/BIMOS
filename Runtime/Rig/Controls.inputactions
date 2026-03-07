@@ -324,7 +324,7 @@
             "id": "35423bfc-cc1b-4625-81be-6899c33f250c",
             "actions": [
                 {
-                    "name": "Trigger",
+                    "name": "TriggerValue",
                     "type": "PassThrough",
                     "id": "905c524c-8a4b-4f3c-847a-dfe2c0f064a9",
                     "expectedControlType": "",
@@ -431,7 +431,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trigger",
+                    "action": "TriggerValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -442,7 +442,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trigger",
+                    "action": "TriggerValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -453,7 +453,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trigger",
+                    "action": "TriggerValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -706,7 +706,7 @@
             "id": "50307f8b-a843-4725-9d33-d4d04a2efb60",
             "actions": [
                 {
-                    "name": "Trigger",
+                    "name": "TriggerValue",
                     "type": "PassThrough",
                     "id": "8a3d47c8-75f2-45eb-87fd-b95e04837e39",
                     "expectedControlType": "",
@@ -804,7 +804,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trigger",
+                    "action": "TriggerValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -815,7 +815,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trigger",
+                    "action": "TriggerValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -826,7 +826,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trigger",
+                    "action": "TriggerValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

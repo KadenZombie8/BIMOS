@@ -205,18 +205,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4850294539657462582}
     m_Modifications:
-    - target: {fileID: 2464329218578631355, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464329218578631355, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2464329218578631355, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2771187932956860478, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -260,34 +248,6 @@ PrefabInstance:
     - target: {fileID: 3169780607551956412, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
       propertyPath: m_Name
       value: '[BIMOS] Player Rig'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709441423979575950, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709441423979575950, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3721740143998703379, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3721740143998703379, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3721740143998703379, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5923595894935695014, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5923595894935695014, guid: 0f6a8eddd3b3f134cba43472c935bf29, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
