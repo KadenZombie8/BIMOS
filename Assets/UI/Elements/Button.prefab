@@ -103,15 +103,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5289182684458692540, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7751132971735065726}
-    - targetCorrespondingSourceObject: {fileID: 5289182684458692540, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1048028584132576527}
   m_SourcePrefab: {fileID: 100100000, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
---- !u!224 &2885790370970652790 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2482363001952073328, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
-  m_PrefabInstance: {fileID: 756460641297769990}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4004199759711478328 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4462709362712937534, guid: 4674350c9052065499153117eb1bfbc8, type: 3}
@@ -172,22 +164,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1048028584132576527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4835053260803967418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b3638c2f5db5b479ff24c2859713d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit.Samples.StarterAssets::UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets.XRPokeFollowAffordance
-  m_PokeFollowTransform: {fileID: 2885790370970652790}
-  m_SmoothingSpeed: 16
-  m_ReturnToInitialPosition: 1
-  m_ApplyIfChildIsTarget: 1
-  m_ClampToMaxDistance: 1
-  m_MaxDistance: 10
-  m_PokeFilter: {fileID: 0}
