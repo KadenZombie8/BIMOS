@@ -8,10 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4033287827682571806, guid: 87eae394642d9ae42bac99e8e6abbeb4, type: 3}
-      propertyPath: m_MaxDistance
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5352555605625654320, guid: 87eae394642d9ae42bac99e8e6abbeb4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -96,8 +92,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toggle (Text)
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4033287827682571806, guid: 87eae394642d9ae42bac99e8e6abbeb4, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2404346785128879613, guid: 87eae394642d9ae42bac99e8e6abbeb4, type: 3}
