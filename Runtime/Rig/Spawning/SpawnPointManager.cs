@@ -87,7 +87,7 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
             Quaternion forwardRotation = _player.ControllerRig.HeadForwardRotation;
 
             var positionOffset = Quaternion.Inverse(forwardRotation) * (rigidbody.position - knee.position);
-            var newPosition = spawnPoint.rotation * positionOffset + kneeOffset;
+            var newPosition = spawnPoint.position + spawnPoint.rotation * positionOffset + kneeOffset;
 
             rigidbody.transform.position = newPosition; //Sets the rigidbody's transform position
             rigidbody.position = newPosition; //Sets the rigidbody's position
