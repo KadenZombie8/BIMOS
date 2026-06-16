@@ -2,7 +2,7 @@ using KadenZombie8.BIMOS.Core.StateMachine;
 
 namespace KadenZombie8.BIMOS.Rig.Movement
 {
-    public class JumpState : BaseState<JumpStateMachine>
+    public abstract class JumpState : BaseState<JumpStateMachine>
     {
         protected Jumping Jumping { get; private set; }
         protected Crouching Crouching { get; private set; }
