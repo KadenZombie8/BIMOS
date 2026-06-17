@@ -30,7 +30,7 @@ namespace KadenZombie8.BIMOS.UI
         private BackButton _back;
 
         [SerializeField]
-        private Vector3 _canvasOffset = new(0f, -0.1f, 0.4f);
+        private Vector3 _canvasOffset = new(0f, -0.15f, 0.4f);
 
         private Transform _localCamera;
 

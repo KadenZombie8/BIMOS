@@ -3660,7 +3660,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3154094236240240562, guid: 9798ed2afc48add47b53f81a3fcf35e0, type: 3}
   m_PrefabInstance: {fileID: 6500290340501062187}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762520812181779288}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}

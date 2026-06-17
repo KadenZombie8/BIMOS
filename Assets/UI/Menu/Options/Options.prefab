@@ -405,6 +405,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5214980400686332865, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3154094236240240562}
+    - targetCorrespondingSourceObject: {fileID: 5214980400686332865, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7778554645551599789}
+    - targetCorrespondingSourceObject: {fileID: 5214980400686332865, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5557216920055897627}
     - targetCorrespondingSourceObject: {fileID: 5166304959850816570, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2713799067124461065}
@@ -435,6 +441,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ToggleGroup
   m_AllowSwitchOff: 0
+--- !u!114 &7778554645551599789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4773834059634438515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ffc62ed94c482944b81f9a26b199be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.TabMenu
+--- !u!114 &5557216920055897627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4773834059634438515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f483426ec2625c458bc1b738ae9659f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.InitialTab
 --- !u!1 &5597168663327977096 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5166304959850816570, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
@@ -1010,27 +1040,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -400
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -360
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1042,7 +1072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 1739482364372206199, guid: ab8b49e6d95258e488025f81372ede70, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1131,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
-  m_AspectMode: 1
+  m_AspectMode: 2
   m_AspectRatio: 2
 --- !u!1001 &5682914545989773013
 PrefabInstance:
@@ -1503,7 +1533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7568664273295971647, guid: 15692485aae9a5645b5fafba27cc1d09, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70.41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7568664273295971647, guid: 15692485aae9a5645b5fafba27cc1d09, type: 3}
       propertyPath: m_LocalPosition.x
