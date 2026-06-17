@@ -5,19 +5,18 @@ namespace KadenZombie8.BIMOS.Rig
     public class GripChecker : MonoBehaviour
     {
         public Hand Hand;
-
-        private bool _isGrabbing;
+        public bool IsGripping { get; private set; }
 
         private void Update()
         {
-            bool wasGrabbing = _isGrabbing;
+            bool wasGripping = IsGripping;
 
-            _isGrabbing = Hand.HandInputReader.Grip >= 0.5f;
+            IsGripping = Hand.HandInputReader.Grip >= 0.5f;
 
-            if (!wasGrabbing && _isGrabbing)
+            if (!wasGripping && IsGripping)
                 Hand.GrabHandler.AttemptGrab();
 
-            if (wasGrabbing && !_isGrabbing)
+            if (wasGripping && !IsGripping)
                 Hand.GrabHandler.AttemptRelease();
         }
     }

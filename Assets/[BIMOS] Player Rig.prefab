@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 6326488229393621846}
   - component: {fileID: 8395772050940255634}
   m_Layer: 5
-  m_Name: IGNORE
+  m_Name: RAYCAST_FIX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,7 +360,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654324478549119675}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -370,7 +370,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 1
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1558,6 +1558,7 @@ GameObject:
   - component: {fileID: 3185882712700485934}
   - component: {fileID: 2330441308950032997}
   - component: {fileID: 6001926908745742719}
+  - component: {fileID: 3541497944081907588}
   m_Layer: 5
   m_Name: VR
   m_TagString: Untagged
@@ -1585,7 +1586,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_SizeDelta: {x: 0, y: 625}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2330441308950032997
 Canvas:
@@ -1597,7 +1598,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 2215439633949418873}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1622,13 +1623,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_CheckFor2DOcclusion: 0
   m_CheckFor3DOcclusion: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &3541497944081907588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176515634236226726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.AspectRatioFitter
+  m_AspectMode: 2
+  m_AspectRatio: 0.8
 --- !u!1 &2313343773128245683
 GameObject:
   m_ObjectHideFlags: 0
@@ -3208,7 +3223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3045650548132499840}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f9c028de4cbe5e49939785ca2c860ff, type: 3}
   m_Name: 
@@ -9216,6 +9231,8 @@ GameObject:
   - component: {fileID: 5602540935969928316}
   - component: {fileID: 1025597877956472309}
   - component: {fileID: 5650808745070790787}
+  - component: {fileID: 8319602235108118684}
+  - component: {fileID: 5649348756755343062}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -9231,8 +9248,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6287488616967587312}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.00000011920929, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9254,8 +9271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.MenuToggleFlatscreen
   _menuButtonReference: {fileID: -5255308680454823498, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _leftGripReference: {fileID: -7474602102236965048, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
-  _rightGripReference: {fileID: -1119872440682016888, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _menuCanvas: {fileID: 6401120079088334818}
   _optionsMenu: {fileID: 1828136461564800906}
   _discardPopup: {fileID: 7862055896304630713}
@@ -9316,6 +9331,52 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
+--- !u!114 &8319602235108118684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287488616967587312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1180ef7877637842b501a36a3666fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.MenuToggleVR
+  _menuButtonReference: {fileID: 4948202023381923699, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
+  _gripChecker: {fileID: 1804380787358158521}
+  _menuCanvas: {fileID: 2176515634236226726}
+  _optionsMenu: {fileID: 7456093451506588416}
+  _discardPopup: {fileID: 1386025935687929651}
+  _back: {fileID: 1338293141567015635}
+  _canvasOffset: {x: 0, y: -0.1, z: 0.4}
+--- !u!1773428102 &5649348756755343062
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287488616967587312}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets:
+  - {x: 0, y: 0, z: 0.030010462}
+  m_RotationOffsets:
+  - {x: 0, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_Active: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 1663299016445241834}
+    weight: 1
 --- !u!1 &6323588199804068822
 GameObject:
   m_ObjectHideFlags: 0
@@ -9856,7 +9917,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
-  m_AllowXRRendering: 1
+  m_AllowXRRendering: 0
   m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -10155,6 +10216,134 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5118447787777737986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7508907977929693851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2993680583107213971}
+  - component: {fileID: 5756698034352746873}
+  - component: {fileID: 6643463083799410958}
+  m_Layer: 0
+  m_Name: MenuCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2993680583107213971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508907977929693851}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5915773383689518611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &5756698034352746873
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508907977929693851}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 4
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.01
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &6643463083799410958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508907977929693851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 0
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 1
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 0
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &7545433446076340860
 GameObject:
   m_ObjectHideFlags: 0
@@ -10354,7 +10543,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2993680583107213971}
   m_Father: {fileID: 1663299016445241834}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &892827106459161356
@@ -10424,7 +10614,8 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras: []
+  m_Cameras:
+  - {fileID: 5756698034352746873}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -13149,7 +13340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1582420251557245899, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1582420251557245899, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13353,11 +13544,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4482757622005966067, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.7479674
       objectReference: {fileID: 0}
     - target: {fileID: 4482757622005966067, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: -0.0000053159633
       objectReference: {fileID: 0}
     - target: {fileID: 4598188383296752599, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -13405,11 +13596,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7242328755960793961, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.96739125
       objectReference: {fileID: 0}
     - target: {fileID: 7242328755960793961, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1.0000061
       objectReference: {fileID: 0}
     - target: {fileID: 8110370327325481675, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -13433,7 +13624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8407184833933574206, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_Name
-      value: Options (VR)
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 8712988246561513204, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -13481,11 +13672,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9062688975650552935, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 663
+      value: 443
       objectReference: {fileID: 0}
     - target: {fileID: 9062688975650552935, guid: d317eb0619e67d2439b327468240329c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 460
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13495,6 +13686,22 @@ PrefabInstance:
 --- !u!224 &441614142138689781 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1582420251557245899, guid: d317eb0619e67d2439b327468240329c, type: 3}
+  m_PrefabInstance: {fileID: 1429065418768849726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1338293141567015635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 92215940547252717, guid: d317eb0619e67d2439b327468240329c, type: 3}
+  m_PrefabInstance: {fileID: 1429065418768849726}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78eb6c0c6d24ed478242c2dd7a584e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.Options.DiscardPopup
+--- !u!1 &1386025935687929651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 65628010760066061, guid: d317eb0619e67d2439b327468240329c, type: 3}
   m_PrefabInstance: {fileID: 1429065418768849726}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7456093451506588416 stripped
@@ -14029,7 +14236,7 @@ PrefabInstance:
     - target: {fileID: 4500525206204949789, guid: ed5d7d8222c766e4bbc5ea99c76661a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5602540935969928316}
+      objectReference: {fileID: 8319602235108118684}
     - target: {fileID: 4500525206204949789, guid: ed5d7d8222c766e4bbc5ea99c76661a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -14040,7 +14247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4500525206204949789, guid: ed5d7d8222c766e4bbc5ea99c76661a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: KadenZombie8.BIMOS.MenuToggleFlatscreen, kadenzombie8.bimos
+      value: KadenZombie8.BIMOS.UI.MenuToggleVR, kadenzombie8.bimos
       objectReference: {fileID: 0}
     - target: {fileID: 4500525206204949789, guid: ed5d7d8222c766e4bbc5ea99c76661a4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

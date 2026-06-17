@@ -668,8 +668,8 @@
                 },
                 {
                     "name": "",
-                    "id": "aaaa939d-4336-49f8-81f6-5f54a448d11b",
-                    "path": "<XRController>{LeftHand}/menu",
+                    "id": "7dc96da7-6fa7-437f-a1c8-dd8558464e11",
+                    "path": "<XRController>/menuButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -679,7 +679,7 @@
                 },
                 {
                     "name": "",
-                    "id": "2456a06a-1dad-4eda-bbf4-70f22176c7e0",
+                    "id": "9cc21738-e372-494a-8386-70ed365098a9",
                     "path": "<XRController>{LeftHand}/secondaryButton",
                     "interactions": "",
                     "processors": "",
