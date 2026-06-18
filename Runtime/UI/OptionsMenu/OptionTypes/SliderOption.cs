@@ -16,6 +16,6 @@ namespace KadenZombie8.BIMOS.UI.Options
 
         private void OnDisable() => _slider.onValueChanged.RemoveListener(Changed);
 
-        protected override void SetOptionValue(float value) => _slider.value = value;
+        protected override void SetUIValue(float value) => _slider.value = value;
     }
 }

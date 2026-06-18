@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.UI.Options
 {
+    [DefaultExecutionOrder(1)]
     public class RevertToDefaultButton : MonoBehaviour
     {
         [SerializeField]
@@ -11,9 +12,11 @@ namespace KadenZombie8.BIMOS.UI.Options
 
         private void Awake() => _option = GetComponentInChildren<IRevertible>();
 
-        private void Start() => UpdateButtonState();
-
-        private void OnEnable() => _option.OnValueChanged += UpdateButtonState;
+        private void OnEnable()
+        {
+            UpdateButtonState();
+            _option.OnValueChanged += UpdateButtonState;
+        }
 
         private void OnDisable() => _option.OnValueChanged -= UpdateButtonState;
 

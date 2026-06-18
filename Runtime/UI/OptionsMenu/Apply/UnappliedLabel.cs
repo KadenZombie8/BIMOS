@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.UI.Options
 {
+    [RequireComponent(typeof(TMP_Text))]
     public class UnappliedLabel : MonoBehaviour
     {
         private TMP_Text _text;
@@ -16,7 +17,11 @@ namespace KadenZombie8.BIMOS.UI.Options
             _option = GetComponentInParent<IAppliable>();
         }
 
-        private void OnEnable() => _option.OnValueChanged += UpdateLabel;
+        private void OnEnable()
+        {
+            UpdateLabel();
+            _option.OnValueChanged += UpdateLabel;
+        }
 
         private void OnDisable() => _option.OnValueChanged -= UpdateLabel;
 

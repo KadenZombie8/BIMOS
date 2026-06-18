@@ -10,20 +10,20 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
 
         protected Setting<T> Setting;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             BIMOSUtils.Settings.TryGetSetting(_key, out var setting);
             Setting = (Setting<T>)setting;
             SettingUpdated(Setting.Value);
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             Setting.OnValueChanged += SettingUpdated;
             Setting.OnValueSaved += SettingSaved;
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             Setting.OnValueChanged -= SettingUpdated;
             Setting.OnValueSaved -= SettingSaved;

@@ -16,6 +16,6 @@ namespace KadenZombie8.BIMOS.UI.Options
 
         private void OnDisable() => _inputField.onValueChanged.RemoveListener(Changed);
 
-        protected override void SetOptionValue(string value) => _inputField.text = value;
+        protected override void SetUIValue(string value) => _inputField.text = value;
     }
 }

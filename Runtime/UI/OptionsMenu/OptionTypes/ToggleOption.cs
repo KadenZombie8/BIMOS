@@ -16,6 +16,6 @@ namespace KadenZombie8.BIMOS.UI.Options
 
         private void OnDisable() => _toggle.onValueChanged.RemoveListener(Changed);
 
-        protected override void SetOptionValue(bool value) => _toggle.isOn = value;
+        protected override void SetUIValue(bool value) => _toggle.isOn = value;
     }
 }

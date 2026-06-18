@@ -26,17 +26,20 @@ namespace KadenZombie8.BIMOS.UI.Options
             _setting = (Setting<T>)setting;
             _applyOptions = GetComponentInParent<ApplyOptions>();
             UpdateOptionValue();
+            _setting.OnValueChanged += SettingValueChanged;
         }
 
-        protected virtual void Changed(T value)
-        {
-            _setting.Value = value;
-            OnValueChanged?.Invoke();
+        private void OnDestroy() => _setting.OnValueChanged -= SettingValueChanged;
 
-            if (_setting.IsSavedValue)
-                _applyOptions.UnregisterOption(this);
-            else
-                _applyOptions.RegisterOption(this);
+        protected virtual void Changed(T value) => _setting.Value = value;
+
+        private void SettingValueChanged(T _) => SettingUpdated();
+
+        protected virtual void SettingUpdated()
+        {
+            OnValueChanged?.Invoke();
+            SetUIValue(_setting.Value);
+            RegisterApply();
         }
 
         public void Apply()
@@ -59,10 +62,18 @@ namespace KadenZombie8.BIMOS.UI.Options
 
         private void UpdateOptionValue()
         {
-            SetOptionValue(_setting.Value);
+            SetUIValue(_setting.Value);
             Changed(_setting.Value);
         }
 
-        protected abstract void SetOptionValue(T value);
+        private void RegisterApply()
+        {
+            if (_setting.IsSavedValue)
+                _applyOptions.UnregisterOption(this);
+            else
+                _applyOptions.RegisterOption(this);
+        }
+
+        protected abstract void SetUIValue(T value);
     }
 }

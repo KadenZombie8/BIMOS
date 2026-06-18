@@ -16,6 +16,6 @@ namespace KadenZombie8.BIMOS.UI.Options
 
         private void OnDisable() => _dropdown.onValueChanged.RemoveListener(Changed);
 
-        protected override void SetOptionValue(int value) => _dropdown.value = value;
+        protected override void SetUIValue(int value) => _dropdown.value = value;
     }
 }

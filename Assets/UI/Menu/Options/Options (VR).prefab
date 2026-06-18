@@ -2653,10 +2653,6 @@ PrefabInstance:
       value: Control
       objectReference: {fileID: 0}
     - target: {fileID: 3891322680809942829, guid: c6e4a44dad855e044afe40bd0184c4ce, type: 3}
-      propertyPath: m_IsOn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3891322680809942829, guid: c6e4a44dad855e044afe40bd0184c4ce, type: 3}
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 5124535939999773326}
@@ -2783,6 +2779,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.Tab
   Page: {fileID: 523487804400347784}
+--- !u!114 &9010496910405401561 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3891322680809942829, guid: c6e4a44dad855e044afe40bd0184c4ce, type: 3}
+  m_PrefabInstance: {fileID: 5407545997682218228}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375134822006809683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5563174604152661470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3299,6 +3306,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5557216920055897627, guid: 9798ed2afc48add47b53f81a3fcf35e0, type: 3}
+      propertyPath: _initialToggle
+      value: 
+      objectReference: {fileID: 9010496910405401561}
     - target: {fileID: 6781409064947485055, guid: 9798ed2afc48add47b53f81a3fcf35e0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
