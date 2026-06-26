@@ -27,7 +27,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private void Update()
         {
             if (_turnVector == 0f) return;
-            var degreesToTurn = _virtualTurning.TurnSpeed * Time.deltaTime;
+            var degreesToTurn = _virtualTurning.TurnRate * Time.deltaTime;
             _controllerRig.transform.Rotate(0f, degreesToTurn * _turnVector, 0f);
         }
     }

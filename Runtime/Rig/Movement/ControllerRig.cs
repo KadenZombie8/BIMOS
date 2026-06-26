@@ -10,7 +10,8 @@ namespace KadenZombie8.BIMOS.Rig
         private BIMOSRig _rig;
 
         public ControllerRigTransforms Transforms;
-        public float HeadsetStandingHeight = 1.65f;
+
+        private readonly float _eyeToCrownHeight = 0.1f;
 
         public Quaternion HeadForwardRotation => Quaternion.LookRotation(Vector3.Cross(Transforms.Camera.right, Vector3.up));
 
@@ -22,21 +23,13 @@ namespace KadenZombie8.BIMOS.Rig
 
             Transforms.Camera.GetComponent<Camera>().cullingMask = ~LayerMask.GetMask("BIMOSMenu");
             Transforms.MenuCamera.GetComponent<Camera>().cullingMask = LayerMask.GetMask("BIMOSMenu");
-
-            #region Preferences
-            HeadsetStandingHeight = PlayerPrefs.GetFloat("HeadsetStandingHeight", 1.65f);
-            HeadsetStandingHeight = Mathf.Clamp(HeadsetStandingHeight, 1f, 3f);
-
-            //SmoothTurnSpeed = PlayerPrefs.GetFloat("SmoothTurnSpeed", 10f);
-            //SnapTurnIncrement = PlayerPrefs.GetFloat("SnapTurnIncrement", 45f);
-            #endregion
-
-            ScaleCharacter();
         }
 
-        public void ScaleCharacter()
+        public void UpdateRealHeight(float realHeight)
         {
-            float scaleFactor = _rig.AnimationRig.AvatarEyeHeight / HeadsetStandingHeight;
+            realHeight = Mathf.Clamp(realHeight, 0.9f, 2.7f);
+            var eyeHeight = realHeight - _eyeToCrownHeight;
+            float scaleFactor = _rig.AnimationRig.AvatarEyeHeight / eyeHeight;
             transform.localScale = Vector3.one * scaleFactor;
         }
 

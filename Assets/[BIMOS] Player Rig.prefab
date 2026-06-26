@@ -3275,7 +3275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f641dba8b8831a941b2a9fcd4583e658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnSpeed: 450
+  TurnRate: 450
   _turnAction: {fileID: -6922838068034798914, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   ControllerRig: {fileID: 7251668691989030867}
 --- !u!114 &5568752332480941085
@@ -4884,7 +4884,6 @@ MonoBehaviour:
     RightPalm: {fileID: 8105584686134532683}
     LeftController: {fileID: 6592363549466593726}
     RightController: {fileID: 1478771343154856604}
-  HeadsetStandingHeight: 1.65
 --- !u!114 &7877303348130894249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7855,6 +7854,11 @@ GameObject:
   - component: {fileID: 7562868264468085269}
   - component: {fileID: 8802311137906755772}
   - component: {fileID: 4210990792045415552}
+  - component: {fileID: 3013463206048221826}
+  - component: {fileID: 5270442774450021066}
+  - component: {fileID: 2463281980144351733}
+  - component: {fileID: 1994631014392214427}
+  - component: {fileID: 3930441516900957385}
   m_Layer: 0
   m_Name: Bindings
   m_TagString: Untagged
@@ -7991,6 +7995,73 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.VR_Haptics
   _key: VR_Haptics
+--- !u!114 &3013463206048221826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282995369280217170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f767d6024519444a24a9e73645c236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.VR_TurnMode
+  _key: VR_TurnMode
+  _virtualTurning: {fileID: 7745990403062909187}
+--- !u!114 &5270442774450021066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282995369280217170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f317f97776b441a47881e52a55394e7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.VR_TurnRate
+  _key: VR_TurnRate
+  _virtualTurning: {fileID: 7745990403062909187}
+--- !u!114 &2463281980144351733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282995369280217170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a28bfb5e4e87a4897cc298ab51718a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.VR_LocomotionDirection
+  _key: VR_LocomotionDirection
+--- !u!114 &1994631014392214427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282995369280217170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99c4b091efc13c4499eafba512040a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.VR_LocomotionJoystick
+--- !u!114 &3930441516900957385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282995369280217170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a006188833127d429b33dd793fb8b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.VR_RealHeight
+  _key: VR_RealHeight
+  _controllerRig: {fileID: 7251668691989030867}
 --- !u!1 &5297804927562428358
 GameObject:
   m_ObjectHideFlags: 0

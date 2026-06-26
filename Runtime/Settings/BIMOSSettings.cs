@@ -7,11 +7,13 @@ namespace KadenZombie8.BIMOS.Settings
         private readonly Dictionary<string, ISetting> _settings = new();
 
         #region Settings
-        /// <summary>
-        /// The device currently being used to control the player's rig.
-        /// <para>0 = VR</para>
-        /// <para>1 = Flatscreen</para>
-        /// </summary>
+        // VR
+        public Setting<float> VRRealHeight = new("VR_RealHeight", 1.8f);
+        public Setting<int> VRTurnMode = new("VR_TurnMode", 2);
+        public Setting<float> VRTurnRate = new("VR_TurnRate", 4f);
+        public Setting<int> VRGripType = new("VR_GripType", 0);
+        public Setting<float> VRHaptics = new("VR_Haptics", 1f);
+
         // Mouse
         public Setting<float> MouseSensitivity = new("Mouse_Sensitivity", 5f);
         public Setting<int> MouseGripType = new("Mouse_GripType", 0);

@@ -44,7 +44,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             var degreesLeftToTurn = TurnIncrement;
             while (degreesLeftToTurn > 0f)
             {
-                var degreesToTurn = Mathf.Min(degreesLeftToTurn, _virtualTurning.TurnSpeed * Time.deltaTime);
+                var degreesToTurn = Mathf.Min(degreesLeftToTurn, _virtualTurning.TurnRate * Time.deltaTime);
                 degreesLeftToTurn -= degreesToTurn;
                 _controllerRig.transform.Rotate(0f, degreesToTurn * turnDirection, 0f);
                 yield return null;
