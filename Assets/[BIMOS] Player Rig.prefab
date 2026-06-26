@@ -7853,6 +7853,8 @@ GameObject:
   - component: {fileID: 3889809590157721870}
   - component: {fileID: 2605554007433225634}
   - component: {fileID: 7562868264468085269}
+  - component: {fileID: 8802311137906755772}
+  - component: {fileID: 4210990792045415552}
   m_Layer: 0
   m_Name: Bindings
   m_TagString: Untagged
@@ -7961,6 +7963,34 @@ MonoBehaviour:
   _key: Gamepad_GripType
   _leftHandInputReader: {fileID: 2670558484249623212}
   _rightHandInputReader: {fileID: 4166488413971264423}
+--- !u!114 &8802311137906755772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282995369280217170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2720d1baa65fe43b769addc4274299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.VR_GripType
+  _key: VR_GripType
+  _leftHandInputReader: {fileID: 2670558484249623212}
+  _rightHandInputReader: {fileID: 4166488413971264423}
+--- !u!114 &4210990792045415552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5282995369280217170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cace659d7f0c9684a9107946a2936c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.VR_Haptics
+  _key: VR_Haptics
 --- !u!1 &5297804927562428358
 GameObject:
   m_ObjectHideFlags: 0
