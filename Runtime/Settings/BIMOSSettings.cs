@@ -14,7 +14,7 @@ namespace KadenZombie8.BIMOS.Settings
         public Setting<int> VRTurnMode = new("VR_TurnMode", 2);
         public Setting<float> VRTurnRate = new("VR_TurnRate", 4f);
         public Setting<int> VRGripType = new("VR_GripType", 0);
-        public Setting<float> VRHaptics = new("VR_Haptics", 1f);
+        public Setting<float> VRHaptics = new("VR_Haptics", 10f);
 
         // Mouse
         public Setting<float> MouseSensitivity = new("Mouse_Sensitivity", 5f);

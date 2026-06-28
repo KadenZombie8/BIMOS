@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.Options.SliderInputFieldConnection
   _format: 
+  _multiplier: 1
 --- !u!224 &6951043545800489708 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 641059472736282184, guid: 267422f5691e3144489363d40840dee5, type: 3}
