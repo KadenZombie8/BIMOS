@@ -20,9 +20,7 @@ namespace KadenZombie8.BIMOS.Rig
         public void Start()
         {
             _rig = GetComponentInParent<BIMOSRig>();
-
-            Transforms.Camera.GetComponent<Camera>().cullingMask = ~LayerMask.GetMask("BIMOSMenu");
-            Transforms.MenuCamera.GetComponent<Camera>().cullingMask = LayerMask.GetMask("BIMOSMenu");
+            Transforms.Camera.GetComponent<Camera>().cullingMask = ~LayerMask.GetMask("UI");
         }
 
         public void UpdateRealHeight(float realHeight)

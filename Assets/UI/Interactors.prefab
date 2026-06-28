@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6541346753444274052}
   - component: {fileID: 7393178950496632924}
   - component: {fileID: 1679627120877639276}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Near-Far Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041462400371531026}
   - component: {fileID: 7936574159917140871}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Poke Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 9202601350395096587}
   - component: {fileID: 7058697108950439566}
   - component: {fileID: 2056925028006670457}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: LineVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4063252769111868124}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Interactors
   m_TagString: Untagged
   m_Icon: {fileID: 0}

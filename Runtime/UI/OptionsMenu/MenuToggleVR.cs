@@ -32,7 +32,13 @@ namespace KadenZombie8.BIMOS.UI
         [SerializeField]
         private Vector3 _canvasOffset = new(0f, -0.15f, 0.4f);
 
+        [SerializeField]
+        private Transform _character;
+
         private Transform _localCamera;
+
+        private readonly int _defaultLayer = 0;
+        private readonly int _uiLayer = 5;
 
         private void Awake() => _menuButtonReference.action.Enable();
 
@@ -65,8 +71,19 @@ namespace KadenZombie8.BIMOS.UI
                 return;
             }
 
-            var showMenu = !_menuCanvas.activeSelf;
-            _menuCanvas.SetActive(showMenu);
+            var isOpen = !_menuCanvas.activeSelf;
+            SetMenuOpen(isOpen);
+        }
+
+        public void SetMenuOpen(bool isOpen)
+        {
+            _menuCanvas.SetActive(isOpen);
+
+            foreach (Transform child in _character)
+            {
+                if (!child.GetComponent<Renderer>()) continue;
+                child.gameObject.layer = isOpen ? _uiLayer : _defaultLayer;
+            }
         }
     }
 }
