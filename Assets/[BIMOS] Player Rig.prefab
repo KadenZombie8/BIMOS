@@ -7909,6 +7909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.ControlType
   _key: Debug_ControlType
+  _vrMenuCanvas: {fileID: 2176515634236226726}
 --- !u!114 &5392313364509101690
 MonoBehaviour:
   m_ObjectHideFlags: 0

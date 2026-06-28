@@ -1,10 +1,14 @@
 using System.Collections;
+using UnityEngine;
 using UnityEngine.XR.Management;
 
 namespace KadenZombie8.BIMOS.Settings.Bindings
 {
     public class Debug_ControlType : SettingBinding<int>
     {
+        [SerializeField]
+        private GameObject _vrMenuCanvas;
+
         private void Start()
         {
             if (Setting.Value == 0)
@@ -30,6 +34,7 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
 
         private void StopXR()
         {
+            _vrMenuCanvas.SetActive(false);
             var manager = XRGeneralSettings.Instance.Manager;
             if (!manager.activeLoader) return;
             manager.StopSubsystems();
