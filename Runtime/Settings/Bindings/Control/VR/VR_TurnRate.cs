@@ -8,6 +8,6 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
         [SerializeField]
         private VirtualTurning _virtualTurning;
 
-        protected override void SettingUpdated(float value) => _virtualTurning.TurnRate = value;
+        protected override void SettingUpdated(float value) => _virtualTurning.TurnRate = value * 60f;
     }
 }

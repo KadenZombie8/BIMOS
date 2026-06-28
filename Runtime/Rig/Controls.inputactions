@@ -29,7 +29,7 @@
                     "type": "Value",
                     "id": "27542ca4-d83e-47d7-a421-ebf7f09ba4de",
                     "expectedControlType": "Axis",
-                    "processors": "AxisDeadzone(min=0.75)",
+                    "processors": "AxisDeadzone(min=0.25)",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -47,7 +47,7 @@
                     "type": "Value",
                     "id": "346b7e6b-1e31-41b1-911b-8fd2da7a532f",
                     "expectedControlType": "Axis",
-                    "processors": "AxisDeadzone(min=0.75)",
+                    "processors": "AxisDeadzone(min=0.35)",
                     "interactions": "",
                     "initialStateCheck": true
                 }

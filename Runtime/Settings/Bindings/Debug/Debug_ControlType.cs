@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.Rig.Movement;
 using KadenZombie8.BIMOS.UI;
 using System.Collections;
 using UnityEngine;
@@ -9,6 +10,12 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
     {
         [SerializeField]
         private MenuToggleVR _menuToggleVR;
+
+        [SerializeField]
+        private MenuToggleFlatscreen _menuToggleFlatscreen;
+
+        [SerializeField]
+        private ScreenModeCamera _screenModeCamera;
 
         private void Start()
         {
@@ -26,6 +33,8 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
 
         private IEnumerator StartXR()
         {
+            _menuToggleFlatscreen.SetMenuOpen(false);
+            _screenModeCamera.enabled = false;
             var manager = XRGeneralSettings.Instance.Manager;
             if (manager.activeLoader) yield break;
             yield return manager.InitializeLoader();
@@ -36,6 +45,7 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
         private void StopXR()
         {
             _menuToggleVR.SetMenuOpen(false);
+            _screenModeCamera.enabled = true;
             var manager = XRGeneralSettings.Instance.Manager;
             if (!manager.activeLoader) return;
             manager.StopSubsystems();

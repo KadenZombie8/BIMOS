@@ -7906,6 +7906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.ControlType
   _key: Debug_ControlType
   _menuToggleVR: {fileID: 8319602235108118684}
+  _menuToggleFlatscreen: {fileID: 5602540935969928316}
+  _screenModeCamera: {fileID: 1785471339049578779}
 --- !u!114 &5392313364509101690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9453,6 +9455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.MenuToggleFlatscreen
   _menuButtonReference: {fileID: -5255308680454823498, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _menuCanvas: {fileID: 6401120079088334818}
+  _menu: {fileID: 4103990047299816174}
   _optionsMenu: {fileID: 1828136461564800906}
   _discardPopup: {fileID: 7862055896304630713}
   _back: {fileID: 7833193059655974489}
@@ -9471,6 +9474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.MenuToggleVR
   _menuButtonReference: {fileID: 4948202023381923699, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _gripChecker: {fileID: 1804380787358158521}
+  _menu: {fileID: 5996661120444890013}
   _menuCanvas: {fileID: 2176515634236226726}
   _optionsMenu: {fileID: 7456093451506588416}
   _discardPopup: {fileID: 1386025935687929651}

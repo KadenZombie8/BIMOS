@@ -17,6 +17,9 @@ namespace KadenZombie8.BIMOS.UI
         private GameObject _menuCanvas;
 
         [SerializeField]
+        private GameObject _menu;
+
+        [SerializeField]
         private GameObject _optionsMenu;
 
         [SerializeField]
@@ -47,9 +50,18 @@ namespace KadenZombie8.BIMOS.UI
                 return;
             }
 
-            var showMenu = !_menuCanvas.activeSelf;
-            _menuCanvas.SetActive(showMenu);
-            _screenModeCamera.IsActive = !showMenu;
+            var isOpen = !_menuCanvas.activeSelf;
+            SetMenuOpen(isOpen);
+            _screenModeCamera.IsActive = !isOpen;
+        }
+
+        public void SetMenuOpen(bool isOpen)
+        {
+            Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+            _menuCanvas.SetActive(isOpen);
+            _menu.SetActive(true);
+            _optionsMenu.SetActive(false);
+            _discardPopup.SetActive(false);
         }
     }
 }

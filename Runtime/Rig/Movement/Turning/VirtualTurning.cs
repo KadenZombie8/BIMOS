@@ -13,7 +13,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public event Action<float> TurnEvent;
         
         [Tooltip("The speed (in degrees/second) turning occurs at")]
-        public float TurnRate = 450f;
+        public float TurnRate = 4f;
 
         [SerializeField]
         private InputActionReference _turnAction;

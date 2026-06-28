@@ -1,5 +1,4 @@
 using KadenZombie8.BIMOS.Rig;
-using KadenZombie8.BIMOS.Rig.Movement;
 using KadenZombie8.BIMOS.UI.Options;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,6 +15,9 @@ namespace KadenZombie8.BIMOS.UI
 
         [SerializeField]
         private GripChecker _gripChecker;
+
+        [SerializeField]
+        private GameObject _menu;
 
         [SerializeField]
         private GameObject _menuCanvas;
@@ -85,6 +87,9 @@ namespace KadenZombie8.BIMOS.UI
         public void SetMenuOpen(bool isOpen)
         {
             _menuCanvas.SetActive(isOpen);
+            _menu.SetActive(true);
+            _optionsMenu.SetActive(false);
+            _discardPopup.SetActive(false);
 
             foreach (Transform child in _character)
             {
