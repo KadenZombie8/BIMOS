@@ -8,9 +8,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     /// </summary>
     public class PhysicsRig : MonoBehaviour
     {
-        [SerializeField]
-        private string _rigLayerName = "BIMOSRig";
-
         public BIMOSRig Rig { get; private set; }
 
         public PhysicsRigRigidbodies Rigidbodies;
@@ -18,9 +15,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public PhysicsRigJoints Joints;
         public PhysicsRigJointDrives JointDrives;
         public PhysicsRigGrabHandlers GrabHandlers;
-
-        [HideInInspector]
-        public LayerMask PlayerLayerMask;
 
         [HideInInspector]
         public SmoothLocomotion Movement;
@@ -31,12 +25,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         [HideInInspector]
         public LocomotionSphere LocomotionSphere;
 
-        private int _rigLayer;
-
         private void Awake()
         {
             Rig = GetComponentInParent<BIMOSRig>();
-            PlayerLayerMask = LayerMask.GetMask("Player");
             Crouching = GetComponent<Crouching>();
             Movement = GetComponent<SmoothLocomotion>();
             LocomotionSphere = Rigidbodies.LocomotionSphere.GetComponent<LocomotionSphere>();
@@ -46,25 +37,25 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void SetRigidbodyLayers()
         {
-            _rigLayer = LayerMask.NameToLayer(_rigLayerName);
-            Physics.IgnoreLayerCollision(_rigLayer, _rigLayer);
-
-            SetRigLayerRecursive(Rigidbodies.LocomotionSphere.gameObject);
-            SetRigLayerRecursive(Rigidbodies.Knee.gameObject);
-            SetRigLayerRecursive(Rigidbodies.Pelvis.gameObject);
-            SetRigLayerRecursive(Rigidbodies.Head.gameObject);
-            SetRigLayerRecursive(Rigidbodies.LeftArm.UpperArm.gameObject);
-            SetRigLayerRecursive(Rigidbodies.LeftArm.LowerArm.gameObject);
-            SetRigLayerRecursive(Rigidbodies.LeftArm.Hand.gameObject);
-            SetRigLayerRecursive(Rigidbodies.RightArm.UpperArm.gameObject);
-            SetRigLayerRecursive(Rigidbodies.RightArm.LowerArm.gameObject);
-            SetRigLayerRecursive(Rigidbodies.RightArm.Hand.gameObject);
+            IgnoreCollisions(new Collider[]
+            {
+                Colliders.LocomotionSphere,
+                Colliders.Body,
+                Colliders.Head,
+                Colliders.LeftArm.UpperArm,
+                Colliders.LeftArm.LowerArm,
+                Colliders.LeftArm.Hand,
+                Colliders.RightArm.UpperArm,
+                Colliders.RightArm.LowerArm,
+                Colliders.RightArm.Hand
+            });
         }
 
-        private void SetRigLayerRecursive(GameObject gameObject)
+        private void IgnoreCollisions(Collider[] colliders)
         {
-            gameObject.layer = _rigLayer;
-            foreach (Transform child in gameObject.transform) SetRigLayerRecursive(child.gameObject);
+            foreach (var collider1 in colliders)
+                foreach (var collider2 in colliders)
+                    Physics.IgnoreCollision(collider1, collider2);
         }
 
         private void InitializeJointDrives()

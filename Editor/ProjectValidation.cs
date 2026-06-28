@@ -55,30 +55,6 @@ namespace KadenZombie8.BIMOS.Editor
             XRPackageMetadataStore.AssignLoader(manager, _openXRLoaderTypeName, targetGroup);
         }
 
-        private static bool HasLayer(string layerName) => LayerMask.NameToLayer(layerName) != -1;
-
-        private static void CreateLayer(string layerName)
-        {
-            if (string.IsNullOrEmpty(layerName)) return;
-            if (HasLayer(layerName)) return;
-
-            var tagManager = new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/TagManager.asset")[0]);
-            var layers = tagManager.FindProperty("layers");
-
-            for (int i = 8; i <= 31; i++)
-            {
-                var layer = layers.GetArrayElementAtIndex(i);
-                if (!string.IsNullOrEmpty(layer.stringValue)) continue;
-
-                layer.stringValue = layerName;
-                tagManager.ApplyModifiedProperties();
-                Debug.Log($"[BIMOS] Created layer {layerName}.");
-                return;
-            }
-
-            Debug.LogError($"[BIMOS] Could not create layer {layerName}. All user layers are in use.");
-        }
-
         private static readonly List<BuildValidationRule> _buildValidationRules = new()
         {
             new()
@@ -167,24 +143,6 @@ namespace KadenZombie8.BIMOS.Editor
                         = settings.GetFeature<MetaQuestFeature>().enabled
                         = true;
                 },
-                Error = true
-            },
-            new()
-            {
-                IsRuleEnabled = () => true,
-                Message = "Must have a layer called \"BIMOSRig\"",
-                Category = _category,
-                CheckPredicate = () => HasLayer("BIMOSRig"),
-                FixIt = () => CreateLayer("BIMOSRig"),
-                Error = true
-            },
-            new()
-            {
-                IsRuleEnabled = () => true,
-                Message = "Must have a layer called \"BIMOSMenu\"",
-                Category = _category,
-                CheckPredicate = () => HasLayer("BIMOSMenu"),
-                FixIt = () => CreateLayer("BIMOSMenu"),
                 Error = true
             },
             new()
