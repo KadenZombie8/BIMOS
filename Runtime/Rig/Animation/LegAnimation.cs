@@ -34,13 +34,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         private bool _isMoving, _isStepping;
         private float _stepTime = 0.1f, _stepLength = 0.1f, _stepHeight = 0.1f;
 
-        private LayerMask _mask;
-
-        private void Start()
-        {
-            _currentFoot = _rightFoot;
-            _mask = ~LayerMask.GetMask("BIMOSRig");
-        }
+        private void Start() => _currentFoot = _rightFoot;
 
         private void Update()
         {
@@ -82,7 +76,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
                 Vector3.down,
                 out RaycastHit hit,
                 1.25f,
-                _mask,
+                Physics.DefaultRaycastLayers,
                 QueryTriggerInteraction.Ignore)
                 && _locomotionSphere.IsGrounded)
             {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8664907815770538786}
   - component: {fileID: 8375668720400347266}
   - component: {fileID: 3789043860323085747}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LocomotionSphereVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1817,7 +1817,7 @@ GameObject:
   - component: {fileID: 517655673511817879}
   - component: {fileID: 4312393692740464888}
   - component: {fileID: 3005325754436993507}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LocomotionSphere
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3117,7 +3117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ddac3625807fb489c5b2df105060c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigLayerName: BIMOSRig
   Rigidbodies:
     LocomotionSphere: {fileID: 5217677170083806441}
     Knee: {fileID: 4107036072679230787}
@@ -3152,9 +3151,6 @@ MonoBehaviour:
   GrabHandlers:
     Left: {fileID: 2531710907283994335}
     Right: {fileID: 3685421060059991317}
-  PlayerLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
   Movement: {fileID: 0}
   Crouching: {fileID: 0}
   LocomotionSphere: {fileID: 0}
@@ -9481,6 +9477,7 @@ MonoBehaviour:
   _back: {fileID: 1338293141567015635}
   _canvasOffset: {x: 0, y: -0.15, z: 0.4}
   _character: {fileID: 6304793145192069567}
+  _physicsLayerReference: {fileID: 2375750912006841374}
 --- !u!1 &6323588199804068822
 GameObject:
   m_ObjectHideFlags: 0

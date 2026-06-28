@@ -37,10 +37,17 @@ namespace KadenZombie8.BIMOS.UI
 
         private Transform _localCamera;
 
-        private readonly int _defaultLayer = 0;
+        [SerializeField]
+        private GameObject _physicsLayerReference;
+
+        private int _rigLayer = 0;
         private readonly int _uiLayer = 5;
 
-        private void Awake() => _menuButtonReference.action.Enable();
+        private void Awake()
+        {
+            _menuButtonReference.action.Enable();
+            _rigLayer = _physicsLayerReference.layer;
+        }
 
         private void Start() => _localCamera = BIMOSUtils.LocalRig.ControllerRig.Transforms.Camera;
 
@@ -82,7 +89,7 @@ namespace KadenZombie8.BIMOS.UI
             foreach (Transform child in _character)
             {
                 if (!child.GetComponent<Renderer>()) continue;
-                child.gameObject.layer = isOpen ? _uiLayer : _defaultLayer;
+                child.gameObject.layer = isOpen ? _uiLayer : _rigLayer;
             }
         }
     }
