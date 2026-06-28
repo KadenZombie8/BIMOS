@@ -9,6 +9,8 @@ namespace KadenZombie8.BIMOS.Settings
         #region Settings
         // VR
         public Setting<float> VRRealHeight = new("VR_RealHeight", 1.8f);
+        public Setting<int> VRLocomotionDirection = new("VR_LocomotionDirection", 0);
+        public Setting<int> VRLocomotionJoystick = new("VR_LocomotionJoystick", 0);
         public Setting<int> VRTurnMode = new("VR_TurnMode", 2);
         public Setting<float> VRTurnRate = new("VR_TurnRate", 4f);
         public Setting<int> VRGripType = new("VR_GripType", 0);

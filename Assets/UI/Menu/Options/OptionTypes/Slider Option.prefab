@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.Options.SliderOption
   Key: 
-  DefaultValue: 0
+  _multiplier: 1
 --- !u!1001 &7908168011164055071
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Settings.Bindings
 {
+    [DefaultExecutionOrder(1)]
     public abstract class SettingBinding<T> : MonoBehaviour
     {
         [SerializeField]

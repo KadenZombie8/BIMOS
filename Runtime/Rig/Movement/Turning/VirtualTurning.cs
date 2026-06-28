@@ -7,6 +7,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     /// <summary>
     /// Handles turning input and turn types
     /// </summary>
+    [RequireComponent(typeof(SmoothTurn), typeof(SnapTurn))]
     public class VirtualTurning : MonoBehaviour
     {
         public event Action<float> TurnEvent;
@@ -25,8 +26,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public enum VirtualTurningMode
         {
             NoTurn,
-            SnapTurn,
-            SmoothTurn
+            SmoothTurn,
+            SnapTurn
         }
         public VirtualTurningMode TurningMode
         {
@@ -40,13 +41,13 @@ namespace KadenZombie8.BIMOS.Rig.Movement
                         _snapTurn.enabled = false;
                         _smoothTurn.enabled = false;
                         break;
-                    case VirtualTurningMode.SnapTurn:
-                        _snapTurn.enabled = true;
-                        _smoothTurn.enabled = false;
-                        break;
                     case VirtualTurningMode.SmoothTurn:
                         _snapTurn.enabled = false;
                         _smoothTurn.enabled = true;
+                        break;
+                    case VirtualTurningMode.SnapTurn:
+                        _snapTurn.enabled = true;
+                        _smoothTurn.enabled = false;
                         break;
                 }
             }
