@@ -25,6 +25,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         public void UpdateRealHeight(float realHeight)
         {
+            realHeight /= 100f;
             realHeight = Mathf.Clamp(realHeight, 0.9f, 2.7f);
             var eyeHeight = realHeight - _eyeToCrownHeight;
             float scaleFactor = _rig.AnimationRig.AvatarEyeHeight / eyeHeight;

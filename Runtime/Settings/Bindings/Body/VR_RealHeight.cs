@@ -8,6 +8,6 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
         [SerializeField]
         private ControllerRig _controllerRig;
 
-        protected override void SettingUpdated(float value) => _controllerRig.UpdateRealHeight(value);
+        protected override void SettingSaved(float value) => _controllerRig.UpdateRealHeight(value);
     }
 }
