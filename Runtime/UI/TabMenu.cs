@@ -11,6 +11,15 @@ namespace KadenZombie8.BIMOS.UI
 
         private readonly Dictionary<Toggle, UnityAction<bool>> _listeners = new();
 
+        [SerializeField]
+        private Transform _pageContainer;
+
+        private void Awake()
+        {
+            foreach (Transform page in _pageContainer)
+                page.gameObject.SetActive(false);
+        }
+
         public void Register(Tab tab, Toggle toggle)
         {
             void Listener(bool isSelected)

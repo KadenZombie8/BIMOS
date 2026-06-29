@@ -28,6 +28,10 @@ namespace KadenZombie8.BIMOS.UI
         {
             BIMOSUtils.Settings.TryGetSetting("Debug_ControlType", out var setting);
             _setting = (Setting<int>)setting;
+        }
+
+        private void Start()
+        {
             bool isFlatscreen = _setting.Value == 1;
             UpdateTabs(isFlatscreen);
             if (isFlatscreen)

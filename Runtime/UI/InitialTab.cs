@@ -11,6 +11,6 @@ namespace KadenZombie8.BIMOS.UI
         [SerializeField]
         private Toggle _initialToggle;
 
-        private void Awake() => _initialToggle.Select();
+        private void Start() => _initialToggle.Select();
     }
 }
