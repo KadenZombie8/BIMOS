@@ -75,8 +75,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
                 case VirtualCrouchModeType.Discrete:
                     CrouchInputMagnitude = CrouchInputMagnitude < 0f ? -1f : 1f;
                     break;
-                case VirtualCrouchModeType.DiscreteToggle when context.performed:
-                    _isCrouching = !_isCrouching;
+                case VirtualCrouchModeType.DiscreteToggle:
+                    if (context.performed) _isCrouching = !_isCrouching;
                     CrouchInputMagnitude = _isCrouching ? -1f : 1f;
                     break;
             }
