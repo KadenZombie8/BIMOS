@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Settings.Bindings
 {
-    public class VR_Haptics : SettingBinding<float>
+    public class Gamepad_Haptics : SettingBinding<float>
     {
         [SerializeField]
         private Hand _leftHand;
@@ -13,8 +13,8 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
 
         protected override void SettingUpdated(float value)
         {
-            _leftHand.VRHaptics = value / 10f;
-            _rightHand.VRHaptics = value / 10f;
+            _leftHand.GamepadHaptics = value / 10f;
+            _rightHand.GamepadHaptics = value / 10f;
 
             _leftHand.SendHapticImpulse(1f, 0.1f);
             _rightHand.SendHapticImpulse(1f, 0.1f);

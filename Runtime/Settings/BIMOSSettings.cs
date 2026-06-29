@@ -23,6 +23,7 @@ namespace KadenZombie8.BIMOS.Settings
         // Gamepad
         public Setting<float> GamepadSensitivity = new("Gamepad_Sensitivity", 5f);
         public Setting<int> GamepadGripType = new("Gamepad_GripType", 1);
+        public Setting<float> GamepadHaptics = new("Gamepad_Haptics", 10f);
 
         // Video
         public Setting<float> FlatscreenFieldOfView = new("Video_FieldOfView", 60f);

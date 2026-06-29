@@ -23,20 +23,26 @@ namespace KadenZombie8.BIMOS.Rig
         public ArmColliders ArmColliders;
         public Joint GrabJoint;
 
+        [HideInInspector]
+        public float VRHaptics = 1f;
+
+        [HideInInspector]
+        public float GamepadHaptics = 1f;
+
         private Coroutine _hapticCoroutine;
 
         public void SendHapticImpulse(float amplitude, float duration)
         {
             // XR
             var device = Handedness == Handedness.Left ? InputDevices.GetDeviceAtXRNode(XRNode.LeftHand) : InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-            if (device.isValid)
-                device.SendHapticImpulse(0, amplitude, duration);
+            if (device.isValid && VRHaptics > 0f)
+                device.SendHapticImpulse(0, amplitude * VRHaptics, duration);
 
             // Gamepad
             var gamepad = Gamepad.current;
-            if (gamepad != null)
+            if (gamepad != null && GamepadHaptics > 0f)
             {
-                gamepad.SetMotorSpeeds(amplitude, amplitude);
+                gamepad.SetMotorSpeeds(amplitude * GamepadHaptics, amplitude);
 
                 if (_hapticCoroutine != null)
                     StopCoroutine(_hapticCoroutine);

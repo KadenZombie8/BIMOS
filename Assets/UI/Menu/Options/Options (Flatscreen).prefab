@@ -2881,7 +2881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9151750415994078175, guid: 520d9120ce63a1a44a7bb428f17e1f96, type: 3}
       propertyPath: Key
-      value: VR_Haptics
+      value: Gamepad_Haptics
       objectReference: {fileID: 0}
     - target: {fileID: 9151750415994078175, guid: 520d9120ce63a1a44a7bb428f17e1f96, type: 3}
       propertyPath: _multiplier
