@@ -424,6 +424,10 @@ PrefabInstance:
       propertyPath: m_WholeNumbers
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6239067173352665944, guid: 520d9120ce63a1a44a7bb428f17e1f96, type: 3}
+      propertyPath: _format
+      value: "0\xB0"
+      objectReference: {fileID: 0}
     - target: {fileID: 7229019265969679184, guid: 520d9120ce63a1a44a7bb428f17e1f96, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
