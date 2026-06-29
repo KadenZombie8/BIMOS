@@ -221,10 +221,7 @@ namespace KadenZombie8.BIMOS.Rig
                 if (isGripped && !_wasGripped)
                     _isGripped = !_isGripped;
 
-                if (device is not Mouse)
-                    Grip = _isGripped ? 1f : Mathf.Min(1f, value * 2f);
-                else
-                    Grip = _isGripped ? 1f : 0f;
+                Grip = _isGripped ? 1f : 0f;
             }
             else
             {

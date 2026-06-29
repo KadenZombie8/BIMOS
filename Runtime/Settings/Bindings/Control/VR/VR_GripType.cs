@@ -14,8 +14,8 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
         protected override void SettingUpdated(int value)
         {
             var toggleGrip = value == 1;
-            _leftHandInputReader.GamepadToggleGrip = toggleGrip;
-            _rightHandInputReader.GamepadToggleGrip = toggleGrip;
+            _leftHandInputReader.VRToggleGrip = toggleGrip;
+            _rightHandInputReader.VRToggleGrip = toggleGrip;
         }
     }
 }
