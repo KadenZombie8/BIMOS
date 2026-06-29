@@ -1055,6 +1055,68 @@ MonoBehaviour:
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
+--- !u!1 &1791757523878911610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7865337812200771016}
+  - component: {fileID: 3083423910958748376}
+  - component: {fileID: 1486733275779594776}
+  m_Layer: 5
+  m_Name: General_Bindings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7865337812200771016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6471076460345400253}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3083423910958748376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b234f339bca1ea94783a68ca257512a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.ControlType
+  _key: Debug_ControlType
+  _menuToggleVR: {fileID: 8319602235108118684}
+  _menuToggleFlatscreen: {fileID: 5602540935969928316}
+  _screenModeCamera: {fileID: 1785471339049578779}
+--- !u!114 &1486733275779594776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df56eb2c3f8b75843baf62a326a63bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Video_Quality
+  _key: Video_Quality
 --- !u!1 &1828531639042773749
 GameObject:
   m_ObjectHideFlags: 0
@@ -5346,7 +5408,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277138992569292306}
-  - component: {fileID: 4969296876855356008}
   - component: {fileID: 283803912176931917}
   - component: {fileID: 8954307299350649409}
   - component: {fileID: 8807697781467563777}
@@ -5376,22 +5437,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6471076460345400253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4969296876855356008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3844847181516455510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b234f339bca1ea94783a68ca257512a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.ControlType
-  _key: Debug_ControlType
-  _menuToggleVR: {fileID: 8319602235108118684}
-  _menuToggleFlatscreen: {fileID: 5602540935969928316}
-  _screenModeCamera: {fileID: 1785471339049578779}
 --- !u!114 &283803912176931917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7999,7 +8044,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1353467984831324509}
   - component: {fileID: 6692395080721857440}
-  - component: {fileID: 8251921314602066196}
   - component: {fileID: 5392313364509101690}
   - component: {fileID: 2605554007433225634}
   - component: {fileID: 3889809590157721870}
@@ -8042,22 +8086,6 @@ MonoBehaviour:
   _key: Video_FieldOfView
   _camera: {fileID: 2215439633949418873}
   _controlTypeKey: Debug_ControlType
---- !u!114 &8251921314602066196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5282995369280217170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b234f339bca1ea94783a68ca257512a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.ControlType
-  _key: Debug_ControlType
-  _menuToggleVR: {fileID: 8319602235108118684}
-  _menuToggleFlatscreen: {fileID: 5602540935969928316}
-  _screenModeCamera: {fileID: 1785471339049578779}
 --- !u!114 &5392313364509101690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9424,6 +9452,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7865337812200771016}
   - {fileID: 1353467984831324509}
   - {fileID: 1277138992569292306}
   - {fileID: 8189258192754253388}

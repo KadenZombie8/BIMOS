@@ -11,8 +11,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     public class VirtualTurning : MonoBehaviour
     {
         public event Action<float> TurnEvent;
-        
-        [Tooltip("The speed (in degrees/second) turning occurs at")]
+
+        [HideInInspector]
         public float TurnRate = 4f;
 
         [SerializeField]

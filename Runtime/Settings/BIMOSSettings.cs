@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Settings
 {
@@ -27,6 +28,7 @@ namespace KadenZombie8.BIMOS.Settings
 
         // Video
         public Setting<float> FlatscreenFieldOfView = new("Video_FieldOfView", 60f);
+        public Setting<int> Quality = new("Video_Quality", QualitySettings.count / 2);
 
         // Spectator
         public Setting<int> SpectatorOutput = new("Spectator_Output", 0);
