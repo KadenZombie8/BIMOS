@@ -31,7 +31,11 @@ namespace KadenZombie8.BIMOS.UI
         [SerializeField]
         ScreenModeCamera _screenModeCamera;
 
-        private void Awake() => _menuButtonReference.action.Enable();
+        private void Awake()
+        {
+            _menuButtonReference.action.Enable();
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
         private void OnEnable() => _menuButtonReference.action.performed += ToggleMenuButton;
 

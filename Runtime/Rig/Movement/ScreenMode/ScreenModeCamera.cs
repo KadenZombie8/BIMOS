@@ -21,7 +21,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private readonly float _minAngle = -90f;
         private Vector2 _cameraRotation;
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         private void Awake() => _lookReference.action.Enable();
 
