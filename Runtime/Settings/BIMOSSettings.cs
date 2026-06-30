@@ -26,6 +26,11 @@ namespace KadenZombie8.BIMOS.Settings
         public Setting<int> GamepadGripType = new("Gamepad_GripType", 1);
         public Setting<float> GamepadHaptics = new("Gamepad_Haptics", 10f);
 
+        // Audio
+        public Setting<float> AudioMixingGlobal = new("Audio_Mixing_Global", 8f);
+        public Setting<float> AudioMixingMusic = new("Audio_Mixing_Music", 8f);
+        public Setting<float> AudioMixingSFX = new("Audio_Mixing_SFX", 8f);
+
         // Video
         public Setting<float> FlatscreenFieldOfView = new("Video_FieldOfView", 60f);
         public Setting<int> Quality = new("Video_Quality", QualitySettings.count / 2);

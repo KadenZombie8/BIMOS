@@ -9,6 +9,9 @@ namespace KadenZombie8.BIMOS.Audio
     public class CollisionSoundPlayer : MonoBehaviour
     {
         [SerializeField]
+        private AudioMixerGroup _output;
+
+        [SerializeField]
         private ImpulseRange _impulseRange = new()
         {
             Minimum = 0.2f,
@@ -40,6 +43,7 @@ namespace KadenZombie8.BIMOS.Audio
             audioSource.spatialize = true;
             audioSource.spatialBlend = 1f;
             audioSource.volume = volume;
+            if (_output) audioSource.outputAudioMixerGroup = _output;
             audioSource.Play();
             StartCoroutine(DestroyOnEnd(gameObject, audioSource));
         }

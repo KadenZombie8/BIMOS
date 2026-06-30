@@ -1052,6 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -1066,6 +1067,9 @@ GameObject:
   - component: {fileID: 7865337812200771016}
   - component: {fileID: 3083423910958748376}
   - component: {fileID: 1486733275779594776}
+  - component: {fileID: 557462936169147856}
+  - component: {fileID: 7944032034042516880}
+  - component: {fileID: 6990096286109952277}
   m_Layer: 5
   m_Name: General_Bindings
   m_TagString: Untagged
@@ -1117,6 +1121,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Video_Quality
   _key: Video_Quality
+--- !u!114 &557462936169147856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caf3caa5acbb6846b1e5d9a99c6ff81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Audio_MixerVolume
+  _key: Audio_Mixing_Global
+  _mixer: {fileID: 24100000, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
+  _parameterName: Volume_Global
+--- !u!114 &7944032034042516880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caf3caa5acbb6846b1e5d9a99c6ff81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Audio_MixerVolume
+  _key: Audio_Mixing_Music
+  _mixer: {fileID: 24100000, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
+  _parameterName: Volume_Music
+--- !u!114 &6990096286109952277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4caf3caa5acbb6846b1e5d9a99c6ff81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Audio_MixerVolume
+  _key: Audio_Mixing_SFX
+  _mixer: {fileID: 24100000, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
+  _parameterName: Volume_SFX
 --- !u!1 &1828531639042773749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,6 +2062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -4129,6 +4179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -4445,6 +4496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -5396,6 +5448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -6172,6 +6225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -6620,6 +6674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -8925,6 +8980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -11233,6 +11289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
@@ -11478,6 +11535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8e25326da22e44ab5ae1537f8480e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Audio.CollisionSoundPlayer
+  _output: {fileID: 3296369114796650319, guid: 828041bc42f1a6441a0115089d4efb47, type: 2}
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
