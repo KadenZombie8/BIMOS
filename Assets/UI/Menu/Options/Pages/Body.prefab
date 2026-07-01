@@ -394,10 +394,32 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4758607978394574476, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 729513257592887649, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7859924342234437409}
   m_SourcePrefab: {fileID: 100100000, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
 --- !u!224 &1000029330548061680 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5803010595253008596, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
   m_PrefabInstance: {fileID: 6730838570475179300}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6302645248269538373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 729513257592887649, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
+  m_PrefabInstance: {fileID: 6730838570475179300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7859924342234437409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302645248269538373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22094bc312542b4ba3c6dff074eaaf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.Options.SliderInputFieldConnection
+  _format: 
+  _multiplier: 1

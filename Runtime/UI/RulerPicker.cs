@@ -2,18 +2,18 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace KadenZombie8.BIMOS
+namespace KadenZombie8.BIMOS.UI
 {
     [RequireComponent(typeof(ScrollRect))]
     public class RulerPicker : MonoBehaviour
     {
-        public event Action OnValueChanged;
+        public event Action<float> OnValueChanged;
 
         [SerializeField]
-        private float _minimum = 0f;
+        public float MinValue = 0f;
 
         [SerializeField]
-        private float _maximum = 1f;
+        public float MaxValue = 1f;
 
         public float Value;
 
@@ -27,8 +27,8 @@ namespace KadenZombie8.BIMOS
 
         private void OnScroll(Vector2 normalizedPosition)
         {
-            Value = Mathf.Lerp(_minimum, _maximum, normalizedPosition.x);
-            OnValueChanged?.Invoke();
+            Value = Mathf.Lerp(MinValue, MaxValue, normalizedPosition.x);
+            OnValueChanged?.Invoke(Value);
             print(Value);
         }
     }
