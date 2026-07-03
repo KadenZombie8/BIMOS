@@ -6,6 +6,7 @@ namespace KadenZombie8.BIMOS
     /// <summary>
     /// Uses contact modification to make objects lose friction on slopes greater than a specified angle
     /// </summary>
+    [RequireComponent(typeof(Collider))]
     public class SlipPastSlopeAngle : MonoBehaviour
     {
         [SerializeField]
@@ -27,13 +28,13 @@ namespace KadenZombie8.BIMOS
 
         private Collider _collider;
 
-        private int _colliderId;
+        private EntityId _colliderId;
 
         private void Awake()
         {
             _collider = GetComponent<Collider>();
             _collider.hasModifiableContacts = true;
-            _colliderId = _collider.GetInstanceID();
+            _colliderId = _collider.GetEntityId();
 
             MaxSlopeAngle = _maxSlopeAngle;
             _minSlopeDot = Mathf.Cos((MaxSlopeAngle + 0.001f) * Mathf.Deg2Rad);
@@ -54,10 +55,10 @@ namespace KadenZombie8.BIMOS
             // Should really use a manager to avoid repeat checks for optimisation
             foreach (var pair in pairs)
             {
-                if (pair.colliderInstanceID != _colliderId && pair.otherColliderInstanceID != _colliderId) continue;
+                if (pair.colliderEntityId != _colliderId && pair.otherColliderEntityId != _colliderId) continue;
 
                 var slopeNormal = pair.GetNormal(0);
-                if (pair.colliderInstanceID != _colliderId)
+                if (pair.colliderEntityId != _colliderId)
                     slopeNormal *= -1f;
 
                 var slopeDot = Vector3.Dot(slopeNormal, upDirection);

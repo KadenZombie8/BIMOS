@@ -47,9 +47,9 @@ namespace KadenZombie8.BIMOS.UI.Options
             else
                 rulerPickerValue = _rulerPicker.Value;
 
-            rulerPickerValue = Mathf.Clamp(rulerPickerValue, _rulerPicker.minValue, _rulerPicker.maxValue);
-            _rulerPicker.value = rulerPickerValue;
-            UpdateInputFieldText(_rulerPicker.value);
+            rulerPickerValue = Mathf.Clamp(rulerPickerValue, _rulerPicker.MinValue, _rulerPicker.MaxValue);
+            _rulerPicker.Value = rulerPickerValue;
+            UpdateInputFieldText(_rulerPicker.Value);
         }
     }
 }
