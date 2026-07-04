@@ -251,9 +251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855ef3f802a326b49ba25161d58317c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.RulerPickre
-  _minimum: 0
-  _maximum: 1
-  Value: 0
+  MinValue: 0
+  MaxValue: 1
 --- !u!224 &8970817766180902481 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6157397106092424437, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
@@ -404,8 +403,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1043810303356703019, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3216366338781585055}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8844041748669834611, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8316971009988742055}
   m_SourcePrefab: {fileID: 100100000, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+--- !u!1 &4218265380685003102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8844041748669834611, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+  m_PrefabInstance: {fileID: 4626906692783578157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8316971009988742055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218265380685003102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3183817c473d844a831812b29028ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.Options.RulerPickerOption
+  Key: 
 --- !u!224 &5641401677258296582 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1043810303356703019, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}

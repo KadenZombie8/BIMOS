@@ -15,7 +15,16 @@ namespace KadenZombie8.BIMOS.UI
         [SerializeField]
         public float MaxValue = 1f;
 
-        public float Value;
+        public float Value
+        {
+            get => _value;
+            set
+            {
+                _value = value;
+            }
+        }
+
+        private float _value;
 
         private ScrollRect _scrollRect;
 
@@ -27,9 +36,9 @@ namespace KadenZombie8.BIMOS.UI
 
         private void OnScroll(Vector2 normalizedPosition)
         {
-            Value = Mathf.Lerp(MinValue, MaxValue, normalizedPosition.x);
-            OnValueChanged?.Invoke(Value);
-            print(Value);
+            _value = Mathf.Lerp(MinValue, MaxValue, normalizedPosition.x);
+            OnValueChanged?.Invoke(_value);
+            print(_value);
         }
     }
 }

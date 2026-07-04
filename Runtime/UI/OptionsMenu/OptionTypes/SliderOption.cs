@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace KadenZombie8.BIMOS.UI.Options
