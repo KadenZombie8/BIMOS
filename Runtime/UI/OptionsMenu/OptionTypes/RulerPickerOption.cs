@@ -1,5 +1,3 @@
-using UnityEngine.UI;
-
 namespace KadenZombie8.BIMOS.UI.Options
 {
     public class RulerPickerOption : Option<float>

@@ -33,10 +33,10 @@ namespace KadenZombie8.BIMOS.UI.Options
             _inputField.onEndEdit.RemoveListener(UpdateRulerPickerValue);
         }
 
-        private void UpdateInputFieldText(float sliderValue)
+        private void UpdateInputFieldText(float rulerPickerValue)
         {
-            sliderValue *= _multiplier;
-            _inputField.text = sliderValue.ToString(_format);
+            rulerPickerValue *= _multiplier;
+            _inputField.text = rulerPickerValue.ToString(_format);
         }
 
         private void UpdateRulerPickerValue(string stringValue)
@@ -47,7 +47,6 @@ namespace KadenZombie8.BIMOS.UI.Options
             else
                 rulerPickerValue = _rulerPicker.Value;
 
-            rulerPickerValue = Mathf.Clamp(rulerPickerValue, _rulerPicker.MinValue, _rulerPicker.MaxValue);
             _rulerPicker.Value = rulerPickerValue;
             UpdateInputFieldText(_rulerPicker.Value);
         }
