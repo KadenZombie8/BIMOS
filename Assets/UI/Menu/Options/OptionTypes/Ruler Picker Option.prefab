@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4145108293278189989, guid: 8ba786c5055024c4db71d33ef3d449ed, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 75
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4145108293278189989, guid: 8ba786c5055024c4db71d33ef3d449ed, type: 3}
       propertyPath: m_SizeDelta.y
@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6157397106092424437, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -75
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 6157397106092424437, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
       propertyPath: m_SizeDelta.y
@@ -208,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6157397106092424437, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 37.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6157397106092424437, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -229,30 +229,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6157397106092424436, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7357386246229014266}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
---- !u!1 &8970817766180902480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6157397106092424436, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
-  m_PrefabInstance: {fileID: 2958239547417291428}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7357386246229014266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8970817766180902480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855ef3f802a326b49ba25161d58317c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.RulerPickre
-  MinValue: 0
-  MaxValue: 1
 --- !u!224 &8970817766180902481 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6157397106092424437, guid: 7e0e123c03a88d0438537636317e6837, type: 3}
@@ -428,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc01e0e38548a841834a1788b190cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.UI.Options.RulerPickerInputFieldConnection
-  _format: 0
+  _format: 0'cm'
   _multiplier: 1
 --- !u!1 &4218265380685003102 stripped
 GameObject:

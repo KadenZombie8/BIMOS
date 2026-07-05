@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 namespace KadenZombie8.BIMOS.UI
 {
-    [RequireComponent(typeof(ScrollRect))]
     public class RulerPicker : MonoBehaviour
     {
         public event Action<float> OnValueChanged;
+
+        [SerializeField]
+        private RectTransform _ruler;
 
         [SerializeField]
         private float _minValue = 0f;
@@ -27,9 +29,13 @@ namespace KadenZombie8.BIMOS.UI
 
         private float _value;
 
+        [SerializeField]
         private ScrollRect _scrollRect;
 
-        private void Awake() => _scrollRect = GetComponent<ScrollRect>();
+        private void Awake()
+        {
+            //_ruler.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100f);
+        }
 
         private void OnEnable() => _scrollRect.onValueChanged.AddListener(OnScroll);
 

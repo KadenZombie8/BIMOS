@@ -277,6 +277,14 @@ PrefabInstance:
       propertyPath: MinValue
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7357386246229014266, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
+      propertyPath: _maxValue
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 7357386246229014266, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
+      propertyPath: _minValue
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7844864663912536223, guid: be71c986fcd9cf84c9d399e2fbb01ec6, type: 3}
       propertyPath: m_text
       value: Real height
