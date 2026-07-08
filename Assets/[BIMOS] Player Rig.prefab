@@ -371,6 +371,7 @@ Canvas:
   m_OverridePixelPerfect: 1
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1108,6 +1109,8 @@ MonoBehaviour:
   _menuToggleVR: {fileID: 8319602235108118684}
   _menuToggleFlatscreen: {fileID: 5602540935969928316}
   _screenModeCamera: {fileID: 1785471339049578779}
+  _controllerRig: {fileID: 7251668691989030867}
+  _realHeightKey: VR_RealHeight
 --- !u!114 &1486733275779594776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,6 +1720,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -9578,6 +9582,7 @@ MonoBehaviour:
   m_TrackedScrollDeltaMultiplier: 5
   m_NonTrackedScrollDeltaMultiplier: 6
   m_BypassUIToolkitEvents: 0
+  m_PrioritizeDistanceSorting: 0
   m_ActiveInputMode: 0
   m_EnableXRInput: 1
   m_EnableMouseInput: 1
@@ -9759,6 +9764,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
