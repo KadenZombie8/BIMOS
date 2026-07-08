@@ -9,13 +9,22 @@ namespace KadenZombie8.BIMOS.UI
         public event Action<float> OnValueChanged;
 
         [SerializeField]
+        private RectTransform _viewport;
+
+        [SerializeField]
         private RectTransform _ruler;
+
+        [SerializeField]
+        private ScrollRect _scrollRect;
 
         [SerializeField]
         private float _minValue = 0f;
 
         [SerializeField]
         private float _maxValue = 1f;
+
+        [SerializeField]
+        private float _increment = 10f;
 
         public float Value
         {
@@ -29,12 +38,19 @@ namespace KadenZombie8.BIMOS.UI
 
         private float _value;
 
-        [SerializeField]
-        private ScrollRect _scrollRect;
+        private void Start() => UpdateSize();
 
-        private void Awake()
+        private void UpdateSize()
         {
-            //_ruler.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100f);
+            Canvas.ForceUpdateCanvases();
+            var viewportSize = _viewport.rect.size;
+
+            var range = _maxValue - _minValue;
+            var markCount = range / _increment + 4f;
+            _ruler.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, viewportSize.y * markCount);
+
+            var horizontalScale = viewportSize.x / viewportSize.y / 4f;
+            _ruler.localScale = new(horizontalScale, 0.6f, 1f);
         }
 
         private void OnEnable() => _scrollRect.onValueChanged.AddListener(OnScroll);

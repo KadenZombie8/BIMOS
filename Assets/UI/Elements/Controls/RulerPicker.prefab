@@ -96,8 +96,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_SizeDelta.y
@@ -105,7 +117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.58
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2657382977842068921, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_AnchorMax.x
@@ -213,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5214980400686332865, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_Name
-      value: Ruler Picker
+      value: RulerPicker
       objectReference: {fileID: 0}
     - target: {fileID: 6053720115003556813, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_AnchorMax.x
@@ -245,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8580256989076679074, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_DecelerationRate
-      value: 0.001
+      value: 0.00000001
       objectReference: {fileID: 0}
     - target: {fileID: 8580256989076679074, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_VerticalScrollbar
@@ -291,6 +307,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2174694157712111994, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
   m_PrefabInstance: {fileID: 2102104604704524085}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &5273450588368848120 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6053720115003556813, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+  m_PrefabInstance: {fileID: 2102104604704524085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6157397106092424436 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5214980400686332865, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
@@ -308,9 +329,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855ef3f802a326b49ba25161d58317c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.RulerPickre
+  _viewport: {fileID: 5273450588368848120}
   _ruler: {fileID: 216803697134173775}
   _minValue: 0
   _maxValue: 1
+  _increment: 10
   _scrollRect: {fileID: 7655872274366082711}
 --- !u!224 &6157397106092424437 stripped
 RectTransform:
