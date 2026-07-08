@@ -526,6 +526,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8580256989076679074, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
+      propertyPath: m_MovementType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580256989076679074, guid: d8c33854a1f7a9b4e8efd3582f6b2439, type: 3}
       propertyPath: m_DecelerationRate
       value: 0.00000001
       objectReference: {fileID: 0}
