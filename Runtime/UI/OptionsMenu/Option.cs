@@ -25,9 +25,10 @@ namespace KadenZombie8.BIMOS.UI.Options
             BIMOSUtils.Settings.TryGetSetting(Key, out var setting);
             _setting = (Setting<T>)setting;
             _applyOptions = GetComponentInParent<ApplyOptions>();
-            UpdateOptionValue();
             _setting.OnValueChanged += SettingValueChanged;
         }
+
+        private void Start() => UpdateOptionValue();
 
         private void OnDestroy() => _setting.OnValueChanged -= SettingValueChanged;
 

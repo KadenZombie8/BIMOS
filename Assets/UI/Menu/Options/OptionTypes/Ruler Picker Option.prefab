@@ -324,6 +324,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3078186902888968037, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078186902888968037, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078186902888968037, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8316971009988742055}
+    - target: {fileID: 3078186902888968037, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078186902888968037, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Revert
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078186902888968037, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: KadenZombie8.BIMOS.UI.Options.RulerPickerOption, kadenzombie8.bimos
+      objectReference: {fileID: 0}
+    - target: {fileID: 3078186902888968037, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5163798297902385634, guid: fa5a8dcf60318e04fb7bf32cee7962ec, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
