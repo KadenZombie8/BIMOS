@@ -189,7 +189,7 @@ namespace KadenZombie8.BIMOS.Rig
             Quaternion elbowRotation = Quaternion.LookRotation(shoulderToHandDirection, _smoothElbowDirection);
 
             // Apply smoothed direction to hint
-            _hint.position = elbowOrigin + elbowRotation * Vector3.up * elbowRadius;
+            _hint.position = elbowOrigin + elbowRotation * Vector3.up;
         }
     }
 }
