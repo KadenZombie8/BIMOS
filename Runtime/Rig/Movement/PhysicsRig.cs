@@ -129,7 +129,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public ConfigurableJoint RightHand;
     }
 
-    [Serializable]
     public struct PhysicsRigJointDrives
     {
         public JointDrive Pelvis;

@@ -14,7 +14,7 @@ namespace KadenZombie8.BIMOS.Samples.Editor
             GameObject spawnPointPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Packages/com.kadenzombie8.bimos/Assets/[BIMOS] Spawn Point.prefab");
             GameObject spawnPointInstance = PrefabUtility.InstantiatePrefab(spawnPointPrefab) as GameObject;
 
-            SpawnPointManager spawnPointManager = FindFirstObjectByType<SpawnPointManager>();
+            SpawnPointManager spawnPointManager = FindAnyObjectByType<SpawnPointManager>();
 
             if (!spawnPointManager)
             {

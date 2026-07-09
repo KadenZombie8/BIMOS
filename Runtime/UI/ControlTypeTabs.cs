@@ -15,7 +15,6 @@ namespace KadenZombie8.BIMOS.UI
         [SerializeField]
         private Tabs _flatscreenTabs;
 
-        [SerializeField]
         private Setting<int> _setting;
 
         [SerializeField]

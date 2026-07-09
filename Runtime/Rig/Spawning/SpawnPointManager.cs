@@ -29,7 +29,7 @@ namespace KadenZombie8.BIMOS.Rig.Spawning
 
             if (!SpawnPoint)
             {
-                SpawnPoint = FindFirstObjectByType<SpawnPoint>();
+                SpawnPoint = FindAnyObjectByType<SpawnPoint>();
                 if (!SpawnPoint)
                 {
                     Debug.LogError("You must have at least one spawn point!");

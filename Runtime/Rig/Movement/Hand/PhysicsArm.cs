@@ -12,6 +12,7 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private Animator _animator;
 
+        [Serializable]
         public abstract class Segment
         {
             public HumanBodyBones Bone;
