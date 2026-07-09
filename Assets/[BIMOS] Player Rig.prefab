@@ -590,6 +590,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3552196413856021950}
+  - {fileID: 6175953805274317782}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2333595246700603270
@@ -1551,6 +1552,7 @@ GameObject:
   - component: {fileID: 3552196413856021950}
   - component: {fileID: 6378187275511441504}
   - component: {fileID: 7995150270698625952}
+  - component: {fileID: 2603970048041096599}
   m_Layer: 0
   m_Name: RightArmIK
   m_TagString: Untagged
@@ -1591,7 +1593,7 @@ MonoBehaviour:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 70422243505131228}
+    m_Target: {fileID: 6175953805274317782}
     m_Hint: {fileID: 1731530144788815798}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
@@ -1613,6 +1615,21 @@ MonoBehaviour:
   _handedness: 1
   _controller: {fileID: 8105584686134532683}
   _pelvis: {fileID: 8556203494894390205}
+--- !u!114 &2603970048041096599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041544511745397434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
+  UnlimitedTarget: {fileID: 70422243505131228}
+  LimitedTarget: {fileID: 6175953805274317782}
+  _margin: 0.01
 --- !u!1 &2053210023924917134
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,6 +3725,7 @@ GameObject:
   - component: {fileID: 2675245826105910234}
   - component: {fileID: 4625447755221202705}
   - component: {fileID: 8680544358169117187}
+  - component: {fileID: 6132061874040565225}
   m_Layer: 0
   m_Name: LeftArmIK
   m_TagString: Untagged
@@ -3748,7 +3766,7 @@ MonoBehaviour:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 8913552984557658865}
+    m_Target: {fileID: 5043436101094264499}
     m_Hint: {fileID: 7653510660573296589}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
@@ -3770,6 +3788,21 @@ MonoBehaviour:
   _handedness: 0
   _controller: {fileID: 302060809740126155}
   _pelvis: {fileID: 8556203494894390205}
+--- !u!114 &6132061874040565225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228650216333327577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
+  UnlimitedTarget: {fileID: 8913552984557658865}
+  LimitedTarget: {fileID: 5043436101094264499}
+  _margin: 0.01
 --- !u!1 &3259180518487581369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4396,11 +4429,11 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3414075759266772195}
   serializedVersion: 4
-  m_ConnectedBody: {fileID: 3294666784809313299}
+  m_ConnectedBody: {fileID: 8175761062992077903}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 0
+  m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
@@ -6728,6 +6761,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2675245826105910234}
+  - {fileID: 5043436101094264499}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1843583381221137719
@@ -8514,6 +8548,37 @@ MonoBehaviour:
       z: 1
     m_MaintainPositionOffset: 0
     m_MaintainRotationOffset: 0
+--- !u!1 &5374262269724295434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6175953805274317782}
+  m_Layer: 0
+  m_Name: RightTargetLimited
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6175953805274317782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374262269724295434}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 59313101973558073}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5403685327220964103
 GameObject:
   m_ObjectHideFlags: 0
@@ -8604,6 +8669,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5428935993537074996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5043436101094264499}
+  m_Layer: 0
+  m_Name: LeftTargetLimited
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5043436101094264499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428935993537074996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 972436850578542871}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5448648883937535604
 GameObject:
   m_ObjectHideFlags: 0
@@ -11437,11 +11533,11 @@ ConfigurableJoint:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7912132058736103140}
   serializedVersion: 4
-  m_ConnectedBody: {fileID: 3294666784809313299}
+  m_ConnectedBody: {fileID: 5549487947135269188}
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 0
+  m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 1
