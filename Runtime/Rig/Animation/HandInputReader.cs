@@ -148,12 +148,18 @@ namespace KadenZombie8.BIMOS.Rig
             GetWebInputs();
 #endif
 
-            Hand.CurrentGrab?.GetComponent<Interactable>()?.Tick();
+            var currentGrab = Hand.CurrentGrab;
+
+            if (currentGrab && currentGrab.TryGetComponent<Interactable>(out var interactable))
+                interactable.Tick();
         }
 
         private void FixedUpdate()
         {
-            Hand.CurrentGrab?.GetComponent<Interactable>()?.PhysicsTick();
+            var currentGrab = Hand.CurrentGrab;
+
+            if (currentGrab && currentGrab.TryGetComponent<Interactable>(out var interactable))
+                interactable.PhysicsTick();
         }
 
 #if UNITY_WEBGL
@@ -186,26 +192,20 @@ namespace KadenZombie8.BIMOS.Rig
         }
 #endif
 
-        private void OnTrigger()
-        {
-            Trigger = TriggerAction.action.ReadValue<float>();
-        }
+        private void OnTrigger() => Trigger = TriggerAction.action.ReadValue<float>();
 
-        private void OnTriggerButton(InputAction.CallbackContext callbackContext)
+        private void OnTriggerButton(InputAction.CallbackContext context)
         {
-            Grabbable currentGrab = Hand.CurrentGrab;
+            var currentGrab = Hand.CurrentGrab;
 
-            if (!currentGrab || callbackContext.started)
+            if (!currentGrab || context.started)
                 return;
 
-            bool down = IsButtonDown(callbackContext);
-            currentGrab.GetComponent<Interactable>()?.OnTrigger(down);
+            if (currentGrab.TryGetComponent<Interactable>(out var interactable))
+                interactable.OnTrigger(context.performed);
         }
 
-        private void OnTriggerTouched(InputAction.CallbackContext callbackContext)
-        {
-            TriggerTouched = callbackContext.performed;
-        }
+        private void OnTriggerTouched(InputAction.CallbackContext context) => TriggerTouched = context.performed;
 
         private void OnGrip()
         {
@@ -234,52 +234,38 @@ namespace KadenZombie8.BIMOS.Rig
             _wasGripped = isGripped;
         }
 
-        private void OnThumbrestTouched(InputAction.CallbackContext callbackContext)
+        private void OnThumbrestTouched(InputAction.CallbackContext context) => ThumbrestTouched = context.performed;
+
+        private void OnPrimaryTouched(InputAction.CallbackContext context) => PrimaryTouched = context.performed;
+
+        private void OnPrimaryButton(InputAction.CallbackContext context)
         {
-            ThumbrestTouched = callbackContext.performed;
-        }
+            PrimaryButton = context.performed;
 
-        private void OnPrimaryTouched(InputAction.CallbackContext callbackContext)
-        {
-            PrimaryTouched = callbackContext.performed;
-        }
+            var currentGrab = Hand.CurrentGrab;
 
-        private void OnPrimaryButton(InputAction.CallbackContext callbackContext)
-        {
-            PrimaryButton = callbackContext.performed;
-
-            Grabbable currentGrab = Hand.CurrentGrab;
-
-            if (!currentGrab || callbackContext.started)
+            if (!currentGrab || context.started)
                 return;
 
-            bool down = IsButtonDown(callbackContext);
-            currentGrab.GetComponent<Interactable>()?.OnPrimary(down);
+            if (currentGrab.TryGetComponent<Interactable>(out var interactable))
+                interactable.OnPrimary(PrimaryButton);
         }
 
-        private void OnSecondaryTouched(InputAction.CallbackContext callbackContext)
+        private void OnSecondaryTouched(InputAction.CallbackContext context) => SecondaryTouched = context.performed;
+
+        private void OnSecondaryButton(InputAction.CallbackContext context)
         {
-            SecondaryTouched = callbackContext.performed ? true : false;
-        }
+            SecondaryButton = context.performed;
 
-        private void OnSecondaryButton(InputAction.CallbackContext callbackContext)
-        {
-            SecondaryButton = callbackContext.performed ? true : false;
+            var currentGrab = Hand.CurrentGrab;
 
-            Grabbable currentGrab = Hand.CurrentGrab;
-
-            if (!currentGrab || callbackContext.started)
+            if (!currentGrab || context.started)
                 return;
 
-            bool down = IsButtonDown(callbackContext);
-            currentGrab.GetComponent<Interactable>()?.OnSecondary(down);
+            if (currentGrab.TryGetComponent<Interactable>(out var interactable))
+                interactable.OnSecondary(SecondaryButton);
         }
 
-        private void OnThumbstickTouched(InputAction.CallbackContext callbackContext)
-        {
-            ThumbstickTouched = callbackContext.performed;
-        }
-
-        private bool IsButtonDown(InputAction.CallbackContext callbackContext) => callbackContext.performed;
+        private void OnThumbstickTouched(InputAction.CallbackContext context) => ThumbstickTouched = context.performed;
     }
 }
