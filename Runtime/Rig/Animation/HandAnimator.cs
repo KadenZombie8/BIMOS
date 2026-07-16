@@ -1,10 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Hands;
+using UnityEngine.XR.Hands.Gestures;
 
 namespace KadenZombie8.BIMOS.Rig
 {
     public class HandAnimator : MonoBehaviour
     {
-        public bool IsLeftHand;
+        public Handedness Handedness;
 
         [SerializeField]
         private Animator _animator;
@@ -53,6 +57,28 @@ namespace KadenZombie8.BIMOS.Rig
             RingCurl,
             LittleCurl;
 
+        private readonly List<XRHandSubsystem> _handSubsystems = new();
+        private XRHandSubsystem _handSubsystem;
+        private readonly XRFingerShape[] _fingerShapes = new XRFingerShape[5];
+        private XRHand _subsystemHand;
+
+        private bool TryGetSubsystem(out XRHandSubsystem system)
+        {
+            system = null;
+
+            if (_handSubsystems.Count == 0)
+                SubsystemManager.GetSubsystems(_handSubsystems);
+
+            if (_handSubsystems.Count > 0)
+            {
+                system = _handSubsystems[0];
+                _subsystemHand = Handedness == Handedness.Left ? system.leftHand : system.rightHand;
+                return true;
+            }
+
+            return false;
+        }
+
         private void Awake()
         {
             Thumb = new Transform[3];
@@ -65,7 +91,7 @@ namespace KadenZombie8.BIMOS.Rig
             MiddleRot = new Quaternion[3];
             RingRot = new Quaternion[3];
             LittleRot = new Quaternion[3];
-            if (IsLeftHand)
+            if (Handedness == Handedness.Left)
             {
                 _hand = _animator.GetBoneTransform(HumanBodyBones.LeftHand);
                 Thumb[0] = _animator.GetBoneTransform(HumanBodyBones.LeftThumbProximal);
@@ -123,6 +149,9 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void LateUpdate()
         {
+            if (!TryGetSubsystem(out _handSubsystem))
+                return;
+
             _hand.SetPositionAndRotation(_handTarget.position, _handTarget.rotation);
             UpdateCurls();
             UpdateHand();
@@ -131,39 +160,33 @@ namespace KadenZombie8.BIMOS.Rig
         private void UpdateCurls()
         {
             if (_handInputReader.SecondaryButton)
-            {
                 ThumbPose = ThumbSubPoses.SecondaryButton;
-            }
             else if (_handInputReader.PrimaryButton)
-            {
                 ThumbPose = ThumbSubPoses.PrimaryButton;
-            }
             else if (_handInputReader.SecondaryTouched)
-            {
                 ThumbPose = ThumbSubPoses.SecondaryTouched;
-            }
             else if (_handInputReader.PrimaryTouched)
-            {
                 ThumbPose = ThumbSubPoses.PrimaryTouched;
-            }
             else if (_handInputReader.ThumbstickTouched)
-            {
                 ThumbPose = ThumbSubPoses.ThumbstickTouched;
-            }
             else if (_handInputReader.ThumbrestTouched)
-            {
                 ThumbPose = ThumbSubPoses.ThumbrestTouched;
-            }
             else
-            {
                 ThumbPose = ThumbSubPoses.Idle;
-            }
 
             IndexCurl = _handInputReader.Trigger;
             IsIndexOnTrigger = _handInputReader.TriggerTouched;
-            MiddleCurl = _handInputReader.Grip;
-            RingCurl = _handInputReader.Grip;
-            LittleCurl = _handInputReader.Grip;
+            MiddleCurl = TryGetCurl(2, out var middleCurl) ? middleCurl : _handInputReader.Grip;
+            RingCurl = TryGetCurl(3, out var ringCurl) ? ringCurl : _handInputReader.Grip;
+            LittleCurl = TryGetCurl(4, out var littleCurl) ? littleCurl : _handInputReader.Grip;
+        }
+
+        private bool TryGetCurl(int fingerIndex, out float curl)
+        {
+            var fingerShape = _subsystemHand.CalculateFingerShape(
+                    (XRHandFingerID)fingerIndex, XRFingerShapeTypes.All);
+
+            return fingerShape.TryGetFullCurl(out curl);
         }
 
         private void UpdateHand()
@@ -209,7 +232,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void UpdateFinger(Transform[] finger, Quaternion[] rots, float value, FingerPose open, FingerPose closed)
         {
-            if (IsLeftHand)
+            if (Handedness == Handedness.Left)
             {
                 open = open.Mirrored();
                 closed = closed.Mirrored();
