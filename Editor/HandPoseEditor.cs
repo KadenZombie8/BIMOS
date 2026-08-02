@@ -298,12 +298,16 @@ namespace KadenZombie8.BIMOS.Editor
                     _currentAsset = AssetDatabase.LoadAssetAtPath(path, typeof(HandPose));
                     HandPose handPose = (HandPose)_currentAsset;
                     _currentHandPose = handPose;
+
                     _subPose = SubPose.GripClosed;
                     HandPoseToDummy(_currentHandPose);
+
                     _subPose = SubPose.IndexClosed;
                     HandPoseToDummy(_currentHandPose);
+
                     _subPose = SubPose.ThumbrestTouched;
                     HandPoseToDummy(_currentHandPose);
+
                     _subPose = SubPose.None;
                     HandPoseToDummy(_currentHandPose);
                 }

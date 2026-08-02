@@ -6,12 +6,11 @@ namespace KadenZombie8.BIMOS.Rig
     [CreateAssetMenu(fileName = "HandPose", menuName = "BIMOS/Hand Pose")]
     public class HandPose : ScriptableObject
     {
-        public ThumbPoses Thumb;
-        public IndexPoses Index;
-        public FingerPoses
-            Middle,
-            Ring,
-            Little;
+        public ThumbPoses Thumb = new();
+        public IndexPoses Index = new();
+        public FingerPoses Middle = new();
+        public FingerPoses Ring = new();
+        public FingerPoses Little = new();
     }
 
     [Serializable]
@@ -37,9 +36,9 @@ namespace KadenZombie8.BIMOS.Rig
             TipBone = pose.TipBone;
         }
 
-        public FingerPose Mirrored()
+        public readonly FingerPose Mirrored()
         {
-            FingerPose mirroredFingerPose = new FingerPose(this);
+            FingerPose mirroredFingerPose = new(this);
 
             mirroredFingerPose.RootBone.x *= -1f;
             mirroredFingerPose.MiddleBone.x *= -1f;

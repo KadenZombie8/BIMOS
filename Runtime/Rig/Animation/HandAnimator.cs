@@ -176,9 +176,14 @@ namespace KadenZombie8.BIMOS.Rig
 
             IndexCurl = _handInputReader.Trigger;
             IsIndexOnTrigger = _handInputReader.TriggerTouched;
-            MiddleCurl = TryGetCurl(2, out var middleCurl) ? middleCurl : _handInputReader.Grip;
-            RingCurl = TryGetCurl(3, out var ringCurl) ? ringCurl : _handInputReader.Grip;
-            LittleCurl = TryGetCurl(4, out var littleCurl) ? littleCurl : _handInputReader.Grip;
+            MiddleCurl = TryGetCurl(2, out var middleCurl) ? middleCurl : GetGripCurl(0.1f);
+            RingCurl = TryGetCurl(3, out var ringCurl) ? ringCurl : GetGripCurl(0.2f);
+            LittleCurl = TryGetCurl(4, out var littleCurl) ? littleCurl : GetGripCurl(0.3f);
+        }
+
+        private float GetGripCurl(float minCurl)
+        {
+            return minCurl;
         }
 
         private bool TryGetCurl(int fingerIndex, out float curl)
