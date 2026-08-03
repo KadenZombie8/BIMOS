@@ -13,8 +13,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         [Tooltip("The direct unlimited transform of the target")]
         public Transform UnlimitedTarget;
 
-        [Tooltip("The indirect limited transform of the target")]
-        public Transform LimitedTarget;
+        private Transform _limitedTarget;
 
         private TwoBoneIKConstraint _twoBoneIKConstraint;
         private float _chainLength;
@@ -30,6 +29,8 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         {
             _twoBoneIKConstraint = GetComponent<TwoBoneIKConstraint>();
 
+            _limitedTarget = _twoBoneIKConstraint.data.target;
+
             _root = _twoBoneIKConstraint.data.root;
             _mid = _twoBoneIKConstraint.data.mid;
             _tip = _twoBoneIKConstraint.data.tip;
@@ -44,7 +45,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
             var displacement = UnlimitedTarget.position - _root.position;
             var chainEpsilon = _chainLength - _margin;
 
-            LimitedTarget.SetPositionAndRotation(
+            _limitedTarget.SetPositionAndRotation(
                 _root.position + Vector3.ClampMagnitude(displacement, chainEpsilon),
                 UnlimitedTarget.rotation
             );

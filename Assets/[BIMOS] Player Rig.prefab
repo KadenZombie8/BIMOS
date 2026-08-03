@@ -757,8 +757,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5263773957575744105}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1293,7 +1292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcb831298c288c4c847a46b91f04362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsLeftHand: 1
+  Handedness: 0
   _animator: {fileID: 2945637317176231005}
   _handInputReader: {fileID: 2670558484249623212}
   _handTarget: {fileID: 8913552984557658865}
@@ -1403,6 +1402,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8533684751214534901}
   - component: {fileID: 2608193906310756961}
+  - component: {fileID: 7934040397994560550}
   m_Layer: 0
   m_Name: LeftLegIK
   m_TagString: Untagged
@@ -1424,6 +1424,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8241188203510831001}
+  - {fileID: 7114006542557103759}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2608193906310756961
@@ -1443,13 +1444,27 @@ MonoBehaviour:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 2811614908622920429}
+    m_Target: {fileID: 7114006542557103759}
     m_Hint: {fileID: 8241188203510831001}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!114 &7934040397994560550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994044672338218363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
+  UnlimitedTarget: {fileID: 2811614908622920429}
+  _margin: 0.01
 --- !u!1 &1996557166260039988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,7 +1643,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
   UnlimitedTarget: {fileID: 70422243505131228}
-  LimitedTarget: {fileID: 6175953805274317782}
   _margin: 0.01
 --- !u!1 &2053210023924917134
 GameObject:
@@ -3677,7 +3691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcb831298c288c4c847a46b91f04362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsLeftHand: 0
+  Handedness: 0
   _animator: {fileID: 2945637317176231005}
   _handInputReader: {fileID: 4166488413971264423}
   _handTarget: {fileID: 70422243505131228}
@@ -3801,7 +3815,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
   UnlimitedTarget: {fileID: 8913552984557658865}
-  LimitedTarget: {fileID: 5043436101094264499}
   _margin: 0.01
 --- !u!1 &3259180518487581369
 GameObject:
@@ -7074,8 +7087,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8962602863746391865}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8343,6 +8355,37 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5325116219163411668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7114006542557103759}
+  m_Layer: 0
+  m_Name: LeftLegTargetLimited (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7114006542557103759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325116219163411668}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8533684751214534901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5341896755727794834
 GameObject:
   m_ObjectHideFlags: 0
@@ -9242,8 +9285,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 469394393600309552}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9379,8 +9421,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5475579485443638215}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -9485,8 +9526,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 5087439410090881274}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11054,6 +11094,37 @@ Transform:
   - {fileID: 5816486170834638800}
   m_Father: {fileID: 4894658351016345031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7742080807380281528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5002466980789858899}
+  m_Layer: 0
+  m_Name: RightLegTargetLimited
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5002466980789858899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742080807380281528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3795830733188205076}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7834307518754698402
 GameObject:
   m_ObjectHideFlags: 0
@@ -12537,8 +12608,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 50590591007697354}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12701,6 +12771,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3795830733188205076}
   - component: {fileID: 8947274606454780688}
+  - component: {fileID: 5346521105073043961}
   m_Layer: 0
   m_Name: RightLegIK
   m_TagString: Untagged
@@ -12722,6 +12793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2984444534204547827}
+  - {fileID: 5002466980789858899}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8947274606454780688
@@ -12741,13 +12813,27 @@ MonoBehaviour:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 3290801078093939743}
+    m_Target: {fileID: 5002466980789858899}
     m_Hint: {fileID: 2984444534204547827}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!114 &5346521105073043961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676598146597125168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
+  UnlimitedTarget: {fileID: 3290801078093939743}
+  _margin: 0.01
 --- !u!1 &8676870659903977638
 GameObject:
   m_ObjectHideFlags: 0
@@ -12857,8 +12943,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3692154500885044994}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -13348,8 +13433,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8588423195748023584}
-          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable,
-            kadenzombie8.bimos
+          m_ObjectArgumentAssemblyTypeName: KadenZombie8.BIMOS.Rig.SnapGrabbable, kadenzombie8.bimos
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
