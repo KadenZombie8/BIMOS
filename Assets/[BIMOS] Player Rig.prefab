@@ -3691,7 +3691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcb831298c288c4c847a46b91f04362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Handedness: 0
+  Handedness: 1
   _animator: {fileID: 2945637317176231005}
   _handInputReader: {fileID: 4166488413971264423}
   _handTarget: {fileID: 70422243505131228}
@@ -10030,7 +10030,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 2da97de0ee8be8f40b35e2320fb64e53, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0

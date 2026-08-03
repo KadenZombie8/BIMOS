@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.UI.Options
 {
+    [DefaultExecutionOrder(-1)]
     public abstract class Option<T> : MonoBehaviour, IAppliable, IRevertible
     {
         private Setting<T> _setting;
