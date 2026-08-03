@@ -123,7 +123,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
                 var minHeight = _jumping.LocomotionSphere.IsGrounded ? _crouching.CrouchingLegHeight : _crouching.CrawlingLegHeight;
 
                 minLegHeight = minHeight - neckYDifference;
-                maxLegHeight = _crouching.StandingLegHeight - neckYDifference - _controllerRig.Transforms.HeadCameraOffset.localPosition.y;
+                maxLegHeight = _crouching.StandingLegHeight - neckYDifference;
             }
 
             if (isCompressed)
