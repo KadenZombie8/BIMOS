@@ -149,8 +149,8 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void LateUpdate()
         {
-            if (!TryGetSubsystem(out _handSubsystem))
-                return;
+            if (_handSubsystem == null)
+                TryGetSubsystem(out _handSubsystem);
 
             _hand.SetPositionAndRotation(_handTarget.position, _handTarget.rotation);
             UpdateCurls();
@@ -181,13 +181,13 @@ namespace KadenZombie8.BIMOS.Rig
             LittleCurl = TryGetCurl(4, out var littleCurl) ? littleCurl : GetGripCurl(0.3f);
         }
 
-        private float GetGripCurl(float minCurl)
-        {
-            return minCurl;
-        }
+        private float GetGripCurl(float minCurl) => Mathf.Lerp(minCurl, 1f, _handInputReader.Grip);
 
         private bool TryGetCurl(int fingerIndex, out float curl)
         {
+            curl = 0f;
+            if (_handSubsystem == null) return false;
+
             var fingerShape = _subsystemHand.CalculateFingerShape(
                     (XRHandFingerID)fingerIndex, XRFingerShapeTypes.All);
 
