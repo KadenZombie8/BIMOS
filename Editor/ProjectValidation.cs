@@ -151,7 +151,10 @@ namespace KadenZombie8.BIMOS.Editor
                 Message = "Initialize XR on startup must be disabled",
                 Category = _category,
                 CheckPredicate = () => !XRGeneralSettings.Instance.InitManagerOnStart,
-                FixIt = () => XRGeneralSettings.Instance.InitManagerOnStart = false,
+                FixIt = () => {
+                    XRGeneralSettings.Instance.InitManagerOnStart = false;
+                    EditorUtility.SetDirty(XRGeneralSettings.Instance);
+                },
                 Error = true
             }
         };
