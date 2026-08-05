@@ -1403,6 +1403,7 @@ GameObject:
   - component: {fileID: 8533684751214534901}
   - component: {fileID: 2608193906310756961}
   - component: {fileID: 7934040397994560550}
+  - component: {fileID: 5177339998779391833}
   m_Layer: 0
   m_Name: LeftLegIK
   m_TagString: Untagged
@@ -1465,6 +1466,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
   UnlimitedTarget: {fileID: 2811614908622920429}
   _margin: 0.01
+--- !u!114 &5177339998779391833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994044672338218363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b9b8b42be1a734fa543899a67b8906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.Tiptoes
+  _target: {fileID: 2811614908622920429}
 --- !u!1 &1996557166260039988
 GameObject:
   m_ObjectHideFlags: 0
@@ -8365,7 +8379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7114006542557103759}
   m_Layer: 0
-  m_Name: LeftLegTargetLimited (1)
+  m_Name: LeftLegTargetLimited
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8587,7 +8601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6175953805274317782}
   m_Layer: 0
-  m_Name: RightTargetLimited
+  m_Name: RightArmTargetLimited
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8708,7 +8722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5043436101094264499}
   m_Layer: 0
-  m_Name: LeftTargetLimited
+  m_Name: LeftArmTargetLimited
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12772,6 +12786,7 @@ GameObject:
   - component: {fileID: 3795830733188205076}
   - component: {fileID: 8947274606454780688}
   - component: {fileID: 5346521105073043961}
+  - component: {fileID: 3600642778959329381}
   m_Layer: 0
   m_Name: RightLegIK
   m_TagString: Untagged
@@ -12834,6 +12849,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
   UnlimitedTarget: {fileID: 3290801078093939743}
   _margin: 0.01
+--- !u!114 &3600642778959329381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676598146597125168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b9b8b42be1a734fa543899a67b8906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.Tiptoes
+  _target: {fileID: 3290801078093939743}
 --- !u!1 &8676870659903977638
 GameObject:
   m_ObjectHideFlags: 0
