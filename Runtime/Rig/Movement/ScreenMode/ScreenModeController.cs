@@ -58,7 +58,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private Vector3 _centerPosition = new(-0.2f, 0f, 0.3f);
         private Vector3 _dimensions = new(0.5f, 0.5f, 0.5f);
 
-        private Vector3 _defaultRotation = new(0f, 0f, 0f);
+        private Vector3 _defaultRotation = new(90f, -60f, 0f);
         private Vector3 _rotation;
 
         private readonly float _moveSensitivity = 0.0005f;

@@ -186,10 +186,13 @@ namespace KadenZombie8.BIMOS.Rig
         private bool TryGetCurl(int fingerIndex, out float curl)
         {
             curl = 0f;
+
             if (_handSubsystem == null) return false;
 
             var fingerShape = _subsystemHand.CalculateFingerShape(
-                    (XRHandFingerID)fingerIndex, XRFingerShapeTypes.All);
+                (XRHandFingerID)fingerIndex,
+                XRFingerShapeTypes.All
+            );
 
             return fingerShape.TryGetFullCurl(out curl);
         }

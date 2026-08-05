@@ -13,8 +13,10 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         public PhysicsRigRigidbodies Rigidbodies;
         public PhysicsRigColliders Colliders;
         public PhysicsRigJoints Joints;
-        public PhysicsRigJointDrives JointDrives;
         public PhysicsRigGrabHandlers GrabHandlers;
+
+        [NonSerialized]
+        public PhysicsRigJointDrives JointDrives;
 
         [HideInInspector]
         public SmoothLocomotion Movement;
