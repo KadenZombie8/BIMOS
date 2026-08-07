@@ -2226,6 +2226,7 @@ MonoBehaviour:
     Controller: {fileID: 8563664812807291384}
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0, w: 0}
+    LockJoint: {fileID: 8290803905283388528}
   _animator: {fileID: 2945637317176231005}
 --- !u!1 &2514652766759430098
 GameObject:
@@ -2605,6 +2606,7 @@ MonoBehaviour:
       m_Action: Position
       m_Flags: 0
     m_Flags: 0
+    m_Priority: 0
   _rotationAction:
     m_Name: Rotation
     m_Type: 0
@@ -2622,6 +2624,7 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 0
     m_Flags: 0
+    m_Priority: 0
 --- !u!1 &2831132717142933996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,6 +3428,7 @@ MonoBehaviour:
       m_Action: Action
       m_Flags: 0
     m_Flags: 0
+    m_Priority: 0
   _locomotionSphere: {fileID: 8664907815770538786}
   _body: {fileID: 963962029903314884}
   _head: {fileID: 1247939486734246858}
@@ -3912,6 +3916,7 @@ GameObject:
   - component: {fileID: 8852767680745090534}
   - component: {fileID: 8050519698042287081}
   - component: {fileID: 1738721986649257008}
+  - component: {fileID: 8290803905283388528}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Player
@@ -3977,9 +3982,9 @@ ConfigurableJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 1
-  m_YMotion: 1
-  m_ZMotion: 1
+  m_XMotion: 2
+  m_YMotion: 2
+  m_ZMotion: 2
   m_AngularXMotion: 2
   m_AngularYMotion: 2
   m_AngularZMotion: 2
@@ -3987,7 +3992,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.64
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -4262,6 +4267,108 @@ MonoBehaviour:
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
+--- !u!153 &8290803905283388528
+ConfigurableJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301374950904824340}
+  serializedVersion: 4
+  m_ConnectedBody: {fileID: 8929004322245703853}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_SecondaryAxis: {x: 0, y: 1, z: 0}
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
+  m_AngularXMotion: 2
+  m_AngularYMotion: 2
+  m_AngularZMotion: 2
+  m_LinearLimitSpring:
+    spring: 0
+    damper: 0
+  m_LinearLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularXLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_HighAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularYZLimitSpring:
+    spring: 0
+    damper: 0
+  m_AngularYLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularZLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_TargetPosition: {x: 0, y: 0, z: 0}
+  m_TargetVelocity: {x: 0, y: 0, z: 0}
+  m_XDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_YDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_ZDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
+  m_RotationDriveMode: 0
+  m_AngularXDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_AngularYZDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_SlerpDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_ProjectionMode: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_ConfiguredInWorldSpace: 0
+  m_SwapBodies: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &3361279970704012941
 GameObject:
   m_ObjectHideFlags: 0
@@ -4358,6 +4465,7 @@ MonoBehaviour:
     Controller: {fileID: 5488886840134976617}
     PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0, w: 0}
+    LockJoint: {fileID: 1296920408170151229}
   _animator: {fileID: 2945637317176231005}
 --- !u!1 &3414075759266772195
 GameObject:
@@ -4460,12 +4568,12 @@ ConfigurableJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 1
-  m_YMotion: 1
-  m_ZMotion: 1
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
   m_AngularXMotion: 2
   m_AngularYMotion: 2
   m_AngularZMotion: 2
@@ -4473,7 +4581,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.64
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -4504,19 +4612,19 @@ ConfigurableJoint:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 1500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -4535,9 +4643,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 100000
-    positionDamper: 10
-    maximumForce: 100000
+    positionSpring: 10000
+    positionDamper: 100
+    maximumForce: 1500
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -5112,6 +5220,7 @@ MonoBehaviour:
       m_Action: User Presence
       m_Flags: 0
     m_Flags: 0
+    m_Priority: 0
 --- !u!1818360608 &2419908477883435937
 PositionConstraint:
   m_ObjectHideFlags: 0
@@ -5181,6 +5290,7 @@ GameObject:
   - component: {fileID: 4019303862579688845}
   - component: {fileID: 8908107651780780551}
   - component: {fileID: 7232480368526836369}
+  - component: {fileID: 1296920408170151229}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Player
@@ -5246,9 +5356,9 @@ ConfigurableJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 1
-  m_YMotion: 1
-  m_ZMotion: 1
+  m_XMotion: 2
+  m_YMotion: 2
+  m_ZMotion: 2
   m_AngularXMotion: 2
   m_AngularYMotion: 2
   m_AngularZMotion: 2
@@ -5256,7 +5366,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.64
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -5531,6 +5641,108 @@ MonoBehaviour:
   _impulseRange:
     Minimum: 0.2
     Maximum: 20
+--- !u!153 &1296920408170151229
+ConfigurableJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812682066745618323}
+  serializedVersion: 4
+  m_ConnectedBody: {fileID: 6167476551377675847}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Axis: {x: 1, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 0
+  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_SecondaryAxis: {x: 0, y: 1, z: 0}
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
+  m_AngularXMotion: 2
+  m_AngularYMotion: 2
+  m_AngularZMotion: 2
+  m_LinearLimitSpring:
+    spring: 0
+    damper: 0
+  m_LinearLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularXLimitSpring:
+    spring: 0
+    damper: 0
+  m_LowAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_HighAngularXLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularYZLimitSpring:
+    spring: 0
+    damper: 0
+  m_AngularYLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_AngularZLimit:
+    limit: 0
+    bounciness: 0
+    contactDistance: 0
+  m_TargetPosition: {x: 0, y: 0, z: 0}
+  m_TargetVelocity: {x: 0, y: 0, z: 0}
+  m_XDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_YDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_ZDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
+  m_RotationDriveMode: 0
+  m_AngularXDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_AngularYZDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_SlerpDrive:
+    serializedVersion: 4
+    positionSpring: 0
+    positionDamper: 0
+    maximumForce: 3.4028233e+38
+    useAcceleration: 0
+  m_ProjectionMode: 0
+  m_ProjectionDistance: 0.1
+  m_ProjectionAngle: 180
+  m_ConfiguredInWorldSpace: 0
+  m_SwapBodies: 0
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &3844847181516455510
 GameObject:
   m_ObjectHideFlags: 0
@@ -7412,6 +7624,7 @@ MonoBehaviour:
         m_Action: Position
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_RotationInput:
     m_UseReference: 0
@@ -7432,6 +7645,7 @@ MonoBehaviour:
         m_Action: Rotation
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_TrackingStateInput:
     m_UseReference: 0
@@ -7452,6 +7666,7 @@ MonoBehaviour:
         m_Action: Tracking State
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_PositionAction:
     m_Name: 
@@ -7462,6 +7677,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+    m_Priority: 0
   m_RotationAction:
     m_Name: 
     m_Type: 0
@@ -7471,6 +7687,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+    m_Priority: 0
 --- !u!114 &4166488413971264423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7993,6 +8210,7 @@ MonoBehaviour:
         m_Action: Position
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_RotationInput:
     m_UseReference: 0
@@ -8013,6 +8231,7 @@ MonoBehaviour:
         m_Action: Rotation
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_TrackingStateInput:
     m_UseReference: 0
@@ -8033,6 +8252,7 @@ MonoBehaviour:
         m_Action: Tracking State
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_PositionAction:
     m_Name: 
@@ -8043,6 +8263,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+    m_Priority: 0
   m_RotationAction:
     m_Name: 
     m_Type: 0
@@ -8052,6 +8273,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+    m_Priority: 0
 --- !u!114 &2670558484249623212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9067,19 +9289,19 @@ ConfigurableJoint:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 1500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -9098,9 +9320,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 100000
-    positionDamper: 10
-    maximumForce: 100000
+    positionSpring: 10000
+    positionDamper: 100
+    maximumForce: 1500
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -11406,19 +11628,19 @@ ConfigurableJoint:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 1500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -11437,9 +11659,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 100000
-    positionDamper: 10
-    maximumForce: 100000
+    positionSpring: 10000
+    positionDamper: 100
+    maximumForce: 1500
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -11608,12 +11830,12 @@ ConfigurableJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
+  m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 1
-  m_YMotion: 1
-  m_ZMotion: 1
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
   m_AngularXMotion: 2
   m_AngularYMotion: 2
   m_AngularZMotion: 2
@@ -11621,7 +11843,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.64
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -11652,19 +11874,19 @@ ConfigurableJoint:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 1500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
     positionSpring: 50000
     positionDamper: 2500
-    maximumForce: 15000
+    maximumForce: 5000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -11683,9 +11905,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 100000
-    positionDamper: 10
-    maximumForce: 100000
+    positionSpring: 10000
+    positionDamper: 100
+    maximumForce: 1500
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -12327,6 +12549,7 @@ MonoBehaviour:
       m_Action: Position
       m_Flags: 0
     m_Flags: 0
+    m_Priority: 0
   _rotationAction:
     m_Name: Rotation
     m_Type: 0
@@ -12344,6 +12567,7 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 0
     m_Flags: 0
+    m_Priority: 0
 --- !u!1 &8373157052378793860
 GameObject:
   m_ObjectHideFlags: 0
@@ -13275,6 +13499,7 @@ MonoBehaviour:
         m_Action: Position
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_RotationInput:
     m_UseReference: 0
@@ -13295,6 +13520,7 @@ MonoBehaviour:
         m_Action: Rotation
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_TrackingStateInput:
     m_UseReference: 0
@@ -13315,6 +13541,7 @@ MonoBehaviour:
         m_Action: Tracking State
         m_Flags: 0
       m_Flags: 0
+      m_Priority: 0
     m_Reference: {fileID: 0}
   m_PositionAction:
     m_Name: 
@@ -13325,6 +13552,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+    m_Priority: 0
   m_RotationAction:
     m_Name: 
     m_Type: 0
@@ -13334,6 +13562,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+    m_Priority: 0
 --- !u!114 &1785471339049578779
 MonoBehaviour:
   m_ObjectHideFlags: 0
