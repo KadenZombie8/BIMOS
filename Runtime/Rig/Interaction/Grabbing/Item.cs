@@ -24,7 +24,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Awake()
         {
-            var body = Utilities.GetBody(transform, out _, out _);
+            var body = BodyUtilities.GetBody(transform, out _, out _);
             GameObjects.Add(body.gameObject);
 
             foreach (var grabbable in GetComponentsInChildren<Grabbable>())

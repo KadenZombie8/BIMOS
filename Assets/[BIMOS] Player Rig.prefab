@@ -3375,7 +3375,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetLegHeight: 0
-  _rig: {fileID: 6671873013947755651}
+  _grounding: {fileID: 8465649426909595903}
+  _locomotionSphere: {fileID: 5217677170083806441}
+  _knee: {fileID: 4107036072679230787}
+  _pelvis: {fileID: 3294666784809313299}
+  _headCameraOffset: {fileID: 2083655086568588637}
+  _bodyCollider: {fileID: 457432215563285942}
+  _legJoint: {fileID: 4187641605383468551}
+  _groundingFactor: 1
 --- !u!114 &9143494609847232379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3517,7 +3524,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   PhysicsRig: {fileID: 1361669725724948971}
-  LocomotionSphere: {fileID: 5715720381970918571}
   Crouching: {fileID: 6258398633430799671}
   StateMachine: {fileID: 875384604267470677}
 --- !u!114 &875384604267470677

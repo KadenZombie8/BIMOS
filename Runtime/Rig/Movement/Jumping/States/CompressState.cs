@@ -25,7 +25,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             if (!Jumping.LocomotionSphere.IsGrounded)
                 return;
 
-            Jumping.PhysicsRig.Joints.Pelvis.massScale = 0.01f;
+            Crouching.GroundingForce = 2000f;
         }
 
         protected override void Update()
@@ -48,7 +48,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             Crouching.MinLegHeight = Crouching.MinCrouchingLegHeight;
             Crouching.MaxLegHeight = Crouching.MaxStandingLegHeight;
 
-            Jumping.PhysicsRig.Joints.Pelvis.massScale = 1f;
+            Crouching.GroundingForce = 0f;
         }
 
         private void BufferJump() => _jumpBuffer = true;

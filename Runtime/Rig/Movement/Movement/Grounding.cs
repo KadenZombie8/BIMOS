@@ -27,6 +27,10 @@ namespace KadenZombie8.BIMOS
 
         public bool IsGrounded { get; private set; }
 
+        public Vector3 GroundPoint { get; private set; }
+
+        public Component GroundBody { get; private set; }
+
         private bool _isGrounded;
 
         public Vector3 GroundNormal { get; private set; }
@@ -59,7 +63,6 @@ namespace KadenZombie8.BIMOS
             if (gravity.sqrMagnitude == 0f) return;
 
             var upDirection = -gravity.normalized;
-            var otherBody = collision.body;
 
             for (int i = 0; i < collision.contactCount; i++)
             {
@@ -71,7 +74,9 @@ namespace KadenZombie8.BIMOS
                 if (IsSlipping) continue;
 
                 _isGrounded = true;
+                GroundPoint = contactPoint.point;
                 GroundNormal = groundNormal;
+                GroundBody = collision.body;
 
                 Vector3 alongPlaneVector = Vector3.Cross(groundNormal, upDirection);
                 Vector3 upPlaneVector = Vector3.Cross(alongPlaneVector, groundNormal);
@@ -80,22 +85,9 @@ namespace KadenZombie8.BIMOS
                 var counterImpulse = impulse.magnitude / slopeDot * upPlaneVector;
 
                 _rigidbody.AddForce(counterImpulse, ForceMode.Impulse);
-                AddForceAtPosition(otherBody, -counterImpulse, contactPoint.point, ForceMode.Impulse);
+                BodyUtilities.AddForceAtPosition(collision.body, -counterImpulse, contactPoint.point, ForceMode.Impulse);
 
                 return;
-            }
-        }
-
-        private void AddForceAtPosition(Component body, Vector3 force, Vector3 position, ForceMode mode)
-        {
-            switch (body)
-            {
-                case Rigidbody otherRigidbody:
-                    otherRigidbody.AddForceAtPosition(force, position, mode);
-                    break;
-                case ArticulationBody otherArticulationBody:
-                    otherArticulationBody.AddForceAtPosition(force, position, mode);
-                    break;
             }
         }
     }

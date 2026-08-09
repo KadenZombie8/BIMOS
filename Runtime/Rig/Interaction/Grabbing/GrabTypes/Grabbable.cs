@@ -29,7 +29,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void OnEnable()
         {
-            Body = Utilities.GetBody(transform, out RigidBody, out ArticulationBody);
+            Body = BodyUtilities.GetBody(transform, out RigidBody, out ArticulationBody);
             if (!Body)
             {
                 var rigidbody = gameObject.AddComponent<Rigidbody>();

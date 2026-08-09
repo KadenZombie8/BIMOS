@@ -17,7 +17,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         protected override void Enter()
         {
             _airTime = 0f;
-            Jumping.PhysicsRig.Joints.Pelvis.massScale = 2f;
+            Jumping.SetFeetMassMultiplier(0.5f);
             _maxCrouch = (Crouching.StandingLegHeight - Crouching.CrawlingLegHeight) / 3f;
             _legRiseTime = 3f / _legRiseSpeed;
             _hasOverridenLift = false;
@@ -55,9 +55,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             Crouching.TargetLegHeight = Mathf.Clamp(newLegHeight, _maxCrouch, Crouching.StandingLegHeight);
         }
 
-        protected override void Exit()
-        {
-            Jumping.PhysicsRig.Joints.Pelvis.massScale = 1f;
-        }
+        protected override void Exit() => Jumping.SetFeetMassMultiplier(1f);
     }
 }

@@ -8,6 +8,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     /// <summary>
     /// Handles the jumping mechanic. Controller of a state machine.
     /// </summary>
+    [RequireComponent(typeof(Crouching))]
     public class Jumping : MonoBehaviour
     {
         public event Action OnJump;
@@ -20,8 +21,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         public PhysicsRig PhysicsRig;
 
-        [HideInInspector]
-        public LocomotionSphere LocomotionSphere;
+        public LocomotionSphere LocomotionSphere { get; private set; }
+
+        public Rigidbody FeetRigidbody { get; private set; }
 
         [HideInInspector]
         public Crouching Crouching;
@@ -33,10 +35,22 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         /// </summary>
         public float AnticipationHeight { get; private set; } = 0.4f;
 
-        private void AnticipateJump(CallbackContext callbackContext) => OnAnticipate?.Invoke();
+        private float _defaultFeetMass;
 
+        public void SetFeetMassMultiplier(float multiplier)
+        {
+            FeetRigidbody.mass = _defaultFeetMass * multiplier;
+        }
 
-        private void Jump(CallbackContext callbackContext) => OnJump?.Invoke();
+        private void AnticipateJump(CallbackContext callbackContext)
+        {
+            OnAnticipate?.Invoke();
+        }
+
+        private void Jump(CallbackContext callbackContext)
+        {
+            OnJump?.Invoke();
+        }
 
         private void OnEnable()
         {
@@ -55,6 +69,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private void Start()
         {
             LocomotionSphere = PhysicsRig.Movement.LocomotionSphere;
+            FeetRigidbody = PhysicsRig.Rigidbodies.LocomotionSphere;
+            _defaultFeetMass = FeetRigidbody.mass;
+
             Crouching = GetComponent<Crouching>();
         }
 

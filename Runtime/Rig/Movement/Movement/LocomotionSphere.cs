@@ -40,7 +40,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             if (targetLinearVelocity.sqrMagnitude < 0.1f && !_grounding.IsSlipping)
                 _rigidbody.inertiaTensor = Vector3.zero;
             else
-                _rigidbody.inertiaTensor = _inertiaTensorRate * Time.fixedDeltaTime;
+                _rigidbody.inertiaTensor = _rigidbody.mass / 20f * Time.fixedDeltaTime * _inertiaTensorRate;
         }
     }
 }

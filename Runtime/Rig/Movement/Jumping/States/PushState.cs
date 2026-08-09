@@ -30,9 +30,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             if (!Jumping.LocomotionSphere.IsGrounded)
                 return;
 
-            // Prevent early liftoff
-            Jumping.PhysicsRig.Joints.Pelvis.massScale = 0.01f;
-
             // Calculate required velocity to reach target jump height
             _targetVelocity = Mathf.Sqrt(2f * -Physics.gravity.y * jumpHeight);
             Jumping.PhysicsRig.Joints.Pelvis.targetVelocity = Vector3.up * _targetVelocity;
@@ -78,8 +75,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             StateMachine.Jumping.PhysicsRig.Rigidbodies.Knee.linearVelocity = jumpVelocity;
             StateMachine.Jumping.PhysicsRig.Rigidbodies.Pelvis.linearVelocity = jumpVelocity;
             StateMachine.Jumping.PhysicsRig.Rigidbodies.Head.linearVelocity = jumpVelocity;
-
-            Jumping.PhysicsRig.Joints.Pelvis.massScale = 1f;
         }
     }
 }

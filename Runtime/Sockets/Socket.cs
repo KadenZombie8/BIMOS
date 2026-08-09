@@ -46,7 +46,7 @@ namespace KadenZombie8.BIMOS.Sockets
         private ArticulationBody _articulationBody;
         private Transform _body;
 
-        private void Awake() => _body = Utilities.GetBody(transform, out _rigidBody, out _articulationBody);
+        private void Awake() => _body = BodyUtilities.GetBody(transform, out _rigidBody, out _articulationBody);
 
         private bool HasMatchingTag(Plug plug)
         {
