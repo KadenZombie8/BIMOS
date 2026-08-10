@@ -33,7 +33,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         /// <summary>
         /// The height the legs contract in preparation for a jump
         /// </summary>
-        public float AnticipationHeight { get; private set; } = 0.4f;
+        public float AnticipationHeight { get; private set; } = 0.3f;
 
         private float _defaultFeetMass;
 

@@ -53,7 +53,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private LockState _lockState = LockState.Position;
         private readonly int _lockStateCount = Enum.GetValues(typeof(LockState)).Length;
 
-        private Vector3 _defaultPosition = new(-0.2f, -0.1f, 0.4f);
+        private Vector3 _defaultPosition = new(-0.2f, -0.1f, 0.55f);
         private Vector3 _position;
         private Vector3 _centerPosition = new(-0.2f, 0f, 0.3f);
         private Vector3 _dimensions = new(0.5f, 0.5f, 0.5f);

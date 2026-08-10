@@ -119,17 +119,14 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             }
             else
             {
-                var neckYDifference = _controllerRig.Transforms.Camera.position.y - _controllerRig.Transforms.HeadCameraOffset.position.y;
-                var minHeight = _jumping.LocomotionSphere.IsGrounded ? _crouching.CrouchingLegHeight : _crouching.CrawlingLegHeight;
-
-                minLegHeight = minHeight - neckYDifference;
-                maxLegHeight = _crouching.StandingLegHeight - neckYDifference;
+                minLegHeight = _jumping.LocomotionSphere.IsGrounded ? _crouching.CrouchingLegHeight : _crouching.CrawlingLegHeight;
+                maxLegHeight = _crouching.StandingLegHeight;
             }
 
             if (isCompressed)
             {
-                minLegHeight -= _jumping.AnticipationHeight;
-                maxLegHeight -= _jumping.AnticipationHeight;
+                minLegHeight = _crouching.MinLegHeight;
+                maxLegHeight = _crouching.MaxLegHeight;
             }
             else
             {
@@ -138,6 +135,14 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
                 if (CrouchInputMagnitude <= 0f)
                     maxLegHeight = _crouching.StandingLegHeight;
+            }
+
+            if (_virtualCrouchMode != VirtualCrouchModeType.Continuous)
+            {
+                var neckYDifference = _controllerRig.Transforms.Camera.position.y - _controllerRig.Transforms.HeadCameraOffset.position.y;
+
+                maxLegHeight -= neckYDifference;
+                minLegHeight -= neckYDifference;
             }
 
             _crouching.TargetLegHeight = Mathf.Clamp(_crouching.TargetLegHeight, minLegHeight, maxLegHeight);
