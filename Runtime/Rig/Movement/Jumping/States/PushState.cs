@@ -42,6 +42,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
                 = Jumping.PhysicsRig.Joints.Pelvis.yDrive
                 = Jumping.PhysicsRig.Joints.Pelvis.zDrive
                 = riseJointDrive;
+
+            Jumping.SetFeetMassMultiplier(2f);
         }
 
         protected override void Update()
@@ -75,6 +77,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             StateMachine.Jumping.PhysicsRig.Rigidbodies.Knee.linearVelocity = jumpVelocity;
             StateMachine.Jumping.PhysicsRig.Rigidbodies.Pelvis.linearVelocity = jumpVelocity;
             StateMachine.Jumping.PhysicsRig.Rigidbodies.Head.linearVelocity = jumpVelocity;
+
+            Jumping.SetFeetMassMultiplier(1f);
         }
     }
 }

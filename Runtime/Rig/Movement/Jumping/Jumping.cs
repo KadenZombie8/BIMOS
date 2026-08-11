@@ -23,8 +23,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         public LocomotionSphere LocomotionSphere { get; private set; }
 
-        public Rigidbody FeetRigidbody { get; private set; }
-
         [HideInInspector]
         public Crouching Crouching;
 
@@ -35,11 +33,17 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         /// </summary>
         public float AnticipationHeight { get; private set; } = 0.3f;
 
+        private Rigidbody _feetRigidbody;
+        private Rigidbody _pelvisRigidbody;
+
         private float _defaultFeetMass;
+        private float _defaultPelvisMass;
 
         public void SetFeetMassMultiplier(float multiplier)
         {
-            FeetRigidbody.mass = _defaultFeetMass * multiplier;
+            _feetRigidbody.mass = _defaultFeetMass * multiplier;
+            var massLoss = _defaultFeetMass * (1f - multiplier);
+            _pelvisRigidbody.mass = _defaultPelvisMass + massLoss;
         }
 
         private void AnticipateJump(CallbackContext callbackContext)
@@ -69,8 +73,12 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private void Start()
         {
             LocomotionSphere = PhysicsRig.Movement.LocomotionSphere;
-            FeetRigidbody = PhysicsRig.Rigidbodies.LocomotionSphere;
-            _defaultFeetMass = FeetRigidbody.mass;
+
+            _feetRigidbody = PhysicsRig.Rigidbodies.LocomotionSphere;
+            _pelvisRigidbody = PhysicsRig.Rigidbodies.Pelvis;
+
+            _defaultFeetMass = _feetRigidbody.mass;
+            _defaultPelvisMass = _pelvisRigidbody.mass;
 
             Crouching = GetComponent<Crouching>();
         }

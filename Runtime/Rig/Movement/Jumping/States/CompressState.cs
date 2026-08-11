@@ -8,7 +8,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     public class CompressState : JumpState
     {
         private readonly float _bufferTime = 0.25f;
-        private readonly float _compressDuration = 0.175f;
+        private readonly float _compressDuration = 0.1f;
         private float _compressTime;
         private bool _jumpBuffer;
         private float _compressedHeight;
@@ -23,6 +23,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             if (!Jumping.LocomotionSphere.IsGrounded)
                 return;
+
+            Jumping.SetFeetMassMultiplier(2f);
         }
 
         protected override void Update()
@@ -57,6 +59,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             Crouching.MinLegHeight = Crouching.MinCrouchingLegHeight;
             Crouching.MaxLegHeight = Crouching.MaxStandingLegHeight;
+
+            Jumping.SetFeetMassMultiplier(1f);
         }
 
         private void BufferJump() => _jumpBuffer = true;
