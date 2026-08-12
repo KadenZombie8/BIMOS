@@ -3,7 +3,6 @@ using KadenZombie8.BIMOS.Rig.Movement;
 using KadenZombie8.BIMOS.UI;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.XR.Management;
 
 namespace KadenZombie8.BIMOS.Settings.Bindings

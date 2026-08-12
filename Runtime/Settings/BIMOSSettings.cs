@@ -44,6 +44,7 @@ namespace KadenZombie8.BIMOS.Settings
 
         // Debug
         public Setting<int> ControlType = new("Debug_ControlType", 0);
+        public Setting<bool> ShowColliders = new("Debug_ShowColliders", false);
         #endregion
 
         public BIMOSSettings()

@@ -316,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _character: {fileID: 6304793145192069567}
   _headCameraOffset: {fileID: 2083655086568588637}
+  _lookSpeed: 100
 --- !u!1 &654324478549119675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,6 +1073,7 @@ GameObject:
   - component: {fileID: 7944032034042516880}
   - component: {fileID: 6990096286109952277}
   - component: {fileID: 7335563760848900305}
+  - component: {fileID: 7715240354743641201}
   m_Layer: 5
   m_Name: General_Bindings
   m_TagString: Untagged
@@ -1184,6 +1186,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Spectator_Output
   _key: Spectator_Output
   _spectatorCamera: {fileID: 7643006279973107364}
+--- !u!114 &7715240354743641201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccc2adf94bfec924187cfe7430240b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Debug_Colliders
+  _key: Debug_ShowColliders
+  _debugShapes: {fileID: 1585967732411247227}
 --- !u!1 &1828531639042773749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,7 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
-  UnlimitedTarget: {fileID: 70422243505131228}
+  UnlimitedTarget: {fileID: 8563664812807291384}
   _margin: 0.01
 --- !u!1 &2053210023924917134
 GameObject:
@@ -3258,7 +3274,7 @@ GameObject:
   m_Layer: 0
   m_Name: Physics
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3375,14 +3391,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetLegHeight: 0
-  _grounding: {fileID: 8465649426909595903}
-  _locomotionSphere: {fileID: 5217677170083806441}
   _knee: {fileID: 4107036072679230787}
-  _pelvis: {fileID: 3294666784809313299}
   _headCameraOffset: {fileID: 2083655086568588637}
   _bodyCollider: {fileID: 457432215563285942}
   _legJoint: {fileID: 4187641605383468551}
-  _groundingFactor: 1
 --- !u!114 &9143494609847232379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3405,37 +3417,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3045650548132499840}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f9c028de4cbe5e49939785ca2c860ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7db2b619-a35f-4225-b126-bcab504cdd47
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 3b58fd3c-e942-49b1-a136-c85f1be55aee
-      m_Path: <Keyboard>/y
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Action
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 8d7e7fc7-62db-41f6-a243-0a082f80c20b
-      m_Path: <XRController>{LeftHand}/menu
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Action
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
   _locomotionSphere: {fileID: 8664907815770538786}
   _body: {fileID: 963962029903314884}
   _head: {fileID: 1247939486734246858}
@@ -3445,7 +3431,6 @@ MonoBehaviour:
   _rightUpperArm: {fileID: 6480668376603704467}
   _rightLowerArm: {fileID: 8629066000816756587}
   _rightHand: {fileID: 2190372628956765446}
-  _isVisible: 0
 --- !u!114 &7745990403062909187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3607,7 +3592,7 @@ GameObject:
   m_Layer: 0
   m_Name: '[BIMOS] Player Rig'
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3838,7 +3823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
-  UnlimitedTarget: {fileID: 8913552984557658865}
+  UnlimitedTarget: {fileID: 5488886840134976617}
   _margin: 0.01
 --- !u!1 &3259180518487581369
 GameObject:
@@ -5147,7 +5132,7 @@ GameObject:
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7589,7 +7574,7 @@ Transform:
   m_GameObject: {fileID: 5081465939377218559}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.2, y: -0.1, z: 0.3}
+  m_LocalPosition: {x: 0.2, y: 1, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8175,7 +8160,7 @@ Transform:
   m_GameObject: {fileID: 5238918533599247444}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: -0.2, y: -0.1, z: 0.3}
+  m_LocalPosition: {x: -0.2, y: 1, z: 0.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9254,9 +9239,9 @@ ConfigurableJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 1
-  m_YMotion: 1
-  m_ZMotion: 1
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
   m_AngularXMotion: 2
   m_AngularYMotion: 2
   m_AngularZMotion: 2
@@ -9264,7 +9249,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.64
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -9874,7 +9859,7 @@ GameObject:
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -10779,6 +10764,7 @@ GameObject:
   - component: {fileID: 3892480533840977832}
   - component: {fileID: 5558844855332037281}
   - component: {fileID: 3744108678913092936}
+  - component: {fileID: 4342301752201222448}
   m_Layer: 0
   m_Name: RigSetup
   m_TagString: Untagged
@@ -10831,6 +10817,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4342301752201222448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7428136101398296620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.BoneRenderer
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 1, g: 0.6783241, b: 0, a: 0.5}
+  m_Transforms:
+  - {fileID: 120682373457595219}
+  - {fileID: 3384791169555643133}
+  - {fileID: 8314174327626781891}
+  - {fileID: 6413004251207576947}
+  - {fileID: 938390037749520290}
+  - {fileID: 4404963920396795161}
+  - {fileID: 4894658351016345031}
+  - {fileID: 952314940442926400}
+  - {fileID: 5816486170834638800}
+  - {fileID: 7044564389282375298}
+  - {fileID: 6107732191996695805}
+  - {fileID: 8259053638100596372}
+  - {fileID: 5068468262146546127}
+  - {fileID: 4721023424501928020}
+  - {fileID: 2961041816044593233}
+  - {fileID: 6226448003947385612}
+  - {fileID: 6771639455305280436}
+  - {fileID: 523550101305634140}
+  - {fileID: 5308711230719691544}
+  - {fileID: 9119277769720340050}
+  - {fileID: 5741815456184479637}
+  - {fileID: 6125507538871477268}
+  - {fileID: 6747064511244264712}
+  - {fileID: 3278625565107668873}
+  - {fileID: 6391161165197446695}
+  - {fileID: 3129167038000662315}
+  - {fileID: 4858770891034482808}
+  - {fileID: 5126499562582090036}
+  - {fileID: 3446605342267815555}
+  - {fileID: 8244693968898116507}
+  - {fileID: 4259943439336700311}
+  - {fileID: 8732192180056757238}
+  - {fileID: 7996230679686269669}
+  - {fileID: 8754710834927928886}
+  - {fileID: 761021153971897060}
+  - {fileID: 238204005604781416}
+  - {fileID: 2935541184492131829}
+  - {fileID: 7835154006388178449}
+  - {fileID: 3579974738647719516}
+  - {fileID: 2400761742569429149}
+  - {fileID: 119791398303126332}
+  - {fileID: 1377692217582531113}
+  - {fileID: 2610857138291084527}
+  - {fileID: 2678649459554274371}
+  - {fileID: 3371133056291442281}
+  - {fileID: 4882503799196080641}
+  - {fileID: 3300393515496099328}
+  - {fileID: 4178007880752351481}
+  - {fileID: 2719470848315213082}
+  - {fileID: 4378487536606802592}
+  - {fileID: 427574886464292471}
+  - {fileID: 6488438013335673974}
+  - {fileID: 3178254649615688730}
+  - {fileID: 3381234141315386426}
+  - {fileID: 6867660225162785881}
+  - {fileID: 4905370891837689585}
+  - {fileID: 4703559021433117085}
+  - {fileID: 4821367410458398700}
+  - {fileID: 771849867001707528}
+  - {fileID: 9141263281522395306}
+  - {fileID: 3657355353955312699}
+  - {fileID: 5118447787777737986}
+  - {fileID: 8459838025113989671}
+  - {fileID: 1103128196398911812}
+  - {fileID: 7485549269410363375}
+  - {fileID: 3756760642025694274}
+  - {fileID: 1131613322391410642}
 --- !u!1 &7488308431328264069
 GameObject:
   m_ObjectHideFlags: 0
@@ -11593,9 +11665,9 @@ ConfigurableJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
-  m_XMotion: 1
-  m_YMotion: 1
-  m_ZMotion: 1
+  m_XMotion: 0
+  m_YMotion: 0
+  m_ZMotion: 0
   m_AngularXMotion: 2
   m_AngularYMotion: 2
   m_AngularZMotion: 2
@@ -11603,7 +11675,7 @@ ConfigurableJoint:
     spring: 0
     damper: 0
   m_LinearLimit:
-    limit: 0.64
+    limit: 0
     bounciness: 0
     contactDistance: 0
   m_AngularXLimitSpring:
@@ -13242,7 +13314,7 @@ GameObject:
   m_Layer: 0
   m_Name: Animation
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

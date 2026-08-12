@@ -10,8 +10,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     [RequireComponent(typeof(PhysicsRig))]
     public class DebugShapes : MonoBehaviour
     {
-        public InputAction Action;
-
         [SerializeField]
         private Transform
             _locomotionSphere,
@@ -24,31 +22,13 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _rightLowerArm,
             _rightHand;
 
-        [SerializeField]
-        private bool _isVisible;
-
         private PhysicsRigColliders _colliders;
 
         private void Start() => _colliders = GetComponent<PhysicsRig>().Colliders;
 
-        private void OnEnable()
-        {
-            Action.Enable();
-            Action.performed += ToggleDebugShapes;
+        private void OnEnable() => SetDebugShapesVisible(true);
 
-            SetDebugShapesVisible(_isVisible);
-        }
-
-        private void OnDisable()
-        {
-            Action.performed -= ToggleDebugShapes;
-        }
-
-        private void ToggleDebugShapes(InputAction.CallbackContext context)
-        {
-            _isVisible = !_isVisible;
-            SetDebugShapesVisible(_isVisible);
-        }
+        private void OnDisable() => SetDebugShapesVisible(false);
 
         private void SetDebugShapesVisible(bool isVisible)
         {
