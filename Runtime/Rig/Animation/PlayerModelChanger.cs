@@ -1,6 +1,8 @@
-using System.Collections.Generic;
 using KadenZombie8.BIMOS.Rig;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace KadenZombie8.BIMOS.Editor
 {
@@ -9,7 +11,7 @@ namespace KadenZombie8.BIMOS.Editor
     public class PlayerModelChanger : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _characterModel;
+        private GameObject _modelPrefab;
 
         private BIMOSRig _player;
 
@@ -17,44 +19,86 @@ namespace KadenZombie8.BIMOS.Editor
         {
             _player = GetComponent<BIMOSRig>();
 
-            Animator animator = _characterModel.GetComponent<Animator>();
+            var newAvatar = _modelPrefab.GetComponent<Animator>().avatar;
 
-            if (!animator.avatar)
+            if (!newAvatar)
             {
                 Debug.LogError("Character model must have an avatar");
                 return;
             }
 
-            if (!animator.avatar.isHuman)
+            if (!newAvatar.isHuman)
             {
                 Debug.LogError("Character model's avatar must be humanoid");
                 return;
             }
 
-            Transform character = _player.AnimationRig.Transforms.Character;
+            int undoGroup = Undo.GetCurrentGroup();
+            Undo.SetCurrentGroupName("Change player model");
+
+            UpdateRig(_player.AnimationRig.Transforms.Character, newAvatar);
+
+            foreach (var renderer in _player.AnimationRig.Transforms.Character.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                Undo.DestroyObjectImmediate(renderer.gameObject);
+            }
+
+            UpdateRig(_player.AvatarRig.Character, newAvatar);
+
+            foreach (var renderer in _player.AvatarRig.Character.GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                Undo.RecordObject(renderer, "Update renderer");
+                renderer.updateWhenOffscreen = true;
+            }
+
+            Undo.CollapseUndoOperations(undoGroup);
+        }
+
+        private void UpdateRig(Transform character, Avatar newAvatar)
+        {
+            var animator = character.GetComponent<Animator>();
+
+            DestroyOldModel(character);
+
+            Undo.RecordObject(animator, "Change animator avatar");
+            animator.avatar = newAvatar;
+
+            CopyModelChildren(character);
+        }
+
+        private void CopyModelChildren(Transform character)
+        {
+            var modelInstance = Instantiate(_modelPrefab);
+            Undo.RegisterCreatedObjectUndo(modelInstance, "Created model instance");
+
+            var children = new List<Transform>();
+
+            foreach (Transform child in modelInstance.transform)
+            {
+                children.Add(child);
+            }
+
+            foreach (var child in children)
+            {
+                Undo.SetTransformParent(child, character, "Parent child to model");
+                child.SetParent(character);
+            }
+
+            DestroyImmediate(modelInstance);
+        }
+
+        private void DestroyOldModel(Transform character)
+        {
             List<Transform> characterChildren = new();
-            foreach (Transform child in character.transform)
+            foreach (Transform child in character)
                 characterChildren.Add(child);
 
-            foreach (Transform child in characterChildren)
-                if (!child.GetComponent<UnityEngine.Animations.Rigging.Rig>())
-                    DestroyImmediate(child.gameObject);
+            foreach (var child in characterChildren)
+            {
+                if (child.GetComponent<UnityEngine.Animations.Rigging.Rig>()) continue;
 
-            _player.AnimationRig.Transforms.Character.GetComponent<Animator>().avatar = animator.avatar;
-
-            GameObject characterModel = Instantiate(_characterModel);
-
-            List<Transform> characterModelChildren = new();
-            foreach (Transform child in characterModel.transform)
-                characterModelChildren.Add(child);
-
-            foreach (Transform child in characterModelChildren)
-                child.parent = character;
-
-            foreach (var renderer in character.GetComponentsInChildren<SkinnedMeshRenderer>())
-                renderer.updateWhenOffscreen = true;
-
-            DestroyImmediate(characterModel);
+                Undo.DestroyObjectImmediate(child.gameObject);
+            }
         }
     }
 }

@@ -11,8 +11,9 @@ namespace KadenZombie8.BIMOS.Rig
         public event Action<BIMOSRig> OnDisabled;
 
         public ControllerRig ControllerRig;
-        public PhysicsRig PhysicsRig;
         public AnimationRig AnimationRig;
+        public PhysicsRig PhysicsRig;
+        public AvatarRig AvatarRig;
 
         private void OnDisable() => OnDisabled?.Invoke(this);
     }
