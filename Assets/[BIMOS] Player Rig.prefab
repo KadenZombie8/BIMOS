@@ -12718,7 +12718,6 @@ MonoBehaviour:
   tripodSize: 1
   boneColor: {r: 1, g: 0.6783241, b: 0, a: 0.5}
   m_Transforms:
-  - {fileID: 5429245347149013006}
   - {fileID: 3483185837867046660}
   - {fileID: 274189505286028844}
   - {fileID: 8297840801382817192}
