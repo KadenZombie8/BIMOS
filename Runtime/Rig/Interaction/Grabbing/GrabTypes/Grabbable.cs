@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.XR;
 
 namespace KadenZombie8.BIMOS.Rig
 {
@@ -98,10 +99,37 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (Collider collider in Body.GetComponentsInChildren<Collider>())
             {
-                Physics.IgnoreCollision(collider, hand.ArmColliders.UpperArm, ignore);
-                Physics.IgnoreCollision(collider, hand.ArmColliders.LowerArm, ignore);
-                Physics.IgnoreCollision(collider, hand.ArmColliders.Hand, ignore);
+                if (ignore)
+                {
+                    //Physics.IgnoreCollision(collider, hand.ArmColliders.UpperArm, ignore);
+                    //Physics.IgnoreCollision(collider, hand.ArmColliders.LowerArm, ignore);
+                    //Physics.IgnoreCollision(collider, hand.ArmColliders.Hand, ignore);
+                }
+                else
+                {
+                    StartCoroutine(CollideOnExit(hand.ArmColliders.UpperArm, collider));
+                    StartCoroutine(CollideOnExit(hand.ArmColliders.LowerArm, collider));
+                    StartCoroutine(CollideOnExit(hand.ArmColliders.Hand, collider));
+                }
             }
+        }
+
+        private IEnumerator CollideOnExit(Collider arm, Collider collider)
+        {
+            while (IsIntersecting(arm, collider))
+            {
+                yield return new WaitForFixedUpdate();
+            }
+
+            Physics.IgnoreCollision(arm, collider, false);
+        }
+
+        private bool IsIntersecting(Collider arm, Collider collider)
+        {
+            return Physics.ComputePenetration(
+                arm, arm.transform.position, arm.transform.rotation,
+                collider, collider.transform.position, collider.transform.rotation,
+                out _, out _);
         }
 
         public virtual void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)

@@ -2150,6 +2150,7 @@ MonoBehaviour:
   _handedness: 1
   _controller: {fileID: 8105584686134532683}
   _pelvis: {fileID: 8556203494894390205}
+  _smoothing: 10
 --- !u!114 &2603970048041096599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4599,6 +4600,7 @@ MonoBehaviour:
   _handedness: 0
   _controller: {fileID: 302060809740126155}
   _pelvis: {fileID: 8556203494894390205}
+  _smoothing: 10
 --- !u!114 &6132061874040565225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5240,7 +5242,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.04
+  m_Radius: 0.03
   m_Height: 0.36
   m_Direction: 1
   m_Center: {x: 0, y: 0.14, z: 0}
@@ -10553,7 +10555,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.04
   m_Height: 0.43
   m_Direction: 1
   m_Center: {x: 0, y: 0.14, z: 0}
@@ -13691,7 +13693,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.04
   m_Height: 0.43
   m_Direction: 1
   m_Center: {x: 0, y: 0.14, z: 0}
@@ -13968,7 +13970,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.04
+  m_Radius: 0.03
   m_Height: 0.36
   m_Direction: 1
   m_Center: {x: 0, y: 0.14, z: 0}
