@@ -1614,6 +1614,7 @@ GameObject:
   - component: {fileID: 6990096286109952277}
   - component: {fileID: 7335563760848900305}
   - component: {fileID: 7715240354743641201}
+  - component: {fileID: 2852863089541722375}
   m_Layer: 5
   m_Name: General_Bindings
   m_TagString: Untagged
@@ -1740,6 +1741,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Debug_Colliders
   _key: Debug_ShowColliders
   _debugShapes: {fileID: 1585967732411247227}
+--- !u!114 &2852863089541722375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c84fb62e1312944cad1735c0c8c7127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Debug_ShowAvatar
+  _key: Debug_ShowAvatar
+  _character: {fileID: 4527350553677245809}
 --- !u!1 &1857804496368376523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,6 +2969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4527350553677245809}
   - component: {fileID: 4634945880224820894}
+  - component: {fileID: 3326513785822600006}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3000,6 +3016,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3326513785822600006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2540830107376874520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3983fa6d1ca3e3e46a56fd72d70fa06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.MatchPose
+  _animationRig: {fileID: 5003449384936182098}
+  _physicsRig: {fileID: 1361669725724948971}
 --- !u!1 &2562934863673353321
 GameObject:
   m_ObjectHideFlags: 0
