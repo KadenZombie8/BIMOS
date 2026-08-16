@@ -29,8 +29,8 @@ namespace KadenZombie8.BIMOS.Rig
 
         public void SetAmmoPrefab(GameObject ammoPrefab)
         {
-            SetItemSlotGrabbablesEnabled(true);
             AmmoPrefab = ammoPrefab;
+            SetItemSlotGrabbablesEnabled(true);
         }
 
         public override void StoreItem(Storable storable)
@@ -67,6 +67,8 @@ namespace KadenZombie8.BIMOS.Rig
             }
 
             base.RetrieveItem(grabbable);
+
+            SetItemSlotGrabbablesEnabled(true);
         }
     }
 }
