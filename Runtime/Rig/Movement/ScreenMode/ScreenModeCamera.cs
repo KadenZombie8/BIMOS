@@ -27,7 +27,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Update()
         {
-            if (!IsActive) return;
+            if (!IsActive || !enabled) return;
             if (_leftHand.IsPositionUnlocked || _rightHand.IsPositionUnlocked) return;
             if (_leftHand.IsRotationUnlocked || _rightHand.IsRotationUnlocked) return;
             if (_leftHand.IsUnlocked || _rightHand.IsUnlocked) return;
