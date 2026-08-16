@@ -33,10 +33,15 @@ namespace KadenZombie8.BIMOS.Rig
             AssignPhysicsBone(HumanBodyBones.RightHand, _physicsRig.Rigidbodies.RightArm.Hand);
 
             foreach (HumanBodyBones bone in Enum.GetValues(typeof(HumanBodyBones)))
-                _boneMapping.TryAdd(
-                    GetComponent<Animator>().GetBoneTransform(bone),
-                    _animationRig.Animator.GetBoneTransform(bone)
-                );
+            {
+                if (bone == HumanBodyBones.LastBone) continue;
+
+                var avatarBone = _animator.GetBoneTransform(bone);
+                var animationBone = _animationRig.Animator.GetBoneTransform(bone);
+                
+                if (avatarBone && animationBone)
+                    _boneMapping.TryAdd(avatarBone, animationBone);
+            }
         }
 
         private void LateUpdate()
