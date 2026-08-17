@@ -2150,7 +2150,6 @@ MonoBehaviour:
   _handedness: 1
   _controller: {fileID: 8105584686134532683}
   _pelvis: {fileID: 8556203494894390205}
-  _smoothing: 10
 --- !u!114 &2603970048041096599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4600,7 +4599,6 @@ MonoBehaviour:
   _handedness: 0
   _controller: {fileID: 302060809740126155}
   _pelvis: {fileID: 8556203494894390205}
-  _smoothing: 10
 --- !u!114 &6132061874040565225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5360,7 +5358,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 1000
     positionDamper: 100
     maximumForce: 1500
     useAcceleration: 0
@@ -10673,7 +10671,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 1000
     positionDamper: 100
     maximumForce: 1500
     useAcceleration: 0
@@ -13811,7 +13809,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 1000
     positionDamper: 100
     maximumForce: 1500
     useAcceleration: 0
@@ -14088,7 +14086,7 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 1000
     positionDamper: 100
     maximumForce: 1500
     useAcceleration: 0
