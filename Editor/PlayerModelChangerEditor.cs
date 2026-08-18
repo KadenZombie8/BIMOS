@@ -24,7 +24,6 @@ namespace KadenZombie8.BIMOS.Editor
                 _target.ChangePlayerModel();
 
             serializedObject.ApplyModifiedProperties();
-
         }
     }
 }

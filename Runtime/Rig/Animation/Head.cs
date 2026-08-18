@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig.Animation
 {
-    [DefaultExecutionOrder(-1)]
+    [DefaultExecutionOrder(-10)]
     public class Head : MonoBehaviour
     {
         [SerializeField]
@@ -15,6 +15,8 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         private float _lookSpeed = 5f;
 
         private void Update() => UpdateCharacter();
+
+        private void LateUpdate() => UpdateCharacter();
 
         public void UpdateCharacter()
         {

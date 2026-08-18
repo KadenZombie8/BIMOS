@@ -25,8 +25,6 @@ namespace KadenZombie8.BIMOS.Rig
             protected Transform UpperArmBone;
             protected float MaxLength;
 
-            
-
             public virtual void Initialize(Animator animator, HumanBodyBones upperArmBone)
             {
                 AnimationBone = animator.GetBoneTransform(Bone);
@@ -48,8 +46,6 @@ namespace KadenZombie8.BIMOS.Rig
                 var pelvisToTarget = parent.transform.InverseTransformPoint(Target.position);
                 Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - Joint.connectedAnchor, MaxLength);
                 Joint.targetRotation = Quaternion.Inverse(parent.rotation) * Target.rotation;
-
-                
             }
         }
 

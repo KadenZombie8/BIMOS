@@ -16,7 +16,11 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private PhysicsRig _physicsRig;
 
-        private readonly Dictionary<Transform, Transform> _boneMapping = new();
+        private readonly Dictionary<Transform, Transform> _animationMapping = new();
+
+        private readonly Dictionary<HumanBodyBones, Transform> _physicsMapping = new();
+
+        private readonly List<Transform> _fingerMapping = new();
 
         private Animator _animator;
 
@@ -37,26 +41,57 @@ namespace KadenZombie8.BIMOS.Rig
                 if (bone == HumanBodyBones.LastBone) continue;
 
                 var avatarBone = _animator.GetBoneTransform(bone);
-                var animationBone = _animationRig.Animator.GetBoneTransform(bone);
-                
-                if (avatarBone && animationBone)
-                    _boneMapping.TryAdd(avatarBone, animationBone);
+
+                Transform targetBone;
+
+                if (_physicsMapping.ContainsKey(bone))
+                {
+                    targetBone = _physicsMapping[bone];
+                }
+                else
+                {
+                    var boneIndex = (int)bone;
+                    if (boneIndex >= 24 && boneIndex <= 53)
+                    {
+                        _fingerMapping.Add(avatarBone);
+                        targetBone = _animationRig.Animator.GetBoneTransform(bone);
+                    }
+                    else
+                    {
+                        targetBone = _animationRig.Animator.GetBoneTransform(bone);
+                    }
+                }
+
+                if (avatarBone && targetBone)
+                    _animationMapping.TryAdd(avatarBone, targetBone);
+            }
+
+            foreach (var bone in _animationMapping)
+            {
+                print(bone.Key.name);
             }
         }
 
         private void LateUpdate()
         {
-            foreach (var bone in _boneMapping)
+            foreach (var bone in _animationMapping)
             {
-                bone.Key.SetPositionAndRotation(bone.Value.position, bone.Value.rotation);
+                var avatarBone = bone.Key;
+                if (_fingerMapping.Contains(avatarBone))
+                {
+                    bone.Key.SetLocalPositionAndRotation(bone.Value.localPosition, bone.Value.localRotation);
+                }
+                else
+                {
+                    bone.Key.SetPositionAndRotation(bone.Value.position, bone.Value.rotation);
+                }
             }
         }
 
         private void AssignPhysicsBone(HumanBodyBones bone, Rigidbody rigidbody)
         {
-            var animationBone = _animationRig.Animator.GetBoneTransform(bone);
             var physicsBone = rigidbody.transform;
-            _boneMapping.Add(animationBone, physicsBone);
+            _physicsMapping.Add(bone, physicsBone);
         }
     }
 }

@@ -16,9 +16,6 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private HandInputReader _handInputReader;
 
-        [SerializeField]
-        private Transform _handTarget;
-
         private Transform _hand;
 
         public HandPose DefaultHandPose, HandPose;
@@ -152,7 +149,6 @@ namespace KadenZombie8.BIMOS.Rig
             if (_handSubsystem == null)
                 TryGetSubsystem(out _handSubsystem);
 
-            _hand.SetPositionAndRotation(_handTarget.position, _handTarget.rotation);
             UpdateCurls();
             UpdateHand();
         }

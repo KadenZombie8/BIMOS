@@ -32,7 +32,7 @@ namespace KadenZombie8.BIMOS.Rig
             transform.localScale = Vector3.one * scaleFactor;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             transform.position = _rig.PhysicsRig.Rigidbodies.Pelvis.position;
         }
