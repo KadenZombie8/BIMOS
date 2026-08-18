@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 7305508328515733775}
   - component: {fileID: 5085862370523923386}
   m_Layer: 0
-  m_Name: Visual
+  m_Name: LeftControllerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1706,6 +1706,7 @@ GameObject:
   - component: {fileID: 7715240354743641201}
   - component: {fileID: 2852863089541722375}
   - component: {fileID: 375368429302453901}
+  - component: {fileID: 7007244784567884382}
   m_Layer: 5
   m_Name: General_Bindings
   m_TagString: Untagged
@@ -1861,6 +1862,21 @@ MonoBehaviour:
   _key: Debug_ShowAnimationRig
   _animator: {fileID: 2945637317176231005}
   _trackerPrefab: {fileID: 4163973630169736876, guid: 830ce67f9b65ba94991592aafa6581de, type: 3}
+--- !u!114 &7007244784567884382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791757523878911610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d367bedc2e87fb142868866e6bd278db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Settings.Bindings.Debug_ShowControllerRig
+  _key: Debug_ShowControllerRig
+  _leftController: {fileID: 1730200596941897024}
+  _rightController: {fileID: 2222089118250637397}
 --- !u!1 &1857804496368376523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,7 +2458,7 @@ GameObject:
   - component: {fileID: 1348803295748169408}
   - component: {fileID: 3706898125338904583}
   m_Layer: 0
-  m_Name: Visual
+  m_Name: RightControllerVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -44,6 +44,8 @@ namespace KadenZombie8.BIMOS.Settings
 
         // Debug
         public Setting<int> ControlType = new("Debug_ControlType", 0);
+        public Setting<bool> ShowControllerRig = new("Debug_ShowControllerRig", false);
+        public Setting<bool> ShowRemapRig = new("Debug_ShowRemapRig", false);
         public Setting<bool> ShowAnimationRig = new("Debug_ShowAnimationRig", false);
         public Setting<bool> ShowColliders = new("Debug_ShowColliders", false);
         public Setting<bool> ShowAvatar = new("Debug_ShowAvatar", true);
