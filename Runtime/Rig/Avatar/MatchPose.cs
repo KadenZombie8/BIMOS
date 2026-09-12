@@ -65,11 +65,6 @@ namespace KadenZombie8.BIMOS.Rig
                 if (avatarBone && targetBone)
                     _animationMapping.TryAdd(avatarBone, targetBone);
             }
-
-            foreach (var bone in _animationMapping)
-            {
-                print(bone.Key.name);
-            }
         }
 
         private void LateUpdate()

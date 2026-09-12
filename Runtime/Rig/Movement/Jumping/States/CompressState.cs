@@ -7,7 +7,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     /// </summary>
     public class CompressState : JumpState
     {
-        private readonly float _bufferTime = 0.25f;
+        private readonly float _bufferTime = 0f;
         private readonly float _compressDuration = 0.1f;
         private float _compressTime;
         private bool _jumpBuffer;
