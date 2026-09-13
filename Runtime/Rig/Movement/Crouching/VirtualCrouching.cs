@@ -11,7 +11,8 @@ namespace KadenZombie8.BIMOS.Rig.Movement
     /// </summary>
     public class VirtualCrouching : MonoBehaviour
     {
-        public InputActionReference CrouchAction;
+        public InputActionReference ContinuousCrouchAction;
+        public InputActionReference DiscreteCrouchAction;
 
         [Tooltip("The speed (in %/s) the legs can extend/retract at")]
         public float CrouchSpeed = 2.5f;
@@ -40,40 +41,51 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Awake()
         {
-            CrouchAction.action.Enable();
+            ContinuousCrouchAction.action.Enable();
+            DiscreteCrouchAction.action.Enable();
             _crouching = GetComponent<Crouching>();
             _jumping = GetComponent<Jumping>();
         }
 
         private void OnEnable()
         {
-            CrouchAction.action.performed += Crouch;
-            CrouchAction.action.canceled += Crouch;
+            ContinuousCrouchAction.action.performed += ContinuousCrouch;
+            ContinuousCrouchAction.action.canceled += ContinuousCrouch;
+
+            DiscreteCrouchAction.action.performed += DiscreteCrouch;
+            DiscreteCrouchAction.action.canceled += DiscreteCrouch;
         }
 
         private void OnDisable()
         {
-            CrouchAction.action.performed -= Crouch;
-            CrouchAction.action.canceled -= Crouch;
+            ContinuousCrouchAction.action.performed -= ContinuousCrouch;
+            ContinuousCrouchAction.action.canceled -= ContinuousCrouch;
+
+            DiscreteCrouchAction.action.performed -= DiscreteCrouch;
+            DiscreteCrouchAction.action.canceled -= DiscreteCrouch;
         }
 
-        private void Crouch(InputAction.CallbackContext context)
+        private void ContinuousCrouch(InputAction.CallbackContext context)
+        {
+            _virtualCrouchMode = VirtualCrouchModeType.Continuous;
+            CrouchInputMagnitude = context.ReadValue<float>();
+        }
+
+        private void DiscreteCrouch(InputAction.CallbackContext context)
         {
             var device = context.action.activeControl.device;
 
-            if (device is XRController)
-                _virtualCrouchMode = VirtualCrouchModeType.Continuous;
-            else if (device is Keyboard)
+            if (device is Keyboard)
                 _virtualCrouchMode = VirtualCrouchModeType.Discrete;
             else if (device is Gamepad)
                 _virtualCrouchMode = VirtualCrouchModeType.DiscreteToggle;
 
-            CrouchInputMagnitude = context.ReadValue<float>();
+            var isCrouching = !context.canceled;
 
             switch (_virtualCrouchMode)
             {
                 case VirtualCrouchModeType.Discrete:
-                    CrouchInputMagnitude = CrouchInputMagnitude < 0f ? -1f : 1f;
+                    CrouchInputMagnitude = isCrouching ? -1f : 1f;
                     break;
                 case VirtualCrouchModeType.DiscreteToggle:
                     if (context.performed) _isCrouching = !_isCrouching;

@@ -171,10 +171,9 @@ namespace KadenZombie8.BIMOS.Rig
             LowerArm.Collider.center += LowerArm.Collider.radius / 2f * Vector3.down;
         }
 
-        private void FixedUpdate() => Hand.UpdateJoint();
-
-        private void LateUpdate()
+        private void FixedUpdate()
         {
+            Hand.UpdateJoint();
             UpperArm.UpdateJoint();
             LowerArm.UpdateJoint();
         }

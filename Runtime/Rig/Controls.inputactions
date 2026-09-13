@@ -27,7 +27,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "Crouch",
+                    "name": "ContinuousCrouch",
                     "type": "Value",
                     "id": "27542ca4-d83e-47d7-a421-ebf7f09ba4de",
                     "expectedControlType": "Axis",
@@ -52,6 +52,16 @@
                     "id": "346b7e6b-1e31-41b1-911b-8fd2da7a532f",
                     "expectedControlType": "Axis",
                     "processors": "AxisDeadzone(min=0.35)",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "DiscreteCrouch",
+                    "type": "Button",
+                    "id": "80556da0-c9e0-40f0-880a-c475cd33e103",
+                    "expectedControlType": "",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true,
                     "priority": 0
@@ -192,23 +202,34 @@
                 },
                 {
                     "name": "Keyboard",
-                    "id": "573fac48-ff2b-4892-8a7a-73d7065475a0",
+                    "id": "d40a9d58-cddb-4c9c-be18-e7f0de749fde",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Crouch",
+                    "action": "ContinuousCrouch",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Negative",
-                    "id": "1e1ffb5f-fa59-4d26-a083-765e5cfbd9af",
-                    "path": "<Keyboard>/leftCtrl",
+                    "name": "negative",
+                    "id": "698952da-3980-4aab-a1f6-76708216c810",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard & Mouse",
-                    "action": "Crouch",
+                    "groups": "",
+                    "action": "ContinuousCrouch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "7f45e7cf-2731-437f-b3eb-03b7e071b5b1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ContinuousCrouch",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -219,7 +240,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";XR",
-                    "action": "Crouch",
+                    "action": "ContinuousCrouch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -230,31 +251,9 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";XR",
-                    "action": "Crouch",
+                    "action": "ContinuousCrouch",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "Gamepad",
-                    "id": "0f354014-94f3-408b-bf33-ffb858fdc9ae",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Negative",
-                    "id": "463b4338-d69f-4fb5-b5b3-9d76faa9056c",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
@@ -321,6 +320,50 @@
                     "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "573fac48-ff2b-4892-8a7a-73d7065475a0",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DiscreteCrouch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "1e1ffb5f-fa59-4d26-a083-765e5cfbd9af",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard & Mouse",
+                    "action": "DiscreteCrouch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Gamepad",
+                    "id": "0f354014-94f3-408b-bf33-ffb858fdc9ae",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DiscreteCrouch",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "463b4338-d69f-4fb5-b5b3-9d76faa9056c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "DiscreteCrouch",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
