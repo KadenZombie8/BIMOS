@@ -6,7 +6,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
     /// <summary>
     /// Limits target distance of two bone IK constraint, preventing snapping from pole length becoming 0
     /// </summary>
-    [DefaultExecutionOrder(2)]
+    [DefaultExecutionOrder(-2)]
     [RequireComponent(typeof(TwoBoneIKConstraint))]
     public class TwoBoneIKLimiter : MonoBehaviour
     {
@@ -25,7 +25,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         [SerializeField]
         private float _margin = 0.01f;
 
-        private void Awake()
+        private void Start()
         {
             _twoBoneIKConstraint = GetComponent<TwoBoneIKConstraint>();
 
@@ -43,6 +43,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         private void Update()
         {
             var displacement = UnlimitedTarget.position - _root.position;
+            print(displacement.magnitude);
             var chainEpsilon = _chainLength - _margin;
 
             _limitedTarget.SetPositionAndRotation(

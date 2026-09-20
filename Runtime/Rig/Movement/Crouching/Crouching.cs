@@ -42,7 +42,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             MinLegHeight = MinCrouchingLegHeight;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             ApplyCrouch();
 
