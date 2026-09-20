@@ -16,7 +16,10 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
         private MenuToggleFlatscreen _menuToggleFlatscreen;
 
         [SerializeField]
-        private ScreenModeCamera _screenModeCamera;
+        private Behaviour[] _screenModeBehaviours;
+
+        [SerializeField]
+        private Behaviour[] _vrModeBehaviours;
 
         [SerializeField]
         private ControllerRig _controllerRig;
@@ -26,6 +29,7 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
 
         private void Start()
         {
+            StopXR();
             if (Setting.Value == 0)
                 StartCoroutine(StartXR());
             else
@@ -43,7 +47,7 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
         private IEnumerator StartXR()
         {
             _menuToggleFlatscreen.SetMenuOpen(false);
-            _screenModeCamera.enabled = false;
+            SetScreenModeComponentsEnabled(false);
 
             BIMOSUtils.Settings.TryGetSetting(_realHeightKey, out var setting);
             var heightSetting = (Setting<float>)setting;
@@ -61,11 +65,23 @@ namespace KadenZombie8.BIMOS.Settings.Bindings
         {
             _controllerRig.UpdateRealHeight(180f);
             _menuToggleVR.SetMenuOpen(false);
-            _screenModeCamera.enabled = true;
+            SetScreenModeComponentsEnabled(true);
             var manager = XRGeneralSettings.Instance.Manager;
             if (!manager.activeLoader) return;
             manager.StopSubsystems();
             manager.DeinitializeLoader();
+        }
+
+        private void SetScreenModeComponentsEnabled(bool enabled)
+        {
+            foreach (var component in _screenModeBehaviours)
+            {
+                component.enabled = enabled;
+            }
+            foreach (var component in _vrModeBehaviours)
+            {
+                component.enabled = !enabled;
+            }
         }
 
         private void OnDestroy() => StopXR();

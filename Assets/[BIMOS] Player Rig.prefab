@@ -1744,7 +1744,14 @@ MonoBehaviour:
   _key: Debug_ControlType
   _menuToggleVR: {fileID: 8319602235108118684}
   _menuToggleFlatscreen: {fileID: 5602540935969928316}
-  _screenModeCamera: {fileID: 1785471339049578779}
+  _screenModeBehaviours:
+  - {fileID: 1785471339049578779}
+  - {fileID: 8894401630385708789}
+  - {fileID: 2741531472009422250}
+  _vrModeBehaviours:
+  - {fileID: 6153071560714915280}
+  - {fileID: 6596823750539270308}
+  - {fileID: 4322997551656818365}
   _controllerRig: {fileID: 7251668691989030867}
   _realHeightKey: VR_RealHeight
 --- !u!114 &1486733275779594776
@@ -4124,7 +4131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8429808874163754829}
   - component: {fileID: 5599650215153196575}
-  - component: {fileID: 3185585528755773045}
   m_Layer: 0
   m_Name: HeadCollider
   m_TagString: Player
@@ -4155,7 +4161,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2940052044353419808}
-  m_Material: {fileID: 13400000, guid: e6df68717b9090a4196a01fedd68aaed, type: 2}
+  m_Material: {fileID: 13400000, guid: eccfe0383277b384688d89b0aeaba3c2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4171,19 +4177,6 @@ CapsuleCollider:
   m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3185585528755773045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2940052044353419808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb3c35ede44ee944b6fbc986596224c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.SlipPastSlopeAngle
-  _maxSlopeAngle: 50
 --- !u!1 &2943923490487620230
 GameObject:
   m_ObjectHideFlags: 0
@@ -6318,8 +6311,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5068128423746160875}
   - component: {fileID: 7251668691989030867}
-  - component: {fileID: 7877303348130894249}
-  - component: {fileID: 2419908477883435937}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -6365,64 +6356,6 @@ MonoBehaviour:
     RightPalm: {fileID: 8105584686134532683}
     LeftController: {fileID: 6592363549466593726}
     RightController: {fileID: 1478771343154856604}
---- !u!114 &7877303348130894249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3740902940346483565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4d98ecfc908d9748aa8adda30d7d324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.ScreenModeSwitching
-  _trackedPoseDrivers:
-    Headset: {fileID: 6153071560714915280}
-    LeftController: {fileID: 6596823750539270308}
-    RightController: {fileID: 4322997551656818365}
-  _camera: {fileID: 1785471339049578779}
-  _controllers:
-    LeftController: {fileID: 8894401630385708789}
-    RightController: {fileID: 2741531472009422250}
-  _userPresenceAction:
-    m_Name: User Presence
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f543206f-436a-48c0-b3d4-eaff36e7d466
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 464069f5-488e-433e-aaef-636b7dbad753
-      m_Path: <XRHMD>/{UserPresence}
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: User Presence
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
---- !u!1818360608 &2419908477883435937
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3740902940346483565}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 1.4971749, z: -0.030010462}
-  m_TranslationOffset: {x: 0, y: 0, z: 0}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_Active: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 8556203494894390205}
-    weight: 1
 --- !u!1 &3792790874959211797
 GameObject:
   m_ObjectHideFlags: 0

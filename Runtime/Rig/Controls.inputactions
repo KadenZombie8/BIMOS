@@ -323,6 +323,39 @@
                 },
                 {
                     "name": "Keyboard",
+                    "id": "4cb3561b-32fd-41f6-95a9-ecb8cf68f5f3",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "36669804-47cc-46c1-a5d1-e910a436db6f",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "05c1c785-9523-4aa1-a829-f2d61a2f463e",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Keyboard",
                     "id": "573fac48-ff2b-4892-8a7a-73d7065475a0",
                     "path": "1DAxis",
                     "interactions": "",

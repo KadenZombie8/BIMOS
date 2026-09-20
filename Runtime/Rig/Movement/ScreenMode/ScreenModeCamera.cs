@@ -25,7 +25,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void Awake() => _lookReference.action.Enable();
 
-        private void Update()
+        private void LateUpdate()
         {
             if (!IsActive || !enabled) return;
             if (_leftHand.IsPositionUnlocked || _rightHand.IsPositionUnlocked) return;
