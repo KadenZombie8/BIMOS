@@ -43,7 +43,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         private void Update()
         {
             var displacement = UnlimitedTarget.position - _root.position;
-            print(displacement.magnitude);
+            //print(displacement.magnitude);
             var chainEpsilon = _chainLength - _margin;
 
             _limitedTarget.SetPositionAndRotation(

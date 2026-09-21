@@ -45,10 +45,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         private void Update()
         {
             ApplyCrouch();
-
-            UpdateCollider(_bodyCollider,
-                _knee.position,
-                _headCameraOffset.position);
+            UpdateCollider(_bodyCollider, _knee.position, _headCameraOffset.position);
         }
 
         private void ApplyCrouch()
@@ -59,8 +56,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private static void UpdateCollider(CapsuleCollider collider, Vector3 to, Vector3 from)
         {
-            collider.height = Vector3.Distance(to, from) + collider.radius * 2f;
-            collider.transform.position = (to + from) / 2f;
+            var lineLength = Vector3.Distance(to, from);
+            collider.height = lineLength + collider.radius * 2f;
+            collider.center = lineLength / 2f * Vector3.down;
         }
     }
 }

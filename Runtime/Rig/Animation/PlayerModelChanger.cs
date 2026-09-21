@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
+#if UNITY_EDITOR
 namespace KadenZombie8.BIMOS.Editor
 {
     [ExecuteInEditMode]
@@ -102,3 +103,4 @@ namespace KadenZombie8.BIMOS.Editor
         }
     }
 }
+#endif
