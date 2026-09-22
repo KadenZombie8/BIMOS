@@ -134,7 +134,7 @@ namespace KadenZombie8.BIMOS.Rig
             _hint = _constraint.data.hint;
         }
 
-        private void LateUpdate()
+        private void FixedUpdate()
         {
             // Find the elbow circle origin and radius
             var shoulderToHandDirection = (_handBone.position - _upperArmBone.position).normalized;

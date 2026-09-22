@@ -4303,7 +4303,7 @@ MonoBehaviour:
   _moveAction: {fileID: 2329931572188812770, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _runAction: {fileID: -6406039945800244612, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   _controllerRig: {fileID: 7251668691989030867}
-  RunSpeedMultiplier: 75
+  RunSpeedMultiplier: 2
 --- !u!114 &6258398633430799671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15443,6 +15443,7 @@ MonoBehaviour:
   _rightFoot: {fileID: 285704733958305423}
   _locomotionSphere: {fileID: 5715720381970918571}
   _hips: {fileID: 6855366230050040258}
+  _character: {fileID: 6304793145192069567}
   _locomotionSphereRigidbody: {fileID: 5217677170083806441}
   _smoothLocomotion: {fileID: 8683728267804074144}
 --- !u!1 &8774614178438221103

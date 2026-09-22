@@ -22,6 +22,9 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         private Transform _hips;
 
         [SerializeField]
+        private Transform _character;
+
+        [SerializeField]
         private Rigidbody _locomotionSphereRigidbody;
 
         [SerializeField]
@@ -33,7 +36,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
 
         private void Start() => _currentFoot = _rightFoot;
 
-        private void Update()
+        private void FixedUpdate()
         {
             _velocity = Vector3.ProjectOnPlane(_locomotionSphereRigidbody.linearVelocity - _groundVelocity, Vector3.up);
             UpdateTarget(_leftFoot);
@@ -67,7 +70,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
 
         private void UpdateTarget(Foot foot)
         {
-            foot.Target.position = _hips.position + _velocity * _stepTime + _hips.right * foot.Offset;
+            foot.Target.position = _hips.position + _velocity * _stepTime + _character.right * foot.Offset;
             if (Physics.Raycast(
                 foot.Target.position,
                 Vector3.down,
@@ -80,15 +83,15 @@ namespace KadenZombie8.BIMOS.Rig.Animation
                 foot.IsGrounded = true;
                 foot.Target.SetPositionAndRotation(
                     hit.point,
-                    Quaternion.LookRotation(Vector3.ProjectOnPlane(_hips.forward, hit.normal), hit.normal)
+                    Quaternion.LookRotation(Vector3.ProjectOnPlane(_character.forward, hit.normal), hit.normal)
                 );
             }
             else
             {
                 var target = Vector3.ProjectOnPlane(_hips.position, Vector3.up);
                 target += Vector3.up * (_locomotionSphereRigidbody.position.y - 0.2f);
-                target += _velocity * _stepTime + _hips.right * foot.Offset;
-                foot.Target.SetPositionAndRotation(target, Quaternion.LookRotation(_hips.forward));
+                target += _velocity * _stepTime + _character.right * foot.Offset;
+                foot.Target.SetPositionAndRotation(target, Quaternion.LookRotation(_character.forward));
             }
         }
 
@@ -100,7 +103,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
             }
             while (_isStepping)
             {
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
             _isStepping = true;
 
@@ -119,13 +122,13 @@ namespace KadenZombie8.BIMOS.Rig.Animation
                     _stepHeight = 0f;
                 }
 
-                startPoint += _groundVelocity * Time.deltaTime;
+                startPoint += _groundVelocity * Time.fixedDeltaTime;
 
                 _currentFoot.Target.GetPositionAndRotation(out var endPoint, out var endRot);
                 var centerPoint = (startPoint + endPoint) / 2f;
                 centerPoint += Vector3.up * _stepHeight;
 
-                timeElapsed += Time.deltaTime;
+                timeElapsed += Time.fixedDeltaTime;
                 float normalizedTime = timeElapsed / (_stepTime * 2f);
 
                 _currentFoot.Anchor.SetPositionAndRotation(Vector3.Lerp(
@@ -133,7 +136,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
                     Vector3.Lerp(centerPoint, endPoint, normalizedTime),
                     normalizedTime), Quaternion.Slerp(startRot, endRot, normalizedTime));
 
-                yield return null;
+                yield return new WaitForFixedUpdate();
             } while (timeElapsed < _stepTime * 2f);
 
             if (!isMandatory)
