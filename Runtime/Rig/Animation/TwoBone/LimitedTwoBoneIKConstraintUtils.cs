@@ -42,25 +42,24 @@ namespace KadenZombie8.BIMOS.AnimationRigging
             Vector3 aPosition = root.GetPosition(stream);
             Vector3 bPosition = mid.GetPosition(stream);
             Vector3 cPosition = tip.GetPosition(stream);
+
             target.GetGlobalTR(stream, out Vector3 targetPos, out Quaternion targetRot);
+            Vector3 tPosition = Vector3.Lerp(cPosition, targetPos + targetOffset.translation, posWeight);
+
+            Quaternion tRotation = Quaternion.Lerp(tip.GetRotation(stream), targetRot * targetOffset.rotation, rotWeight);
+            bool hasHint = hint.IsValid(stream) && hintWeight > 0f;
 
             Vector3 ab = bPosition - aPosition;
             Vector3 bc = cPosition - bPosition;
             Vector3 ac = cPosition - aPosition;
+            Vector3 at = tPosition - aPosition;
 
             float abLen = ab.magnitude;
             float bcLen = bc.magnitude;
             float acLen = ac.magnitude;
 
             float maxReach = abLen + bcLen;
-            targetPos = aPosition + Vector3.ClampMagnitude(targetPos - aPosition, maxReach - k_Margin);
-
-            Vector3 tPosition = Vector3.Lerp(cPosition, targetPos + targetOffset.translation, posWeight);
-            Quaternion tRotation = Quaternion.Lerp(tip.GetRotation(stream), targetRot * targetOffset.rotation, rotWeight);
-            bool hasHint = hint.IsValid(stream) && hintWeight > 0f;
-
-            Vector3 at = tPosition - aPosition;
-            float atLen = at.magnitude;
+            float atLen = Mathf.Min(at.magnitude, maxReach - k_Margin);
 
             float oldAbcAngle = TriangleAngle(acLen, abLen, bcLen);
             float newAbcAngle = TriangleAngle(atLen, abLen, bcLen);
