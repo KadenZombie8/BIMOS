@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.AnimationRigging;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 
@@ -7,7 +8,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
     /// Angles the feet down when they lose contact with the ground.
     /// </summary>
     [DefaultExecutionOrder(2)]
-    [RequireComponent(typeof(TwoBoneIKConstraint))]
+    [RequireComponent(typeof(LimitedTwoBoneIKConstraint))]
     public class Tiptoes : MonoBehaviour
     {
         [SerializeField]
@@ -17,11 +18,11 @@ namespace KadenZombie8.BIMOS.Rig.Animation
 
         private float _footLength;
 
-        private TwoBoneIKConstraint _twoBoneIKConstraint;
+        private LimitedTwoBoneIKConstraint _twoBoneIKConstraint;
 
         private void Awake()
         {
-            _twoBoneIKConstraint = GetComponent<TwoBoneIKConstraint>();
+            _twoBoneIKConstraint = GetComponent<LimitedTwoBoneIKConstraint>();
 
             _foot = _twoBoneIKConstraint.data.tip;
             var toes = _foot.GetChild(0);

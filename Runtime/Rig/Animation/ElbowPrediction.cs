@@ -1,5 +1,5 @@
+using KadenZombie8.BIMOS.AnimationRigging;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 
 namespace KadenZombie8.BIMOS.Rig
 {
@@ -7,7 +7,7 @@ namespace KadenZombie8.BIMOS.Rig
     /// Predict's the player's elbow location for the two-bone IK hint
     /// This heuristic method is based upon one shared by TundraFightSchool on YouTube <3
     /// </summary>
-    [RequireComponent(typeof(TwoBoneIKConstraint))]
+    [RequireComponent(typeof(LimitedTwoBoneIKConstraint))]
     public class ElbowPrediction : MonoBehaviour
     {
         [SerializeField]
@@ -25,7 +25,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private Transform _hint;
 
-        private TwoBoneIKConstraint _constraint;
+        private LimitedTwoBoneIKConstraint _constraint;
 
         private Vector3 _targetElbowDirection;
 
@@ -125,7 +125,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Start()
         {
-            _constraint = GetComponent<TwoBoneIKConstraint>();
+            _constraint = GetComponent<LimitedTwoBoneIKConstraint>();
 
             _upperArmBone = _constraint.data.root;
             _lowerArmBone = _constraint.data.mid;
@@ -133,7 +133,7 @@ namespace KadenZombie8.BIMOS.Rig
             _hint = _constraint.data.hint;
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             // Find the elbow circle origin and radius
             var shoulderToHandDirection = (_handBone.position - _upperArmBone.position).normalized;

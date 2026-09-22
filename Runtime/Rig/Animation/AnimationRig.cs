@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.AnimationRigging;
 using System;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
@@ -151,10 +152,10 @@ namespace KadenZombie8.BIMOS.Rig.Animation
     {
         public MultiAimConstraint LeftShoulder;
         public MultiAimConstraint RightShoulder;
-        public TwoBoneIKConstraint LeftArm;
-        public TwoBoneIKConstraint RightArm;
-        public TwoBoneIKConstraint LeftLeg;
-        public TwoBoneIKConstraint RightLeg;
+        public LimitedTwoBoneIKConstraint LeftArm;
+        public LimitedTwoBoneIKConstraint RightArm;
+        public LimitedTwoBoneIKConstraint LeftLeg;
+        public LimitedTwoBoneIKConstraint RightLeg;
         public OverrideTransform Hip;
         public MultiAimConstraint Chest;
         public MultiParentConstraint Head;

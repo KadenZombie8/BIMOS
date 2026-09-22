@@ -715,7 +715,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3552196413856021950}
-  - {fileID: 6175953805274317782}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2333595246700603270
@@ -2035,8 +2034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8533684751214534901}
-  - component: {fileID: 2608193906310756961}
-  - component: {fileID: 7934040397994560550}
+  - component: {fileID: 8897012221065406810}
   - component: {fileID: 5177339998779391833}
   m_Layer: 0
   m_Name: LeftLegIK
@@ -2059,10 +2057,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8241188203510831001}
-  - {fileID: 7114006542557103759}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2608193906310756961
+--- !u!114 &8897012221065406810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2071,35 +2068,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994044672338218363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Script: {fileID: 11500000, guid: 36c4adbf0d821e442aa6726346491134, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.AnimationRigging.TwoBoneIKConstraint2
   m_Weight: 1
   m_Data:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 7114006542557103759}
+    m_Target: {fileID: 2811614908622920429}
     m_Hint: {fileID: 8241188203510831001}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
---- !u!114 &7934040397994560550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994044672338218363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
-  UnlimitedTarget: {fileID: 2811614908622920429}
-  _margin: 0.01
 --- !u!114 &5177339998779391833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2213,9 +2196,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3552196413856021950}
-  - component: {fileID: 6378187275511441504}
+  - component: {fileID: 4677104088884840311}
   - component: {fileID: 7995150270698625952}
-  - component: {fileID: 2603970048041096599}
   m_Layer: 0
   m_Name: RightArmIK
   m_TagString: Untagged
@@ -2239,7 +2221,7 @@ Transform:
   - {fileID: 1731530144788815798}
   m_Father: {fileID: 59313101973558073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6378187275511441504
+--- !u!114 &4677104088884840311
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2248,15 +2230,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2041544511745397434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Script: {fileID: 11500000, guid: 36c4adbf0d821e442aa6726346491134, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.AnimationRigging.TwoBoneIKConstraint2
   m_Weight: 1
   m_Data:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 6175953805274317782}
+    m_Target: {fileID: 8563664812807291384}
     m_Hint: {fileID: 1731530144788815798}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
@@ -2278,20 +2260,6 @@ MonoBehaviour:
   _handedness: 1
   _controller: {fileID: 8105584686134532683}
   _pelvis: {fileID: 8556203494894390205}
---- !u!114 &2603970048041096599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041544511745397434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
-  UnlimitedTarget: {fileID: 8563664812807291384}
-  _margin: 0.01
 --- !u!1 &2113051519972487098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4738,9 +4706,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2675245826105910234}
-  - component: {fileID: 4625447755221202705}
+  - component: {fileID: 6940659753135598700}
   - component: {fileID: 8680544358169117187}
-  - component: {fileID: 6132061874040565225}
   m_Layer: 0
   m_Name: LeftArmIK
   m_TagString: Untagged
@@ -4764,7 +4731,7 @@ Transform:
   - {fileID: 7653510660573296589}
   m_Father: {fileID: 972436850578542871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4625447755221202705
+--- !u!114 &6940659753135598700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4773,15 +4740,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3228650216333327577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Script: {fileID: 11500000, guid: 36c4adbf0d821e442aa6726346491134, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.AnimationRigging.TwoBoneIKConstraint2
   m_Weight: 1
   m_Data:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 5043436101094264499}
+    m_Target: {fileID: 5488886840134976617}
     m_Hint: {fileID: 7653510660573296589}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
@@ -4803,20 +4770,6 @@ MonoBehaviour:
   _handedness: 0
   _controller: {fileID: 302060809740126155}
   _pelvis: {fileID: 8556203494894390205}
---- !u!114 &6132061874040565225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3228650216333327577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
-  UnlimitedTarget: {fileID: 5488886840134976617}
-  _margin: 0.01
 --- !u!1 &3301374950904824340
 GameObject:
   m_ObjectHideFlags: 0
@@ -5687,7 +5640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3431462047439690711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.5, y: 0, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8290,7 +8243,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2675245826105910234}
-  - {fileID: 5043436101094264499}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1843583381221137719
@@ -9863,37 +9815,6 @@ Transform:
   - {fileID: 8297840801382817192}
   m_Father: {fileID: 3483185837867046660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5325116219163411668
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7114006542557103759}
-  m_Layer: 0
-  m_Name: LeftLegTargetLimited
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7114006542557103759
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5325116219163411668}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8533684751214534901}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5327760189330611657
 GameObject:
   m_ObjectHideFlags: 0
@@ -10180,37 +10101,6 @@ MonoBehaviour:
       z: 1
     m_MaintainPositionOffset: 0
     m_MaintainRotationOffset: 0
---- !u!1 &5374262269724295434
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6175953805274317782}
-  m_Layer: 0
-  m_Name: RightArmTargetLimited
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6175953805274317782
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5374262269724295434}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 59313101973558073}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5403685327220964103
 GameObject:
   m_ObjectHideFlags: 0
@@ -10301,37 +10191,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5428935993537074996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5043436101094264499}
-  m_Layer: 0
-  m_Name: LeftArmTargetLimited
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5043436101094264499
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428935993537074996}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 972436850578542871}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5448985453834933244
 GameObject:
   m_ObjectHideFlags: 0
@@ -12110,7 +11969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6709779253509900990}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.5, y: 0, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13498,37 +13357,6 @@ Transform:
   m_Children:
   - {fileID: 6323433069560112021}
   m_Father: {fileID: 2732261974187252903}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7742080807380281528
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5002466980789858899}
-  m_Layer: 0
-  m_Name: RightLegTargetLimited
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5002466980789858899
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7742080807380281528}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3795830733188205076}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7757136596016386655
 GameObject:
@@ -15303,8 +15131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3795830733188205076}
-  - component: {fileID: 8947274606454780688}
-  - component: {fileID: 5346521105073043961}
+  - component: {fileID: 2478023935600065604}
   - component: {fileID: 3600642778959329381}
   m_Layer: 0
   m_Name: RightLegIK
@@ -15327,10 +15154,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2984444534204547827}
-  - {fileID: 5002466980789858899}
   m_Father: {fileID: 9065574572845509557}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8947274606454780688
+--- !u!114 &2478023935600065604
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15339,35 +15165,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8676598146597125168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
+  m_Script: {fileID: 11500000, guid: 36c4adbf0d821e442aa6726346491134, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.AnimationRigging.TwoBoneIKConstraint2
   m_Weight: 1
   m_Data:
     m_Root: {fileID: 0}
     m_Mid: {fileID: 0}
     m_Tip: {fileID: 0}
-    m_Target: {fileID: 5002466980789858899}
+    m_Target: {fileID: 3290801078093939743}
     m_Hint: {fileID: 2984444534204547827}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
---- !u!114 &5346521105073043961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8676598146597125168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72e5c28a8cc262645a4eb22c77457881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Rig.Animation.TwoBoneIKLimiter
-  UnlimitedTarget: {fileID: 3290801078093939743}
-  _margin: 0.01
 --- !u!114 &3600642778959329381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15655,10 +15467,10 @@ MonoBehaviour:
   Constraints:
     LeftShoulder: {fileID: 1843583381221137719}
     RightShoulder: {fileID: 2333595246700603270}
-    LeftArm: {fileID: 4625447755221202705}
-    RightArm: {fileID: 6378187275511441504}
-    LeftLeg: {fileID: 2608193906310756961}
-    RightLeg: {fileID: 8947274606454780688}
+    LeftArm: {fileID: 6940659753135598700}
+    RightArm: {fileID: 4677104088884840311}
+    LeftLeg: {fileID: 8897012221065406810}
+    RightLeg: {fileID: 2478023935600065604}
     Hip: {fileID: 4147664857729397577}
     Chest: {fileID: 4334824465788531484}
     Head: {fileID: 4717682133324186070}
