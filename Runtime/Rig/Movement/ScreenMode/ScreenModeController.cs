@@ -43,6 +43,7 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         [SerializeField]
         private InputActionReference _cycleReference;
 
+        [SerializeField]
         private Transform _camera;
 
         private enum LockState
@@ -75,8 +76,6 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
             _position = _defaultPosition;
             _rotation = _defaultRotation;
-
-            _camera = Camera.main.transform;
 
             _unlockPositionReference.action.Enable();
             _resetPositionReference.action.Enable();

@@ -24,10 +24,10 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         private void OnTurn(float direction) => _turnVector = direction;
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_turnVector == 0f) return;
-            var degreesToTurn = _virtualTurning.TurnRate * Time.deltaTime;
+            var degreesToTurn = _virtualTurning.TurnRate * Time.fixedDeltaTime;
             _controllerRig.transform.Rotate(0f, degreesToTurn * _turnVector, 0f);
         }
     }

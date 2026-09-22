@@ -18,13 +18,14 @@ namespace KadenZombie8.BIMOS.Rig.Movement
 
         public LocomotionSphere LocomotionSphere { get; private set; }
 
+        [SerializeField]
         private Transform _mainCameraTransform;
+
         private Vector2 _moveDirection;
         private PhysicsRigRigidbodies _physicsRigRigidbodies;
 
         private void Awake()
         {
-            _mainCameraTransform = Camera.main.transform;
             LocomotionSphere = GetComponentInChildren<LocomotionSphere>();
 
             _moveAction.action.Enable();

@@ -125,6 +125,8 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0
+    - _ScreenSpaceReflections: 1
+    - _ScreenSpaceReflectionsContributeTransparent: 1
     - _Shininess: 0
     - _Smoothness: 0
     - _SmoothnessSource: 0
@@ -135,6 +137,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WorkflowMode: 0
+    - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 0.17313002, g: 0.597, b: 0.29234344, a: 1}

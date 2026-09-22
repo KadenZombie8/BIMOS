@@ -7,6 +7,7 @@ namespace KadenZombie8.BIMOS.Rig
     /// Predict's the player's elbow location for the two-bone IK hint
     /// This heuristic method is based upon one shared by TundraFightSchool on YouTube <3
     /// </summary>
+    [DefaultExecutionOrder(-5)]
     [RequireComponent(typeof(LimitedTwoBoneIKConstraint))]
     public class ElbowPrediction : MonoBehaviour
     {
@@ -133,7 +134,7 @@ namespace KadenZombie8.BIMOS.Rig
             _hint = _constraint.data.hint;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             // Find the elbow circle origin and radius
             var shoulderToHandDirection = (_handBone.position - _upperArmBone.position).normalized;

@@ -22,9 +22,6 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         private Transform _hips;
 
         [SerializeField]
-        private Transform _character;
-
-        [SerializeField]
         private Rigidbody _locomotionSphereRigidbody;
 
         [SerializeField]
@@ -70,7 +67,7 @@ namespace KadenZombie8.BIMOS.Rig.Animation
 
         private void UpdateTarget(Foot foot)
         {
-            foot.Target.position = _hips.position + _velocity * _stepTime + _character.right * foot.Offset;
+            foot.Target.position = _hips.position + _velocity * _stepTime + _hips.right * foot.Offset;
             if (Physics.Raycast(
                 foot.Target.position,
                 Vector3.down,
@@ -83,15 +80,15 @@ namespace KadenZombie8.BIMOS.Rig.Animation
                 foot.IsGrounded = true;
                 foot.Target.SetPositionAndRotation(
                     hit.point,
-                    Quaternion.LookRotation(Vector3.ProjectOnPlane(_character.forward, hit.normal), hit.normal)
+                    Quaternion.LookRotation(Vector3.ProjectOnPlane(_hips.forward, hit.normal), hit.normal)
                 );
             }
             else
             {
                 var target = Vector3.ProjectOnPlane(_hips.position, Vector3.up);
                 target += Vector3.up * (_locomotionSphereRigidbody.position.y - 0.2f);
-                target += _velocity * _stepTime + _character.right * foot.Offset;
-                foot.Target.SetPositionAndRotation(target, Quaternion.LookRotation(_character.forward));
+                target += _velocity * _stepTime + _hips.right * foot.Offset;
+                foot.Target.SetPositionAndRotation(target, Quaternion.LookRotation(_hips.forward));
             }
         }
 
