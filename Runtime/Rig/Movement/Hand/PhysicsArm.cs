@@ -5,6 +5,7 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public class PhysicsArm : MonoBehaviour
     {
+        public ArmPhysicsBone Shoulder;
         public ArmPhysicsBone UpperArm;
         public LowerArmPhysicsBone LowerArm;
         public HandPhysicsBone Hand;
@@ -41,7 +42,7 @@ namespace KadenZombie8.BIMOS.Rig
             {
                 var parent = Joint.connectedBody;
                 var pelvisToUpperArm = parent.transform.InverseTransformPoint(UpperArmBone.position);
-                Joint.connectedAnchor = pelvisToUpperArm;
+                //Joint.connectedAnchor = pelvisToUpperArm;
 
                 var pelvisToTarget = parent.transform.InverseTransformPoint(Target.position);
                 Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - Joint.connectedAnchor, MaxLength);

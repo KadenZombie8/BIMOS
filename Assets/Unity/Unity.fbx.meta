@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 535200017fa23a046bc700958cf4bc08
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24600
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
@@ -27,6 +27,7 @@ ModelImporter:
     materialName: 0
     materialSearch: 1
     materialLocation: 1
+    searchTexturesGlobally: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -56,6 +57,8 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    preBakeConvexCollisionMesh: 0
+    preBakeTriangleCollisionMesh: 0
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
@@ -74,6 +77,11 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    importUVs: -1
+    importVertexColors: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -93,6 +101,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+    calculateBlendshapeNormalsDeltaFromImportedNormals: 1
   referencedClips: []
   importAnimation: 0
   humanDescription:
@@ -865,9 +874,9 @@ ModelImporter:
       position: {x: 0.00000001792796, y: 0.029172905, z: -0.000000049127266}
       rotation: {x: -0.0049473518, y: -0.06664796, z: 0.044652294, w: 0.99676466}
       scale: {x: 0.99999994, y: 0.99999994, z: 0.9999999}
-    armTwist: 1
+    armTwist: 0
     foreArmTwist: 0
-    upperLegTwist: 1
+    upperLegTwist: 0
     legTwist: 0
     armStretch: 0
     legStretch: 0
