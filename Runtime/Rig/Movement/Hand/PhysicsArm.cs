@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.Rig.Movement;
 using System;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ namespace KadenZombie8.BIMOS.Rig
 
         [SerializeField]
         private Animator _animator;
+
+        [SerializeField]
+        private VirtualTurning _virtualTurning;
 
         [Serializable]
         public abstract class Segment
@@ -28,7 +32,9 @@ namespace KadenZombie8.BIMOS.Rig
             protected Vector3 PreviousPosition;
             protected Quaternion PreviousRotation;
 
-            public virtual void Initialize(Animator animator, HumanBodyBones upperArmBone)
+            protected VirtualTurning VirtualTurning;
+
+            public virtual void Initialize(Animator animator, HumanBodyBones upperArmBone, VirtualTurning virtualTurning)
             {
                 AnimationBone = animator.GetBoneTransform(Bone);
                 UpperArmBone = animator.GetBoneTransform(upperArmBone);
@@ -38,6 +44,8 @@ namespace KadenZombie8.BIMOS.Rig
                 var linearLimit = Joint.linearLimit;
                 linearLimit.limit = MaxLength;
                 Joint.linearLimit = linearLimit;
+
+                VirtualTurning = virtualTurning;
             }
 
             public virtual void UpdateJoint()
@@ -60,6 +68,11 @@ namespace KadenZombie8.BIMOS.Rig
             {
                 var displacement = currentPosition - previousPosition;
                 var worldVelocity = displacement / Time.fixedDeltaTime - parent.linearVelocity;
+
+                var rotation = Quaternion.AngleAxis(VirtualTurning.FixedTurnRate, Vector3.up);
+                var localPosition = Target.position - VirtualTurning.ControllerRig.transform.position;
+
+                worldVelocity += rotation * localPosition - localPosition;
 
                 var localVelocity = parent.transform.InverseTransformDirection(worldVelocity);
 
@@ -90,9 +103,9 @@ namespace KadenZombie8.BIMOS.Rig
         {
             public CapsuleCollider Collider;
 
-            public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
+            public override void Initialize(Animator animator, HumanBodyBones shoulderBone, VirtualTurning virtualTurning)
             {
-                base.Initialize(animator, shoulderBone);
+                base.Initialize(animator, shoulderBone, virtualTurning);
                 Target = AnimationBone;
 
                 var childBone = AnimationBone.GetChild(0);
@@ -108,9 +121,9 @@ namespace KadenZombie8.BIMOS.Rig
         {
             public CapsuleCollider Collider;
 
-            public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
+            public override void Initialize(Animator animator, HumanBodyBones shoulderBone, VirtualTurning virtualTurning)
             {
-                base.Initialize(animator, shoulderBone);
+                base.Initialize(animator, shoulderBone, virtualTurning);
                 Target = AnimationBone;
 
                 var childBone = AnimationBone.GetChild(0);
@@ -143,9 +156,9 @@ namespace KadenZombie8.BIMOS.Rig
             public Quaternion RotationOffset;
             public ConfigurableJoint LockJoint;
 
-            public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
+            public override void Initialize(Animator animator, HumanBodyBones shoulderBone, VirtualTurning virtualTurning)
             {
-                base.Initialize(animator, shoulderBone);
+                base.Initialize(animator, shoulderBone, virtualTurning);
                 Target = Controller;
                 RotationOffset = Quaternion.identity;
 
@@ -173,9 +186,9 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Start()
         {
-            UpperArm.Initialize(_animator, UpperArm.Bone);
-            LowerArm.Initialize(_animator, UpperArm.Bone);
-            Hand.Initialize(_animator, UpperArm.Bone);
+            UpperArm.Initialize(_animator, UpperArm.Bone, _virtualTurning);
+            LowerArm.Initialize(_animator, UpperArm.Bone, _virtualTurning);
+            Hand.Initialize(_animator, UpperArm.Bone, _virtualTurning);
 
             LowerArm.Collider.height -= LowerArm.Collider.radius;
             LowerArm.Collider.center += LowerArm.Collider.radius / 2f * Vector3.down;

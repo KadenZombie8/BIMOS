@@ -15,6 +15,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
         [HideInInspector]
         public float TurnRate = 4f;
 
+        [HideInInspector]
+        public float FixedTurnRate;
+
         [SerializeField]
         private InputActionReference _turnAction;
 
