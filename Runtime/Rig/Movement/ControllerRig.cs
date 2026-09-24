@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
@@ -17,10 +18,11 @@ namespace KadenZombie8.BIMOS.Rig
 
         public Vector3 HeadForwardDirection => HeadForwardRotation * Vector3.forward;
 
-        public void Start()
+        private void Start()
         {
             _rig = GetComponentInParent<BIMOSRig>();
             Transforms.Camera.GetComponent<Camera>().cullingMask = ~LayerMask.GetMask("UI");
+            StartCoroutine(LateFixedUpdate());
         }
 
         public void UpdateRealHeight(float realHeight)
@@ -32,9 +34,13 @@ namespace KadenZombie8.BIMOS.Rig
             transform.localScale = Vector3.one * scaleFactor;
         }
 
-        private void FixedUpdate()
+        private IEnumerator LateFixedUpdate()
         {
-            transform.position = _rig.PhysicsRig.Rigidbodies.Pelvis.position;
+            while (true)
+            {
+                transform.position = _rig.PhysicsRig.Rigidbodies.Pelvis.position;
+                yield return new WaitForFixedUpdate();
+            }
         }
 
         [Serializable]
