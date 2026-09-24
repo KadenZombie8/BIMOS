@@ -28,6 +28,8 @@ namespace KadenZombie8.BIMOS.Rig
         private LimitedTwoBoneIKConstraint _constraint;
 
         private Vector3 _targetElbowDirection;
+        private Vector3 _smoothElbowDirection;
+        private readonly float _elbowSmoothing = 15f;
 
         private enum WristAxis
         {
@@ -140,7 +142,6 @@ namespace KadenZombie8.BIMOS.Rig
 
             // Find elbow circle properties
             var elbowOrigin = _upperArmBone.position + shoulderToHandDirection * Vector3.Dot(_lowerArmBone.position - _upperArmBone.position, shoulderToHandDirection);
-            var elbowRadius = Vector3.Distance(elbowOrigin, _lowerArmBone.position);
 
             // Find elbow down
             var elbowDownRotation = Quaternion.FromToRotation(_pelvis.forward, shoulderToHandDirection);
@@ -182,8 +183,12 @@ namespace KadenZombie8.BIMOS.Rig
             // Calculate target elbow direction
             _targetElbowDirection = elbowDownRotation * Quaternion.AngleAxis(predictedElbowAngle, shoulderToHandDirection) * Vector3.down;
 
+            // Smooth elbow direction
+            _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, _targetElbowDirection, Time.deltaTime * _elbowSmoothing);
+            Quaternion elbowRotation = Quaternion.LookRotation(shoulderToHandDirection, _smoothElbowDirection);
+
             // Apply smoothed direction to hint
-            _hint.position = elbowOrigin + _targetElbowDirection * elbowRadius;
+            _hint.position = elbowOrigin + elbowRotation * Vector3.up;
         }
     }
 }
