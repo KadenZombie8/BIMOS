@@ -5,7 +5,6 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public class PhysicsArm : MonoBehaviour
     {
-        public ArmPhysicsBone Shoulder;
         public ArmPhysicsBone UpperArm;
         public LowerArmPhysicsBone LowerArm;
         public HandPhysicsBone Hand;
@@ -26,6 +25,9 @@ namespace KadenZombie8.BIMOS.Rig
             protected Transform UpperArmBone;
             protected float MaxLength;
 
+            protected Vector3 PreviousPosition;
+            protected Quaternion PreviousRotation;
+
             public virtual void Initialize(Animator animator, HumanBodyBones upperArmBone)
             {
                 AnimationBone = animator.GetBoneTransform(Bone);
@@ -42,11 +44,44 @@ namespace KadenZombie8.BIMOS.Rig
             {
                 var parent = Joint.connectedBody;
                 var pelvisToUpperArm = parent.transform.InverseTransformPoint(UpperArmBone.position);
-                //Joint.connectedAnchor = pelvisToUpperArm;
+                Joint.connectedAnchor = pelvisToUpperArm;
 
                 var pelvisToTarget = parent.transform.InverseTransformPoint(Target.position);
-                Joint.targetPosition = Vector3.ClampMagnitude(pelvisToTarget - Joint.connectedAnchor, MaxLength);
+                Joint.targetPosition = pelvisToTarget - Joint.connectedAnchor;
                 Joint.targetRotation = Quaternion.Inverse(parent.rotation) * Target.rotation;
+
+                Target.GetPositionAndRotation(out var currentPosition, out var currentRotation);
+
+                Joint.targetVelocity = CalculateVelocity(parent, currentPosition, ref PreviousPosition);
+                Joint.targetAngularVelocity = CalculateAngularVelocity(parent, currentRotation, ref PreviousRotation);
+            }
+
+            protected Vector3 CalculateVelocity(Rigidbody parent, Vector3 currentPosition, ref Vector3 previousPosition)
+            {
+                var displacement = currentPosition - previousPosition;
+                var worldVelocity = displacement / Time.fixedDeltaTime - parent.linearVelocity;
+
+                var localVelocity = parent.transform.InverseTransformDirection(worldVelocity);
+
+                previousPosition = currentPosition;
+                return localVelocity;
+            }
+
+            protected Vector3 CalculateAngularVelocity(Rigidbody parent, Quaternion currentRotation, ref Quaternion previousRotation)
+            {
+                var deltaRotation = currentRotation * Quaternion.Inverse(previousRotation);
+                deltaRotation.ToAngleAxis(out var angle, out var axis);
+
+                if (angle > 180f)
+                    angle -= 360f;
+
+                var angularDisplacement = angle * Mathf.Deg2Rad * axis;
+                var worldAngularVelocity = angularDisplacement / Time.fixedDeltaTime - parent.angularVelocity;
+
+                var localAngularVelocity = parent.transform.InverseTransformDirection(worldAngularVelocity);
+
+                previousRotation = currentRotation;
+                return localAngularVelocity;
             }
         }
 
@@ -90,8 +125,13 @@ namespace KadenZombie8.BIMOS.Rig
                 var parent = Joint.connectedBody;
                 var parentToTarget = parent.transform.InverseTransformPoint(Target.position);
 
-                Joint.targetPosition = Vector3.ClampMagnitude(parentToTarget - Joint.connectedAnchor, MaxLength);
+                Joint.targetPosition = parentToTarget - Joint.connectedAnchor;
                 Joint.targetRotation = Quaternion.Inverse(parent.rotation) * Target.rotation;
+
+                Target.GetPositionAndRotation(out var currentPosition, out var currentRotation);
+
+                Joint.targetVelocity = CalculateVelocity(parent, currentPosition, ref PreviousPosition);
+                Joint.targetAngularVelocity = CalculateAngularVelocity(parent, currentRotation, ref PreviousRotation);
             }
         }
 
@@ -102,9 +142,6 @@ namespace KadenZombie8.BIMOS.Rig
             public Vector3 PositionOffset;
             public Quaternion RotationOffset;
             public ConfigurableJoint LockJoint;
-
-            private Vector3 _previousPosition;
-            private Quaternion _previousRotation;
 
             public override void Initialize(Animator animator, HumanBodyBones shoulderBone)
             {
@@ -124,41 +161,13 @@ namespace KadenZombie8.BIMOS.Rig
 
                 var parentToTarget = parent.transform.InverseTransformPoint(targetPosition);
 
-                Joint.targetPosition = Vector3.ClampMagnitude(parentToTarget - Joint.connectedAnchor, MaxLength);
+                Joint.targetPosition = parentToTarget - Joint.connectedAnchor;
                 Joint.targetRotation = Quaternion.Inverse(parent.rotation) * targetRotation;
 
                 Target.GetPositionAndRotation(out var currentPosition, out var currentRotation);
 
-                Joint.targetVelocity = CalculateVelocity(parent, currentPosition, ref _previousPosition);
-                Joint.targetAngularVelocity = CalculateAngularVelocity(parent, currentRotation, ref _previousRotation);
-            }
-
-            private Vector3 CalculateVelocity(Rigidbody parent, Vector3 currentPosition, ref Vector3 previousPosition)
-            {
-                var displacement = currentPosition - previousPosition;
-                var worldVelocity = displacement / Time.fixedDeltaTime - parent.linearVelocity;
-
-                var localVelocity = parent.transform.InverseTransformDirection(worldVelocity);
-
-                previousPosition = currentPosition;
-                return localVelocity;
-            }
-
-            private Vector3 CalculateAngularVelocity(Rigidbody parent, Quaternion currentRotation, ref Quaternion previousRotation)
-            {
-                var deltaRotation = currentRotation * Quaternion.Inverse(previousRotation);
-                deltaRotation.ToAngleAxis(out var angle, out var axis);
-
-                if (angle > 180f)
-                    angle -= 360f;
-
-                var angularDisplacement = angle * Mathf.Deg2Rad * axis;
-                var worldAngularVelocity = angularDisplacement / Time.fixedDeltaTime - parent.angularVelocity;
-
-                var localAngularVelocity = parent.transform.InverseTransformDirection(worldAngularVelocity);
-
-                previousRotation = currentRotation;
-                return localAngularVelocity;
+                Joint.targetVelocity = CalculateVelocity(parent, currentPosition, ref PreviousPosition);
+                Joint.targetAngularVelocity = CalculateAngularVelocity(parent, currentRotation, ref PreviousRotation);
             }
         }
 
@@ -175,6 +184,10 @@ namespace KadenZombie8.BIMOS.Rig
         private void FixedUpdate()
         {
             Hand.UpdateJoint();
+        }
+
+        private void LateUpdate()
+        {
             UpperArm.UpdateJoint();
             LowerArm.UpdateJoint();
         }
