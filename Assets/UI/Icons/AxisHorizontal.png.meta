@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: 671097122f87212458368970e3b230d2
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4189700686117533437
+    second: AxisHorizontal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -53,7 +56,9 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -108,7 +113,29 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: AxisHorizontal_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30901c88c613bd5c0800000000000000
+      internalID: -4189700686117533437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []

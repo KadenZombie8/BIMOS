@@ -2913,6 +2913,7 @@ MonoBehaviour:
     RotationOffset: {x: 0, y: 0, z: 0, w: 0}
     LockJoint: {fileID: 8290803905283388528}
   _animator: {fileID: 2945637317176231005}
+  _virtualTurning: {fileID: 7745990403062909187}
 --- !u!1 &2514652766759430098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4300,6 +4301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnRate: 450
+  FixedTurnRate: 0
   _turnAction: {fileID: -6922838068034798914, guid: 0cd47f68cb724f8478ed745999f9d67a, type: 3}
   ControllerRig: {fileID: 7251668691989030867}
 --- !u!114 &5568752332480941085
@@ -5269,6 +5271,7 @@ MonoBehaviour:
     RotationOffset: {x: 0, y: 0, z: 0, w: 0}
     LockJoint: {fileID: 1296920408170151229}
   _animator: {fileID: 2945637317176231005}
+  _virtualTurning: {fileID: 7745990403062909187}
 --- !u!1 &3414075759266772195
 GameObject:
   m_ObjectHideFlags: 0
