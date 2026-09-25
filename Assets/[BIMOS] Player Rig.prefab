@@ -3372,7 +3372,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 302060809740126155}
-  - component: {fileID: 3729600693056901982}
   m_Layer: 0
   m_Name: LeftPalm
   m_TagString: Untagged
@@ -3397,55 +3396,6 @@ Transform:
   - {fileID: 3549850519463038332}
   m_Father: {fileID: 6592363549466593726}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
---- !u!114 &3729600693056901982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2720792164911135226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e62a73d441fb77c4f8e602cfd4d06a28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isLeftController: 1
-  _positionAction:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ef7f498a-775f-4538-a9b5-660b53c9df89
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: cdf50cf6-6d33-4c99-8b63-889307798a1f
-      m_Path: <XRController>{LeftHand}/devicePosition
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
-  _rotationAction:
-    m_Name: Rotation
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c849fb80-3242-4fb3-b852-13c78a2da902
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4079e80c-ca98-4274-82cb-385ba40ecae7
-      m_Path: <XRController>{LeftHand}/deviceRotation
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
 --- !u!1 &2743688822481890130
 GameObject:
   m_ObjectHideFlags: 0
@@ -3772,7 +3722,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2839604188476100665}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -8993,7 +8943,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5137408896565029428}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -14410,7 +14360,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8105584686134532683}
-  - component: {fileID: 2832213103567770418}
   m_Layer: 0
   m_Name: RightPalm
   m_TagString: Untagged
@@ -14435,55 +14384,6 @@ Transform:
   - {fileID: 7276046257665480503}
   m_Father: {fileID: 1478771343154856604}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
---- !u!114 &2832213103567770418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8367027858199439382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e62a73d441fb77c4f8e602cfd4d06a28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _isLeftController: 0
-  _positionAction:
-    m_Name: Position
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: b91689f2-51a0-4eb5-a389-aae604f02c53
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: fd942f10-8b21-44b2-a3c8-48681469b9c8
-      m_Path: <XRController>{RightHand}/devicePosition
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Position
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
-  _rotationAction:
-    m_Name: Rotation
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 22d8ed98-16cb-4e76-b4f7-3d382be7149a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4f087c52-1c75-4778-9fee-8cd5f61477d4
-      m_Path: <XRController>{RightHand}/deviceRotation
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 0
-    m_Flags: 0
-    m_Priority: 0
 --- !u!1 &8373157052378793860
 GameObject:
   m_ObjectHideFlags: 0
