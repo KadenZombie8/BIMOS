@@ -4775,21 +4775,21 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 3000
     positionDamper: 500
-    maximumForce: 5000
+    maximumForce: 3000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 3000
     positionDamper: 500
-    maximumForce: 5000
+    maximumForce: 3000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 3000
     positionDamper: 500
-    maximumForce: 5000
+    maximumForce: 3000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -5329,8 +5329,8 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 2
-  m_AngularYMotion: 2
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
@@ -5365,21 +5365,21 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 1500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -5398,9 +5398,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1000
-    positionDamper: 100
-    maximumForce: 1500
+    positionSpring: 300
+    positionDamper: 10
+    maximumForce: 100
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -6346,21 +6346,21 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 3000
     positionDamper: 500
-    maximumForce: 5000
+    maximumForce: 3000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 3000
     positionDamper: 500
-    maximumForce: 5000
+    maximumForce: 3000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 10000
+    positionSpring: 3000
     positionDamper: 500
-    maximumForce: 5000
+    maximumForce: 3000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -10547,21 +10547,21 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 1500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -10580,9 +10580,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1000
-    positionDamper: 100
-    maximumForce: 1500
+    positionSpring: 300
+    positionDamper: 10
+    maximumForce: 100
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -13623,21 +13623,21 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 1500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -13656,9 +13656,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1000
-    positionDamper: 100
-    maximumForce: 1500
+    positionSpring: 300
+    positionDamper: 10
+    maximumForce: 100
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
@@ -13864,8 +13864,8 @@ ConfigurableJoint:
   m_XMotion: 0
   m_YMotion: 0
   m_ZMotion: 0
-  m_AngularXMotion: 2
-  m_AngularYMotion: 2
+  m_AngularXMotion: 0
+  m_AngularYMotion: 0
   m_AngularZMotion: 2
   m_LinearLimitSpring:
     spring: 0
@@ -13900,21 +13900,21 @@ ConfigurableJoint:
   m_TargetVelocity: {x: 0, y: 0, z: 0}
   m_XDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 1500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_YDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_ZDrive:
     serializedVersion: 4
-    positionSpring: 50000
-    positionDamper: 2500
-    maximumForce: 5000
+    positionSpring: 3000
+    positionDamper: 500
+    maximumForce: 1000
     useAcceleration: 0
   m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
@@ -13933,9 +13933,9 @@ ConfigurableJoint:
     useAcceleration: 0
   m_SlerpDrive:
     serializedVersion: 4
-    positionSpring: 1000
-    positionDamper: 100
-    maximumForce: 1500
+    positionSpring: 300
+    positionDamper: 10
+    maximumForce: 100
     useAcceleration: 0
   m_ProjectionMode: 0
   m_ProjectionDistance: 0.1
