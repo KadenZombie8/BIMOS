@@ -15,11 +15,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _locomotionSphere,
             _body,
             _head,
-            _leftShoulder,
             _leftUpperArm,
             _leftLowerArm,
             _leftHand,
-            _rightShoulder,
             _rightUpperArm,
             _rightLowerArm,
             _rightHand;
@@ -37,11 +35,9 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             _locomotionSphere.gameObject.SetActive(isVisible);
             _body.gameObject.SetActive(isVisible);
             _head.gameObject.SetActive(isVisible);
-            _leftShoulder.gameObject.SetActive(isVisible);
             _leftUpperArm.gameObject.SetActive(isVisible);
             _leftLowerArm.gameObject.SetActive(isVisible);
             _leftHand.gameObject.SetActive(isVisible);
-            _rightShoulder.gameObject.SetActive(isVisible);
             _rightUpperArm.gameObject.SetActive(isVisible);
             _rightLowerArm.gameObject.SetActive(isVisible);
             _rightHand.gameObject.SetActive(isVisible);
@@ -55,13 +51,11 @@ namespace KadenZombie8.BIMOS.Rig.Movement
             UpdateCapsuleShape(_head, _colliders.Head);
 
             //Left arm
-            UpdateCapsuleShape(_leftShoulder, _colliders.LeftArm.Shoulder);
             UpdateCapsuleShape(_leftUpperArm, _colliders.LeftArm.UpperArm);
             UpdateCapsuleShape(_leftLowerArm, _colliders.LeftArm.LowerArm);
             _leftHand.localScale = _colliders.LeftArm.Hand.size;
 
             // Right arm
-            UpdateCapsuleShape(_rightShoulder, _colliders.RightArm.Shoulder);
             UpdateCapsuleShape(_rightUpperArm, _colliders.RightArm.UpperArm);
             UpdateCapsuleShape(_rightLowerArm, _colliders.RightArm.LowerArm);
             _rightHand.localScale = _colliders.RightArm.Hand.size;

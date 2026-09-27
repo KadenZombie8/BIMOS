@@ -1,4 +1,3 @@
-using KadenZombie8.BIMOS.Rig.Animation;
 using KadenZombie8.BIMOS.Rig.Movement;
 using System;
 using UnityEngine;
@@ -7,8 +6,7 @@ namespace KadenZombie8.BIMOS.Rig
 {
     public class PhysicsArm : MonoBehaviour
     {
-        public ShoulderPhysicsBone Shoulder;
-        public ArmPhysicsBone UpperArm;
+        public UpperArmPhysicsBone UpperArm;
         public ArmPhysicsBone LowerArm;
         public HandPhysicsBone Hand;
 
@@ -38,7 +36,7 @@ namespace KadenZombie8.BIMOS.Rig
 
             protected Quaternion WorldToJointSpace;
 
-            private Rigidbody _parent;
+            protected Rigidbody Parent;
 
             public virtual void Initialize(Animator animator, HumanBodyBones upperArmBone, VirtualTurning virtualTurning)
             {
@@ -46,9 +44,7 @@ namespace KadenZombie8.BIMOS.Rig
                 Target = AnimationBone;
 
                 VirtualTurning = virtualTurning;
-                _parent = Joint.connectedBody;
-
-                
+                Parent = Joint.connectedBody;
             }
 
             public virtual void UpdateJoint()
@@ -60,16 +56,16 @@ namespace KadenZombie8.BIMOS.Rig
 
                 Target.GetPositionAndRotation(out var currentPosition, out var currentRotation);
 
-                var parentToTarget = _parent.transform.InverseTransformPoint(currentPosition);
+                var parentToTarget = Parent.transform.InverseTransformPoint(currentPosition);
 
                 Joint.targetPosition = parentToTarget - Joint.connectedAnchor;
 
                 Joint.targetRotation = Quaternion.Inverse(WorldToJointSpace);
-                Joint.targetRotation *= Quaternion.Inverse(_parent.rotation) * currentRotation;
+                Joint.targetRotation *= Quaternion.Inverse(Parent.rotation) * currentRotation;
                 Joint.targetRotation *= WorldToJointSpace;
 
-                Joint.targetVelocity = CalculateVelocity(_parent, currentPosition, ref PreviousPosition);
-                Joint.targetAngularVelocity = CalculateAngularVelocity(_parent, currentRotation, ref PreviousRotation);
+                Joint.targetVelocity = CalculateVelocity(Parent, currentPosition, ref PreviousPosition);
+                Joint.targetAngularVelocity = CalculateAngularVelocity(Parent, currentRotation, ref PreviousRotation);
             }
 
             protected Vector3 CalculateVelocity(Rigidbody parent, Vector3 currentPosition, ref Vector3 previousPosition)
@@ -107,6 +103,18 @@ namespace KadenZombie8.BIMOS.Rig
         }
 
         [Serializable]
+        public class UpperArmPhysicsBone : ArmPhysicsBone
+        {
+            public override void UpdateJoint()
+            {
+                base.UpdateJoint();
+
+                var pelvisToUpperArm = Parent.transform.InverseTransformPoint(AnimationBone.position);
+                Joint.connectedAnchor = pelvisToUpperArm;
+            }
+        }
+
+        [Serializable]
         public class ArmPhysicsBone : Segment
         {
             public CapsuleCollider Collider;
@@ -120,19 +128,6 @@ namespace KadenZombie8.BIMOS.Rig
                 Collider.center = (Collider.height / 2f - Collider.radius) * Vector3.up;
 
                 Joint.connectedAnchor = AnimationBone.localPosition;
-            }
-        }
-
-        [Serializable]
-        public class ShoulderPhysicsBone : ArmPhysicsBone
-        {
-            [SerializeField]
-            private AnimationRig _animationRig;
-
-            public override void Initialize(Animator animator, HumanBodyBones shoulderBone, VirtualTurning virtualTurning)
-            {
-                base.Initialize(animator, shoulderBone, virtualTurning);
-                Joint.connectedAnchor = _animationRig.Transforms.Head.transform.InverseTransformPoint(AnimationBone.position);
             }
         }
 
@@ -154,7 +149,6 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void Start()
         {
-            Shoulder.Initialize(_animator, UpperArm.Bone, _virtualTurning);
             UpperArm.Initialize(_animator, UpperArm.Bone, _virtualTurning);
             LowerArm.Initialize(_animator, UpperArm.Bone, _virtualTurning);
             Hand.Initialize(_animator, UpperArm.Bone, _virtualTurning);
@@ -170,7 +164,6 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void LateUpdate()
         {
-            Shoulder.UpdateJoint();
             UpperArm.UpdateJoint();
             LowerArm.UpdateJoint();
         }
