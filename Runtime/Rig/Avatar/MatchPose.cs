@@ -28,10 +28,12 @@ namespace KadenZombie8.BIMOS.Rig
         {
             _animator = GetComponent<Animator>();
 
+            AssignPhysicsBone(HumanBodyBones.LeftShoulder, _physicsRig.Rigidbodies.LeftArm.Shoulder);
             AssignPhysicsBone(HumanBodyBones.LeftUpperArm, _physicsRig.Rigidbodies.LeftArm.UpperArm);
             AssignPhysicsBone(HumanBodyBones.LeftLowerArm, _physicsRig.Rigidbodies.LeftArm.LowerArm);
             AssignPhysicsBone(HumanBodyBones.LeftHand, _physicsRig.Rigidbodies.LeftArm.Hand);
 
+            AssignPhysicsBone(HumanBodyBones.RightShoulder, _physicsRig.Rigidbodies.RightArm.Shoulder);
             AssignPhysicsBone(HumanBodyBones.RightUpperArm, _physicsRig.Rigidbodies.RightArm.UpperArm);
             AssignPhysicsBone(HumanBodyBones.RightLowerArm, _physicsRig.Rigidbodies.RightArm.LowerArm);
             AssignPhysicsBone(HumanBodyBones.RightHand, _physicsRig.Rigidbodies.RightArm.Hand);
