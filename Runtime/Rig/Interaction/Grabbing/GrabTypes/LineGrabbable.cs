@@ -26,6 +26,7 @@ namespace KadenZombie8.BIMOS.Rig
             GameObject colliderObject = new("GrabCollider");
             colliderObject.transform.parent = transform;
             CapsuleCollider collider = colliderObject.AddComponent<CapsuleCollider>();
+            collider.direction = 2;
             collider.isTrigger = true;
             colliderObject.transform.SetPositionAndRotation(transform.position, Origin.rotation);
             collider.radius = 0.01f;
