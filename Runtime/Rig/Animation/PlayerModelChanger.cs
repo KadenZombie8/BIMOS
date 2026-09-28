@@ -16,6 +16,9 @@ namespace KadenZombie8.BIMOS.Editor
 
         private BIMOSRig _player;
 
+        [SerializeField]
+        private Transform _palmOffset;
+
         public void ChangePlayerModel()
         {
             _player = GetComponent<BIMOSRig>();
@@ -67,6 +70,19 @@ namespace KadenZombie8.BIMOS.Editor
             CopyModelChildren(character);
         }
 
+        private void AutoPalmOffset(Transform character)
+        {
+            var animator = character.GetComponent<Animator>();
+
+            var hand = animator.GetBoneTransform(HumanBodyBones.RightHand);
+            var middleProximal = animator.GetBoneTransform(HumanBodyBones.RightMiddleProximal);
+
+            _palmOffset.SetPositionAndRotation(
+                Vector3.Lerp(hand.position, middleProximal.position, 0.5f),
+                Quaternion.Lerp(hand.rotation, middleProximal.rotation, 0.5f)
+            );
+        }
+
         private void CopyModelChildren(Transform character)
         {
             var modelInstance = Instantiate(_modelPrefab);
@@ -84,6 +100,9 @@ namespace KadenZombie8.BIMOS.Editor
                 Undo.SetTransformParent(child, character, "Parent child to model");
                 child.SetParent(character);
             }
+
+            Undo.RecordObject(_player.AnimationRig.PalmOffset, "Update palm offset");
+            AutoPalmOffset(modelInstance.transform);
 
             DestroyImmediate(modelInstance);
         }

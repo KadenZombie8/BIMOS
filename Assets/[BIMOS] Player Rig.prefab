@@ -4467,6 +4467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: kadenzombie8.bimos::KadenZombie8.BIMOS.Editor.PlayerModelChanger
   _modelPrefab: {fileID: 919132149155446097, guid: 535200017fa23a046bc700958cf4bc08, type: 3}
+  _palmOffset: {fileID: 1114598584352695230}
 --- !u!1 &3186892735745995948
 GameObject:
   m_ObjectHideFlags: 0
@@ -15457,8 +15458,6 @@ MonoBehaviour:
   _headCameraOffset: {fileID: 2083655086568588637}
   _leftWrist: {fileID: 5488886840134976617}
   _rightWrist: {fileID: 8563664812807291384}
-  _leftPalm: {fileID: 5836866895375934951}
-  _rightPalm: {fileID: 5949157817692562273}
   Transforms:
     Character: {fileID: 6304793145192069567}
     LeftFootTarget: {fileID: 2894309176576569094}
@@ -15481,6 +15480,7 @@ MonoBehaviour:
     Head: {fileID: 4717682133324186070}
   Animator: {fileID: 0}
   Head: {fileID: 999753132014674236}
+  PalmOffset: {fileID: 1114598584352695230}
 --- !u!114 &8041458702957288490
 MonoBehaviour:
   m_ObjectHideFlags: 0

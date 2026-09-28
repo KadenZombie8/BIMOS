@@ -21,9 +21,6 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         [SerializeField]
         Transform _leftWrist, _rightWrist;
 
-        [SerializeField]
-        Transform _leftPalm, _rightPalm;
-
         public AnimationRigTransforms Transforms;
 
         [SerializeField]
@@ -39,6 +36,8 @@ namespace KadenZombie8.BIMOS.Rig.Animation
         public Head Head;
 
         private RigBuilder _rigBuilder;
+
+        public Transform PalmOffset;
 
         public void Awake()
         {
@@ -82,41 +81,6 @@ namespace KadenZombie8.BIMOS.Rig.Animation
             Constraints.RightArm.data.mid = Animator.GetBoneTransform(HumanBodyBones.RightLowerArm);
             Constraints.RightArm.data.tip = Animator.GetBoneTransform(HumanBodyBones.RightHand);
 
-            // Hands
-            Transform leftHand = Animator.GetBoneTransform(HumanBodyBones.LeftHand);
-            Transform leftMiddleProximal = Animator.GetBoneTransform(HumanBodyBones.LeftMiddleProximal);
-            GameObject leftPalm = new();
-            leftPalm.transform.SetPositionAndRotation(
-                Vector3.Lerp(leftHand.position, leftMiddleProximal.position, 0.5f),
-                Quaternion.Lerp(leftHand.rotation, leftMiddleProximal.rotation, 0.5f)
-            );
-            _leftWrist.SetLocalPositionAndRotation(
-                leftPalm.transform.InverseTransformPoint(leftHand.position),
-                Quaternion.Inverse(leftPalm.transform.rotation) * leftHand.rotation
-            );
-            _leftPalm.SetLocalPositionAndRotation(
-                leftHand.InverseTransformPoint(leftPalm.transform.position),
-                Quaternion.Inverse(leftHand.rotation) * leftPalm.transform.rotation
-            );
-            Destroy(leftPalm);
-
-            Transform rightHand = Animator.GetBoneTransform(HumanBodyBones.RightHand);
-            Transform rightMiddleProximal = Animator.GetBoneTransform(HumanBodyBones.RightMiddleProximal);
-            GameObject rightPalm = new();
-            rightPalm.transform.SetPositionAndRotation(
-                Vector3.Lerp(rightHand.position, rightMiddleProximal.position, 0.5f),
-                Quaternion.Lerp(rightHand.rotation, rightMiddleProximal.rotation, 0.5f)
-            );
-            _rightWrist.SetLocalPositionAndRotation(
-                rightPalm.transform.InverseTransformPoint(rightHand.position),
-                Quaternion.Inverse(rightPalm.transform.rotation) * rightHand.rotation
-            );
-            _rightPalm.SetLocalPositionAndRotation(
-                rightHand.InverseTransformPoint(rightPalm.transform.position),
-                Quaternion.Inverse(rightHand.rotation) * rightPalm.transform.rotation
-            );
-            Destroy(rightPalm);
-
             // Legs
             Constraints.LeftLeg.data.root = Animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
             Constraints.LeftLeg.data.mid = Animator.GetBoneTransform(HumanBodyBones.LeftLowerLeg);
@@ -132,6 +96,39 @@ namespace KadenZombie8.BIMOS.Rig.Animation
 
             Constraints.Chest.data.constrainedObject = Transforms.Hips;
         }
+
+        //public void AutoPalmOffset()
+        //{
+        //    Transform leftHand = Animator.GetBoneTransform(HumanBodyBones.LeftHand);
+        //    Transform leftMiddleProximal = Animator.GetBoneTransform(HumanBodyBones.LeftMiddleProximal);
+
+        //    GameObject leftPalm = new();
+        //    leftPalm.transform.SetPositionAndRotation(
+        //        Vector3.Lerp(leftHand.position, leftMiddleProximal.position, 0.5f),
+        //        Quaternion.Lerp(leftHand.rotation, leftMiddleProximal.rotation, 0.5f)
+        //    );
+
+        //    _leftWrist.SetPositionAndRotation(
+        //        leftPalm.transform.InverseTransformPoint(leftHand.position),
+        //        Quaternion.Inverse(leftPalm.transform.rotation) * leftHand.rotation
+        //    );
+        //    Destroy(leftPalm);
+
+        //    Transform rightHand = Animator.GetBoneTransform(HumanBodyBones.RightHand);
+        //    Transform rightMiddleProximal = Animator.GetBoneTransform(HumanBodyBones.RightMiddleProximal);
+        //    GameObject rightPalm = new();
+        //    rightPalm.transform.SetPositionAndRotation(
+        //        Vector3.Lerp(rightHand.position, rightMiddleProximal.position, 0.5f),
+        //        Quaternion.Lerp(rightHand.rotation, rightMiddleProximal.rotation, 0.5f)
+        //    );
+        //    _rightWrist.SetLocalPositionAndRotation(
+        //        rightPalm.transform.InverseTransformPoint(rightHand.position),
+        //        Quaternion.Inverse(rightPalm.transform.rotation) * rightHand.rotation
+        //    );
+        //    Destroy(rightPalm);
+        //}
+
+        
     }
 
     [Serializable]
