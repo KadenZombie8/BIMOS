@@ -81,6 +81,8 @@ namespace KadenZombie8.BIMOS.Rig.Animation
             Constraints.RightArm.data.mid = Animator.GetBoneTransform(HumanBodyBones.RightLowerArm);
             Constraints.RightArm.data.tip = Animator.GetBoneTransform(HumanBodyBones.RightHand);
 
+            ApplyPalmOffset();
+
             // Legs
             Constraints.LeftLeg.data.root = Animator.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
             Constraints.LeftLeg.data.mid = Animator.GetBoneTransform(HumanBodyBones.LeftLowerLeg);
@@ -97,38 +99,30 @@ namespace KadenZombie8.BIMOS.Rig.Animation
             Constraints.Chest.data.constrainedObject = Transforms.Hips;
         }
 
-        //public void AutoPalmOffset()
-        //{
-        //    Transform leftHand = Animator.GetBoneTransform(HumanBodyBones.LeftHand);
-        //    Transform leftMiddleProximal = Animator.GetBoneTransform(HumanBodyBones.LeftMiddleProximal);
+        public void ApplyPalmOffset()
+        {
+            var rightHand = Animator.GetBoneTransform(HumanBodyBones.RightHand);
 
-        //    GameObject leftPalm = new();
-        //    leftPalm.transform.SetPositionAndRotation(
-        //        Vector3.Lerp(leftHand.position, leftMiddleProximal.position, 0.5f),
-        //        Quaternion.Lerp(leftHand.rotation, leftMiddleProximal.rotation, 0.5f)
-        //    );
+            _rightWrist.SetLocalPositionAndRotation(
+                PalmOffset.transform.InverseTransformPoint(rightHand.position),
+                Quaternion.Inverse(PalmOffset.transform.rotation) * rightHand.rotation
+            );
 
-        //    _leftWrist.SetPositionAndRotation(
-        //        leftPalm.transform.InverseTransformPoint(leftHand.position),
-        //        Quaternion.Inverse(leftPalm.transform.rotation) * leftHand.rotation
-        //    );
-        //    Destroy(leftPalm);
+            var rightPalm = _rightWrist.parent;
 
-        //    Transform rightHand = Animator.GetBoneTransform(HumanBodyBones.RightHand);
-        //    Transform rightMiddleProximal = Animator.GetBoneTransform(HumanBodyBones.RightMiddleProximal);
-        //    GameObject rightPalm = new();
-        //    rightPalm.transform.SetPositionAndRotation(
-        //        Vector3.Lerp(rightHand.position, rightMiddleProximal.position, 0.5f),
-        //        Quaternion.Lerp(rightHand.rotation, rightMiddleProximal.rotation, 0.5f)
-        //    );
-        //    _rightWrist.SetLocalPositionAndRotation(
-        //        rightPalm.transform.InverseTransformPoint(rightHand.position),
-        //        Quaternion.Inverse(rightPalm.transform.rotation) * rightHand.rotation
-        //    );
-        //    Destroy(rightPalm);
-        //}
+            var mirroredForward = rightPalm.InverseTransformDirection(-_rightWrist.forward);
+            var mirroredUp = rightPalm.InverseTransformDirection(_rightWrist.up);
 
-        
+            var rotation = Quaternion.LookRotation(mirroredForward, mirroredUp);
+
+            var position = _rightWrist.localPosition;
+            position.x *= -1f;
+
+            _leftWrist.SetLocalPositionAndRotation(
+                position,
+                rotation
+            );
+        }
     }
 
     [Serializable]
