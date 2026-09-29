@@ -33,9 +33,9 @@ namespace KadenZombie8.BIMOS.Rig
 
         private enum WristAxis
         {
-            X, Xp,
-            Y, Yp,
-            Z, Zp
+            down, up,
+            forward, backwards,
+            left, right
         }
 
         private struct Influencer
@@ -56,71 +56,71 @@ namespace KadenZombie8.BIMOS.Rig
         {
             // Base influencers
 
-            new(WristAxis.X, WristAxis.Y, 30f),
-            new(WristAxis.X, WristAxis.Yp, 20f),
-            new(WristAxis.X, WristAxis.Z, 20f),
-            new(WristAxis.X, WristAxis.Zp, 40f),
+            new(WristAxis.down, WristAxis.forward, 30f),
+            new(WristAxis.down, WristAxis.backwards, 20f),
+            new(WristAxis.down, WristAxis.left, 20f),
+            new(WristAxis.down, WristAxis.right, 40f),
 
-            new(WristAxis.Xp, WristAxis.Y, 0f),
-            new(WristAxis.Xp, WristAxis.Yp, 0f),
-            new(WristAxis.Xp, WristAxis.Z, 0f),
-            new(WristAxis.Xp, WristAxis.Zp, 0f),
+            new(WristAxis.up, WristAxis.forward, 0f),
+            new(WristAxis.up, WristAxis.backwards, 0f),
+            new(WristAxis.up, WristAxis.left, 0f),
+            new(WristAxis.up, WristAxis.right, 0f),
 
-            new(WristAxis.Y, WristAxis.X, -60f),
-            new(WristAxis.Y, WristAxis.Xp, -30f),
-            new(WristAxis.Y, WristAxis.Z, -20f),
-            new(WristAxis.Y, WristAxis.Zp, -40f),
+            new(WristAxis.forward, WristAxis.down, -60f),
+            new(WristAxis.forward, WristAxis.up, -30f),
+            new(WristAxis.forward, WristAxis.left, -20f),
+            new(WristAxis.forward, WristAxis.right, -40f),
 
-            new(WristAxis.Yp, WristAxis.X, 110f),
-            new(WristAxis.Yp, WristAxis.Xp, 50f),
-            new(WristAxis.Yp, WristAxis.Z, 50f),
-            new(WristAxis.Yp, WristAxis.Zp, 80f),
+            new(WristAxis.backwards, WristAxis.down, 110f),
+            new(WristAxis.backwards, WristAxis.up, 50f),
+            new(WristAxis.backwards, WristAxis.left, 50f),
+            new(WristAxis.backwards, WristAxis.right, 80f),
 
-            new(WristAxis.Z, WristAxis.X, -20),
-            new(WristAxis.Z, WristAxis.Xp, 70f),
-            new(WristAxis.Z, WristAxis.Y, 0f),
-            new(WristAxis.Z, WristAxis.Yp, 90f),
+            new(WristAxis.left, WristAxis.down, -20),
+            new(WristAxis.left, WristAxis.up, 70f),
+            new(WristAxis.left, WristAxis.forward, 0f),
+            new(WristAxis.left, WristAxis.backwards, 90f),
 
-            new(WristAxis.Zp, WristAxis.X, -20f),
-            new(WristAxis.Zp, WristAxis.Xp, 20f),
-            new(WristAxis.Zp, WristAxis.Y, 10f),
-            new(WristAxis.Zp, WristAxis.Yp, 30f),
+            new(WristAxis.right, WristAxis.down, -20f),
+            new(WristAxis.right, WristAxis.up, 20f),
+            new(WristAxis.right, WristAxis.forward, 10f),
+            new(WristAxis.right, WristAxis.backwards, 30f),
 
             // Additional influencers
 
-            new(WristAxis.X, WristAxis.Yp, 140f),
-            new(WristAxis.X, WristAxis.Z, 150f),
-            new(WristAxis.Xp, WristAxis.Yp, 170f),
-            new(WristAxis.Xp, WristAxis.Z, 160f),
-            new(WristAxis.Xp, WristAxis.Zp, 150f),
-            new(WristAxis.Y, WristAxis.X, 140f),
-            new(WristAxis.Y, WristAxis.Z, 170f),
-            new(WristAxis.Y, WristAxis.Xp, 140f),
-            new(WristAxis.Yp, WristAxis.Z, 140f),
-            new(WristAxis.Z, WristAxis.X, 90f),
-            new(WristAxis.Z, WristAxis.Y, 90f),
-            new(WristAxis.Zp, WristAxis.X, 70f),
-            new(WristAxis.Zp, WristAxis.Yp, 150f)
+            new(WristAxis.down, WristAxis.backwards, 140f),
+            new(WristAxis.down, WristAxis.left, 150f),
+            new(WristAxis.up, WristAxis.backwards, 170f),
+            new(WristAxis.up, WristAxis.left, 160f),
+            new(WristAxis.up, WristAxis.right, 150f),
+            new(WristAxis.forward, WristAxis.down, 140f),
+            new(WristAxis.forward, WristAxis.left, 170f),
+            new(WristAxis.forward, WristAxis.up, 140f),
+            new(WristAxis.backwards, WristAxis.left, 140f),
+            new(WristAxis.left, WristAxis.down, 90f),
+            new(WristAxis.left, WristAxis.forward, 90f),
+            new(WristAxis.right, WristAxis.down, 70f),
+            new(WristAxis.right, WristAxis.backwards, 150f)
         };
 
         private bool IsRightHand => _handedness == Handedness.Right;
 
         Vector3 GetAxis(WristAxis axis)
         {
-            var x = _controller.right;
-            var y = _controller.up;
-            var z = _controller.forward;
+            var down = -_controller.up;
+            var forward = _controller.forward;
+            var left = -_controller.right;
 
-            if (!IsRightHand) x = -x;
+            if (!IsRightHand) left = -left;
 
             return axis switch
             {
-                WristAxis.X => x,
-                WristAxis.Xp => -x,
-                WristAxis.Y => y,
-                WristAxis.Yp => -y,
-                WristAxis.Z => z,
-                WristAxis.Zp => -z,
+                WristAxis.down => down,
+                WristAxis.up => -down,
+                WristAxis.forward => forward,
+                WristAxis.backwards => -forward,
+                WristAxis.left => left,
+                WristAxis.right => -left,
                 _ => Vector3.zero
             };
         }
