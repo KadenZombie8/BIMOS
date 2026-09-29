@@ -31,20 +31,20 @@ namespace KadenZombie8.BIMOS.Rig
         private Vector3 _smoothElbowDirection;
         private readonly float _elbowSmoothing = 15f;
 
-        private enum WristAxis
+        private enum HandAxis
         {
-            down, up,
-            forward, backwards,
-            left, right
+            Ulnar, Thumb,
+            Fingers, Wrist,
+            Palm, Dorsum
         }
 
         private struct Influencer
         {
-            public WristAxis UpAxis;
-            public WristAxis RightAxis;
+            public HandAxis UpAxis;
+            public HandAxis RightAxis;
             public float Angle;
 
-            public Influencer(WristAxis rightAxis, WristAxis upAxis, float angle)
+            public Influencer(HandAxis rightAxis, HandAxis upAxis, float angle)
             {
                 RightAxis = rightAxis;
                 UpAxis = upAxis;
@@ -56,71 +56,71 @@ namespace KadenZombie8.BIMOS.Rig
         {
             // Base influencers
 
-            new(WristAxis.down, WristAxis.forward, 30f),
-            new(WristAxis.down, WristAxis.backwards, 20f),
-            new(WristAxis.down, WristAxis.left, 20f),
-            new(WristAxis.down, WristAxis.right, 40f),
+            new(HandAxis.Ulnar, HandAxis.Fingers, 30f),
+            new(HandAxis.Ulnar, HandAxis.Wrist, 20f),
+            new(HandAxis.Ulnar, HandAxis.Palm, 20f),
+            new(HandAxis.Ulnar, HandAxis.Dorsum, 40f),
 
-            new(WristAxis.up, WristAxis.forward, 0f),
-            new(WristAxis.up, WristAxis.backwards, 0f),
-            new(WristAxis.up, WristAxis.left, 0f),
-            new(WristAxis.up, WristAxis.right, 0f),
+            new(HandAxis.Thumb, HandAxis.Fingers, 0f),
+            new(HandAxis.Thumb, HandAxis.Wrist, 0f),
+            new(HandAxis.Thumb, HandAxis.Palm, 0f),
+            new(HandAxis.Thumb, HandAxis.Dorsum, 0f),
 
-            new(WristAxis.forward, WristAxis.down, -60f),
-            new(WristAxis.forward, WristAxis.up, -30f),
-            new(WristAxis.forward, WristAxis.left, -20f),
-            new(WristAxis.forward, WristAxis.right, -40f),
+            new(HandAxis.Fingers, HandAxis.Ulnar, -60f),
+            new(HandAxis.Fingers, HandAxis.Thumb, -30f),
+            new(HandAxis.Fingers, HandAxis.Palm, -20f),
+            new(HandAxis.Fingers, HandAxis.Dorsum, -40f),
 
-            new(WristAxis.backwards, WristAxis.down, 110f),
-            new(WristAxis.backwards, WristAxis.up, 50f),
-            new(WristAxis.backwards, WristAxis.left, 50f),
-            new(WristAxis.backwards, WristAxis.right, 80f),
+            new(HandAxis.Wrist, HandAxis.Ulnar, 110f),
+            new(HandAxis.Wrist, HandAxis.Thumb, 50f),
+            new(HandAxis.Wrist, HandAxis.Palm, 50f),
+            new(HandAxis.Wrist, HandAxis.Dorsum, 80f),
 
-            new(WristAxis.left, WristAxis.down, -20),
-            new(WristAxis.left, WristAxis.up, 70f),
-            new(WristAxis.left, WristAxis.forward, 0f),
-            new(WristAxis.left, WristAxis.backwards, 90f),
+            new(HandAxis.Palm, HandAxis.Ulnar, -20),
+            new(HandAxis.Palm, HandAxis.Thumb, 70f),
+            new(HandAxis.Palm, HandAxis.Fingers, 0f),
+            new(HandAxis.Palm, HandAxis.Wrist, 90f),
 
-            new(WristAxis.right, WristAxis.down, -20f),
-            new(WristAxis.right, WristAxis.up, 20f),
-            new(WristAxis.right, WristAxis.forward, 10f),
-            new(WristAxis.right, WristAxis.backwards, 30f),
+            new(HandAxis.Dorsum, HandAxis.Ulnar, -20f),
+            new(HandAxis.Dorsum, HandAxis.Thumb, 20f),
+            new(HandAxis.Dorsum, HandAxis.Fingers, 10f),
+            new(HandAxis.Dorsum, HandAxis.Wrist, 30f),
 
             // Additional influencers
 
-            new(WristAxis.down, WristAxis.backwards, 140f),
-            new(WristAxis.down, WristAxis.left, 150f),
-            new(WristAxis.up, WristAxis.backwards, 170f),
-            new(WristAxis.up, WristAxis.left, 160f),
-            new(WristAxis.up, WristAxis.right, 150f),
-            new(WristAxis.forward, WristAxis.down, 140f),
-            new(WristAxis.forward, WristAxis.left, 170f),
-            new(WristAxis.forward, WristAxis.up, 140f),
-            new(WristAxis.backwards, WristAxis.left, 140f),
-            new(WristAxis.left, WristAxis.down, 90f),
-            new(WristAxis.left, WristAxis.forward, 90f),
-            new(WristAxis.right, WristAxis.down, 70f),
-            new(WristAxis.right, WristAxis.backwards, 150f)
+            new(HandAxis.Ulnar, HandAxis.Wrist, 140f),
+            new(HandAxis.Ulnar, HandAxis.Palm, 150f),
+            new(HandAxis.Thumb, HandAxis.Wrist, 170f),
+            new(HandAxis.Thumb, HandAxis.Palm, 160f),
+            new(HandAxis.Thumb, HandAxis.Dorsum, 150f),
+            new(HandAxis.Fingers, HandAxis.Ulnar, 140f),
+            new(HandAxis.Fingers, HandAxis.Palm, 170f),
+            new(HandAxis.Fingers, HandAxis.Thumb, 140f),
+            new(HandAxis.Wrist, HandAxis.Palm, 140f),
+            new(HandAxis.Palm, HandAxis.Ulnar, 90f),
+            new(HandAxis.Palm, HandAxis.Fingers, 90f),
+            new(HandAxis.Dorsum, HandAxis.Ulnar, 70f),
+            new(HandAxis.Dorsum, HandAxis.Wrist, 150f)
         };
 
         private bool IsRightHand => _handedness == Handedness.Right;
 
-        Vector3 GetAxis(WristAxis axis)
+        Vector3 GetAxis(HandAxis axis)
         {
-            var down = -_controller.up;
-            var forward = _controller.forward;
-            var left = -_controller.right;
+            var thumb = _controller.up;
+            var fingers = _controller.forward;
+            var palm = -_controller.right;
 
-            if (!IsRightHand) left = -left;
+            if (!IsRightHand) palm = -palm;
 
             return axis switch
             {
-                WristAxis.down => down,
-                WristAxis.up => -down,
-                WristAxis.forward => forward,
-                WristAxis.backwards => -forward,
-                WristAxis.left => left,
-                WristAxis.right => -left,
+                HandAxis.Ulnar => -thumb,
+                HandAxis.Thumb => thumb,
+                HandAxis.Fingers => fingers,
+                HandAxis.Wrist => -fingers,
+                HandAxis.Palm => palm,
+                HandAxis.Dorsum => -palm,
                 _ => Vector3.zero
             };
         }
