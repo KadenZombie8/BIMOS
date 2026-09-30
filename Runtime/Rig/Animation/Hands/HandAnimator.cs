@@ -16,8 +16,6 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private HandInputReader _handInputReader;
 
-        private Transform _hand;
-
         public HandPose DefaultHandPose, HandPose;
 
         [HideInInspector]
@@ -56,7 +54,6 @@ namespace KadenZombie8.BIMOS.Rig
 
         private readonly List<XRHandSubsystem> _handSubsystems = new();
         private XRHandSubsystem _handSubsystem;
-        private readonly XRFingerShape[] _fingerShapes = new XRFingerShape[5];
         private XRHand _subsystemHand;
 
         private bool TryGetSubsystem(out XRHandSubsystem system)
@@ -90,7 +87,6 @@ namespace KadenZombie8.BIMOS.Rig
             LittleRot = new Quaternion[3];
             if (Handedness == Handedness.Left)
             {
-                _hand = _animator.GetBoneTransform(HumanBodyBones.LeftHand);
                 Thumb[0] = _animator.GetBoneTransform(HumanBodyBones.LeftThumbProximal);
                 Thumb[1] = _animator.GetBoneTransform(HumanBodyBones.LeftThumbIntermediate);
                 Thumb[2] = _animator.GetBoneTransform(HumanBodyBones.LeftThumbDistal);
@@ -109,7 +105,6 @@ namespace KadenZombie8.BIMOS.Rig
             }
             else
             {
-                _hand = _animator.GetBoneTransform(HumanBodyBones.RightHand);
                 Thumb[0] = _animator.GetBoneTransform(HumanBodyBones.RightThumbProximal);
                 Thumb[1] = _animator.GetBoneTransform(HumanBodyBones.RightThumbIntermediate);
                 Thumb[2] = _animator.GetBoneTransform(HumanBodyBones.RightThumbDistal);

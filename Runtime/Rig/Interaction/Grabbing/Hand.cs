@@ -31,8 +31,14 @@ namespace KadenZombie8.BIMOS.Rig
 
         private Coroutine _hapticCoroutine;
 
+        private float _currentAmplitude;
+
         public void SendHapticImpulse(float amplitude, float duration)
         {
+            if (amplitude < _currentAmplitude) return;
+
+            _currentAmplitude = amplitude;
+
             // XR
             var device = Handedness == Handedness.Left ? InputDevices.GetDeviceAtXRNode(XRNode.LeftHand) : InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
             if (device.isValid && VRHaptics > 0f)
@@ -41,20 +47,19 @@ namespace KadenZombie8.BIMOS.Rig
             // Gamepad
             var gamepad = Gamepad.current;
             if (gamepad != null && GamepadHaptics > 0f)
-            {
                 gamepad.SetMotorSpeeds(amplitude * GamepadHaptics, amplitude);
 
-                if (_hapticCoroutine != null)
-                    StopCoroutine(_hapticCoroutine);
+            if (_hapticCoroutine != null)
+                StopCoroutine(_hapticCoroutine);
 
-                _hapticCoroutine = StartCoroutine(StopHaptics(duration, gamepad));
-            }
+            _hapticCoroutine = StartCoroutine(StopHaptics(duration, gamepad));
         }
 
         private IEnumerator StopHaptics(float duration, Gamepad gamepad)
         {
             yield return new WaitForSeconds(duration);
             gamepad?.SetMotorSpeeds(0f, 0f);
+            _currentAmplitude = 0f;
             _hapticCoroutine = null;
         }
     }
