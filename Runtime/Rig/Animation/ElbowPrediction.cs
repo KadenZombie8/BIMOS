@@ -166,7 +166,7 @@ namespace KadenZombie8.BIMOS.Rig
 
                 var influencerAngle = influencer.Angle;
                 if (!IsRightHand) influencerAngle *= -1f;
-                var influencerDirection = elbowDownRotation * Quaternion.AngleAxis(influencerAngle, shoulderToHandDirection) * Vector3.down;
+                var influencerDirection = Quaternion.AngleAxis(influencerAngle, shoulderToHandDirection) * elbowDownRotation * Vector3.down;
                 var weightDot = Mathf.Max(0f, Vector3.Dot(_targetElbowDirection, influencerDirection));
 
                 var weightProduct = weightRight * weightUp * weightDot;
@@ -181,7 +181,7 @@ namespace KadenZombie8.BIMOS.Rig
                 predictedElbowAngle = angleSum / weightSum;
 
             // Calculate target elbow direction
-            _targetElbowDirection = elbowDownRotation * Quaternion.AngleAxis(predictedElbowAngle, shoulderToHandDirection) * Vector3.down;
+            _targetElbowDirection = Quaternion.AngleAxis(predictedElbowAngle, shoulderToHandDirection) * elbowDownRotation * Vector3.down;
 
             // Smooth elbow direction
             _smoothElbowDirection = Vector3.Slerp(_smoothElbowDirection, _targetElbowDirection, Time.deltaTime * _elbowSmoothing);
