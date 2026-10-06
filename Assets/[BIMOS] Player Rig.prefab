@@ -2189,6 +2189,30 @@ MonoBehaviour:
   _handedness: 1
   _controller: {fileID: 1478771343154856604}
   _pelvis: {fileID: 8556203494894390205}
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.0015869141
+      inSlope: 3.1275642
+      outSlope: 3.1275642
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33055556
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.004608382
+      outSlope: 0.004608382
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3444444
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2113051519972487098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,6 +4644,30 @@ MonoBehaviour:
   _handedness: 0
   _controller: {fileID: 6592363549466593726}
   _pelvis: {fileID: 8556203494894390205}
+  _curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.0015869141
+      inSlope: 3.1275642
+      outSlope: 3.1275642
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33055556
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.004608382
+      outSlope: 0.004608382
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3444444
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3301374950904824340
 GameObject:
   m_ObjectHideFlags: 0

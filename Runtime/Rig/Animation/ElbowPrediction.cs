@@ -19,6 +19,9 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private Transform _pelvis;
 
+        [SerializeField]
+        private AnimationCurve _curve;
+
         private Transform _upperArmBone;
         private Transform _lowerArmBone;
         private Transform _handBone;
@@ -166,10 +169,11 @@ namespace KadenZombie8.BIMOS.Rig
 
                 var influencerAngle = influencer.Angle;
                 if (!IsRightHand) influencerAngle *= -1f;
+
                 var influencerDirection = Quaternion.AngleAxis(influencerAngle, shoulderToHandDirection) * elbowDownRotation * Vector3.down;
                 var weightDot = Mathf.Max(0f, Vector3.Dot(_targetElbowDirection, influencerDirection));
 
-                var weightProduct = weightRight * weightUp * weightDot;
+                var weightProduct = _curve.Evaluate(weightRight * weightUp * weightDot);
 
                 angleSum += weightProduct * influencerAngle;
                 weightSum += weightProduct;
