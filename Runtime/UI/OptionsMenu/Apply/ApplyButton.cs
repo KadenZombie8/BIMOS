@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace KadenZombie8.BIMOS.UI.Options
 {
+    [RequireComponent(typeof(ApplyOptions))]
     public class ApplyButton : MonoBehaviour
     {
         [SerializeField]
@@ -13,7 +14,7 @@ namespace KadenZombie8.BIMOS.UI.Options
 
         private void OnEnable() => _applyOptions.OnOptionsChanged += UpdateButtonState;
 
-        private void OnDisable() => _applyOptions.OnOptionsChanged += UpdateButtonState;
+        private void OnDisable() => _applyOptions.OnOptionsChanged -= UpdateButtonState;
 
         private void UpdateButtonState() => _button.SetActive(_applyOptions.HasUnsavedChanges);
     }
