@@ -7,7 +7,7 @@ namespace KadenZombie8.BIMOS
     public class HapticsPlayer : MonoBehaviour
     {
         [SerializeField]
-        private GrabbableHapticsHandler _grabbableHapticsHandler;
+        private GripHapticsHandler _gripHapticsHandler;
 
         [Serializable]
         public struct HapticSettingsStruct
@@ -24,8 +24,8 @@ namespace KadenZombie8.BIMOS
 
         public void Play()
         {
-            if (!_grabbableHapticsHandler) return;
-            _grabbableHapticsHandler.SendHapticImpulse(HapticSettings.Amplitude, HapticSettings.Duration);
+            if (!_gripHapticsHandler) return;
+            _gripHapticsHandler.SendHapticImpulse(HapticSettings.Amplitude, HapticSettings.Duration);
         }
     }
 }

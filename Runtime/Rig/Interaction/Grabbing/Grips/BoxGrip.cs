@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-using UnityEngine.XR;
 
-namespace KadenZombie8.BIMOS.Rig
+namespace KadenZombie8.BIMOS.Rig.Grips
 {
-    public class BoxGrabbable : AutoGrabbable
+    public class BoxGrip : AutoGrip
     {
         [Flags]
         public enum BoxFaces

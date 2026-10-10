@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS.Rig
+namespace KadenZombie8.BIMOS.Rig.Grips
 {
-    [AddComponentMenu("BIMOS/Grabbables/Grabbable (Snap)")]
-    public class SnapGrabbable : Grabbable
+    [AddComponentMenu("BIMOS/Grips/Target Grip")]
+    public class TargetGrip : Grip
     {
         public Handedness Handedness;
 

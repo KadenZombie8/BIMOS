@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.Rig.Grips;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,12 +22,12 @@ namespace KadenZombie8.BIMOS.Rig
         }
         private readonly ItemPhysicsState _itemData = new();
 
-        private Grabbable[] _itemSlotGrabbables;
+        private Grip[] _itemSlotGrips;
 
         protected virtual void Awake()
         {
-            _itemSlotGrabbables = GetComponentsInChildren<Grabbable>();
-            SetItemSlotGrabbablesEnabled(false);
+            _itemSlotGrips = GetComponentsInChildren<Grip>();
+            SetItemSlotGripsEnabled(false);
         }
 
         private void DisableItem(Item item)
@@ -104,21 +105,21 @@ namespace KadenZombie8.BIMOS.Rig
 
             StoredStorable = storable;
             StoredStorable.ItemSlot = this;
-            SetItemSlotGrabbablesEnabled(true);
+            SetItemSlotGripsEnabled(true);
             OnStore?.Invoke();
             storable.Store();
         }
 
-        private void AlignGrabbable(Hand hand, Grabbable grabbable)
+        private void AlignGrip(Hand hand, Grip grip)
         {
             var item = StoredStorable.GetComponent<Item>();
-            grabbable.transform.GetPositionAndRotation(out var grabbablePosition, out var grabbableRotation);
+            grip.transform.GetPositionAndRotation(out var gripPosition, out var gripRotation);
             foreach (var gameObject in item.GameObjects)
             {
-                var localPosition = Quaternion.Inverse(grabbableRotation) * (gameObject.transform.position - grabbablePosition);
+                var localPosition = Quaternion.Inverse(gripRotation) * (gameObject.transform.position - gripPosition);
                 var worldPosition = hand.PalmTransform.TransformPoint(localPosition);
 
-                var localRotation = Quaternion.Inverse(grabbableRotation) * gameObject.transform.rotation;
+                var localRotation = Quaternion.Inverse(gripRotation) * gameObject.transform.rotation;
                 var worldRotation = hand.PalmTransform.rotation * localRotation;
 
                 if (gameObject.TryGetComponent<ArticulationBody>(out var articulationBody) && articulationBody.isRoot)
@@ -136,26 +137,26 @@ namespace KadenZombie8.BIMOS.Rig
             }
         }
 
-        public virtual void RetrieveItem(SnapGrabbable grabbable)
+        public virtual void RetrieveItem(TargetGrip grip)
         {
             if (!StoredStorable) return;
             if (!StoredStorable.TryGetComponent<Item>(out var storedItem)) return;
 
-            var hand = grabbable.LeftHand ? grabbable.LeftHand : grabbable.RightHand;
+            var hand = grip.LeftHand ? grip.LeftHand : grip.RightHand;
             hand.GrabHandler.AttemptRelease();
 
-            var retrieveGrabbable = hand.Handedness == Handedness.Left
-                ? StoredStorable.RetrieveGrabbables.Left
-                : StoredStorable.RetrieveGrabbables.Right;
+            var retrieveGrip = hand.Handedness == Handedness.Left
+                ? StoredStorable.RetrieveGrips.Left
+                : StoredStorable.RetrieveGrips.Right;
 
-            AlignGrabbable(hand, retrieveGrabbable);
+            AlignGrip(hand, retrieveGrip);
             EnableItem();
-            retrieveGrabbable.Grab(hand);
+            retrieveGrip.Grab(hand);
 
             StoredStorable.Retrieve();
             StoredStorable.ItemSlot = null;
             StoredStorable = null;
-            SetItemSlotGrabbablesEnabled(false);
+            SetItemSlotGripsEnabled(false);
             OnRetrieve?.Invoke();
         }
 
@@ -169,10 +170,10 @@ namespace KadenZombie8.BIMOS.Rig
             return false;
         }
         
-        protected void SetItemSlotGrabbablesEnabled(bool isEnabled)
+        protected void SetItemSlotGripsEnabled(bool isEnabled)
         {
-            foreach(var itemSlotGrabbable in _itemSlotGrabbables)
-                itemSlotGrabbable.enabled = isEnabled;
+            foreach(var itemSlotGrip in _itemSlotGrips)
+                itemSlotGrip.enabled = isEnabled;
         }
 
         protected void DestroyStoredItem()

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using KadenZombie8.BIMOS.Rig.Grips;
 using KadenZombie8.BIMOS.Sockets;
 using UnityEngine;
 
@@ -30,7 +31,7 @@ namespace KadenZombie8.BIMOS.Rig
         public void SetAmmoPrefab(GameObject ammoPrefab)
         {
             AmmoPrefab = ammoPrefab;
-            SetItemSlotGrabbablesEnabled(true);
+            SetItemSlotGripsEnabled(true);
         }
 
         public override void StoreItem(Storable storable)
@@ -40,7 +41,7 @@ namespace KadenZombie8.BIMOS.Rig
             DestroyStoredItem();
         }
 
-        public override void RetrieveItem(SnapGrabbable grabbable)
+        public override void RetrieveItem(TargetGrip grip)
         {
             if (AmmoPrefab == null)
                 return;
@@ -66,9 +67,9 @@ namespace KadenZombie8.BIMOS.Rig
                 Destroy(magazineToRemove);
             }
 
-            base.RetrieveItem(grabbable);
+            base.RetrieveItem(grip);
 
-            SetItemSlotGrabbablesEnabled(true);
+            SetItemSlotGripsEnabled(true);
         }
     }
 }

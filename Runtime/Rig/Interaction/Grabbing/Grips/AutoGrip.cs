@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS.Rig
+namespace KadenZombie8.BIMOS.Rig.Grips
 {
-    [AddComponentMenu("BIMOS/Grabbables/Grabbable (Auto)")]
-    public class AutoGrabbable : Grabbable
+    [AddComponentMenu("BIMOS/Grips/Auto Grip")]
+    public class AutoGrip : Grip
     {
         protected RaycastHit RaycastHit(Hand hand, Vector3 handToTargetDirection)
         {

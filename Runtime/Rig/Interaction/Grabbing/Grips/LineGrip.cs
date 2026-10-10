@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS.Rig
+namespace KadenZombie8.BIMOS.Rig.Grips
 {
-    [AddComponentMenu("BIMOS/Grabbables/Grabbable (Line)")]
-    public class LineGrabbable : SnapGrabbable
+    [AddComponentMenu("BIMOS/Grips/Line Grip")]
+    public class LineGrip : TargetGrip
     {
         [Header("Line Properties")]
         public Transform Origin;
@@ -23,7 +23,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         public override void CreateCollider()
         {
-            GameObject colliderObject = new("GrabCollider");
+            GameObject colliderObject = new("GripCollider");
             colliderObject.transform.parent = transform;
             CapsuleCollider collider = colliderObject.AddComponent<CapsuleCollider>();
             collider.direction = 2;

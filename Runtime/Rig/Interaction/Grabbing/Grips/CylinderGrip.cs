@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS.Rig
+namespace KadenZombie8.BIMOS.Rig.Grips
 {
-    [AddComponentMenu("BIMOS/Grabbables/Grabbable (Cylinder)")]
-    public class CylinderGrabbable : LineGrabbable
+    [AddComponentMenu("BIMOS/Grip/Cylinder Grip")]
+    public class CylinderGrip : LineGrip
     {
         public override void AlignHand(Hand hand, out Vector3 position, out Quaternion rotation)
         {

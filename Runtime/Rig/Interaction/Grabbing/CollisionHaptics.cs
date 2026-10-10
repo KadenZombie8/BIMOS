@@ -6,7 +6,7 @@ namespace KadenZombie8.BIMOS.Rig
     public class CollisionHaptics : MonoBehaviour
     {
         [SerializeField]
-        private GrabbableHapticsHandler _hapticsHandler;
+        private GripHapticsHandler _hapticsHandler;
 
         [SerializeField]
         private ImpulseRange _impulseRange = new()

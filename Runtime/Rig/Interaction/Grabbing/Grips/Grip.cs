@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.XR;
 
-namespace KadenZombie8.BIMOS.Rig
+namespace KadenZombie8.BIMOS.Rig.Grips
 {
-    public abstract class Grabbable : MonoBehaviour
+    public abstract class Grip : MonoBehaviour
     {
         public UnityEvent<Hand> OnGrab;
         public UnityEvent<Hand> OnRelease;
@@ -73,12 +72,12 @@ namespace KadenZombie8.BIMOS.Rig
             if (rotationDifference > _maxRotationDifference)
                 return 0f;
 
-            return 1f / averageDifference; //Reciprocal of distance from hand to grab
+            return 1f / averageDifference; //Reciprocal of distance from hand to grip
         }
 
-        public virtual void Grab(Hand hand) //Triggered when player grabs the grab
+        public virtual void Grab(Hand hand) //Triggered when player grabs the grip
         {
-            hand.CurrentGrab = this;
+            hand.CurrentGrip = this;
 
             if (hand.Handedness == Handedness.Left)
                 LeftHand = hand;
@@ -88,7 +87,7 @@ namespace KadenZombie8.BIMOS.Rig
             hand.GrabHandler.ApplyGrabPose(HandPose); //Use the hand pose attached
 
             AlignHand(hand, out var position, out var rotation);
-            StartCoroutine(CreateGrabJoint(hand, position, rotation));
+            StartCoroutine(CreateGripJoint(hand, position, rotation));
 
             OnGrab?.Invoke(hand);
         }
@@ -99,7 +98,7 @@ namespace KadenZombie8.BIMOS.Rig
             rotation = hand.PalmTransform.rotation;
         }
 
-        private IEnumerator CreateGrabJoint(Hand hand, Vector3 position, Quaternion rotation)
+        private IEnumerator CreateGripJoint(Hand hand, Vector3 position, Quaternion rotation)
         {
             hand.transform.GetPositionAndRotation(out var initialPosition, out var initialRotation);
 
@@ -109,29 +108,29 @@ namespace KadenZombie8.BIMOS.Rig
             var finalLocalPosition = Body.InverseTransformPoint(position);
 
             hand.PhysicsHandTransform.SetPositionAndRotation(position, rotation);
-            var grabJoint = hand.PhysicsHandTransform.gameObject.AddComponent<ConfigurableJoint>();
+            var gripJoint = hand.PhysicsHandTransform.gameObject.AddComponent<ConfigurableJoint>();
 
-            grabJoint.breakForce = 100000f;
+            gripJoint.breakForce = 100000f;
 
-            hand.GrabJoint = grabJoint;
+            hand.GripJoint = gripJoint;
 
-            grabJoint.xMotion
-               = grabJoint.yMotion
-               = grabJoint.zMotion
+            gripJoint.xMotion
+               = gripJoint.yMotion
+               = gripJoint.zMotion
                = ConfigurableJointMotion.Locked;
-            grabJoint.rotationDriveMode = RotationDriveMode.Slerp;
-            grabJoint.slerpDrive = new() { positionSpring = Mathf.Infinity, maximumForce = Mathf.Infinity };
+            gripJoint.rotationDriveMode = RotationDriveMode.Slerp;
+            gripJoint.slerpDrive = new() { positionSpring = Mathf.Infinity, maximumForce = Mathf.Infinity };
 
             if (RigidBody)
-                grabJoint.connectedBody = RigidBody;
+                gripJoint.connectedBody = RigidBody;
             if (ArticulationBody)
-                grabJoint.connectedArticulationBody = ArticulationBody;
+                gripJoint.connectedArticulationBody = ArticulationBody;
 
             hand.PhysicsHandTransform.SetPositionAndRotation(initialPosition, initialRotation);
-            grabJoint.autoConfigureConnectedAnchor = false;
+            gripJoint.autoConfigureConnectedAnchor = false;
 
-            grabJoint.connectedAnchor = initialLocalPosition;
-            grabJoint.targetRotation = initialLocalRotation;
+            gripJoint.connectedAnchor = initialLocalPosition;
+            gripJoint.targetRotation = initialLocalRotation;
 
             var elapsedTime = 0f;
             var positionDifference = Mathf.Min(
@@ -143,39 +142,39 @@ namespace KadenZombie8.BIMOS.Rig
             hand.SendHapticImpulse(0.05f, grabTime);
             while (elapsedTime < grabTime)
             {
-                if (!grabJoint)
+                if (!gripJoint)
                     yield break;
 
                 var lerpedTargetPosition = Vector3.Lerp(initialLocalPosition, finalLocalPosition, elapsedTime / grabTime);
                 var lerpedTargetRotation = Quaternion.Slerp(initialLocalRotation, Quaternion.identity, elapsedTime / grabTime);
 
-                grabJoint.connectedAnchor = lerpedTargetPosition;
-                grabJoint.targetRotation = lerpedTargetRotation;
+                gripJoint.connectedAnchor = lerpedTargetPosition;
+                gripJoint.targetRotation = lerpedTargetRotation;
 
                 elapsedTime += Time.fixedDeltaTime;
                 yield return new WaitForFixedUpdate();
             }
             hand.SendHapticImpulse(0.2f, 0.05f);
 
-            if (!grabJoint)
+            if (!gripJoint)
                 yield break;
 
-            grabJoint.enableCollision = true;
-            grabJoint.enablePreprocessing = false;
-            grabJoint.projectionMode = JointProjectionMode.PositionAndRotation;
+            gripJoint.enableCollision = true;
+            gripJoint.enablePreprocessing = false;
+            gripJoint.projectionMode = JointProjectionMode.PositionAndRotation;
 
-            grabJoint.connectedAnchor = finalLocalPosition;
-            grabJoint.targetRotation = Quaternion.identity;
+            gripJoint.connectedAnchor = finalLocalPosition;
+            gripJoint.targetRotation = Quaternion.identity;
         }
 
-        public void Release(Hand hand) //Triggered when player releases the grab
+        public void Release(Hand hand) //Triggered when player releases the grip
         {
             if (!hand)
                 return;
 
-            DestroyGrabJoint(hand);
+            DestroyGripJoint(hand);
 
-            hand.CurrentGrab = null;
+            hand.CurrentGrip = null;
 
             if (hand.Handedness == Handedness.Left)
                 LeftHand = null;
@@ -185,13 +184,13 @@ namespace KadenZombie8.BIMOS.Rig
             OnRelease?.Invoke(hand);
         }
 
-        public virtual void DestroyGrabJoint(Hand hand)
+        public virtual void DestroyGripJoint(Hand hand)
         {
             if (!hand)
                 return;
 
-            if (hand.GrabJoint)
-                Destroy(hand.GrabJoint); //Deletes the joint, letting it go
+            if (hand.GripJoint)
+                Destroy(hand.GripJoint); //Deletes the joint, letting it go
 
             if (!gameObject.activeSelf)
                 return;

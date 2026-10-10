@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KadenZombie8.BIMOS.Rig.Grips;
 using KadenZombie8.BIMOS.Sockets;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace KadenZombie8.BIMOS.Rig
         public readonly HashSet<GameObject> GameObjects = new();
 
         private readonly HashSet<Collider> _colliders = new();
-        private readonly HashSet<Grabbable> _grabbables = new();
+        private readonly HashSet<Grip> _grips = new();
         private readonly HashSet<Socket> _sockets = new();
         private readonly HashSet<Hand> _hands = new();
 
@@ -27,8 +28,8 @@ namespace KadenZombie8.BIMOS.Rig
             var body = BodyUtilities.GetBody(transform, out _, out _);
             GameObjects.Add(body.gameObject);
 
-            foreach (var grabbable in GetComponentsInChildren<Grabbable>())
-                _grabbables.Add(grabbable);
+            foreach (var grip in GetComponentsInChildren<Grip>())
+                _grips.Add(grip);
 
             foreach (var socket in GetComponentsInChildren<Socket>())
                 _sockets.Add(socket);
@@ -45,10 +46,10 @@ namespace KadenZombie8.BIMOS.Rig
             OnGameObjectAdded += GameObjectAdded;
             OnGameObjectRemoved += GameObjectRemoved;
 
-            foreach (var grabbable in _grabbables)
+            foreach (var grip in _grips)
             {
-                grabbable.OnGrab?.AddListener(OnGrab);
-                grabbable.OnRelease?.AddListener(OnRelease);
+                grip.OnGrab?.AddListener(OnGrab);
+                grip.OnRelease?.AddListener(OnRelease);
             }
 
             foreach (var socket in _sockets)
@@ -66,10 +67,10 @@ namespace KadenZombie8.BIMOS.Rig
             OnGameObjectAdded -= GameObjectAdded;
             OnGameObjectRemoved -= GameObjectRemoved;
 
-            foreach (var grabbable in _grabbables)
+            foreach (var grip in _grips)
             {
-                grabbable.OnGrab?.RemoveListener(OnGrab);
-                grabbable.OnRelease?.RemoveListener(OnRelease);
+                grip.OnGrab?.RemoveListener(OnGrab);
+                grip.OnRelease?.RemoveListener(OnRelease);
             }
 
             foreach (var socket in _sockets)

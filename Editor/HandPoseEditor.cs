@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using KadenZombie8.BIMOS.Rig;
+using KadenZombie8.BIMOS.Rig.Grips;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -122,7 +123,7 @@ namespace KadenZombie8.BIMOS.Editor
 
                     if (_currentSelection)
                     {
-                        var grab = _currentSelection.GetComponent<SnapGrabbable>();
+                        var grab = _currentSelection.GetComponent<TargetGrip>();
                         if (grab)
                         {
                             if (grab.Handedness == Handedness.Left)
@@ -150,7 +151,7 @@ namespace KadenZombie8.BIMOS.Editor
                 Vector3 pos = selection.TransformPoint(_currentHand.Palm.InverseTransformPoint(hand.position));
                 Quaternion rot = selection.rotation * Quaternion.Inverse(_currentHand.Palm.rotation) * hand.rotation;
 
-                var lineGrab = selection.GetComponent<LineGrabbable>();
+                var lineGrab = selection.GetComponent<LineGrip>();
                 if (lineGrab && lineGrab.Origin)
                 {
                     pos += (_lineGrabPosition - 0.5f) * lineGrab.Length * lineGrab.Origin.forward;
@@ -365,7 +366,7 @@ namespace KadenZombie8.BIMOS.Editor
                 {
                     foreach (var grab in Selection.gameObjects)
                     {
-                        if (!grab.GetComponent<SnapGrabbable>())
+                        if (!grab.GetComponent<TargetGrip>())
                             return;
 
                         var mirroredGrab = Instantiate(grab, grab.transform.parent);
@@ -390,7 +391,7 @@ namespace KadenZombie8.BIMOS.Editor
                             child.parent = mirroredGrab.transform;
                         }
 
-                        var snapGrab = mirroredGrab.GetComponent<SnapGrabbable>();
+                        var snapGrab = mirroredGrab.GetComponent<TargetGrip>();
                         snapGrab.Handedness = snapGrab.Handedness == Handedness.Left
                             ? Handedness.Right
                             : Handedness.Left;
@@ -400,7 +401,7 @@ namespace KadenZombie8.BIMOS.Editor
                 }
             }
 
-            if (_currentSelection && _currentSelection.GetComponent<LineGrabbable>())
+            if (_currentSelection && _currentSelection.GetComponent<LineGrip>())
             {
                 GUILayout.Label("Line grab position");
                 _lineGrabPosition = EditorGUILayout.Slider(_lineGrabPosition, 0f, 1f);

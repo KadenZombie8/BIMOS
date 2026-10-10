@@ -1,4 +1,5 @@
 using System.Collections;
+using KadenZombie8.BIMOS.Rig.Grips;
 using KadenZombie8.BIMOS.Rig.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,7 @@ namespace KadenZombie8.BIMOS.Rig
     {
         public BIMOSRig Rig;
         public HandAnimator HandAnimator;
-        public Grabbable CurrentGrab;
+        public Grip CurrentGrip;
         public HandInputReader HandInputReader;
         public Transform PalmTransform;
         public PhysicsArm PhysicsArm;
@@ -21,7 +22,7 @@ namespace KadenZombie8.BIMOS.Rig
         public Handedness Handedness;
         public Hand OtherHand;
         public ArmColliders ArmColliders;
-        public Joint GrabJoint;
+        public Joint GripJoint;
 
         [HideInInspector]
         public float VRHaptics = 1f;

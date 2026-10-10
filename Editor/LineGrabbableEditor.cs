@@ -1,13 +1,14 @@
+using KadenZombie8.BIMOS.Rig.Grips;
 using UnityEditor;
 
 namespace KadenZombie8.BIMOS.Rig
 {
-    [CustomEditor(typeof(LineGrabbable), true)]
+    [CustomEditor(typeof(LineGrip), true)]
     public class LineGrabbableEditor : UnityEditor.Editor
     {
         public void OnSceneGUI()
         {
-            var lineGrabbable = (LineGrabbable)target;
+            var lineGrabbable = (LineGrip)target;
             var lineOrigin = lineGrabbable.Origin;
 
             if (!lineOrigin) return;

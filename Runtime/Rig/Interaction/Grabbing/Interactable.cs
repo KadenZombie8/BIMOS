@@ -1,10 +1,11 @@
+using KadenZombie8.BIMOS.Rig.Grips;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace KadenZombie8.BIMOS.Rig
 {
-    [AddComponentMenu("BIMOS/Grabbables/Interactable")]
+    [AddComponentMenu("BIMOS/Grips/Interactable")]
     public class Interactable : MonoBehaviour
     {
         public UnityEvent
@@ -17,9 +18,9 @@ namespace KadenZombie8.BIMOS.Rig
         public TickEvent OnTick;
         public TickEvent OnPhysicsTick;
 
-        private Grabbable _grab;
+        private Grip _grab;
 
-        private void Awake() => _grab = GetComponent<Grabbable>();
+        private void Awake() => _grab = GetComponent<Grip>();
 
         private void CheckInputs(out float trigger, out bool primary, out bool secondary)
         {

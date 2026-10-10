@@ -1,13 +1,14 @@
+using KadenZombie8.BIMOS.Rig.Grips;
 using System;
 using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
 {
     [Serializable]
-    public struct LeftRightGrabbables
+    public struct LeftRightGrips
     {
-        public Grabbable Left;
-        public Grabbable Right;
+        public Grip Left;
+        public Grip Right;
     }
 
     [RequireComponent(typeof(HoldDetector))]
@@ -17,7 +18,7 @@ namespace KadenZombie8.BIMOS.Rig
         public event Action OnRetrieved;
 
         public string[] Tags = { "Light" };
-        public LeftRightGrabbables RetrieveGrabbables;
+        public LeftRightGrips RetrieveGrips;
 
         [HideInInspector]
         public Storable ParentStorable;

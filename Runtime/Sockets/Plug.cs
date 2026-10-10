@@ -1,4 +1,5 @@
 using KadenZombie8.BIMOS.Rig;
+using KadenZombie8.BIMOS.Rig.Grips;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -37,7 +38,7 @@ namespace KadenZombie8.BIMOS.Sockets
 
         public bool IsGrabbed()
         {
-            foreach (Grabbable grab in Rigidbody.GetComponentsInChildren<Grabbable>())
+            foreach (Grip grab in Rigidbody.GetComponentsInChildren<Grip>())
                 if (grab.LeftHand || grab.RightHand)
                     return true;
 

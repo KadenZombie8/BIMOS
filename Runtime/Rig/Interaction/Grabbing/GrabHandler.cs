@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.Rig.Grips;
 using System;
 using UnityEngine;
 
@@ -17,14 +18,14 @@ namespace KadenZombie8.BIMOS.Rig
         [SerializeField]
         private HandPose _hoverHandPose, _defaultGrabHandPose;
 
-        private Grabbable _chosenGrab;
+        private Grip _chosenGrab;
         private bool _wasGrabInRange = false;
 
         private const float _grabHapticDuration = 0.05f;
 
         private void Update()
         {
-            if (_hand.CurrentGrab) //If the hand isn't holding something
+            if (_hand.CurrentGrip) //If the hand isn't holding something
                 return;
 
             _chosenGrab = GetChosenGrab(); //Get the grab the player is hovering over
@@ -46,36 +47,36 @@ namespace KadenZombie8.BIMOS.Rig
             _hand.HandAnimator.HandPose = handPose;
         }
 
-        private Grabbable GetChosenGrab()
+        private Grip GetChosenGrab()
         {
             var grabColliders = Physics.OverlapBox(GrabBounds.position, GrabBounds.localScale / 2f, GrabBounds.rotation, Physics.AllLayers, QueryTriggerInteraction.Collide); //Get all grabs in the grab bounds
             float highestRank = 0;
-            Grabbable highestRankGrab = null;
+            Grip highestRankGrab = null;
 
-            foreach (var grabCollider in grabColliders) //Loop through found grab colliders to find grab with highest rank
+            foreach (var gripCollider in grabColliders) //Loop through found grab colliders to find grab with highest rank
             {
-                var grabbable = grabCollider.GetComponent<Grabbable>();
+                var grip = gripCollider.GetComponent<Grip>();
 
-                if (!grabbable)
-                    grabbable = grabCollider.GetComponentInParent<Grabbable>();
+                if (!grip)
+                    grip = gripCollider.GetComponentInParent<Grip>();
 
-                if (!grabbable)
+                if (!grip)
                     continue;
 
-                if (!grabbable.isActiveAndEnabled)
+                if (!grip.isActiveAndEnabled)
                     continue;
 
-                var snapGrabbable = grabbable as SnapGrabbable;
-                if (snapGrabbable && snapGrabbable.Handedness != _hand.Handedness) //If grab exists and is for the appropriate hand
+                var snapGrip = grip as TargetGrip;
+                if (snapGrip && snapGrip.Handedness != _hand.Handedness) //If grab exists and is for the appropriate hand
                     continue;
 
-                var grabRank = grabbable.CalculateRank(_hand);
+                var grabRank = grip.CalculateRank(_hand);
 
                 if (grabRank <= highestRank || grabRank <= 0f)
                     continue;
 
                 highestRank = grabRank;
-                highestRankGrab = grabbable;
+                highestRankGrab = grip;
             }
 
             if (highestRank <= 0f)
@@ -95,12 +96,12 @@ namespace KadenZombie8.BIMOS.Rig
 
         public void AttemptRelease()
         {
-            if (!_hand.CurrentGrab)
+            if (!_hand.CurrentGrip)
                 return;
 
             OnRelease?.Invoke();
             _hand.SendHapticImpulse(0.1f, _grabHapticDuration);
-            _hand.CurrentGrab.Release(_hand);
+            _hand.CurrentGrip.Release(_hand);
         }
 
         private void OnDisable() => AttemptRelease();

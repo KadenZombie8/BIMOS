@@ -1,3 +1,4 @@
+using KadenZombie8.BIMOS.Rig.Grips;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,32 +15,32 @@ namespace KadenZombie8.BIMOS.Rig
         public UnityEvent<Hand> OnFirstGrab;
         public UnityEvent<Hand> OnLastRelease;
 
-        private readonly HashSet<Grabbable> _grabbables = new();
+        private readonly HashSet<Grip> _grips = new();
         private Item _item;
         private bool _wasHolding;
 
         private void Awake() => _item = GetComponent<Item>();
 
-        private void AddGrabbable(Grabbable grabbable)
+        private void AddGrip(Grip grip)
         {
-            _grabbables.Add(grabbable);
-            grabbable.OnGrab?.AddListener(CheckIsHolding);
-            grabbable.OnRelease?.AddListener(CheckIsHolding);
+            _grips.Add(grip);
+            grip.OnGrab?.AddListener(CheckIsHolding);
+            grip.OnRelease?.AddListener(CheckIsHolding);
         }
 
-        private void RemoveGrabbable(Grabbable grabbable)
+        private void RemoveGrip(Grip grip)
         {
-            _grabbables.Remove(grabbable);
-            grabbable.OnGrab?.RemoveListener(CheckIsHolding);
-            grabbable.OnRelease?.RemoveListener(CheckIsHolding);
+            _grips.Remove(grip);
+            grip.OnGrab?.RemoveListener(CheckIsHolding);
+            grip.OnRelease?.RemoveListener(CheckIsHolding);
         }
 
         private void OnEnable()
         {
             foreach (var gameObject in _item.GameObjects)
             {
-                foreach (var grabbable in gameObject.GetComponentsInChildren<Grabbable>())
-                    AddGrabbable(grabbable);
+                foreach (var grip in gameObject.GetComponentsInChildren<Grip>())
+                    AddGrip(grip);
             }
 
             _item.OnGameObjectAdded += GameObjectAdded;
@@ -48,8 +49,8 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void OnDisable()
         {
-            foreach (var grabbable in _grabbables.ToArray())
-                RemoveGrabbable(grabbable);
+            foreach (var grip in _grips.ToArray())
+                RemoveGrip(grip);
 
             _item.OnGameObjectAdded -= GameObjectAdded;
             _item.OnGameObjectRemoved -= GameObjectRemoved;
@@ -57,14 +58,14 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void GameObjectAdded(GameObject gameObject)
         {
-            foreach (var grabbable in gameObject.GetComponentsInChildren<Grabbable>())
-                AddGrabbable(grabbable);
+            foreach (var grip in gameObject.GetComponentsInChildren<Grip>())
+                AddGrip(grip);
         }
 
         private void GameObjectRemoved(GameObject gameObject)
         {
-            foreach (var grabbable in gameObject.GetComponentsInChildren<Grabbable>())
-                RemoveGrabbable(grabbable);
+            foreach (var grip in gameObject.GetComponentsInChildren<Grip>())
+                RemoveGrip(grip);
         }
 
         private void CheckIsHolding(Hand hand)
@@ -78,8 +79,8 @@ namespace KadenZombie8.BIMOS.Rig
 
         public bool IsHolding()
         {
-            foreach (var grabbable in _grabbables)
-                if (grabbable.LeftHand != grabbable.RightHand) return true;
+            foreach (var grip in _grips)
+                if (grip.LeftHand != grip.RightHand) return true;
 
             return false;
         }

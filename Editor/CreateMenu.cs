@@ -1,4 +1,5 @@
 using KadenZombie8.BIMOS.Rig;
+using KadenZombie8.BIMOS.Rig.Grips;
 using KadenZombie8.BIMOS.Rig.Spawning;
 using KadenZombie8.BIMOS.Sockets;
 using UnityEditor;
@@ -49,14 +50,14 @@ namespace KadenZombie8.BIMOS.Samples.Editor
         [MenuItem("GameObject/BIMOS/Grabbables/Snap")]
         static void CreateSnapGrab()
         {
-            GameObject grab = new("SnapGrabbable", typeof(SnapGrabbable));
+            GameObject grab = new("SnapGrabbable", typeof(TargetGrip));
             GameObjectUtility.SetParentAndAlign(grab, Selection.activeGameObject);
         }
 
         [MenuItem("GameObject/BIMOS/Grabbables/Offhand")]
         static void CreateOffhandGrab()
         {
-            GameObject grab = new("OffhandGrabbable", typeof(OffhandGrabbable));
+            GameObject grab = new("OffhandGrabbable", typeof(OffhandGrip));
             GameObjectUtility.SetParentAndAlign(grab, Selection.activeGameObject);
         }
 
@@ -66,10 +67,10 @@ namespace KadenZombie8.BIMOS.Samples.Editor
             GameObject lineOrigin = new("LineOrigin");
             lineOrigin.transform.localPosition = Vector3.zero;
 
-            GameObject grab = new("LineGrabbable", typeof(LineGrabbable));
+            GameObject grab = new("LineGrabbable", typeof(LineGrip));
             grab.transform.parent = lineOrigin.transform;
 
-            grab.GetComponent<LineGrabbable>().Origin = lineOrigin.transform;
+            grab.GetComponent<LineGrip>().Origin = lineOrigin.transform;
 
             GameObjectUtility.SetParentAndAlign(lineOrigin, Selection.activeGameObject);
         }

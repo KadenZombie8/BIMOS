@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-namespace KadenZombie8.BIMOS.Rig
+namespace KadenZombie8.BIMOS.Rig.Grips
 {
-    [AddComponentMenu("BIMOS/Grabbables/Grabbable (Offhand)")]
-    public class OffhandGrabbable : SnapGrabbable
+    [AddComponentMenu("BIMOS/Grips/Offhand Grip")]
+    public class OffhandGrip : TargetGrip
     {
         public override void Grab(Hand hand)
         {
@@ -18,7 +18,7 @@ namespace KadenZombie8.BIMOS.Rig
             Transform otherPhysicsHand = hand.OtherHand.PhysicsHandTransform;
             hand.PhysicsArm.Hand.Target = hand.OtherHand.PhysicsArm.Hand.Target;
 
-            if (!hand.OtherHand.CurrentGrab)
+            if (!hand.OtherHand.CurrentGrip)
                 yield return null;
 
             Vector3 targetPosition = transform.TransformPoint(hand.PalmTransform.InverseTransformPoint(hand.PhysicsHandTransform.position));
@@ -45,7 +45,7 @@ namespace KadenZombie8.BIMOS.Rig
             var grabTime = MaxGrabTime * averageDifference;
             while (elapsedTime < grabTime)
             {
-                if (!hand.GrabJoint)
+                if (!hand.GripJoint)
                     yield break;
 
                 var lerpedTargetPosition = Vector3.Lerp(initialOffsetPosition, finalOffsetPosition, elapsedTime / grabTime);
@@ -58,7 +58,7 @@ namespace KadenZombie8.BIMOS.Rig
                 yield return new WaitForFixedUpdate();
             }
 
-            if (hand.GrabJoint)
+            if (hand.GripJoint)
             {
                 hand.PhysicsArm.Hand.PositionOffset = finalOffsetPosition;
                 hand.PhysicsArm.Hand.RotationOffset = finalOffsetRotation;
@@ -70,9 +70,9 @@ namespace KadenZombie8.BIMOS.Rig
             }
         }
 
-        public override void DestroyGrabJoint(Hand hand)
+        public override void DestroyGripJoint(Hand hand)
         {
-            base.DestroyGrabJoint(hand);
+            base.DestroyGripJoint(hand);
             hand.PhysicsArm.Hand.Target = hand.PhysicsArm.Hand.Controller;
             hand.PhysicsArm.Hand.PositionOffset = Vector3.zero;
             hand.PhysicsArm.Hand.RotationOffset = Quaternion.identity;

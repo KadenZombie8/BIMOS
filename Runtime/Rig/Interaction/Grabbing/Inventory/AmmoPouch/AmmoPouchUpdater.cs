@@ -32,10 +32,10 @@ namespace KadenZombie8.BIMOS.Rig {
         {
             var otherHand = hand.OtherHand;
 
-            var grabbable = otherHand.CurrentGrab;
-            if (!grabbable) return;
+            var grip = otherHand.CurrentGrip;
+            if (!grip) return;
 
-            var ammoPouchUpdater = grabbable.GetComponentInParent<AmmoPouchUpdater>();
+            var ammoPouchUpdater = grip.GetComponentInParent<AmmoPouchUpdater>();
             if (!ammoPouchUpdater) return;
 
             ammoPouchUpdater.UpdateAmmoPrefab(otherHand);

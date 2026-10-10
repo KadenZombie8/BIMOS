@@ -148,7 +148,7 @@ namespace KadenZombie8.BIMOS.Rig
             GetWebInputs();
 #endif
 
-            var currentGrab = Hand.CurrentGrab;
+            var currentGrab = Hand.CurrentGrip;
 
             if (currentGrab && currentGrab.TryGetComponent<Interactable>(out var interactable))
                 interactable.Tick();
@@ -156,7 +156,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void FixedUpdate()
         {
-            var currentGrab = Hand.CurrentGrab;
+            var currentGrab = Hand.CurrentGrip;
 
             if (currentGrab && currentGrab.TryGetComponent<Interactable>(out var interactable))
                 interactable.PhysicsTick();
@@ -196,7 +196,7 @@ namespace KadenZombie8.BIMOS.Rig
 
         private void OnTriggerButton(InputAction.CallbackContext context)
         {
-            var currentGrab = Hand.CurrentGrab;
+            var currentGrab = Hand.CurrentGrip;
 
             if (!currentGrab || context.started)
                 return;
@@ -242,7 +242,7 @@ namespace KadenZombie8.BIMOS.Rig
         {
             PrimaryButton = context.performed;
 
-            var currentGrab = Hand.CurrentGrab;
+            var currentGrab = Hand.CurrentGrip;
 
             if (!currentGrab || context.started)
                 return;
@@ -257,7 +257,7 @@ namespace KadenZombie8.BIMOS.Rig
         {
             SecondaryButton = context.performed;
 
-            var currentGrab = Hand.CurrentGrab;
+            var currentGrab = Hand.CurrentGrip;
 
             if (!currentGrab || context.started)
                 return;
