@@ -1,8 +1,9 @@
+using KadenZombie8.BIMOS.ImpactProperties;
+using KadenZombie8.BIMOS.Rig.Grips;
+using KadenZombie8.BIMOS.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using KadenZombie8.BIMOS.Rig.Grips;
-using KadenZombie8.BIMOS.Sockets;
 using UnityEngine;
 
 namespace KadenZombie8.BIMOS.Rig
@@ -19,6 +20,8 @@ namespace KadenZombie8.BIMOS.Rig
         public readonly HashSet<GameObject> GameObjects = new();
 
         private readonly HashSet<Collider> _colliders = new();
+        private readonly HashSet<Rigidbody> _rigidbodies = new();
+        private readonly HashSet<ArticulationBody> _articulationBodies = new();
         private readonly HashSet<Grip> _grips = new();
         private readonly HashSet<Socket> _sockets = new();
         private readonly HashSet<Hand> _hands = new();
@@ -41,6 +44,12 @@ namespace KadenZombie8.BIMOS.Rig
             {
                 foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
                     AddCollider(collider);
+
+                foreach (var rigidbody in gameObject.GetComponentsInChildren<Rigidbody>())
+                    _rigidbodies.Add(rigidbody);
+
+                foreach (var articulationBody in gameObject.GetComponentsInChildren<ArticulationBody>())
+                    _articulationBodies.Add(articulationBody);
             }
 
             OnGameObjectAdded += GameObjectAdded;
@@ -84,12 +93,24 @@ namespace KadenZombie8.BIMOS.Rig
         {
             foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
                 AddCollider(collider);
+
+            foreach (var rigidbody in gameObject.GetComponentsInChildren<Rigidbody>())
+                _rigidbodies.Add(rigidbody);
+
+            foreach (var articulationBody in gameObject.GetComponentsInChildren<ArticulationBody>())
+                _articulationBodies.Add(articulationBody);
         }
 
         private void GameObjectRemoved(GameObject gameObject)
         {
             foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
                 RemoveCollider(collider);
+
+            foreach (var rigidbody in gameObject.GetComponentsInChildren<Rigidbody>())
+                _rigidbodies.Remove(rigidbody);
+
+            foreach (var articulationBody in gameObject.GetComponentsInChildren<ArticulationBody>())
+                _articulationBodies.Remove(articulationBody);
         }
 
         private void AddCollider(Collider collider)
@@ -128,6 +149,12 @@ namespace KadenZombie8.BIMOS.Rig
             Physics.IgnoreCollision(collider, hand.ArmColliders.Hand, ignore);
         }
 
+        public void SendHapticImpulse(float amplitude, float duration)
+        {
+            foreach (var hand in _hands)
+                hand.SendHapticImpulse(amplitude, duration);
+        }
+
         private void OnSocketAttach(Plug plug)
         {
             var plugGameObject = GetPlugGameObject(plug);
@@ -150,6 +177,36 @@ namespace KadenZombie8.BIMOS.Rig
             if (!rigidbody) return null;
 
             return rigidbody.gameObject;
+        }
+    }
+
+    public class CollisionHandler : MonoBehaviour
+    {
+        public Item Item;
+
+        private (float min, float max) _impulseRange = (0f, 1f);
+
+        private readonly float _collisionHapticDuration = 0.1f;
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            var rigidbody = collision.thisRigidbody;
+            var articulationBody = collision.thisArticulationBody;
+
+            float mass;
+
+            if (rigidbody)
+                mass = rigidbody.mass;
+            else if (articulationBody)
+                mass = articulationBody.mass;
+            else
+                return;
+
+            var deltaVelocity = collision.impulse.magnitude / mass;
+
+            if (deltaVelocity < _impulseRange.min) return;
+            var impulsePercent = Mathf.InverseLerp(_impulseRange.min, _impulseRange.max, deltaVelocity);
+            Item.SendHapticImpulse(impulsePercent, _collisionHapticDuration);
         }
     }
 }
